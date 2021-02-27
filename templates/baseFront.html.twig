@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Job Board & Directory Template</title>
+    <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/x-icon">
+    <!-- Bootstrap , fonts & icons  -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/icon-font/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/typography-font/typo.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/fontawesome-5/css/all.css') }}">
+    <!-- Plugin'stylesheets  -->
+    <link rel="stylesheet" href="{{ asset('plugins/aos/aos.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fancybox/jquery.fancybox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/nice-select/nice-select.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/slick/slick.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/ui-range-slider/jquery-ui.css') }}">
+    <!-- Vendor stylesheets  -->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <!-- Custom stylesheet -->
+</head>
+
+<body>
+<div class="site-wrapper overflow-hidden ">
+    <!-- Header start  -->
+    <!-- Header Area -->
+    <header class="site-header site-header--menu-right dynamic-sticky-bg py-7 py-lg-0 site-header--absolute site-header--sticky">
+        <div class="container">
+            <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
+                <!-- Brand Logo-->
+                <div class="brand-logo">
+                    <a href="{{ path('home') }}">
+                        <!-- light version logo (logo must be black)-->
+                        <img style="width: 70px;height: 70px;" src="{{ asset('image/logo.png') }}" alt="" class="light-version-logo default-logo">
+                        <!-- Dark version logo (logo must be White)-->
+                        <img style="width: 70px;height: 70px;" src="{{ asset('image/logo.png') }}" alt="" class="dark-version-logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="mobile-menu">
+                    <div class="navbar-nav-wrapper">
+                        <ul class="navbar-nav main-menu">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('home') }}">Acceuil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('publications') }}">Offres</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('publications') }}">Publications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('publications') }}">Concours</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('publications') }}">Forum</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="d-block d-lg-none offcanvas-btn-close focus-reset" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="true" aria-label="Toggle navigation">
+                        <i class="gr-cross-icon"></i>
+                    </button>
+                </div>
+                <div class="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
+                    <a class="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset" href="javacript:" data-toggle="modal" data-target="#login">
+                        Log in
+                    </a>
+                    <a class="btn btn-primary text-uppercase font-size-3" href="javacript:" data-toggle="modal" data-target="#signup">
+                        Sign up
+                    </a>
+                </div>
+                <!-- Mobile Menu Hamburger-->
+                <button class="navbar-toggler btn-close-off-canvas  hamburger-icon border-0" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- <i class="icon icon-simple-remove icon-close"></i> -->
+                    <span class="hamburger hamburger--squeeze js-hamburger">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+            </span>
+            </span>
+                </button>
+                <!--/.Mobile Menu Hamburger Ends-->
+            </nav>
+        </div>
+    </header>
+
+    {% block index %}
+
+    {% endblock %}
+    <section class="pt-7 pt-lg-16 pb-2 pb-lg-32">
+        {% block section %}
+
+
+
+        {% endblock %}
+    </section>
+
+
+    <footer class="footer bg-ebony-clay dark-mode-texts">
+        <div class="container">
+            <!-- Cta section -->
+            <div class="pt-11 pt-lg-20 pb-13 pb-lg-20 border-bottom border-width-1 border-default-color-2">
+                <div class="row justify-content-center ">
+                    <div class="col-xl-7 col-lg-12" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                        <!-- cta-content start -->
+                        <div class="pb-xl-0 pb-9 text-xl-left text-center">
+                            <h2 class="text-white font-size-8 mb-4">Most comprehensive job portal</h2>
+                            <p class="text-hit-gray font-size-5 mb-0">We must explain to you how all this mistaken idea of denouncing</p>
+                        </div>
+                        <!-- cta-content end -->
+                    </div>
+                    <div class="col-xl-5 col-lg-12" data-aos="fade-left" data-aos-duration="800" data-aos-once="true">
+                        <!-- cta-btns start -->
+                        <div class="btns d-flex justify-content-xl-end justify-content-center align-items-xl-center flex-wrap h-100  mx-n4">
+                            <a class="btn btn-outline-gallery btn-xl mx-4 mt-6 text-uppercase" href="#" data-toggle="modal" data-target="#login">Log in</a>
+                            <a class="btn btn-green btn-h-60 btn-xl mx-4 mt-6 text-uppercase" href="#" data-toggle="modal" data-target="#signup">Register</a>
+                        </div>
+                        <!-- cta-btns end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container  pt-12 pt-lg-19 pb-10 pb-lg-19">
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 mb-lg-0 mb-9">
+                    <!-- footer logo start -->
+                    <img src="{{ asset('image/logo-main-white.png') }}" alt="" class="footer-logo mb-14">
+                    <!-- footer logo End -->
+                    <!-- media start -->
+                    <div class="media mb-11">
+                        <img src="{{ asset('image/l1/png/message.png') }}" class="align-self-center mr-3" alt="">
+                        <div class="media-body pl-5">
+                            <p class="mb-0 font-size-4 text-white">Contact us at</p>
+                            <a class="mb-0 font-size-4 font-weight-bold" href="mailto:support@uxtheme.net">support@uxtheme.net</a>
+                        </div>
+                    </div>
+                    <!-- media start -->
+                    <!-- widget social icon start -->
+                    <div class="social-icons">
+                        <ul class="pl-0 list-unstyled d-flex align-items-end ">
+                            <li class="d-flex flex-column justify-content-center px-3 mr-3 font-size-4 heading-default-color">Follow us on:</li>
+                            <li class="d-flex flex-column justify-content-center px-3 mr-3"><a href="#" class="hover-color-primary heading-default-color"><i class="fab fa-facebook-f font-size-3 pt-2"></i></a></li>
+                            <li class="d-flex flex-column justify-content-center px-3 mr-3"><a href="#" class="hover-color-primary heading-default-color"><i class="fab fa-twitter font-size-3 pt-2"></i></a></li>
+                            <li class="d-flex flex-column justify-content-center px-3 mr-3"><a href="#" class="hover-color-primary heading-default-color"><i class="fab fa-linkedin-in font-size-3 pt-2"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- widget social icon end -->
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-6">
+                            <div class="footer-widget widget2 mb-md-0 mb-13">
+                                <!-- footer widget title start -->
+                                <p class="widget-title font-size-4 text-gray mb-md-8 mb-7">Company</p>
+                                <!-- footer widget title end -->
+                                <!-- widget social menu start -->
+                                <ul class="widget-links pl-0 list-unstyled list-hover-primary">
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">About us</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Contact us</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Careers</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Press</a></li>
+                                </ul>
+                                <!-- widget social menu end -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-6">
+                            <div class="footer-widget widget3 mb-sm-0 mb-13">
+                                <!-- footer widget title start -->
+                                <p class="widget-title font-size-4 text-gray mb-md-8 mb-7">Product</p>
+                                <!-- footer widget title end -->
+                                <!-- widget social menu start -->
+                                <ul class="widget-links pl-0 list-unstyled list-hover-primary">
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Features </a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Pricing</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">News</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Help desk</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Support</a></li>
+                                </ul>
+                                <!-- widget social menu end -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-6">
+                            <div class="footer-widget widget4 mb-sm-0 mb-13">
+                                <!-- footer widget title start -->
+                                <p class="widget-title font-size-4 text-gray mb-md-8 mb-7">Services</p>
+                                <!-- footer widget title end -->
+                                <!-- widget social menu start -->
+                                <ul class="widget-links pl-0 list-unstyled list-hover-primary">
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Digital Marketing</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">SEO for Business</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Avasta Dash</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">UI Design</a></li>
+                                </ul>
+                                <!-- widget social menu end -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-6">
+                            <div class="footer-widget widget4">
+                                <!-- footer widget title start -->
+                                <p class="widget-title font-size-4 text-gray mb-md-8 mb-7">Legal</p>
+                                <!-- footer widget title end -->
+                                <ul class="widget-links pl-0 list-unstyled list-hover-primary">
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Privacy Policy</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Terms & Conditions</a></li>
+                                    <li class="mb-6"><a class="heading-default-color font-size-4 font-weight-normal" href="#">Return Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- Vendor Scripts -->
+<script src="{{ asset('js/vendor.min.js') }}"></script>
+<!-- Plugin's Scripts -->
+<script src="{{ asset('plugins/fancybox/jquery.fancybox.min.js') }}"></script>
+<script src="{{ asset('plugins/nice-select/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('plugins/aos/aos.min.js') }}"></script>
+<script src="{{ asset('plugins/slick/slick.min.js') }}"></script>
+<script src="{{ asset('plugins/counter-up/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('jplugins/counter-up/jquery.waypoints.min.js') }}"></script>
+<script src="{{ asset('plugins/ui-range-slider/jquery-ui.js') }}"></script>
+<!-- Activation Script -->
+<!-- <script src="js/drag-n-drop.js"></script> -->
+<script src="{{ asset('js/custom.js') }}"></script>
+</body>
+
+</html>
