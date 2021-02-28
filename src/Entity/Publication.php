@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\PublicationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=PublicationRepository::class)
+ * @Vich\Uploadable
  */
 class Publication
 {
@@ -27,20 +30,62 @@ class Publication
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $path;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $archive;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="publication_image", fileNameProperty="imageName")
+     *
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string|null
+     */
+    private $imageName;
+
+
+
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+
 
     public function getId(): ?int
     {
@@ -71,39 +116,33 @@ class Publication
         return $this;
     }
 
-    public function getPath(): ?string
-    {
-        return $this->path;
-    }
 
-    public function setPath(string $path): self
-    {
-        $this->path = $path;
 
-        return $this;
-    }
 
-    public function getType(): ?string
+
+
+
+
+    public function getType(): ?int
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(int $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getArchive(): ?string
+    public function getArchive(): ?int
     {
         return $this->archive;
     }
 
-    public function setArchive(string $archive): self
+    public function setArchive(int $archive): self
     {
         $this->archive = $archive;
-
         return $this;
     }
 }

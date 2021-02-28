@@ -1,5 +1,29 @@
 {% extends "baseFront.html.twig" %}
 
 {% block section %}
-
+<center>
+    <table border="1">
+        <thead>
+        <th>id</th>
+        <th>User</th>
+        <th>description</th>
+        <th>type</th>
+        <th>archive</th>
+        <th>Photo</th>
+        </thead>
+        <tbody>
+        {% for row in result %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.idU }}</td>
+                <td>{{ row.description }}</td>
+                <td>{{ row.type }}</td>
+                <td>{{ row.archive }}</td>
+                <td><img style="width: 80px;height: 80px;" src="{{ asset('images/publications/' ~ row.imageName) }}" alt=""></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('add_publication') }}">Ajouter Publication</a>
+</center>
 {% endblock %}
