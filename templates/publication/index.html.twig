@@ -10,6 +10,10 @@
         <th>type</th>
         <th>archive</th>
         <th>Photo</th>
+        <th>Comments</th>
+        <th>Add Commentaire</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
         </thead>
         <tbody>
         {% for row in result %}
@@ -20,6 +24,14 @@
                 <td>{{ row.type }}</td>
                 <td>{{ row.archive }}</td>
                 <td><img style="width: 80px;height: 80px;" src="{{ asset('images/publications/' ~ row.imageName) }}" alt=""></td>
+                <td>
+                    {% for commentaire in row.commentaires %}
+                        <p>{{ commentaire.contenuCommentaire }}</p></br>
+                    {% endfor %}
+                </td>
+                <td><a href="{{ path('add_commentaire',{'idPublication':row.id}) }}">Ajouter commentaire</a></td>
+                <td><a href="{{ path('update_commentaire',{'idPublication':row.id}) }}">Modifier</a></td>
+                <td><a href="{{ path('remove_commentaire',{'idPublication':row.id}) }}">Supprimer</a></td>
             </tr>
         {% endfor %}
         </tbody>

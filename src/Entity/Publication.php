@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PublicationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -57,8 +59,67 @@ class Publication
      */
     private $imageName;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="publication", orphanRemoval=true)
+     */
+    private $commentaires;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reaction", mappedBy="publication", orphanRemoval=true)
+     */
+    private $reactions;
 
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+        $this->reactions = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setPublication($this);
+        }
+        return $this;
+    }
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reaction[]
+     */
+    public function getReactionss(): Collection
+    {
+        return $this->reactions;
+    }
+    public function addReaction(Reaction $reaction): self
+    {
+        if (!$this->reactions->contains($reaction)) {
+            $this->reactions[] = $reaction;
+            $reaction->setPublication($this);
+        }
+        return $this;
+    }
+    public function removeReaction(Reaction $reaction): self
+    {
+        if ($this->reactions->contains($reaction)) {
+            $this->reactions->removeElement($reaction);
+        }
+        return $this;
+    }
 
     /**
      *
@@ -84,8 +145,6 @@ class Publication
     {
         return $this->imageName;
     }
-
-
 
     public function getId(): ?int
     {
@@ -115,13 +174,6 @@ class Publication
 
         return $this;
     }
-
-
-
-
-
-
-
 
     public function getType(): ?int
     {

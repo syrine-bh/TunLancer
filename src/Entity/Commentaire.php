@@ -2,54 +2,56 @@
 
 namespace App\Entity;
 
-use App\Repository\ReactionRepository;
+use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ReactionRepository::class)
+ * @ORM\Entity(repositoryClass=CommentaireRepository::class)
  */
-class Reaction
+class Commentaire
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $idReaction;
+    private $idCommentaire;
+
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Publication", inversedBy="reactions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Publication", inversedBy="commentaires")
      */
     private $publication;
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="idUtilisateur", type="integer", nullable=false)
      */
     private $idUtilisateur;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="typeReaction", type="integer", nullable=false)
+     * @ORM\Column(name="contenuCommentaire", type="string", length=255, nullable=false)
      */
-    private $typeReaction;
+    private $contenuCommentaire;
+
+
 
     /**
      * @return mixed
      */
-    public function getIdReaction()
+    public function getIdCommentaire()
     {
-        return $this->idReaction;
+        return $this->idCommentaire;
     }
 
     /**
-     * @param mixed $idReaction
+     * @param mixed $idCommentaire
      */
-    public function setIdReaction($idReaction): void
+    public function setIdCommentaire($idCommentaire): void
     {
-        $this->idReaction = $idReaction;
+        $this->idCommentaire = $idCommentaire;
     }
 
     public function getPublication(): ?Publication
@@ -80,21 +82,20 @@ class Reaction
         $this->idUtilisateur = $idUtilisateur;
     }
 
-    /**
-     * @return string
-     */
-    public function getTypeReaction(): string
+
+    public function getContenuCommentaire(): ?string
     {
-        return $this->typeReaction;
+        return $this->contenuCommentaire;
     }
 
-    /**
-     * @param string $typeReaction
-     */
-    public function setTypeReaction(string $typeReaction): void
+
+    public function setContenuCommentaire(?string $contenuCommentaire): void
     {
-        $this->typeReaction = $typeReaction;
+        $this->contenuCommentaire = $contenuCommentaire;
     }
+
+
+
 
 
 }
