@@ -11,18 +11,18 @@
     <title>Job Board & Directory Template</title>
     <link rel="shortcut icon" href="image/favicon.png" type="image/x-icon">
     <!-- Bootstrap , fonts & icons  -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="fonts/icon-font/css/style.css">
-    <link rel="stylesheet" href="fonts/typography-font/typo.css">
-    <link rel="stylesheet" href="fonts/fontawesome-5/css/all.css">
+    <link rel="stylesheet" href={{ asset("css/bootstrap.css") }}>
+    <link rel="stylesheet" href={{ asset("fonts/icon-font/css/style.css") }}>
+    <link rel="stylesheet" href={{ asset("fonts/typography-font/typo.css") }}>
+    <link rel="stylesheet" href={{ asset("fonts/fontawesome-5/css/all.css") }}>
     <!-- Plugin'stylesheets  -->
-    <link rel="stylesheet" href="plugins/aos/aos.min.css">
-    <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="plugins/nice-select/nice-select.min.css">
-    <link rel="stylesheet" href="plugins/slick/slick.min.css">
-    <link rel="stylesheet" href="plugins/ui-range-slider/jquery-ui.css">
+    <link rel="stylesheet" href={{ asset("plugins/aos/aos.min.css") }}>
+    <link rel="stylesheet" href={{ asset("plugins/fancybox/jquery.fancybox.min.css") }}>
+    <link rel="stylesheet" href={{ asset("plugins/nice-select/nice-select.min.css") }}>
+    <link rel="stylesheet" href={{ asset("plugins/slick/slick.min.css") }}>
+    <link rel="stylesheet" href={{ asset("plugins/ui-range-slider/jquery-ui.css") }}>
     <!-- Vendor stylesheets  -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href={{ asset("css/main.css") }}>
     <!-- Custom stylesheet -->
 </head>
 
@@ -37,9 +37,9 @@
                 <div class="brand-logo">
                     <a href="index.html">
                         <!-- light version logo (logo must be black)-->
-                        <img src="image/logo-main-black.png" alt="" class="light-version-logo default-logo">
+                        <img src="image/logo.png" alt="" class="light-version-logo default-logo">
                         <!-- Dark version logo (logo must be White)-->
-                        <img src="image/logo-main-white.png" alt="" class="dark-version-logo">
+                        <img src="image/logo.png" alt="" class="dark-version-logo">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="mobile-menu">
@@ -49,8 +49,8 @@
                                 <a class="nav-link dropdown-toggle gr-toggle-arrow" id="navbarDropdown" href="#features" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home <i class="icon icon-small-down"></i></a>
                                 <ul class="gr-menu-dropdown dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="drop-menu-item">
-                                        <a href="home-1.html">
-                                            Homepage 01
+                                        <a href="publication">
+                                            Publication
                                         </a>
                                     </li>
                                     <li class="drop-menu-item">
