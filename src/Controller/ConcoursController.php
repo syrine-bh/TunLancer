@@ -69,7 +69,7 @@ class ConcoursController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('listCadmin');
         }
-        return $this->render("concours/ajoutConcours.html.twig",[
+        return $this->render("concours/ajouterConcours.html.twig",[
             'form'=>$form->createView(),
         ]);
     }
@@ -107,6 +107,27 @@ class ConcoursController extends AbstractController
         $em->remove($concours);
         $em->flush();
         return $this->redirectToRoute('listCadmin');
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @Route ("concours/ajouterConcours",name="ajouterConcours")
+     */
+    public function ajouterConcours (Request $request){
+        $concours=new concour();
+        $form=$this->createForm(ConcoursType::class,$concours);
+        $form->add('Ajouter',SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($concours);
+            $em->flush();
+            return $this->redirectToRoute('listCadmin');
+        }
+        return $this->render("concours/ajouterConcours.html.twig",[
+            'form'=>$form->createView(),
+        ]);
     }
 
 }
