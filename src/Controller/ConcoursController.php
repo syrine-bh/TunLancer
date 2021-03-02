@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Concours;
 use App\Form\ConcoursType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -41,7 +43,36 @@ class ConcoursController extends AbstractController
             ]);
         }
 
+    /**
+     * @return Response
+     * @Route ("/concours/listCadmin",name="listCadmin")
+     */
+    public function listCadmin (){
+        $repo=$this->getDoctrine()->getRepository(Concours::class);
+        $concours=$repo->findAll();
+        return $this->render('concours/listCadmin.html.twig',['concours'=>$concours]);
+    }
 
+    /**
+     * @param Request $request
+     * @return Response
+     * @Route ("concours/ajoutCadmin",name="ajoutCadmin")
+     */
+    public function ajoutConcours (Request $request){
+        $concours=new concours();
+        $form=$this->createForm(ConcoursType::class,$concours);
+        $form->add('Ajouter',SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($concours);
+            $em->flush();
+            return $this->redirectToRoute('listCadmin');
+        }
+        return $this->render("concours/ajoutConcours.html.twig",[
+            'form'=>$form->createView(),
+        ]);
+    }
 
 
 }
