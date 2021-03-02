@@ -15,7 +15,7 @@ class ConcoursController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('concours/index.html.twig', [
+        return $this->render('concours/list.html.twig', [
             'controller_name' => 'ConcoursController',
         ]);
     }
