@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Concours;
+use App\Entity\Concour;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Concours|null find($id, $lockMode = null, $lockVersion = null)
- * @method Concours|null findOneBy(array $criteria, array $orderBy = null)
- * @method Concours[]    findAll()
- * @method Concours[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Concour|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Concour|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Concour[]    findAll()
+ * @method Concour[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ConcoursRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Concours::class);
+        parent::__construct($registry, Concour::class);
     }
 
     // /**
-    //  * @return Concours[] Returns an array of Concours objects
+    //  * @return Concour[] Returns an array of Concour objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ConcoursRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Concours
+    public function findOneBySomeField($value): ?Concour
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

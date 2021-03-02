@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Concours;
+use App\Entity\Concour;
 use App\Form\ConcoursType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -27,7 +27,7 @@ class ConcoursController extends AbstractController
      * @Route ("/concours/list",name="list")
      */
     public function list (){
-        $repo=$this->getDoctrine()->getRepository(Concours::class);
+        $repo=$this->getDoctrine()->getRepository(Concour::class);
         $concours=$repo->findAll();
         return $this->render('concours/list.html.twig',['concours'=>$concours]);
     }
@@ -36,7 +36,7 @@ class ConcoursController extends AbstractController
      * @Route ("/concours/descriptionConcours",name="descriptionConcours")
      */
         public function descriptionConcours(){
-            $repo=$this->getDoctrine()->getRepository(Concours::class);
+            $repo=$this->getDoctrine()->getRepository(Concour::class);
             $description=$repo->findAll();
             return $this->render('/concours/descriptionConcours.html.twig',[
                 'description'=>$description
@@ -48,7 +48,7 @@ class ConcoursController extends AbstractController
      * @Route ("/concours/listCadmin",name="listCadmin")
      */
     public function listCadmin (){
-        $repo=$this->getDoctrine()->getRepository(Concours::class);
+        $repo=$this->getDoctrine()->getRepository(Concour::class);
         $concours=$repo->findAll();
         return $this->render('concours/listCadmin.html.twig',['concours'=>$concours]);
     }
@@ -59,7 +59,7 @@ class ConcoursController extends AbstractController
      * @Route ("concours/ajoutCadmin",name="ajoutCadmin")
      */
     public function ajoutConcours (Request $request){
-        $concours=new concours();
+        $concours=new Concour();
         $form=$this->createForm(ConcoursType::class,$concours);
         $form->add('Ajouter',SubmitType::class);
         $form->handleRequest($request);

@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\ConcoursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ConcoursRepository::class)
  */
-class Concours
+class Concour
 {
     /**
      * @ORM\Id
@@ -51,6 +53,16 @@ class Concours
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Users::class, mappedBy="concours")
+     */
+    private $test;
+
+    public function __construct()
+    {
+        $this->test = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +149,33 @@ class Concours
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Users[]
+     */
+    public function getTest(): Collection
+    {
+        return $this->test;
+    }
+
+    public function addTest(Users $test): self
+    {
+        if (!$this->test->contains($test)) {
+            $this->test[] = $test;
+            $test->addConcour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Users $test): self
+    {
+        if ($this->test->removeElement($test)) {
+            $test->removeConcour($this);
+        }
 
         return $this;
     }

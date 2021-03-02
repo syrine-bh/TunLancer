@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Concours;
+use App\Entity\Concour;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,7 +25,7 @@ class ConcoursType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Concours::class,
+            'data_class' => Concour::class,
         ]);
     }
 }
