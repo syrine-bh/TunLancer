@@ -95,4 +95,18 @@ class ConcoursController extends AbstractController
             'form'=>$form->createView(),
         ]);
     }
+
+    /**
+     * @return Response
+     * @Route ("/supprimerConcours/{id}",name="supprimerConcours")
+     */
+    public function supprimerConcours($id){
+        $repo=$this->getDoctrine()->getRepository(Concour::class);
+        $concours=$repo->find($id);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($concours);
+        $em->flush();
+        return $this->redirectToRoute('listCadmin');
+    }
+
 }
