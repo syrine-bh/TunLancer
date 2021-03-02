@@ -74,5 +74,25 @@ class ConcoursController extends AbstractController
         ]);
     }
 
-
+    /**
+     * @Route ("concours/modifierConcours{id}",name="modifierConcours")
+     * @param $id
+     * @param $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    function modifier($id,Request $request){
+        $repo=$this->getDoctrine()->getRepository(Concour::class);
+        $concours=$repo->find($id);
+        $form=$this->createForm(ConcoursType::class,$concours);
+        $form->add('Modifier',SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute('listCadmin');
+        }
+        return $this->render("concours/modifierConcours.html.twig",[
+            'form'=>$form->createView(),
+        ]);
+    }
 }
