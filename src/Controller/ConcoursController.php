@@ -33,9 +33,9 @@ class ConcoursController extends AbstractController
     }
 
      /**
-     * @Route ("/concours/descriptionConcours",name="descriptionConcours")
+     * @Route ("/concours/descriptionConcours/{id}",name="descriptionConcours")
      */
-        public function descriptionConcours(){
+        public function descriptionConcours($id){
             $repo=$this->getDoctrine()->getRepository(Concour::class);
             $description=$repo->findAll();
             return $this->render('/concours/descriptionConcours.html.twig',[
