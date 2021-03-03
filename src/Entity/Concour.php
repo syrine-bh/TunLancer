@@ -59,7 +59,21 @@ class Concour
      */
     private $test;
 
+    /**
+     * @ORM\OneToMany(targetEntity=QuestionConcour::class, mappedBy="concour")
+     */
+    private $questionConcours;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="concour", orphanRemoval=true)
+     */
+    private $participations;
+
+    public function __construct()
+    {
+        $this->questionConcours = new ArrayCollection();
+        $this->participations = new ArrayCollection();
+    }
 
 
 
@@ -178,6 +192,67 @@ class Concour
 
         return $this;
     }
+
+    /**
+     * @return Collection|QuestionConcour[]
+     */
+    public function getQuestionConcours(): Collection
+    {
+        return $this->questionConcours;
+    }
+
+    public function addQuestionConcour(QuestionConcour $questionConcour): self
+    {
+        if (!$this->questionConcours->contains($questionConcour)) {
+            $this->questionConcours[] = $questionConcour;
+            $questionConcour->setConcour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionConcour(QuestionConcour $questionConcour): self
+    {
+        if ($this->questionConcours->removeElement($questionConcour)) {
+            // set the owning side to null (unless already changed)
+            if ($questionConcour->getConcour() === $this) {
+                $questionConcour->setConcour(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setConcour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->removeElement($participation)) {
+            // set the owning side to null (unless already changed)
+            if ($participation->getConcour() === $this) {
+                $participation->setConcour(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 
 
