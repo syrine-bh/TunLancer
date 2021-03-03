@@ -64,6 +64,16 @@ class User
      */
     private $concours;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $participations;
+
+    public function __construct()
+    {
+        $this->participations = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -188,6 +198,36 @@ class User
     public function removeConcour(concour $concour): self
     {
         $this->concours->removeElement($concour);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->removeElement($participation)) {
+            // set the owning side to null (unless already changed)
+            if ($participation->getUser() === $this) {
+                $participation->setUser(null);
+            }
+        }
 
         return $this;
     }
