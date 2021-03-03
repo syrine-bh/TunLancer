@@ -59,9 +59,21 @@ class Concour
      */
     private $test;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="concours")
+     */
+    private $notes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=QuestionConcour::class, mappedBy="concours")
+     */
+    private $questionConcours;
+
     public function __construct()
     {
         $this->test = new ArrayCollection();
+        $this->notes = new ArrayCollection();
+        $this->questionConcours = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,6 +187,66 @@ class Concour
     {
         if ($this->test->removeElement($test)) {
             $test->removeConcour($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setConcours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->removeElement($note)) {
+            // set the owning side to null (unless already changed)
+            if ($note->getConcours() === $this) {
+                $note->setConcours(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|QuestionConcour[]
+     */
+    public function getQuestionConcours(): Collection
+    {
+        return $this->questionConcours;
+    }
+
+    public function addQuestionConcour(QuestionConcour $questionConcour): self
+    {
+        if (!$this->questionConcours->contains($questionConcour)) {
+            $this->questionConcours[] = $questionConcour;
+            $questionConcour->setConcours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionConcour(QuestionConcour $questionConcour): self
+    {
+        if ($this->questionConcours->removeElement($questionConcour)) {
+            // set the owning side to null (unless already changed)
+            if ($questionConcour->getConcours() === $this) {
+                $questionConcour->setConcours(null);
+            }
         }
 
         return $this;

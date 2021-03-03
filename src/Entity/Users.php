@@ -64,9 +64,15 @@ class Users
      */
     private $concours;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="users")
+     */
+    private $test;
+
     public function __construct()
     {
         $this->concours = new ArrayCollection();
+        $this->test = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +197,36 @@ class Users
     public function removeConcour(concour $concour): self
     {
         $this->concours->removeElement($concour);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getTest(): Collection
+    {
+        return $this->test;
+    }
+
+    public function addTest(Note $test): self
+    {
+        if (!$this->test->contains($test)) {
+            $this->test[] = $test;
+            $test->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Note $test): self
+    {
+        if ($this->test->removeElement($test)) {
+            // set the owning side to null (unless already changed)
+            if ($test->getUsers() === $this) {
+                $test->setUsers(null);
+            }
+        }
 
         return $this;
     }
