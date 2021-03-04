@@ -36,8 +36,6 @@ class Commentaire
      */
     private $contenuCommentaire;
 
-
-
     /**
      * @return mixed
      */

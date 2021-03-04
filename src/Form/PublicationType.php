@@ -19,7 +19,7 @@ class PublicationType extends AbstractType
             ->add('type')
             ->add('archive')
             ->add('imageFile', VichImageType::class)
-            ->add('Submit', SubmitType::class)
+            ->add('Submit',SubmitType::class);
         ;
     }
 

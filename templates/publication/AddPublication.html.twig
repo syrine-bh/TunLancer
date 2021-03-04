@@ -1,5 +1,86 @@
 {% extends "baseFront.html.twig" %}
 
 {% block section %}
-    {{ form(publicationform) }}
+
+<div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
+
+
+    {{ form_start(publicationform) }}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="identifiantUser">Utilisateur</label>
+            {{ form_widget(publicationform.idU, { 'attr' : { 'class' : 'form-control' } }) }}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="description">description</label>
+            {{ form_widget(publicationform.description, { 'attr' : { 'class' : 'form-control' } }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="type">Type</label>
+        {{ form_widget(publicationform.type, { 'attr' : { 'class' : 'form-control' } }) }}
+    </div>
+    <div class="form-group">
+        <label for="arhcive">Archive</label>
+        {{ form_widget(publicationform.archive, { 'attr' : { 'class' : 'form-control' } }) }}
+    </div>
+
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="custom-file">
+                {{ form_widget(publicationform.imageFile, { 'attr' : { 'class' : 'custom-file-input' } }) }}
+                <label class="custom-file-label" for="publication_imageFile_file">Choose file</label>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center" class="form-group">
+        {{ form_widget(publicationform.Submit, { 'attr' : { 'class' : 'btn btn-primary','style' : 'margin-bottom:30px;display:none;' } }) }}
+        <button onclick="save()" class="btn btn-primary">Ajouter une publication</button>
+        <a href="{{ path('publications') }}" class="btn btn-primary">Annuler</a>
+    </div>
+
+    {{ form_end(publicationform) }}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(".vich-image").hide();
+
+
+
+
+
+
+
+
+
+
+        function save() {
+            let publication_idU=document.getElementById("publication_idU").value;
+            let publication_description=document.getElementById("publication_description").value;
+            let publication_type=document.getElementById("publication_type").value;
+            let publication_archive=document.getElementById("publication_archive").value;
+            let publication_imageFile_file=$('#publication_imageFile_file').prop('files')[0];//recuperer le fichier selectionné par utilisateur
+            let publication_Submit=document.getElementById("publication_Submit").value;
+
+            if (publication_idU===""){
+                alert("veuillez remplir le champ utilisateur");
+            }else if (publication_description===""){
+                alert("veuillez remplir le champ description");
+            }else if (publication_type===""){
+                alert("veuillez remplir le champ type");
+            }else if (publication_archive===""){
+                alert("veuillez remplir le champ archive")
+            }else if (typeof publication_imageFile_file === "undefined"){
+                alert("veuillez choisir une image pour votre publication")
+            }else{
+                console.log("parfait :",publication_idU,publication_description,publication_type,publication_archive,publication_imageFile_file)
+            }
+        }
+
+    </script>
 {% endblock %}

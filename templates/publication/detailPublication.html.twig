@@ -1,0 +1,200 @@
+{% extends "baseFront.html.twig" %}
+
+{% block section %}
+    <div style="padding: 28px;" class="container">
+        <div style="box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);border-radius: 14px;margin-bottom: 14px;" class="row">
+            <div style="display: flex;flex-flow: row wrap;justify-content: center;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);" class="col-lg-8">
+                <img style="border-radius: 10px;height: 649px;margin-top: 35px;margin-bottom: 35px;" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="" class="img-fluid">
+            </div>
+            <div class="col-lg-4">
+                <div style="height:300px;" class="col">
+                    <div style="margin-top: 20px;margin-bottom: 5px;" class="media border-0">
+                        <div class="media-left pr-1">
+                            <span class="avatar avatar-md avatar-online">
+                                <img style="height: 50px;margin-right: 10px;width: 50px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="Generic placeholder image">
+                            </span>
+                        </div>
+                        <div class="media-body w-100 row">
+                            <div class="col-lg-8">
+                                <span class="list-group-item-heading">{{ publication.idu}} </span>
+                                <p class="list-group-item-text mb-0">
+                                    <span class="blue-grey lighten-2 font-small-3"> @{{ publication.idu}} </span>
+                                </p>
+                            </div>
+                            <div class="col-lg-4">
+                                <a style="color: #d7abe2" href="{{ path('update_Publication',{'idPublication':publication.id}) }}"><i class="fa fa-edit"></i></a>
+                                <button onclick='
+                                        var resultat = confirm("Voulez vous supprimer cette publication d`une facon definitive!");
+                                            if (resultat == true) {
+                                                location.href = "{{ path('delete_Publication',{'idPublication':publication.id}) }}";
+                                            }' style="color: #98859d;background-color: transparent;border-color: transparent">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div style="margin-bottom: 10px;" class="media border-0">
+                        <h7>{{ publication.description }} </h7>
+                    </div>
+                    <div class="media border-0">
+                        <h7 style="cursor: pointer;">Liked by</h7>
+                        <h6 style="margin-top: 2px;margin-right: 3px;margin-left: 3px;">
+                            <img style="height: 20px;width:20px;margin-right: 2px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="">
+                            Cyrine Ben Hassine</h6>
+                        <h7>And by</h7>
+                        <h6 style="margin-top: 3px;margin-right: 3px;margin-left: 3px;">2</h6><h7>more</h7>
+                    </div>
+
+                    <div>
+                                            <span class="info">
+                                                <div id="reacts" class="reacts" style="display: none;">
+                                                    <div class="circle">
+                                                        <button onclick="react(1,0);" style="background: none;border: none;cursor: pointer;">
+                                                            <img style="margin-left: -12px;width: 30px;height: 30px;" src="{{ asset('images/reacts/heart.png') }}" alt="">
+                                                        </button>
+                                                    </div>
+                                                    <div class="circle">
+                                                        <button onclick="react(2,0);" style="background: none;border: none;cursor: pointer;">
+                                                            <img style="margin-left: -10px;width: 30px;height: 30px;" src="{{ asset('images/reacts/haha.png') }}" alt="">
+                                                        </button>
+                                                    </div>
+                                                    <div class="circle">
+                                                        <button onclick="react(3,0);" style="background: none;border: none;cursor: pointer;">
+                                                            <img style="margin-left: -7px;width: 30px;height: 30px;" src="{{ asset('images/reacts/triste.png') }}" alt="">
+                                                        </button>
+
+                                                    </div>
+                                                    <div style="margin-left: -11px;" class="circle">
+                                                        <button onclick="react(4,0);" style="background: none;border: none;cursor: pointer;">
+                                                            <img style="width: 30px;height: 30px;" src="{{ asset('images/reacts/grr.png') }}" alt="">
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <button id="likecontainer" style="background-color: #d7abe2;color: white;border-color: #d7abe2;border-radius: 30px" class="btn btn-light btn-min-width box-shadow-5 mr-1 mb-1 like">
+                                                    Réagir
+                                                </button>
+                                             </span>
+                    </div>
+
+                    <div style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; border: medium none; padding-left: 13px; padding-top: 10px; margin-left: -20px; height: 399px; width: 382px; box-shadow: rgba(0, 0, 0, 0.06) -8px 10px 20px 0px; margin-bottom: 10px; overflow-y: hidden; outline: currentcolor none medium;" class="popular-artists-area nice-scroll" tabindex="1">
+                        <div class="section-heading text-left wow fadeInUp" data-wow-delay="50ms" style="margin-bottom: 7px ;visibility: visible; animation-delay: 50ms; animation-name: fadeInUp;">
+                            <h2> les Commentaires</h2>
+                        </div>
+                        {% for commentaire in publication.commentaires %}
+                            <!--Single comment -->
+                            <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms" style="margin-bottom: 10px;visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
+                                <div style="max-width: 51px;margin-right: 7px;" class="thumbnail">
+                                    <img style="border-radius: 4px;width: 50px;height: 50px;" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="">
+                                </div>
+                                <div style="width: 322px;" class="row">
+                                    <div class="col-lg-9">
+                                        <div class="content-">
+                                            <p style="position: relative;top: 11px;">Cyrine Ben Hassine
+                                            </p>
+                                            <p style="line-height: 1.2;color: black;">{{ commentaire.contenuCommentaire }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div>
+                                            <a style="position: relative;top: 13px;" href="{{ path('Deletecommentaire',{'idPublication':publication.id,'idCommentaire':commentaire.idCommentaire}) }}">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            <a style="position: relative;top: 13px;" href="{{ path('UpdateCommentaire',{'idPublication':publication.id,'idCommentaire':commentaire.idCommentaire}) }}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+
+                    <textarea style="position: relative;bottom: 5px;right: 20px;height: 75px;width: 69%;" name="contenu" class="form-control" id="contenuCommentaire" rows="2">
+
+                    </textarea>
+                    <button onclick="save()" type="button" class="btn" style="position: relative;top: -77px;left: 232px;width: 76px;height: 60px;background: none;border: none;box-shadow: inset rgba(0, 0, 0, 0.14) 0px 0px 5px 0px;">Post</button>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{ form(commentaireform, {'id': 'form_commentaire'}) }}
+{% endblock %}
+
+
+
+{% block scripts %}
+    {# script reactions #}
+    <script>
+        $(function() {
+
+
+            var reaction = $('.reacts'),
+                like = $('.like'),
+                comments = $('.fa fa-envelope-o'),
+                maximize = $('.fa fa-ellipsis-h');
+
+            //reaction.addClass('show');
+            like.on('click',function() {
+                if(reaction.hasClass('show')) {
+                    reaction.css({
+                        'display':'none',
+                    });
+                    comments.css({
+                        'display':'flex',
+                    });
+                    maximize.css({
+                        'display':'flex',
+                    });
+                    reaction.removeClass('show');
+                }
+                else {
+                    reaction.css({
+                        'display':'flex',
+                    });
+                    comments.css({
+                        'display':'none',
+                    });
+                    maximize.css({
+                        'display':'none',
+                    });
+                    reaction.addClass('show');
+                }
+            });
+        });
+    </script>
+
+    {# script document ready #}
+    <script>
+        $(function() {
+            document.getElementById("contenuCommentaire").value = "";
+            document.getElementById("form_commentaire").style.display="none";
+        });
+        function save() {
+            let contenuCommentaire=document.getElementById("contenuCommentaire").value;
+
+            if (contenuCommentaire===""){
+                alert("veuillez verifier les champs !")
+            }else{
+                document.getElementById("commentaire_contenuCommentaire").value=contenuCommentaire;
+                document.getElementById("commentaire_Submit").click();
+            }
+        }
+
+    </script>
+
+
+
+
+{% endblock %}

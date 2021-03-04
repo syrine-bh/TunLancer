@@ -1,0 +1,101 @@
+{% extends "baseFront.html.twig" %}
+
+{% block section %}
+    <div class="row" style="display:flex;">
+        <div class="col-lg-9">
+            <h2 style="margin-left: 25px;">Trending</h2>
+            <h6 style="margin-left: 25px;margin-top: 8px">Regardez les dernieres publications de notre communauté</h6>
+        </div>
+        <div class="col-lg-3">
+            <a style="margin-top: 23px;" href="{{ path('add_publication') }}" class="btn btn-primary">Ajouter une nouvelle publication</a>
+        </div>
+    </div>
+
+
+    <div style="padding: 10px;" class="contain">
+
+        {% for publication in publications %}
+            <div id="box{{ publication.id }}" class="boxes">
+                <a href="{{ path('publication',{'idPublication':publication.id}) }}">
+                    <img src="{{ asset('images/publications/' ~ publication.imageName) }}">
+                </a>
+                <div style="position: absolute;top: -3px;left: 17px;margin-top: 20px;margin-bottom: 20px;" class="media border-0">
+                    <div class="media-left pr-1">
+                        <span class="avatar avatar-md avatar-online">
+                            <img data-toggle="tooltip" data-placement="right" title="{{ publication.idu }}" style="height: 50px;width: 50px;margin-right: 10px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="Generic placeholder image">
+                        </span>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="row">
+                        <span style="padding: 10px;" class="info">
+                            {{ publication.description }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    {#<center>
+    <table border="1">
+        <thead>
+        <th>details</th>
+        <th>User</th>
+        <th>description</th>
+        <th>type</th>
+        <th>archive</th>
+        <th>Photo</th>
+        <th>Comments</th>
+        <th>Reactions</th>
+        <th>Reagir</th>
+        <th>Add Commentaire</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+        </thead>
+        <tbody>
+        {% for row in publications %}
+            <tr>
+                <td><a href="{{ path('publication',{'idPublication':row.id}) }}"><i class="fa fa-link"></i></a></td>
+                <td>{{ row.idU }}</td>
+                <td>{{ row.description }}</td>
+                <td>{{ row.type }}</td>
+                <td>{{ row.archive }}</td>
+                <td><img style="width: 80px;height: 80px;" src="{{ asset('images/publications/' ~ row.imageName) }}" alt=""></td>
+                <td>
+                    {% for commentaire in row.commentaires %}
+                        <p>{{ commentaire.contenuCommentaire }}</p></br>
+                    {% endfor %}
+                </td>
+                <td style="text-align: center;">
+                    {{ row.reactions|length }} reactions
+                </td>
+                <td style="text-align: center">
+                    {% set trouv = 0 %}
+                    {% set idReaction = 0 %}
+                    {% for reaction in row.reactions %}
+                        {% if reaction.idUtilisateur==1 %}
+                            {% set trouv=1 %}
+                            {% set idReaction = reaction.idReaction %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if trouv==0 %}
+                        <a href="{{ path('AddReaction',{'idPublication':row.id}) }}">Reagir</a>
+                    {% else %}
+                        <a href="{{ path('RemoveReaction',{'idReaction':idReaction}) }}">Supprimer Reaction</a>
+                    {% endif %}
+
+                </td>
+                <td><a href="{{ path('add_commentaire',{'idPublication':row.id}) }}">Ajouter commentaire</a></td>
+                <td><a href="{{ path('update_Publication',{'idPublication':row.id}) }}">Modifier</a></td>
+                <td><a href="{{ path('delete_Publication',{'idPublication':row.id}) }}">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('add_publication') }}">Ajouter Publication</a>
+</center>  #}
+
+{% endblock %}

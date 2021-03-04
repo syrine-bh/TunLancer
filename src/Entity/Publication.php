@@ -32,7 +32,6 @@ class Publication
      */
     private $description;
 
-
     /**
      * @ORM\Column(type="integer")
      */
@@ -101,7 +100,7 @@ class Publication
     /**
      * @return Collection|Reaction[]
      */
-    public function getReactionss(): Collection
+    public function getReactions(): Collection
     {
         return $this->reactions;
     }
@@ -128,7 +127,6 @@ class Publication
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
-
     }
 
     public function getImageFile(): ?File
@@ -197,4 +195,8 @@ class Publication
         $this->archive = $archive;
         return $this;
     }
+
+
+
+
 }
