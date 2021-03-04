@@ -35,30 +35,157 @@
                 <div class="brand-logo">
                     <a href="{{ path('home') }}">
                         <!-- light version logo (logo must be black)-->
-                        <img style="width: 70px;height: 70px;" src="{{ asset('image/logo.png') }}" alt="" class="light-version-logo default-logo">
+                        <img style="width: 70px;height: 70px;" src="image/logo.png" alt="" class="light-version-logo default-logo">
                         <!-- Dark version logo (logo must be White)-->
-                        <img style="width: 70px;height: 70px;" src="{{ asset('image/logo.png') }}" alt="" class="dark-version-logo">
+                        <img style="width: 70px;height: 70px;" src="image/logo.png" alt="" class="dark-version-logo">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="mobile-menu">
                     <div class="navbar-nav-wrapper">
                         <ul class="navbar-nav main-menu">
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle gr-toggle-arrow" id="navbarDropdown" href="#features" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home <i class="icon icon-small-down"></i></a>
+                                <ul class="gr-menu-dropdown dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="drop-menu-item">
+                                        <a href="home-1.html">
+                                            Homepage 01
+                                        </a>
+                                    </li>
+                                    <li class="drop-menu-item">
+                                        <a href="home-2.html">
+                                            Homepage 02
+                                        </a>
+                                    </li>
+                                    <li class="drop-menu-item">
+                                        <a href="home-3.html">
+                                            Homepage 03
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle gr-toggle-arrow" id="navbarDropdown2" href="#features" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages <i class="icon icon-small-down"></i></a>
+                                <ul class="gr-menu-dropdown dropdown-menu" aria-labelledby="navbarDropdown2">
+                                    <li class="drop-menu-item dropdown">
+                                        <a class="dropdown-toggle gr-toggle-arrow" id="navbarDropdown242" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Job Pages
+                                            <i class="icon icon-small-down"></i>
+                                        </a>
+                                        <ul class="gr-menu-dropdown dropdown-menu dropdown-left" aria-labelledby="navbarDropdown242">
+                                            <li class="drop-menu-item">
+                                                <a href="search-grid.html">
+                                                    Job Grid
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="search-list-1.html">
+                                                    Job List
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="jobdetails.html">
+                                                    Job Details
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="drop-menu-item dropdown">
+                                        <a class="dropdown-toggle gr-toggle-arrow" id="navbarDropdown21" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Dashboard
+                                            <i class="icon icon-small-down"></i>
+                                        </a>
+                                        <ul class="gr-menu-dropdown dropdown-menu dropdown-left" aria-labelledby="navbarDropdown21">
+                                            <li class="drop-menu-item">
+                                                <a href="dashboard-main.html">
+                                                    Dashboard Main
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="dashboard-settings.html">
+                                                    Settings
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="dashboard-posted-applicants.html">
+                                                    Applicants
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="dashboard-posted-jobs.html">
+                                                    Posted Jobs
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="drop-menu-item dropdown">
+                                        <a class="dropdown-toggle gr-toggle-arrow" id="navbarDropdown25g" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Candidate Pages
+                                            <i class="icon icon-small-down"></i>
+                                        </a>
+                                        <ul class="gr-menu-dropdown dropdown-menu dropdown-left" aria-labelledby="navbarDropdown25g">
+                                            <li class="drop-menu-item">
+                                                <a href="candidate-profile-main.html">
+                                                    Candidate Profile
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="candidate-profile.html">
+                                                    Candidate Profile 02
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="drop-menu-item dropdown">
+                                        <a class="dropdown-toggle gr-toggle-arrow" id="navbarDropdown242" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Search Pages
+                                            <i class="icon icon-small-down"></i>
+                                        </a>
+                                        <ul class="gr-menu-dropdown dropdown-menu dropdown-left" aria-labelledby="navbarDropdown242">
+                                            <li class="drop-menu-item">
+                                                <a href="search-grid.html">
+                                                    Search Grid
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="search-list-1.html">
+                                                    Search List 01
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="search-list-2.html">
+                                                    Search List 02
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="drop-menu-item">
+                                        <a href="company-profile.html">
+                                            Company Profile
+                                        </a>
+                                    </li>
+                                    <li class="drop-menu-item dropdown">
+                                        <a class="dropdown-toggle gr-toggle-arrow" id="navbarDropdown242" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Account
+                                            <i class="icon icon-small-down"></i>
+                                        </a>
+                                        <ul class="gr-menu-dropdown dropdown-menu dropdown-left" aria-labelledby="navbarDropdown242">
+                                            <li class="drop-menu-item">
+                                                <a href="javacript:" data-toggle="modal" data-target="#login">
+                                                    Sign In
+                                                </a>
+                                            </li>
+                                            <li class="drop-menu-item">
+                                                <a href="javacript:" data-toggle="modal" data-target="#signup">
+                                                    Sign Up
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('home') }}">Acceuil</a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Offres</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Publications</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('concours') }}">Concours</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Forum</a>
-                            </li>
+
                         </ul>
                     </div>
                     <button class="d-block d-lg-none offcanvas-btn-close focus-reset" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="true" aria-label="Toggle navigation">

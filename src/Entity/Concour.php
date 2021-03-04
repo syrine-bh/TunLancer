@@ -44,13 +44,18 @@ class Concour
      */
     private $dateFin;
 
+
     /**
-     * @ORM\Column(type="datetime")
+     * @var DateTime $created
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var DateTime $updated
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
     private $updatedAt;
 

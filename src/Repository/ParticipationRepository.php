@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Repository;
-
 use App\Entity\Participation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,32 +18,25 @@ class ParticipationRepository extends ServiceEntityRepository
         parent::__construct($registry, Participation::class);
     }
 
-    // /**
-    //  * @return Participation[] Returns an array of Participation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     public function findUser ($user_id): ?Participation {
+        return $this
+            ->createQueryBuilder('q')
+            ->andWhere('q.id= :val')
+            ->setParameter('val',$user_id)
+            ->getQuery()
+            ->getOneOrNullResult();
+     }
+
+    public function FindByConcId($id)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.concourid= :val')
+            ->setParameter('val', $id)
+            ->orderBy('q.id', 'ASC')
+            ->setMaxResults(100)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Participation
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
+
