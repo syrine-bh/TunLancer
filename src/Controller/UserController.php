@@ -26,7 +26,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route ("/concours/listParticipants",name="listParticipants")
+     * @Route ("/concours/listParticipants/{id}",name="listParticipants")
      */
     public function getPart(Concour $concour, ParticipationRepository  $rep )
     {
