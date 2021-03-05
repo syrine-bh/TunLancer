@@ -1,0 +1,30 @@
+
+
+{% block body %}
+    <h1>Liste des annonces</h1>
+
+
+    {% for annonce in list %}
+        <table>
+            <thead>
+
+            <th>name</th>
+            <th>Description</th>
+            <th>Catégorie</th>
+            <th>Date</th>
+            <th>Action</th>
+
+            </thead>
+            <tbody>
+
+            <td>{{ annonce.nom }}</td>
+            <td>{{ annonce.description }}</td>
+            <td>{{ annonce.Categorie.type }}</td>
+            <td>{{ annonce.date|date('Y-m-d') }}</td>
+            <td><a href="{{ path('modify', {'id': annonce.id}) }}">Modifier</a></td>
+            <td><a href="{{ path('delete', {'id': annonce.id}) }}">Supprimer</a></td>
+
+            </tbody>
+        </table>
+    {% endfor %}
+{% endblock %}
