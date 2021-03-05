@@ -35,36 +35,23 @@
                         <thead>
                         <tr>
                             <th scope="col" class="pl-0 border-0 font-size-4 font-weight-normal">Name</th>
-                            <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Description</th>
-                            <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Catégorie</th>
-                            <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Date</th>
                             <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal"></th>
                             <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for annonce in list %}
+                        {% for categorie in listecategorie %}
                             <tr class="border border-color-2">
-                                <th scope="row" class="pl-6 border-0 py-7 min-width-px-235">
-                                    <div class="">
-                                        <a href="jobdetails.html" class="font-size-4 mb-0 font-weight-semibold text-black-2">{{ annonce.nom}}</a>
-                                    </div>
-                                </th>
-                                <td class="table-y-middle py-7 min-width-px-135">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{  annonce.description}}</h3>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-125">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ annonce.Categorie.type }}</h3>
-                                </td>
+
                                 <td class="table-y-middle py-7 min-width-px-155">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ annonce.date|date('Y-m-d')}}</h3>
+                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ categorie.type }}</h3>
                                 </td>
 
                                 <td class="table-y-middle py-7 min-width-px-80">
-                                    <a href="{{path('modify', {'id': annonce.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Edit</a>
+                                    <a href="{{path('modify_categorie', {'id': categorie.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Edit</a>
                                 </td>
                                 <td class="table-y-middle py-7 min-width-px-100">
-                                    <a href="{{path('delete', {'id': annonce.id})}}" class="font-size-3 font-weight-bold text-red-2 text-uppercase">Delete</a>
+                                    <a href="{{path('deletcat', {'id': categorie.id}) }}" class="font-size-3 font-weight-bold text-red-2 text-uppercase">Delete</a>
                                 </td>
                             </tr>
                         {% endfor%}
@@ -77,4 +64,6 @@
     </div>
     </div>
 {% endblock section %}
+
+
 

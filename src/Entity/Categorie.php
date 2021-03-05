@@ -27,7 +27,7 @@ class Categorie
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="categorie", cascade={"all"} ,orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="categorie")
      */
     private $annonces;
 

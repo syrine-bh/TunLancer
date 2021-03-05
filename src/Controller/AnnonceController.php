@@ -33,7 +33,7 @@ class AnnonceController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush();
-           // return $this->redirectToRoute('add');
+            return $this->redirectToRoute('liste');
         }
         return $this->render('annonce/add.html.twig', [
             "form" => $form->createView(),
@@ -78,6 +78,7 @@ class AnnonceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
         }
+
 
 
 
