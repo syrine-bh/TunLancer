@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Concour;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,11 +30,17 @@ class ConcoursType extends AbstractType
                     'placeholder'=>"Donnez plus de détails sur votre concour"
                 ]
             ])
-            ->add('dateDebut')
-            ->add('dateFin')
+            ->add('dateDebut',DateType::class,[
+                'widget'=>'single_text',
+            'input'=>'datetime'])
+            ->add('dateFin',DateType::class,[
+                'widget'=>'single_text',
+                'input'=>'datetime'])
+
+            ;
 
 
-        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

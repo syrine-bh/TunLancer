@@ -1,45 +1,54 @@
 {% extends "baseFront.html.twig" %}
+
 {% block section %}
-    <div class="dashboard-main-container mt-24 mt-lg-31" id="dashboard-body">
-        <div class="container">
-            <div class="mb-15 mb-lg-23">
-                <div class="row">
-                    <div class="col-xxxl-9 px-lg-13 px-6">
-                        <h5 class="font-size-6 font-weight-semibold mb-11">Modifier participant </h5>
-                        <div class="contact-form bg-white shadow-8 rounded-4 pl-sm-10 pl-4 pr-sm-11 pr-4 pt-15 pb-13">
-                            {{ form_start(form) }}
-                            {{ form_row(form._token) }}
-                            <fieldset>
-                                <div class="row mb-xl-1 mb-9">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="namedash" class="d-block text-black-2 font-size-4 font-weight-semibold mb-4">Nom participant</label>
-                                            {{ form_widget(form.user) }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-xl-1 mb-9">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="namedash" class="d-block text-black-2 font-size-4 font-weight-semibold mb-4">concours</label>
-                                            {{ form_widget(form.concour) }}
-                                        </div>
-                                    </div>
-                                </div>
+
+    <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
 
 
+        {{ form_start(form) }}
+        <div class="form-row">
 
-
-
-                            </fieldset>
-                            {{ form_end(form) }}
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group col-md-6">
+                <label for="nom">Nom User</label>
+                {{ form_widget(form.user, { 'attr' : { 'class' : 'form-control' } }) }}
             </div>
+
+
+            <div class="form-group col-md-6">
+                <label for="sujet">Note</label>
+                {{ form_widget(form.note, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <label for="sujet">Concours</label>
+                {{ form_widget(form.concour, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+
         </div>
-    </div>
-    </div>
 
 
+
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 {% endblock %}
