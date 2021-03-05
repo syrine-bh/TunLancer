@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Concour;
+use App\Entity\Participation;
 use App\Entity\User;
 use App\Form\ConcoursType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -131,6 +132,15 @@ class ConcourController extends AbstractController
         ]);
     }
 
+    /**
+     * @return Response
+     * @Route ("/concour/listPadmin",name="listPadmin")
+     */
+    public function listPadmin(){
+        $repo=$this->getDoctrine()->getRepository(Participation::class);
+        $participation=$repo->findAll();
+        return $this->render('concour/listPadmin.html.twig',['participation'=>$participation]);
+    }
 
 
 

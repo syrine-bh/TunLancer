@@ -27,13 +27,14 @@ class ParticipationController extends AbstractController
     }
     /**
      * @return Response
-     * @Route ("/concours/listPadmin",name="listPadmin")
+     * @Route ("concour/listPadmin",name="listPadmin")
      */
     public function listPadmin (){
         $repo=$this->getDoctrine()->getRepository(Participation::class);
         $participation=$repo->findAll();
-        return $this->render('concour/listPartAdmin.html.twig',['participation'=>$participation]);
+        return $this->render('concour/listPadmin.html.twig',['participation'=>$participation]);
     }
+
 
 
     /**
@@ -96,5 +97,17 @@ class ParticipationController extends AbstractController
         ]);
     }
 
+    /**
+     * @return Response
+     * @Route ("/supprimerParticipant/{id}",name="supprimerParticipant")
+     */
+    public function supprimerParticipant($id){
+        $repo=$this->getDoctrine()->getRepository(Participation::class);
+        $participation=$repo->find($id);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($participation);
+        $em->flush();
+        return $this->redirectToRoute('listPadmin');
+    }
 
 }

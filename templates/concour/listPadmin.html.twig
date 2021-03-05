@@ -1,6 +1,5 @@
 
 
-
 !DOCTYPE html>
 <html lang="en">
 
@@ -555,9 +554,9 @@
                                 <td class="table-y-middle py-7 min-width-px-100 pr-0">
                                     <div class=""><a href="{{ path('modifierParticipant',{'id':part.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Modifier</a></div>
                                 </td>
-                                {#    <td class="table-y-middle py-7 min-width-px-110 pr-0">
-                                    <div class=""><a href="{{ path('supprimerParticipant',{'id':d.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
-                                </td> #}
+                                    <td class="table-y-middle py-7 min-width-px-110 pr-0">
+                                    <div class=""><a href="{{ path('supprimerParticipant',{'id':part.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
+                                </td>
 
                             </tr {% endfor %}>
                             </tbody>
