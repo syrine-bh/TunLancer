@@ -16,17 +16,17 @@ class ConcoursType extends AbstractType
         $builder
             ->add('nom',TextType::class,[
                 'attr'=> [
-                    'placeholder'=>"Nom concours"
+                    'placeholder'=>"Nom concour"
                 ]
             ])
             ->add('sujet',TextType::class,[
                 'attr'=> [
-                    'placeholder'=>"Donnez le sujet de votre concours"
+                    'placeholder'=>"Donnez le sujet de votre concour"
                 ]
             ])
             ->add('description',TextareaType::class,[
                 'attr'=> [
-                    'placeholder'=>"Donnez plus de détails sur votre concours"
+                    'placeholder'=>"Donnez plus de détails sur votre concour"
                 ]
             ])
             ->add('dateDebut')

@@ -18,13 +18,13 @@ class Participation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=concour::class, inversedBy="participations")
+     * @ORM\ManyToOne(targetEntity=Concour::class, inversedBy="participations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $concour;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="participations")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="participations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

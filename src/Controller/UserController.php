@@ -22,16 +22,25 @@ class UserController extends AbstractController
         ]);
     }
 
-
-
-
     /**
-     * @Route ("/concours/listParticipants/{id}",name="listParticipants")
+     * @Route ("/concour/listParticipants/{id}",name="listParticipants")
      */
     public function getPart(Concour $concour, ParticipationRepository  $rep )
     {
         $test=$rep->FindByConcId($concour->getId());
-        return $this->render('concours/listParticipants.html.twig',['participant'=>$test]);
+        return $this->render('concour/listParticipants.html.twig',['participant'=>$test]);
 
     }
+
+    /**
+     * @Route ("/concour/listTTParticipants",name="listTTParticipants")
+     */
+    public function getTTPart( ParticipationRepository  $rep )
+    {
+        $test=$rep->findAll();
+        return $this->render('participation/listTTParticipants.html.twig',['participation'=>$test]);
+
+    }
+
+
 }

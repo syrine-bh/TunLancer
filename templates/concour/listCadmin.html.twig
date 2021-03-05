@@ -437,7 +437,10 @@
             </a>
         </div>
         <div class="my-15 px-11">
-            <a href="ajouterConcours" class="btn btn-primary btn-xl w-100 text-uppercase"><span class="mr-5 d-inline-block">+</span>Post a new job</a>
+            <a href="ajouterConcours" class="btn btn-primary btn-xl w-100 text-uppercase"><span class="mr-5 d-inline-block">+</span>Ajouter nouveau concours</a>
+        </div>
+        <div class="my-15 px-11">
+            <a href="listPadmin" class="btn btn-primary btn-xl w-100 text-uppercase"><span class="mr-5 d-inline-block">+</span>ajouterPaticipant</a>
         </div>
         <ul class="list-unstyled dashboard-layout-sidebar">
             <li class="active"><a href="dashboard-main.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="icon icon-layout-11 mr-7"></i>Dashboard</a></li>
@@ -543,7 +546,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="border border-color-2" {% for d in concours %}>
+                            <tr class="border border-color-2" {% for d in concour %}>
                                 <th scope="row" class="pl-6 border-0 py-7 pr-0">
                                     <h4 class="font-size-4 mb-0 font-weight-semibold text-black-2">{{ d.nom }}</h4>
                                 </th>

@@ -60,7 +60,7 @@ class Concour
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="concours")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="concour")
      */
     private $test;
 

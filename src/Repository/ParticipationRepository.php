@@ -18,14 +18,14 @@ class ParticipationRepository extends ServiceEntityRepository
         parent::__construct($registry, Participation::class);
     }
 
-     public function findUser ($user_id): ?Participation {
+    public function findUser ($user_id): ?Participation {
         return $this
             ->createQueryBuilder('q')
             ->andWhere('q.id= :val')
             ->setParameter('val',$user_id)
             ->getQuery()
             ->getOneOrNullResult();
-     }
+    }
 
     public function FindByConcId($id)
     {
