@@ -15,23 +15,65 @@
     <div style="padding: 10px;" class="contain">
 
         {% for publication in publications %}
+            {% set extension = publication.imageName|split('.') %}
+
             <div id="box{{ publication.id }}" class="boxes">
-                <a href="{{ path('publication',{'idPublication':publication.id}) }}">
-                    <img src="{{ asset('images/publications/' ~ publication.imageName) }}">
-                </a>
+
+                    {% if extension[1]=="mp4" %}
+
+                        <video id="vids{{ publication.id }}"
+                                   class="vid"
+                                   style="border-radius: 13px;
+                                      max-width: 100%;
+                                      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+                                      object-fit: cover;" loop>
+                                <source id="video{{ publication.id }}" src="{{ asset('images/publications/' ~ publication.imageName) }}" type="video/mp4">
+                            </video>
+                        <div style="background-image: url({{ asset('images/publications/play.png') }});
+                                    background-repeat: no-repeat;
+                                    width: 25%;
+                                    height: 25%;
+                                    position: absolute;
+                                    left: 37%;
+                                    right: 0%;
+                                    top: 36%;
+                                    bottom: 0%;
+                                    background-size: contain;
+                                    background-position: center;
+                                    opacity: 0.9;
+                                    cursor: pointer;" class="playpause">
+                        </div>
+
+                    {% else %}
+                        <a href="{{ path('publication',{'idPublication':publication.id}) }}">
+                            <img src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="{{ asset('images/publications/' ~ publication.imageName) }}">
+                        </a>
+                    {% endif %}
+
                 <div style="position: absolute;top: -3px;left: 17px;margin-top: 20px;margin-bottom: 20px;" class="media border-0">
                     <div class="media-left pr-1">
                         <span class="avatar avatar-md avatar-online">
-                            <img data-toggle="tooltip" data-placement="right" title="{{ publication.idu }}" style="height: 50px;width: 50px;margin-right: 10px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="Generic placeholder image">
+                            <img data-toggle="tooltip" data-placement="right" title="{{ publication.idu.Nom ~" " ~publication.idu.Prenom }}" style="height: 50px;width: 50px;margin-right: 10px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/users/' ~ publication.idu.Photo) }}" alt="Generic placeholder image">
                         </span>
                     </div>
                 </div>
 
                 <div class="details">
                     <div class="row">
-                        <span style="padding: 10px;" class="info">
-                            {{ publication.description }}
-                        </span>
+                        {% if extension[1]=="mp4" %}
+                            <div class="col-lg-9">
+                                <span style="padding: 10px;" class="info">
+                                    {{ publication.description }}
+                                </span>
+                            </div>
+                            <div class="col-lg-3">
+                                <a style="color: #d7abe2;margin-top: 30px;" href="{{ path('publication',{'idPublication':publication.id}) }}"><i class="fa fa-external-link-alt"></i></a>
+                            </div>
+                        {% else %}
+                            <span style="padding: 10px;" class="info">
+                                {{ publication.description }}
+                            </span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -98,4 +140,22 @@
     <a href="{{ path('add_publication') }}">Ajouter Publication</a>
 </center>  #}
 
+{% endblock %}
+
+{% block scripts %}
+{# script video #}
+<script>
+    $('.vid').parent().click(function () {
+        var element=$('.vid').parent();
+
+        if($(this).children(".vid").get(0).paused){
+            $(this).children(".vid").get(0).play();
+            $(this).children(".playpause").fadeOut();
+        }
+        else{
+            $(this).children(".vid").get(0).pause();
+            $(this).children(".playpause").fadeIn();
+        }
+    });
+</script>
 {% endblock %}

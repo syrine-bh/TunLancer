@@ -14,7 +14,6 @@ class PublicationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('idU')
             ->add('description')
             ->add('type')
             ->add('archive')

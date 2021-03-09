@@ -23,7 +23,7 @@ class Publication
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="publications")
      */
     private $idU;
 
@@ -68,10 +68,23 @@ class Publication
      */
     private $reactions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Signaler", mappedBy="publication", orphanRemoval=true)
+     */
+    private $signaux;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="publication", orphanRemoval=true)
+     */
+    private $notifications;
+
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
         $this->reactions = new ArrayCollection();
+        $this->signaux = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     /**
@@ -120,6 +133,60 @@ class Publication
         return $this;
     }
 
+
+
+    /**
+     * @return Collection|Signaler[]
+     */
+    public function getSignaux(): Collection
+    {
+        return $this->signaux;
+    }
+    public function addSignaler (Signaler $signaler): self
+    {
+        if (!$this->signaux->contains($signaler)) {
+            $this->signaux[] = $signaler;
+            $signaler->setPublication($this);
+        }
+        return $this;
+    }
+    public function removeSignaler (Signaler $signaler): self
+    {
+        if ($this->signaux->contains($signaler)) {
+            $this->signaux->removeElement($signaler);
+        }
+        return $this;
+    }
+
+
+    /**
+     * @return Collection|Notification[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+    public function addNotification (Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setPublication($this);
+        }
+        return $this;
+    }
+    public function removeNotification (Notification $notification): self
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+        }
+        return $this;
+    }
+
+
+
+
+
+
     /**
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
@@ -128,6 +195,8 @@ class Publication
     {
         $this->imageFile = $imageFile;
     }
+
+
 
     public function getImageFile(): ?File
     {
@@ -149,17 +218,16 @@ class Publication
         return $this->id;
     }
 
-    public function getIdU(): ?string
+    public function getIdU(): ?Utilisateur
     {
         return $this->idU;
     }
-
-    public function setIdU(string $idU): self
+    public function setIdU(?Utilisateur $utilisateur): self
     {
-        $this->idU = $idU;
-
+        $this->idU = $utilisateur;
         return $this;
     }
+
 
     public function getDescription(): ?string
     {
@@ -195,7 +263,6 @@ class Publication
         $this->archive = $archive;
         return $this;
     }
-
 
 
 

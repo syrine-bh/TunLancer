@@ -4,21 +4,28 @@
     <div style="padding: 28px;" class="container">
         <div style="box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);border-radius: 14px;margin-bottom: 14px;" class="row">
             <div style="display: flex;flex-flow: row wrap;justify-content: center;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);" class="col-lg-8">
-                <img style="border-radius: 10px;height: 649px;margin-top: 35px;margin-bottom: 35px;" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="" class="img-fluid">
-            </div>
+                {% set extension = publication.imageName|split('.') %}
+                {% if extension[1]=="mp4" %}
+                    <video id="vids{{ publication.id }}" class="vid" style="margin-bottom: 35px;margin-top: 35px;border-radius: 13px;max-width: 100%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);object-fit: cover;height: 666px;" loop controls>
+                        <source id="video{{ publication.id }}" src="{{ asset('images/publications/' ~ publication.imageName) }}" type="video/mp4">
+                    </video>
+                {% else %}
+                    <img style="border-radius: 10px;height: 649px;margin-top: 35px;margin-bottom: 35px;" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="" class="img-fluid">
+                {% endif %}
+                 </div>
             <div class="col-lg-4">
                 <div style="height:300px;" class="col">
                     <div style="margin-top: 20px;margin-bottom: 5px;" class="media border-0">
                         <div class="media-left pr-1">
                             <span class="avatar avatar-md avatar-online">
-                                <img style="height: 50px;margin-right: 10px;width: 50px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="Generic placeholder image">
+                                <img style="height: 50px;margin-right: 10px;width: 50px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/users/' ~ publication.idu.photo) }}" alt="Generic placeholder image">
                             </span>
                         </div>
                         <div class="media-body w-100 row">
                             <div class="col-lg-8">
-                                <span class="list-group-item-heading">{{ publication.idu}} </span>
+                                <span class="list-group-item-heading">{{ publication.idu.Nom ~" " ~publication.idu.Prenom }} </span>
                                 <p class="list-group-item-text mb-0">
-                                    <span class="blue-grey lighten-2 font-small-3"> @{{ publication.idu}} </span>
+                                    <span class="blue-grey lighten-2 font-small-3"> {{ publication.idu.Email }} </span>
                                 </p>
                             </div>
                             <div class="col-lg-4">
@@ -41,8 +48,8 @@
                     <div class="media border-0">
                         <h7 style="cursor: pointer;">Liked by</h7>
                         <h6 style="margin-top: 2px;margin-right: 3px;margin-left: 3px;">
-                            <img style="height: 20px;width:20px;margin-right: 2px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="">
-                            Cyrine Ben Hassine</h6>
+                            <img style="height: 20px;width:20px;margin-right: 2px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/users/' ~ publication.idu.Photo) }}" alt="">
+                            {{ publication.idU.Nom~" "~publication.idU.Prenom }}</h6>
                         <h7>And by</h7>
                         <h6 style="margin-top: 3px;margin-right: 3px;margin-left: 3px;">2</h6><h7>more</h7>
                     </div>
@@ -51,31 +58,49 @@
                                             <span class="info">
                                                 <div id="reacts" class="reacts" style="display: none;">
                                                     <div class="circle">
-                                                        <button onclick="react(1,0);" style="background: none;border: none;cursor: pointer;">
+                                                        <button onclick="react({{ user.id }},{{ publication.id }},1);" style="background: none;border: none;cursor: pointer;">
                                                             <img style="margin-left: -12px;width: 30px;height: 30px;" src="{{ asset('images/reacts/heart.png') }}" alt="">
                                                         </button>
                                                     </div>
                                                     <div class="circle">
-                                                        <button onclick="react(2,0);" style="background: none;border: none;cursor: pointer;">
+                                                        <button onclick="react({{ user.id }},{{ publication.id }},2);" style="background: none;border: none;cursor: pointer;">
                                                             <img style="margin-left: -10px;width: 30px;height: 30px;" src="{{ asset('images/reacts/haha.png') }}" alt="">
                                                         </button>
                                                     </div>
                                                     <div class="circle">
-                                                        <button onclick="react(3,0);" style="background: none;border: none;cursor: pointer;">
+                                                        <button onclick="react({{ user.id }},{{ publication.id }},3);" style="background: none;border: none;cursor: pointer;">
                                                             <img style="margin-left: -7px;width: 30px;height: 30px;" src="{{ asset('images/reacts/triste.png') }}" alt="">
                                                         </button>
 
                                                     </div>
                                                     <div style="margin-left: -11px;" class="circle">
-                                                        <button onclick="react(4,0);" style="background: none;border: none;cursor: pointer;">
+                                                        <button onclick="react({{ user.id }},{{ publication.id }},4);" style="background: none;border: none;cursor: pointer;">
                                                             <img style="width: 30px;height: 30px;" src="{{ asset('images/reacts/grr.png') }}" alt="">
                                                         </button>
                                                     </div>
                                                 </div>
+                                                {% if isReact==0 %}
+                                                    <button  id="likecontainer" style="background-color: #d7abe2;color: white;border-color: #d7abe2;border-radius: 30px" class="btn btn-light btn-min-width box-shadow-5 mr-1 mb-1 like">
+                                                        Réagir
+                                                    </button>
+                                                {% elseif isReact==1  %}
+                                                    <button  id="likecontainer" style="background-color: #d7abe2;color: white;border-color: #d7abe2;border-radius: 30px" class="btn btn-light btn-min-width box-shadow-5 mr-1 mb-1 like">
+                                                        Heart
+                                                    </button>
+                                                {% elseif isReact==2  %}
+                                                    <button  id="likecontainer" style="background-color: #d7abe2;color: white;border-color: #d7abe2;border-radius: 30px" class="btn btn-light btn-min-width box-shadow-5 mr-1 mb-1 like">
+                                                        haha
+                                                    </button>
+                                                {% elseif isReact==3  %}
+                                                    <button  id="likecontainer" style="background-color: #d7abe2;color: white;border-color: #d7abe2;border-radius: 30px" class="btn btn-light btn-min-width box-shadow-5 mr-1 mb-1 like">
+                                                        Triste
+                                                    </button>
+                                                {% elseif isReact==4  %}
+                                                    <button  id="likecontainer" style="background-color: #d7abe2;color: white;border-color: #d7abe2;border-radius: 30px" class="btn btn-light btn-min-width box-shadow-5 mr-1 mb-1 like">
+                                                        Grr
+                                                    </button>
+                                                {% endif %}
 
-                                                <button id="likecontainer" style="background-color: #d7abe2;color: white;border-color: #d7abe2;border-radius: 30px" class="btn btn-light btn-min-width box-shadow-5 mr-1 mb-1 like">
-                                                    Réagir
-                                                </button>
                                              </span>
                     </div>
 
@@ -83,35 +108,35 @@
                         <div class="section-heading text-left wow fadeInUp" data-wow-delay="50ms" style="margin-bottom: 7px ;visibility: visible; animation-delay: 50ms; animation-name: fadeInUp;">
                             <h2> les Commentaires</h2>
                         </div>
-                        {% for commentaire in publication.commentaires %}
-                            <!--Single comment -->
-                            <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms" style="margin-bottom: 10px;visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
-                                <div style="max-width: 51px;margin-right: 7px;" class="thumbnail">
-                                    <img style="border-radius: 4px;width: 50px;height: 50px;" src="{{ asset('images/publications/' ~ publication.imageName) }}" alt="">
-                                </div>
-                                <div style="width: 322px;" class="row">
-                                    <div class="col-lg-9">
-                                        <div class="content-">
-                                            <p style="position: relative;top: 11px;">Cyrine Ben Hassine
-                                            </p>
-                                            <p style="line-height: 1.2;color: black;">{{ commentaire.contenuCommentaire }}</p>
+                        {% if publication.commentaires|length!=0 %}
+                            {% for commentaire in publication.commentaires %}
+                                <!--Single comment -->
+                                <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms" style="margin-bottom: 10px;visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
+                                    <div style="max-width: 51px;margin-right: 7px;" class="thumbnail">
+                                        <img style="border-radius: 4px;width: 50px;height: 50px;" src="{{ asset('images/users/' ~ commentaire.idUtilisateur.Photo) }}" alt="">
+                                    </div>
+                                    <div style="width: 322px;" class="row">
+                                        <div class="col-lg-9">
+                                            <div class="content-">
+                                                <p style="position: relative;top: 11px;">{{ commentaire.idUtilisateur.Nom ~" "~commentaire.idUtilisateur.Prenom }}
+                                                </p>
+                                                <p style="line-height: 1.2;color: black;">{{ commentaire.contenuCommentaire }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div>
+                                                <a style="position: relative;top: 13px;" href="{{ path('Deletecommentaire',{'idPublication':publication.id,'idCommentaire':commentaire.idCommentaire}) }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                <a style="position: relative;top: 13px;" href="{{ path('UpdateCommentaire',{'idPublication':publication.id,'idCommentaire':commentaire.idCommentaire}) }}">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
-                                        <div>
-                                            <a style="position: relative;top: 13px;" href="{{ path('Deletecommentaire',{'idPublication':publication.id,'idCommentaire':commentaire.idCommentaire}) }}">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                            <a style="position: relative;top: 13px;" href="{{ path('UpdateCommentaire',{'idPublication':publication.id,'idCommentaire':commentaire.idCommentaire}) }}">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
-
-
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% endif %}
 
 
                     </div>
@@ -174,7 +199,6 @@
             });
         });
     </script>
-
     {# script document ready #}
     <script>
         $(function() {
@@ -194,6 +218,51 @@
 
     </script>
 
+
+    <script>
+        function react(idu,idPost,typereact) {
+            if (idu==0){
+                //login first
+
+            }else{
+                $.ajax({
+                    url: 'AddReaction/' + idPost + '/' + typereact,
+                    success: function (data) {
+                        var container="likecontainer";
+                        document.getElementById(container).click();
+                        if (data == "added"){
+                            if (typereact==1){
+                                document.getElementById(container).innerHTML="<img style='margin-left: -6px;width: 29px;position: relative;top: -1px;left: 3px;' src='{{ asset('images/reacts/heart.png') }}' alt=''/>";
+                                document.getElementById(container).style.backgroundColor= "#dc35457d";
+                                document.getElementById(container).style.borderColor= "#dc35457d";
+                                document.getElementById(container).style.borderRadius= "30px";
+                            }else if (typereact==2){
+                                document.getElementById(container).innerHTML="<img style='margin-left: -6px;width: 29px;position: relative;top: -1px;left: 3px;' src='{{ asset('uploads/reacts/haha.png') }}' alt=''/>";
+                                document.getElementById(container).style.backgroundColor= "#ffc10782";
+                                document.getElementById(container).style.borderColor= "#ffc10782";
+                                document.getElementById(container).style.borderRadius= "30px";
+                            }else if (typereact==3)  {
+                                document.getElementById(container).innerHTML="<img style='margin-left: -6px;width: 29px;position: relative;top: -1px;left: 3px;' src='{{ asset('uploads/reacts/triste.png') }}' alt=''/>";
+                                document.getElementById(container).style.backgroundColor= "#ffc10782";
+                                document.getElementById(container).style.borderColor= "#ffc10782";
+                                document.getElementById(container).style.borderRadius= "30px";
+                            }else if (typereact==4)  {
+                                document.getElementById(container).innerHTML="<img style='margin-left: -6px;width: 29px;position: relative;top: -1px;left: 3px;' src='{{ asset('uploads/reacts/grr.png') }}' alt=''/>";
+                                document.getElementById(container).style.backgroundColor= "#ffc10782";
+                                document.getElementById(container).style.borderColor= "#ffc10782";
+                                document.getElementById(container).style.borderRadius= "30px";
+                            }
+                        }else if (data == "exists") {
+                            //exists
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log("Ajax request failed. data :");
+                    }
+                });
+            }
+        }
+    </script>
 
 
 

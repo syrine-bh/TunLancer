@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Commentaire;
 use App\Entity\Publication;
 use App\Entity\Reaction;
+use App\Entity\Utilisateur;
 use App\Form\CommentaireType;
 use App\Form\PublicationType;
 use App\Repository\PublicationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,13 +38,21 @@ class PublicationController extends AbstractController
         //detail publication
         $em = $this->getDoctrine()->getManager();
         $publication = $em->getRepository(Publication::class)->find($idPublication);
-
+        $user = $em->getRepository(Utilisateur::class)->find(1);
         //ajout du commentaire
         $commentaire=new Commentaire();
         $commentaire->setPublication($publication);
-        $commentaire->setIdUtilisateur(1);
+        $commentaire->setIdUtilisateur($user);
         $Form=$this->createForm(CommentaireType::class,$commentaire);
         $Form->handleRequest($request);
+        $trouv=0;
+        $reactions=$publication->getReactions();
+        foreach ($reactions as $reaction) {
+            if ($reaction->getIdUtilisateur()->getId()==$user->getId()){
+                $trouv=$reaction->getTypeReaction();
+            }
+        }
+
         if ($Form->isSubmitted()&&$Form->isValid())/*verifier */
         {
             $publication->addCommentaire($commentaire);
@@ -53,7 +63,9 @@ class PublicationController extends AbstractController
 
         return $this->render('publication/detailPublication.html.twig', [
             'publication' => $publication,
-            'commentaireform'=>$Form->createView()
+            'commentaireform'=>$Form->createView(),
+            'user' => $user,
+            'isReact' => $trouv
         ]);
     }
 
@@ -63,6 +75,8 @@ class PublicationController extends AbstractController
     public function Add(Request $request): Response
     {
         $publication=new Publication();
+        $user=$em=$this->getDoctrine()->getManager()->getRepository(Utilisateur::class)->find(1);
+        $publication->setIdU($user);
         $Form=$this->createForm(PublicationType::class,$publication);
         $Form->handleRequest($request);
 
@@ -117,11 +131,12 @@ class PublicationController extends AbstractController
         $commentaire=new Commentaire();
         $em=$this->getDoctrine()->getManager();
         $publication=$em->getRepository(Publication::class)->find($idPublication);
+        $user = $em->getRepository(Utilisateur::class)->find(1);
         if ($publication==null){
             echo "publication not found";
         }else{
             $commentaire->setPublication($publication);
-            $commentaire->setIdUtilisateur(1);
+            $commentaire->setIdUtilisateur($user);
             $Form=$this->createForm(CommentaireType::class,$commentaire);
             $Form->handleRequest($request);
             if ($Form->isSubmitted()&&$Form->isValid())/*verifier */
@@ -171,23 +186,40 @@ class PublicationController extends AbstractController
         ));
     }
 
+
+
+
+
+
     /**
-     * @Route("/publications/AddReaction/{idPublication}", name="AddReaction")
+     * @Route("/publication/AddReaction/{idPublication}/{type}", name="AddReaction")
      */
-    public function AddReaction($idPublication): Response
-    {
-        $reaction=new Reaction();
+    public function ReactAction($idPublication,$type){
         $em=$this->getDoctrine()->getManager();
         $publication=$em->getRepository(Publication::class)->find($idPublication);
-        $reaction->setPublication($publication);
-        $reaction->setIdUtilisateur(1);
-        $reaction->setTypeReaction(1);
-        $em->persist($reaction);
-        $em->flush();
+        $user=$em->getRepository(Utilisateur::class)->find(1);
+        $trouv=false;
+        $reactions=$publication->getReactions();
+        foreach ($reactions as $reaction) {
+            if ($reaction->getIdUtilisateur()->getId()==$user->getId()){
+                $trouv=true;
+            }
+        }
 
-
-        return $this->redirectToRoute('publications');
+        if ($trouv==true){
+            return new JsonResponse("exists");
+        }else{
+            $react=new Reaction();
+            $react->setPublication($publication);
+            $react->setIdUtilisateur($user);
+            $react->setTypeReaction($type);
+            $em->persist($react);
+            $em->flush();
+            return new JsonResponse("added");
+        }
     }
+
+
 
     /**
      * @Route("/publications/RemoveReaction/{idReaction}", name="RemoveReaction")

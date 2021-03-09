@@ -23,9 +23,7 @@ class Reaction
     private $publication;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idUtilisateur", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="reactions")
      */
     private $idUtilisateur;
 
@@ -35,6 +33,12 @@ class Reaction
      * @ORM\Column(name="typeReaction", type="integer", nullable=false)
      */
     private $typeReaction;
+
+
+
+
+
+
 
     /**
      * @return mixed
@@ -64,21 +68,17 @@ class Reaction
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getIdUtilisateur(): int
+    public function getIdUtilisateur(): ?Utilisateur
     {
         return $this->idUtilisateur;
     }
 
-    /**
-     * @param int $idUtilisateur
-     */
-    public function setIdUtilisateur(int $idUtilisateur): void
+    public function setIdUtilisateur(?Utilisateur $utilisateur): self
     {
-        $this->idUtilisateur = $idUtilisateur;
+        $this->idUtilisateur = $utilisateur;
+        return $this;
     }
+
 
     /**
      * @return string
@@ -95,6 +95,7 @@ class Reaction
     {
         $this->typeReaction = $typeReaction;
     }
+
 
 
 }
