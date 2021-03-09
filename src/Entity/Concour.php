@@ -48,14 +48,14 @@ class Concour
     /**
      * @var DateTime $created
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     private $createdAt;
 
     /**
      * @var DateTime $updated
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -64,10 +64,7 @@ class Concour
      */
     private $test;
 
-    /**
-     * @ORM\OneToMany(targetEntity=QuestionConcour::class, mappedBy="concour")
-     */
-    private $questionConcours;
+
 
     /**
      * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="concour", orphanRemoval=true)
@@ -198,35 +195,8 @@ class Concour
         return $this;
     }
 
-    /**
-     * @return Collection|QuestionConcour[]
-     */
-    public function getQuestionConcours(): Collection
-    {
-        return $this->questionConcours;
-    }
 
-    public function addQuestionConcour(QuestionConcour $questionConcour): self
-    {
-        if (!$this->questionConcours->contains($questionConcour)) {
-            $this->questionConcours[] = $questionConcour;
-            $questionConcour->setConcour($this);
-        }
 
-        return $this;
-    }
-
-    public function removeQuestionConcour(QuestionConcour $questionConcour): self
-    {
-        if ($this->questionConcours->removeElement($questionConcour)) {
-            // set the owning side to null (unless already changed)
-            if ($questionConcour->getConcour() === $this) {
-                $questionConcour->setConcour(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Participation[]

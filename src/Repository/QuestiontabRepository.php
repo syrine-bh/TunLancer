@@ -2,25 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\QuestionConcour;
+use App\Entity\Questiontab;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method QuestionConcour|null find($id, $lockMode = null, $lockVersion = null)
- * @method QuestionConcour|null findOneBy(array $criteria, array $orderBy = null)
- * @method QuestionConcour[]    findAll()
- * @method QuestionConcour[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Questiontab|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Questiontab|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Questiontab[]    findAll()
+ * @method Questiontab[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class QuestionConcourRepository extends ServiceEntityRepository
+class QuestiontabRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, QuestionConcour::class);
+        parent::__construct($registry, Questiontab::class);
     }
 
+
     // /**
-    //  * @return QuestionConcour[] Returns an array of QuestionConcour objects
+    //  * @return Questiontab[] Returns an array of Questiontab objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +38,7 @@ class QuestionConcourRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?QuestionConcour
+    public function findOneBySomeField($value): ?Questiontab
     {
         return $this->createQueryBuilder('q')
             ->andWhere('q.exampleField = :val')

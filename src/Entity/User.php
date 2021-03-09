@@ -69,9 +69,12 @@ class User
      */
     private $participations;
 
+
+
     public function __construct()
     {
         $this->participations = new ArrayCollection();
+        $this->reponseQuestions = new ArrayCollection();
     }
 
 
@@ -231,6 +234,7 @@ class User
 
         return $this;
     }
+
 
 
 
