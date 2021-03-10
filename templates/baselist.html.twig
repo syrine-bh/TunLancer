@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title></title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="{{ asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700') }}" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Job Board & Directory Template</title>
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
+    <!-- Bootstrap , fonts & icons  -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/icon-font/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/typography-font/typo.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/fontawesome-5/css/all.css') }}">
+    <!-- Plugin'stylesheets  -->
+    <link rel="stylesheet" href="{{ asset('plugins/aos/aos.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fancybox/jquery.fancybox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/nice-select/nice-select.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/slick/slick.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/ui-range-slider/jquery-ui.css') }}">
+    <!-- Vendor stylesheets  -->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/react.css') }}">
+
+    <!-- =======================================================
+    * Template Name: BizPage - v5.0.2
+    * Template URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+<div class="site-wrapper overflow-hidden ">
+    <!-- Header start  -->
+    <!-- Header Area -->
+    <header class="site-header site-header--menu-right dynamic-sticky-bg py-7 py-lg-0 site-header--absolute site-header--sticky">
+        <div class="container">
+            <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
+                <!-- Brand Logo-->
+                <div class="brand-logo">
+                    <a href="{{ path('home') }}">
+                        <!-- light version logo (logo must be black)-->
+                        <img style="width: 70px;height: 70px;" src="{{ asset('images/logo.png') }}" alt="" class="light-version-logo default-logo">
+                        <!-- Dark version logo (logo must be White)-->
+                        <img style="width: 70px;height: 70px;" src="{{ asset('images/logo.png') }}" alt="" class="dark-version-logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="mobile-menu">
+                    <div class="navbar-nav-wrapper">
+                        <ul class="navbar-nav main-menu">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('home') }}">Acceuil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('publications') }}">Offres</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('publications') }}">Publications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('list') }}">Concours</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('publications') }}">Forum</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="d-block d-lg-none offcanvas-btn-close focus-reset" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="true" aria-label="Toggle navigation">
+                        <i class="gr-cross-icon"></i>
+                    </button>
+                </div>
+                <div class="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
+                    <a class="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset" href="javacript:" data-toggle="modal" data-target="#login">
+                        connexion
+                    </a>
+                    <a class="btn btn-primary text-uppercase font-size-3" href="javacript:" data-toggle="modal" data-target="#signup">
+                        S'inscrire
+                    </a>
+                </div>
+                <!-- Mobile Menu Hamburger-->
+                <button class="navbar-toggler btn-close-off-canvas  hamburger-icon border-0" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- <i class="icon icon-simple-remove icon-close"></i> -->
+                    <span class="hamburger hamburger--squeeze js-hamburger">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+            </span>
+            </span>
+                </button>
+                <!--/.Mobile Menu Ends-->
+            </nav>
+        </div>
+    </header>
+<section style="margin: 10px;" class="pt-7 pt-lg-16 pb-2 pb-lg-32">
+    {% block section %}
+
+
+
+    {% endblock %}
+</section>
+
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- Uncomment below i you want to use a preloader -->
+<!-- <div id="preloader"></div> -->
+
+<!-- Vendor JS Files -->
+<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+<script src="{{ asset('assets/vendor/purecounter/purecounter.js') }}"></script>
+<script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+
+<!-- Template Main JS File -->
+<script src="{{ asset('assets/js/main.js') }}"></script>
+</div>
+</body>
+
+</html>
