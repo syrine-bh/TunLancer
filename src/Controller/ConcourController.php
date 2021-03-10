@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Concour;
 use App\Entity\Participation;
+use App\Entity\Score;
 use App\Entity\User;
 use App\Form\ConcoursType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,16 +36,16 @@ class ConcourController extends AbstractController
         return $this->render('concour/list.html.twig',['concour'=>$concours]);
     }
 
-     /**
+    /**
      * @Route ("/concour/descriptionConcours/{id}",name="descriptionConcours")
      */
-        public function descriptionConcours($id){
-            $repo=$this->getDoctrine()->getRepository(Concour::class);
-            $description=$repo->findAll();
-            return $this->render('/concour/descriptionConcours.html.twig',[
-                'description'=>$description
-            ]);
-        }
+    public function descriptionConcours($id){
+        $repo=$this->getDoctrine()->getRepository(Concour::class);
+        $concour=$repo->findAll();
+        return $this->render('/concour/descriptionConcours.html.twig',[
+            'concour'=>$concour
+        ]);
+    }
 
     /**
      * @return Response
@@ -117,7 +119,7 @@ class ConcourController extends AbstractController
      * @Route ("concour/ajouterConcours",name="ajouterConcours")
      */
     public function ajouterConcours (Request $request){
-    $concours=new Concour();
+        $concours=new Concour();
         $form=$this->createForm(ConcoursType::class,$concours);
         $form->add('Ajouter',SubmitType::class);
         $form->handleRequest($request);
@@ -141,6 +143,59 @@ class ConcourController extends AbstractController
         $participation=$repo->findAll();
         return $this->render('concour/listPadmin.html.twig',['participation'=>$participation]);
     }
+
+//
+//
+//    /**
+//     * @Route("/concour/{id}", name="competition_show")
+//     * @param Concour $id
+//     * @return Response
+//     */
+//    public function show($id, Request $request)
+//    {
+//        $paginator = $this->get(PaginatorInterface::class);
+//        $concour = $this->getDoctrine()->getRepository(Concour::class)->find($id);
+//        $participations = $this->getDoctrine()->getRepository(Participation::class)->findByConcour($id);
+//        $pagination = $paginator->paginate($participations, $request->query->getInt('page', 1), 3);
+//        $ranks = $this->getDoctrine()->getRepository(Participation::class)->findRanks($id);
+//
+//        $res = new ArrayCollection();
+//        foreach ($ranks as $r) {
+//            $score = $this->getDoctrine()->getRepository(Score::class)->findById($r['score_id']);
+//
+//            $res->add($score);
+//
+//        }
+//
+//        return ($this->render('concour/competition_show.html.twig', array('competition' => $concour, 'participations' => $pagination, 'ranks' => $res))
+//        );
+//    }
+//
+//
+//    /**
+//     * @Route("/ranking/{id}", name="update_ranks")
+//     * @param Concour $id
+//     * @return Response
+//     */
+//    public function updateRanksAction($id)
+//    {
+//
+//        $participations = $this->getDoctrine()->getRepository(Participation::class)->findByConcour($id);
+//
+//        $ranks = $this->getDoctrine()->getRepository(Participation::class)->findRanks($id);
+//
+//        $res = new ArrayCollection();
+//        foreach ($ranks as $r) {
+//            $vid = $this->getDoctrine()->getRepository(video::class)->findById($r['video_id']);
+//
+//            $res->add($vid);
+//
+//        }
+//
+//        return ($this->render('@Competitions/Default/ranks.html.twig', array('ranks' => $res))
+//        );
+//    }
+
 
 
 

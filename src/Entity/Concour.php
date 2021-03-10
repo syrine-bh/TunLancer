@@ -71,6 +71,21 @@ class Concour
      */
     private $participations;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lienImage;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $imageName;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $categorie;
+
     public function __construct()
     {
         $this->questionConcours = new ArrayCollection();
@@ -224,6 +239,42 @@ class Concour
                 $participation->setConcour(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLienImage(): ?string
+    {
+        return $this->lienImage;
+    }
+
+    public function setLienImage(?string $lienImage): self
+    {
+        $this->lienImage = $lienImage;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(string $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

@@ -56,14 +56,14 @@ class QuestionController extends Controller
     }
 
     /**
-     * @Route("/quiz", name="home")
+     * @Route("/", name="home")
      */
     public function home()
     {
         return $this->render('pages/home.html.twig');
     }
     /**
-     * @Route("/quiz/question", name="quiz")
+     * @Route("/question", name="quiz")
      */
     public function question()
     {
@@ -72,7 +72,7 @@ class QuestionController extends Controller
         return $this->render('pages/quiz.html.twig',['questions'=>$questions]);
     }
     /**
-     * @Route("/quiz/score", name="score")
+     * @Route("/score", name="score")
      */
     public function score()
     {
@@ -81,7 +81,7 @@ class QuestionController extends Controller
         return $this->render('pages/score.html.twig',['scores'=>$scoresUser]);
     }
     /**
-     * @Route("/quiz/result", name="result")
+     * @Route("/result", name="result")
      */
     public function result()
     {
