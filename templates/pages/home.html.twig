@@ -3,11 +3,12 @@
 {% block body %}
     <div class="container">
         <div class="row  justify-content-center align-items-center">
-
+{#{% for c in questiontab %}#}
             <div class="stater col-md-6">
-                <a href="{{path ('score') }}"><button type="button" class="btn btn-outline-primary btn-lg btn-block">Voir les scores</button></a>
+                <a href="{{ path ('home') }}"><button type="button" class="btn btn-outline-primary btn-lg btn-block">Voir les scores</button></a>
+{#                ,{'id':c.concour_id})#}
             </div>
-
+{#{% endfor %}#}
             <div class="stater col-md-6 ">
                 <a href="{{path ('quiz') }}"><button type="button" class="btn btn-outline-success btn-lg btn-block">Commencer</button></a>
             </div>

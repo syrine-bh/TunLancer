@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 use App\Entity\Questiontab;
+use App\Entity\Participation;
+use App\Entity\Concour;
 use App\Entity\Reponsetab;
 use App\Entity\Score;
 use App\Repository\QuestiontabRepository;
@@ -10,13 +12,31 @@ use App\Repository\ScoreRepository;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\Response;
+use ArrayAccess;
 
-class QuestionController extends Controller
+class QuestionController extends Controller implements ArrayAccess
 {
 
   //cette fonction permet de calculer le score et de retourne le score
 
-
+    public function offsetSet($offset, $value) {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+    public function offsetExists($offset) {
+        return isset($this->container[$offset]);
+    }
+    public function offsetUnset($offset) {
+        unset($this->container[$offset]);
+    }
+    public function offsetGet($offset) {
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+    }
     public function findScore($post){
     if (isset($post)){
         $score=0;
@@ -71,6 +91,29 @@ class QuestionController extends Controller
 
         return $this->render('pages/quiz.html.twig',['questions'=>$questions]);
     }
+
+
+//    /**
+//     * @Route ("/question/{id}",name="quiz")
+//     */
+//    public function question($id){
+//        $repo=$this->getDoctrine()->getRepository(Concour::class);
+//        $questions=$this->repQuestion->FindByConcId();
+//        return $this->render('pages/quiz.html.twig',['questions'=>$questions]);
+//
+//    }
+//    /**
+//     * @Route ("/question/{id}",name="quiz")
+//     */
+//    public function question(Concour $concour, QuestiontabRepository $rep){
+//        $test=$rep->FindByConcId($concour->getId());
+//        return $this->render('pages/quiz.html.twig',['questions'=>$test]);
+//
+//    }
+
+
+
+
     /**
      * @Route("/score", name="score")
      */
@@ -112,4 +155,19 @@ class QuestionController extends Controller
         }
 
     }
+    /**
+     * @Route("/ranking", name="ranks_feed")
+
+     * @return Response
+     */
+    public function updateRanks()
+    {
+        $scoresUser=$this->repScore->findAll();
+        usort($scoresUser,  array("App\Entity\Score", "compareScores"));
+      return ($this->render('pages/ranks.html.twig', array('scores' => array_slice($scoresUser, 0, 3) )));
+    }
+
+
+
+
 }

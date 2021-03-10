@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title 'Top 3 Scores'%}
+{% block body %}
+    <div class="container">
+
+        <a href="{{path ('home') }}"><button type="button" class="btn btn-primary mb-5">Retour</button></a>
+        <div class="row align-items-center">
+            <table class="table">
+                <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Pourcentage</th>
+                </tr>
+                </thead>
+                <tbody class="text-white">
+                {% set id =0 %}
+                {% for score in scores %}
+                    {% set id=id+1 %}
+                    <tr>
+                        <th scope="row">{{ id }}</th>
+
+                            <td>
+                            {% if id is same as (1) %}
+
+                                <i class="fa fa-trophy " style="color: gold"></i>
+                            {% elseif id is same as (2) %}
+                                <i class="fa fa-trophy " style="color: #C0C0C0"></i>
+                            {% else %}
+                                <i class="fa fa-trophy " style="color:#cd7f32"></i>
+                            {% endif %}
+                        </td>
+                        <td >{{ score.pseudo }}</td>
+                        <td>{{ score.score }}</td>
+                        <td>{{ score.pourcentage }}</td>
+                        <td> <img src="{{ asset('assets/img/users/'~ score.imageProfil) }}" style="width:30%" class="img-thumbnail  rounded-circle">
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+

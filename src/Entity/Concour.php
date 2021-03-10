@@ -86,10 +86,16 @@ class Concour
      */
     private $categorie;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Questiontab::class, mappedBy="concour")
+     */
+    private $questiontabs;
+
     public function __construct()
     {
         $this->questionConcours = new ArrayCollection();
         $this->participations = new ArrayCollection();
+        $this->questiontabs = new ArrayCollection();
     }
 
 
@@ -275,6 +281,37 @@ class Concour
     public function setCategorie(string $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Questiontab[]
+     */
+    public function getQuestiontabs(): Collection
+    {
+        return $this->questiontabs;
+    }
+
+    public function addQuestiontab(Questiontab $questiontab): self
+    {
+        if (!$this->questiontabs->contains($questiontab)) {
+            $this->questiontabs[] = $questiontab;
+            $questiontab->setConcour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestiontab(Questiontab $questiontab): self
+    {
+        if ($this->questiontabs->contains($questiontab)) {
+            $this->questiontabs->removeElement($questiontab);
+            // set the owning side to null (unless already changed)
+            if ($questiontab->getConcour() === $this) {
+                $questiontab->setConcour(null);
+            }
+        }
 
         return $this;
     }
