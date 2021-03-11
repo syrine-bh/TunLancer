@@ -15,6 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Response;
 use ArrayAccess;
+use Swift_Message;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+
 
 class QuestionController extends Controller implements ArrayAccess
 {
@@ -168,6 +174,36 @@ class QuestionController extends Controller implements ArrayAccess
     }
 
 
+    /**
+     * @Route("/promote/{id}", name="promote_user")
+     * @param User $id
+     * @return Response
+     *
+     */
+    public function promote($id)
+    {
 
+        $genius = $this->getDoctrine()->getRepository(Score::class)->find($id);
+        $message = (new Swift_Message('Congratulations Email'))
+            ->setFrom('hiba.farhat.fh@gmail.com')
+            ->setTo($genius->getEmail());
+        $message->setBody(
+            '<html>' .
+            ' <body>' .
+            '  Congrats <img src="' .
+            $message->embed(\Swift_Image::fromPath('D:\congrats.jpg')) .
+            '" alt="Image" />' .
+            '  Vous êtes parmis les top 3 ranked dans le concours FELICITATION !' .
+            ' </body>' .
+            '</html>',
+            'text/html');
+        $this->get('mailer')->send($message);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($genius);
+        $em->flush();
+        return $this->redirectToRoute('ranks_feed');
+
+
+    }
 
 }

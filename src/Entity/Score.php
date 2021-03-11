@@ -51,6 +51,11 @@ class Score implements ArrayAccess
      */
     private $imageProfil;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Email;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -117,6 +122,18 @@ class Score implements ArrayAccess
             return -1;
         }
         else return 1;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->Email;
+    }
+
+    public function setEmail(string $Email): self
+    {
+        $this->Email = $Email;
+
+        return $this;
     }
 
 
