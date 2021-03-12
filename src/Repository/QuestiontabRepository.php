@@ -48,4 +48,15 @@ class QuestiontabRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function FindByConcId($id)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.concour = :val')
+            ->setParameter('val', $id)
+            ->orderBy('q.id', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

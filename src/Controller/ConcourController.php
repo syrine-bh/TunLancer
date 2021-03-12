@@ -144,60 +144,38 @@ class ConcourController extends AbstractController
         return $this->render('concour/listPadmin.html.twig',['participation'=>$participation]);
     }
 
-//
-//
-//    /**
-//     * @Route("/concour/{id}", name="competition_show")
-//     * @param Concour $id
-//     * @return Response
-//     */
-//    public function show($id, Request $request)
-//    {
-//        $paginator = $this->get(PaginatorInterface::class);
-//        $concour = $this->getDoctrine()->getRepository(Concour::class)->find($id);
-//        $participations = $this->getDoctrine()->getRepository(Participation::class)->findByConcour($id);
-//        $pagination = $paginator->paginate($participations, $request->query->getInt('page', 1), 3);
-//        $ranks = $this->getDoctrine()->getRepository(Participation::class)->findRanks($id);
-//
-//        $res = new ArrayCollection();
-//        foreach ($ranks as $r) {
-//            $score = $this->getDoctrine()->getRepository(Score::class)->findById($r['score_id']);
-//
-//            $res->add($score);
-//
-//        }
-//
-//        return ($this->render('concour/competition_show.html.twig', array('competition' => $concour, 'participations' => $pagination, 'ranks' => $res))
-//        );
-//    }
-//
-//
-//    /**
-//     * @Route("/ranking/{id}", name="update_ranks")
-//     * @param Concour $id
-//     * @return Response
-//     */
-//    public function updateRanksAction($id)
+    /**
+     * @Route("admin/promoteModifConcour/{id}", name="promoteModifConcour")
+     * @param User $id
+     * @return Response
+     *
+     */
+//    public function promoteModifConcour($id)
 //    {
 //
-//        $participations = $this->getDoctrine()->getRepository(Participation::class)->findByConcour($id);
+//        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+//        $message = (new \Swift_Message('Modification date concours'))
+//            ->setFrom('tunlancer.coders@gmail.com')
+//            ->setTo($user->getEmail());
+//        $message->setBody(
+//            '<html>' .
+//            ' <body>' .
+//            '  Congrats <img src="' .
+//            $message->embed(Swift_Image::fromPath('D:\Projects\PIDev\web\assets\img\congrats.jpg')) .
+//            '" alt="Image" />' .
+//            '  You earned a Talented Account' .
+//            ' </body>' .
+//            '</html>',
+//            'text/html');
+//        $this->get('mailer')->send($message);
+//        $talented->setRoles(['ROLE_TALENTED']);
+//        $em = $this->getDoctrine()->getManager();
+//        $em->persist($talented);
+//        $em->flush();
+//        return $this->redirectToRoute('admin_competition_index');
 //
-//        $ranks = $this->getDoctrine()->getRepository(Participation::class)->findRanks($id);
 //
-//        $res = new ArrayCollection();
-//        foreach ($ranks as $r) {
-//            $vid = $this->getDoctrine()->getRepository(video::class)->findById($r['video_id']);
-//
-//            $res->add($vid);
-//
-//        }
-//
-//        return ($this->render('@Competitions/Default/ranks.html.twig', array('ranks' => $res))
-//        );
 //    }
-
-
-
 
 
 }

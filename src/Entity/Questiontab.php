@@ -29,6 +29,11 @@ class Questiontab
      */
     private $reponsetabs;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Concour::class, inversedBy="questiontabs")
+     */
+    private $concour;
+
     public function __construct()
     {
         $this->reponsetabs = new ArrayCollection();
@@ -78,6 +83,18 @@ class Questiontab
                 $reponsetab->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getConcour(): ?Concour
+    {
+        return $this->concour;
+    }
+
+    public function setConcour(?Concour $concour): self
+    {
+        $this->concour = $concour;
 
         return $this;
     }

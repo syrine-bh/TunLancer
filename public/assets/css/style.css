@@ -956,7 +956,7 @@ section {
 
 #portfolio .portfolio-item {
   position: relative;
-  height: 360px;
+  height: 500px;
   overflow: hidden;
 }
 
@@ -964,7 +964,7 @@ section {
   background: #000;
   overflow: hidden;
   height: 240px;
-  position: relative;
+  position: center;
   border-radius: 4px 4px 0 0;
   margin: 0;
 }
