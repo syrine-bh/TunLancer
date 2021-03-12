@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Concour;
 use App\Entity\Participation;
+use App\Entity\Score;
 use App\Entity\User;
 use App\Form\ConcoursType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,16 +36,16 @@ class ConcourController extends AbstractController
         return $this->render('concour/list.html.twig',['concour'=>$concours]);
     }
 
-     /**
+    /**
      * @Route ("/concour/descriptionConcours/{id}",name="descriptionConcours")
      */
-        public function descriptionConcours($id){
-            $repo=$this->getDoctrine()->getRepository(Concour::class);
-            $description=$repo->findAll();
-            return $this->render('/concour/descriptionConcours.html.twig',[
-                'description'=>$description
-            ]);
-        }
+    public function descriptionConcours($id){
+        $repo=$this->getDoctrine()->getRepository(Concour::class);
+        $concour=$repo->findAll();
+        return $this->render('/concour/descriptionConcours.html.twig',[
+            'concour'=>$concour
+        ]);
+    }
 
     /**
      * @return Response
@@ -117,7 +119,7 @@ class ConcourController extends AbstractController
      * @Route ("concour/ajouterConcours",name="ajouterConcours")
      */
     public function ajouterConcours (Request $request){
-    $concours=new Concour();
+        $concours=new Concour();
         $form=$this->createForm(ConcoursType::class,$concours);
         $form->add('Ajouter',SubmitType::class);
         $form->handleRequest($request);
@@ -142,7 +144,38 @@ class ConcourController extends AbstractController
         return $this->render('concour/listPadmin.html.twig',['participation'=>$participation]);
     }
 
-
+    /**
+     * @Route("admin/promoteModifConcour/{id}", name="promoteModifConcour")
+     * @param User $id
+     * @return Response
+     *
+     */
+//    public function promoteModifConcour($id)
+//    {
+//
+//        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+//        $message = (new \Swift_Message('Modification date concours'))
+//            ->setFrom('tunlancer.coders@gmail.com')
+//            ->setTo($user->getEmail());
+//        $message->setBody(
+//            '<html>' .
+//            ' <body>' .
+//            '  Congrats <img src="' .
+//            $message->embed(Swift_Image::fromPath('D:\Projects\PIDev\web\assets\img\congrats.jpg')) .
+//            '" alt="Image" />' .
+//            '  You earned a Talented Account' .
+//            ' </body>' .
+//            '</html>',
+//            'text/html');
+//        $this->get('mailer')->send($message);
+//        $talented->setRoles(['ROLE_TALENTED']);
+//        $em = $this->getDoctrine()->getManager();
+//        $em->persist($talented);
+//        $em->flush();
+//        return $this->redirectToRoute('admin_competition_index');
+//
+//
+//    }
 
 
 }

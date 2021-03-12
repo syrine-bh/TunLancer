@@ -8,10 +8,10 @@ use App\Form\ReponseFormType;
 use App\Repository\QuestiontabRepository;
 use App\Repository\ReponsetabRepository;
 use App\Repository\ScoreRepository;
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 class AdminController extends Controller
 {
     /**
@@ -24,7 +24,7 @@ class AdminController extends Controller
     private $repScore;
     private $em;
 
-    public function __construct(QuestiontabRepository $repQuestion, ReponsetabRepository $repReponse, ScoreRepository $repScore, \Doctrine\Common\Persistence\ObjectManager $em)
+    public function __construct(QuestiontabRepository $repQuestion, ReponsetabRepository $repReponse, ScoreRepository $repScore, ManagerRegistry $em)
     {
         $this->repQuestion=$repQuestion;
         $this->repReponse=$repReponse;

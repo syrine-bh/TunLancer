@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Score;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use  Doctrine\ORM\Tools\Pagination\Paginator;
+use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator;
 
 /**
  * @method Score|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +49,40 @@ class ScoreRepository extends ServiceEntityRepository
         ;
     }
     */
+//
+
+
+
+//$em = $this->getEntityManager();
+//$query= $em->createQuery('select t from App\Entity\Score t
+//
+//        GROUP by t.id
+// ORDER by count(t.id) DESC ');
+//return $query->getResult();
+//$stmt->execute();
+//
+//    // returns an array of arrays (i.e. a raw data set)
+//return $stmt->fetchAll();
+    //    $queryBuilder->select('t.score') // Here I use only the t.score, but you could put the whole class
+//        ->from(Score::class, 'u')
+//            ->orderBy('t.score', 'DESC LIMIT 2') ;
+    public function findRanks()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT  s.score
+  FROM
+  score s 
+ GROUP by s.score
+ ORDER by count(s.score ) desc 
+ LIMIT 3';
+        $stmt = $conn->prepare($sql);
+
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
+
+
 }
