@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
-{% block title 'Top 3 Scores'%}
+{% block title 'Score'%}
 {% block body %}
     <div class="container">
-
         <a href="{{path ('home') }}"><button type="button" class="btn btn-primary mb-5">Retour</button></a>
+
         <div class="row align-items-center">
             <table class="table">
                 <thead class="table-primary">
@@ -11,19 +11,17 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Score</th>
-                    <th scope="col">Pourcentage</th>
                 </tr>
                 </thead>
                 <tbody class="text-white">
                 {% set id =0 %}
                 {% for score in scores %}
                     {% set id=id+1 %}
-                    <tr>
-                        <th scope="row">{{ id }}</th>
-                        <td>{{ score.pseudo }}</td>
-                        <td>{{ score.score }}</td>
-                        <td>{{ score.pourcentage }}</td>
-                    </tr>
+                <tr>
+                    <th scope="row">{{ id }}</th>
+                    <td>{{ score.pseudo }}</td>
+                    <td>{{ score.score }}</td>
+                </tr>
                 {% endfor %}
                 </tbody>
             </table>
@@ -31,6 +29,3 @@
     </div>
 
 {% endblock %}
-
-
-
