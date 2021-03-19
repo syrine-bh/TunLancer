@@ -48,12 +48,24 @@ class QuestiontabRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function FindByConcId($id)
+//    public function FindByConcId($id)
+//    {
+//        return $this->createQueryBuilder('q')
+//            ->andWhere('q.concour = :val')
+//            ->setParameter('val', $id)
+//            ->orderBy('q.id', 'ASC')
+//            ->setMaxResults(100)
+//            ->getQuery()
+//            ->getResult()
+//            ;
+//    }
+
+    public function FindByQuizId($id)
     {
         return $this->createQueryBuilder('q')
-            ->andWhere('q.concour = :val')
+            ->andWhere('q.quiz = :val')
             ->setParameter('val', $id)
-            ->orderBy('q.id', 'ASC')
+            ->orderBy('q.quiz', 'ASC')
             ->setMaxResults(100)
             ->getQuery()
             ->getResult()

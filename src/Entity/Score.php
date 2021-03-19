@@ -56,6 +56,18 @@ class Score implements ArrayAccess
      */
     private $Email;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scores")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=quiz::class, inversedBy="scores")
+     */
+    private $quiz;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +147,31 @@ class Score implements ArrayAccess
 
         return $this;
     }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getQuiz(): ?quiz
+    {
+        return $this->quiz;
+    }
+
+    public function setQuiz(?quiz $quiz): self
+    {
+        $this->quiz = $quiz;
+
+        return $this;
+    }
+
 
 
 

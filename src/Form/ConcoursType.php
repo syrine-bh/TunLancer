@@ -36,7 +36,11 @@ class ConcoursType extends AbstractType
             ->add('dateFin',DateType::class,[
                 'widget'=>'single_text',
                 'input'=>'datetime'])
-
+            ->add('categorie',TextareaType::class,[
+                'attr'=> [
+                    'placeholder'=>"Donnez catégorie"
+                ]
+            ])
             ;
 
 

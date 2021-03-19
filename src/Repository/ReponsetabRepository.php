@@ -47,4 +47,18 @@ class ReponsetabRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function FindByQuizId($id)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.quiz = :val')
+            ->setParameter('val', $id)
+            ->orderBy('q.quiz', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
 }

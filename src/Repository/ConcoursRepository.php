@@ -47,5 +47,28 @@ class ConcoursRepository extends ServiceEntityRepository
         ;
     }
     */
+//    public function FindByQuizId($id)
+//    {
+//        return $this->createQueryBuilder('q')
+//            ->andWhere('q.quiz = :val')
+//            ->setParameter('val', $id)
+//            ->orderBy('q.quiz', 'ASC')
+//            ->setMaxResults(100)
+//            ->getQuery()
+//            ->getResult();
+//    }
+
+    public function findByConcId($id)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.id = :val')
+            ->setParameter('val', $id)
+            ->orderBy('q.id', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 
 }

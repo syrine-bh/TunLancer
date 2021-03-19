@@ -30,9 +30,12 @@ class Questiontab
     private $reponsetabs;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Concour::class, inversedBy="questiontabs")
+     * @ORM\ManyToOne(targetEntity=Quiz::class, inversedBy="questiontab")
      */
-    private $concour;
+    private $quiz;
+
+
+
 
     public function __construct()
     {
@@ -87,15 +90,16 @@ class Questiontab
         return $this;
     }
 
-    public function getConcour(): ?Concour
+    public function getQuiz(): ?Quiz
     {
-        return $this->concour;
+        return $this->quiz;
     }
 
-    public function setConcour(?Concour $concour): self
+    public function setQuiz(?Quiz $quiz): self
     {
-        $this->concour = $concour;
+        $this->quiz = $quiz;
 
         return $this;
     }
+
 }

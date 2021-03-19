@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Liste des Quiz</h1>
+        <a href="{{path ('ajoutQuiz')}}" class="btn btn-primary mb-3 float-right">Ajouter</a>
+        <table class="table table-striped text-white">
+            <thead>
+            <tr class="d-flex">
+                <th class="col-9">Quiz</th>
+                <th class="col-3">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for q in quiz %}
+                <tr class="d-flex">
+                    <td class="col-9">{{ q.nom }}</td>
+                    <td class="col-3"><a href="{{path ('modifierQuiz',{'id':q.id })}}" class="btn btn-primary mb-3">Modifier</a>
+                        <a class="btn btn-danger mb-3" href="{{path ('supprimerQuiz',{'id':q.id })}}">Suprimer</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

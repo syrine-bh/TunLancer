@@ -69,12 +69,18 @@ class User
      */
     private $participations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $scores;
+
 
 
     public function __construct()
     {
         $this->participations = new ArrayCollection();
         $this->reponseQuestions = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
 
@@ -229,6 +235,36 @@ class User
             // set the owning side to null (unless already changed)
             if ($participation->getUser() === $this) {
                 $participation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Score[]
+     */
+    public function getScores(): Collection
+    {
+        return $this->scores;
+    }
+
+    public function addScore(Score $score): self
+    {
+        if (!$this->scores->contains($score)) {
+            $this->scores[] = $score;
+            $score->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Score $score): self
+    {
+        if ($this->scores->removeElement($score)) {
+            // set the owning side to null (unless already changed)
+            if ($score->getUser() === $this) {
+                $score->setUser(null);
             }
         }
 

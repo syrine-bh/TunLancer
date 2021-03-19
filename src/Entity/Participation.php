@@ -44,6 +44,11 @@ class Participation
      */
     private $addrIP;
 
+    /**
+     * @ORM\OneToOne(targetEntity=score::class, cascade={"persist", "remove"})
+     */
+    private $score;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +110,18 @@ class Participation
     public function setAddrIP(?string $addrIP): self
     {
         $this->addrIP = $addrIP;
+
+        return $this;
+    }
+
+    public function getScore(): ?score
+    {
+        return $this->score;
+    }
+
+    public function setScore(?score $score): self
+    {
+        $this->score = $score;
 
         return $this;
     }

@@ -71,10 +71,7 @@ class Concour
      */
     private $participations;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $lienImage;
+
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
@@ -86,16 +83,17 @@ class Concour
      */
     private $categorie;
 
+
+
     /**
-     * @ORM\OneToMany(targetEntity=Questiontab::class, mappedBy="concour")
+     * @ORM\OneToMany(targetEntity=Quiz::class, mappedBy="concour")
      */
-    private $questiontabs;
+    private $quiz;
 
     public function __construct()
     {
-        $this->questionConcours = new ArrayCollection();
         $this->participations = new ArrayCollection();
-        $this->questiontabs = new ArrayCollection();
+        $this->quiz = new ArrayCollection();
     }
 
 
@@ -248,18 +246,18 @@ class Concour
 
         return $this;
     }
-
-    public function getLienImage(): ?string
-    {
-        return $this->lienImage;
-    }
-
-    public function setLienImage(?string $lienImage): self
-    {
-        $this->lienImage = $lienImage;
-
-        return $this;
-    }
+//
+//    public function getLienImage(): ?string
+//    {
+//        return $this->lienImage;
+//    }
+//
+//    public function setLienImage(?string $lienImage): self
+//    {
+//        $this->lienImage = $lienImage;
+//
+//        return $this;
+//    }
 
     public function getImageName(): ?string
     {
@@ -285,31 +283,31 @@ class Concour
         return $this;
     }
 
+
     /**
-     * @return Collection|Questiontab[]
+     * @return Collection|Quiz[]
      */
-    public function getQuestiontabs(): Collection
+    public function getQuiz(): Collection
     {
-        return $this->questiontabs;
+        return $this->quiz;
     }
 
-    public function addQuestiontab(Questiontab $questiontab): self
+    public function addQuiz(Quiz $quiz): self
     {
-        if (!$this->questiontabs->contains($questiontab)) {
-            $this->questiontabs[] = $questiontab;
-            $questiontab->setConcour($this);
+        if (!$this->quiz->contains($quiz)) {
+            $this->quiz[] = $quiz;
+            $quiz->setConcour($this);
         }
 
         return $this;
     }
 
-    public function removeQuestiontab(Questiontab $questiontab): self
+    public function removeQuiz(Quiz $quiz): self
     {
-        if ($this->questiontabs->contains($questiontab)) {
-            $this->questiontabs->removeElement($questiontab);
+        if ($this->quiz->removeElement($quiz)) {
             // set the owning side to null (unless already changed)
-            if ($questiontab->getConcour() === $this) {
-                $questiontab->setConcour(null);
+            if ($quiz->getConcour() === $this) {
+                $quiz->setConcour(null);
             }
         }
 

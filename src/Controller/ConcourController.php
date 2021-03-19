@@ -97,59 +97,35 @@ class ConcourController extends AbstractController
         }
         return $this->render("concour/modifierConcours.html.twig",[
             'form'=>$form->createView(),
+            'concour'=>$concours
         ]);
     }
+
+
 
     /**
      * @return Response
      * @Route ("/supprimerConcours/{id}",name="supprimerConcours")
      */
-    public function supprimerConcours($id){
-        $repo=$this->getDoctrine()->getRepository(Concour::class);
-        $concours=$repo->find($id);
-        $em=$this->getDoctrine()->getManager();
+    public function supprimerConcours($id)
+    {
+        $repo = $this->getDoctrine()->getRepository(Concour::class);
+        $concours = $repo->find($id);
+        $em = $this->getDoctrine()->getManager();
         $em->remove($concours);
         $em->flush();
         return $this->redirectToRoute('listCadmin');
+
     }
 
-    /**
-     * @param Request $request
-     * @return Response
-     * @Route ("concour/ajouterConcours",name="ajouterConcours")
-     */
-    public function ajouterConcours (Request $request){
-        $concours=new Concour();
-        $form=$this->createForm(ConcoursType::class,$concours);
-        $form->add('Ajouter',SubmitType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()&& $form->isValid()){
-            $em=$this->getDoctrine()->getManager();
-            $em->persist($concours);
-            $em->flush();
-            return $this->redirectToRoute('listCadmin');
-        }
-        return $this->render("concour/ajouterConcours.html.twig",[
-            'form'=>$form->createView(),
-        ]);
-    }
 
-    /**
-     * @return Response
-     * @Route ("/concour/listPadmin",name="listPadmin")
-     */
-    public function listPadmin(){
-        $repo=$this->getDoctrine()->getRepository(Participation::class);
-        $participation=$repo->findAll();
-        return $this->render('concour/listPadmin.html.twig',['participation'=>$participation]);
-    }
 
-    /**
-     * @Route("admin/promoteModifConcour/{id}", name="promoteModifConcour")
-     * @param User $id
-     * @return Response
-     *
-     */
+//    /**
+//     * @Route("admin/promoteModifConcour/{id}", name="promoteModifConcour")
+//     * @param User $id
+//     * @return Response
+//     *
+//     */
 //    public function promoteModifConcour($id)
 //    {
 //

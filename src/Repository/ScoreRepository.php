@@ -66,22 +66,35 @@ class ScoreRepository extends ServiceEntityRepository
     //    $queryBuilder->select('t.score') // Here I use only the t.score, but you could put the whole class
 //        ->from(Score::class, 'u')
 //            ->orderBy('t.score', 'DESC LIMIT 2') ;
-    public function findRanks()
+//    public function findRanks()
+//    {
+//        $conn = $this->getEntityManager()->getConnection();
+//
+//        $sql = 'SELECT  s.score
+//  FROM
+//  score s
+// GROUP by s.score
+// ORDER by count(s.score ) desc
+// LIMIT 3';
+//        $stmt = $conn->prepare($sql);
+//
+//        $stmt->execute();
+//
+//        // returns an array of arrays (i.e. a raw data set)
+//        return $stmt->fetchAll();
+//    }
+
+
+    public function FindByQuizId($id)
     {
-        $conn = $this->getEntityManager()->getConnection();
-
-        $sql = 'SELECT  s.score
-  FROM
-  score s 
- GROUP by s.score
- ORDER by count(s.score ) desc 
- LIMIT 3';
-        $stmt = $conn->prepare($sql);
-
-        $stmt->execute();
-
-        // returns an array of arrays (i.e. a raw data set)
-        return $stmt->fetchAll();
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.quiz = :val')
+            ->setParameter('val', $id)
+            ->orderBy('q.quiz', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 

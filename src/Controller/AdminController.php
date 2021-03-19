@@ -2,16 +2,22 @@
 
 namespace App\Controller;
 use App\Entity\Questiontab;
+use App\Entity\Quiz;
 use App\Entity\Reponsetab;
 use App\Form\AddQuestionFormType;
+use App\Form\QuizType;
 use App\Form\ReponseFormType;
 use App\Repository\QuestiontabRepository;
 use App\Repository\ReponsetabRepository;
 use App\Repository\ScoreRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 class AdminController extends Controller
 {
     /**
@@ -24,7 +30,7 @@ class AdminController extends Controller
     private $repScore;
     private $em;
 
-    public function __construct(QuestiontabRepository $repQuestion, ReponsetabRepository $repReponse, ScoreRepository $repScore, ManagerRegistry $em)
+    public function __construct(QuestiontabRepository $repQuestion, ReponsetabRepository $repReponse, ScoreRepository $repScore, EntityManagerInterface $em)
     {
         $this->repQuestion=$repQuestion;
         $this->repReponse=$repReponse;
@@ -113,4 +119,77 @@ class AdminController extends Controller
             'reponses'=>$reponses,
             'form'=>$form->createView()]);
     }
+
+
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @Route ("admin/ajoutQuiz",name="ajoutQuiz")
+     */
+    public function ajoutQuiz (Request $request){
+        $quiz=new Quiz();
+        $form=$this->createForm(QuizType::class,$quiz);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($quiz);
+            $em->flush();
+            return $this->redirectToRoute('quiz');
+        }
+        return $this->render('admin/ajoutQuiz.html.twig',['form'=>$form->createView()]);
+    }
+
+    /**
+     * @Route ("admin/modifierQuiz{id}",name="modifierQuiz")
+     * @param $id
+     * @param $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    function modifier($id,Request $request){
+        $repo=$this->getDoctrine()->getRepository(Quiz::class);
+        $quiz=$repo->find($id);
+        $form=$this->createForm(QuizType::class,$quiz);
+//        $form->add('Modifier',SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute('quiz');
+        }
+        return $this->render("quiz/modifierQuiz.html.twig",[
+            'form'=>$form->createView(),
+            'quiz'=>$quiz
+        ]);
+    }
+    /**
+     * @Route("/admin/supprimerQuiz{id}", name="supprimerQuiz")
+     */
+    public function supprimerQuiz($id)
+    {
+        $repo=$this->getDoctrine()->getRepository(Quiz::class);
+        $quiz=$repo->find($id);
+
+        $this->em->remove($quiz);
+        $this->em->flush();
+        return $this->redirectToRoute('quiz',['quiz'=>$quiz]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
