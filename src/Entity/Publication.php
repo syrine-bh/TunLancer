@@ -59,6 +59,11 @@ class Publication
     private $imageName;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $localisation;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="publication", orphanRemoval=true)
      */
     private $commentaires;
@@ -213,6 +218,23 @@ class Publication
         return $this->imageName;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * @param mixed $localisation
+     */
+    public function setLocalisation($localisation): void
+    {
+        $this->localisation = $localisation;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -222,7 +244,7 @@ class Publication
     {
         return $this->idU;
     }
-    public function setIdU(?Utilisateur $utilisateur): self
+    public function setIdU(Utilisateur  $utilisateur): self
     {
         $this->idU = $utilisateur;
         return $this;

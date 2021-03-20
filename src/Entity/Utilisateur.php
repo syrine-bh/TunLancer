@@ -19,12 +19,6 @@ class Utilisateur
      */
     private $id;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -77,6 +71,10 @@ class Utilisateur
     private $commentaires;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Signaler", mappedBy="idUtilisateur", orphanRemoval=true)
+     */
+    private $signaux;
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reaction", mappedBy="idUtilisateur", orphanRemoval=true)
      */
     private $reactions;
@@ -86,11 +84,19 @@ class Utilisateur
      */
     private $publications;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Publication", mappedBy="Utilisateur", orphanRemoval=true)
+     */
+    private $notifications;
+
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
         $this->reactions = new ArrayCollection();
         $this->publications = new ArrayCollection();
+        $this->signaux = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     /**
@@ -117,6 +123,57 @@ class Utilisateur
     }
 
     /**
+     * @return Collection|Notification[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setUtilisateur($this);
+        }
+        return $this;
+    }
+    public function removeNotification(Notification $notification): self
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection|publication[]
+     */
+    public function getPublications(): Collection
+    {
+        return $this->publications;
+    }
+    public function addPublications(Publication $publication): self
+    {
+        if (!$this->publications->contains($publication)) {
+            $this->publications[] = $publication;
+            $publication->setIdU($this);
+        }
+        return $this;
+    }
+    public function removePublications(Publication $publication): self
+    {
+        if ($this->publications->contains($publication)) {
+            $this->publications->removeElement($publication);
+        }
+        return $this;
+    }
+
+
+
+
+
+
+    /**
      * @return Collection|Reaction[]
      */
     public function getReactions(): Collection
@@ -139,28 +196,32 @@ class Utilisateur
         return $this;
     }
 
+
     /**
-     * @return Collection|Publication[]
+     * @return Collection|Signaler[]
      */
-    public function getPublications(): Collection
+    public function getSignaux(): Collection
     {
-        return $this->publications;
+        return $this->signaux;
     }
-    public function addPublication(Publication $publication): self
+    public function addSignaler (Signaler $signaler): self
     {
-        if (!$this->publications->contains($publication)) {
-            $this->publications[] = $publication;
-            $publication->setIdU($this);
+        if (!$this->signaux->contains($signaler)) {
+            $this->signaux[] = $signaler;
+            $signaler->setIdUtilisateur($this);
         }
         return $this;
     }
-    public function removePublication(Publication $publication): self
+    public function removeSignaler (Signaler $signaler): self
     {
-        if ($this->publications->contains($publication)) {
-            $this->publications->removeElement($publication);
+        if ($this->signaux->contains($signaler)) {
+            $this->signaux->removeElement($signaler);
         }
         return $this;
     }
+
+
+
 
     /**
      * @return mixed
@@ -306,6 +367,21 @@ class Utilisateur
         $this->Bibliography = $Bibliography;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
 
 
 }

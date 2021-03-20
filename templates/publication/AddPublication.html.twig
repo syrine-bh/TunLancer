@@ -1,59 +1,159 @@
 {% extends "baseFront.html.twig" %}
 
+    {% block styles %}
+        <!-- Load Leaflet from CDN-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet-src.js"></script>
+        <script src="https://unpkg.com/esri-leaflet"></script>
+        <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css">
+       <script src="https://unpkg.com/esri-leaflet-geocoder"></script>
+        <style>
+            #map {
+                width: 698px;
+                height: 468px;
+                margin-bottom: 15px;
+            }
+        </style>
+    {% endblock %}
+
 {% block section %}
+    <style>
+        .custom-file-label::after {
+            height: 47px;
+        }
+    </style>
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-lg" id="MapsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Localisation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <div id="map"></div>
+                    </center>
 
-<div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
-
-
-    {{ form_start(publicationform) }}
-    <div class="form-row">
-            <label for="description">description</label>
-            {{ form_widget(publicationform.description, { 'attr' : { 'class' : 'form-control' } }) }}
-    </div>
-
-    <div class="form-group">
-        <label for="type">Type</label>
-        {{ form_widget(publicationform.type, { 'attr' : { 'class' : 'form-control' } }) }}
-    </div>
-    <div class="form-group">
-        <label for="arhcive">Archive</label>
-        {{ form_widget(publicationform.archive, { 'attr' : { 'class' : 'form-control' } }) }}
-    </div>
-
-
-    <div class="form-group">
-        <div class="input-group">
-            <div class="custom-file">
-                {{ form_widget(publicationform.imageFile, { 'attr' : { 'class' : 'custom-file-input' } }) }}
-                <label class="custom-file-label" for="publication_imageFile_file">Choose file</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-    <div style="text-align: center" class="form-group">
-        {{ form_widget(publicationform.Submit, { 'attr' : { 'class' : 'btn btn-primary','style' : 'margin-bottom:30px;display:none;' } }) }}
-        <button onclick="save()" class="btn btn-primary">Ajouter une publication</button>
-        <a href="{{ path('publications') }}" class="btn btn-primary">Annuler</a>
+
+    <div class="container">
+        <div style="box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);border-radius: 14px;margin-bottom: 14px;" class="row">
+
+            <div style="display: flex;flex-flow: row wrap;justify-content: center;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);" class="col-lg-8">
+                <div>
+                    <img id="previewimg" style="border-radius: 10px;height: 600px;margin-top: 35px;margin-bottom: 35px;" src="{{ asset('images/publications/freelance.jpg') }}" alt="" class="img-fluid">
+                    <p id="previewtxt" style="color: white;position: relative;bottom: 120px;left: 7px;width: 285px;height: 75px;"></p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div style="height:300px;" class="col">
+                    <div style="margin-top: 20px;margin-bottom: 5px;" class="media border-0">
+                        <div class="media-left pr-1">
+                                <span class="avatar avatar-md avatar-online">
+                                    <img style="height: 50px;margin-right: 10px;width: 50px;object-fit: cover;" class="media-object rounded-circle" src="{{ asset('images/users/' ~ user.photo) }}" alt="Generic placeholder image">
+                                    <i></i>
+                                </span>
+                        </div>
+                        <div class="media-body w-100">
+                            <span class="list-group-item-heading">{{ user.Nom ~" " ~user.Prenom }}</span>
+                            <p class="list-group-item-text mb-0">
+                                <span class="blue-grey lighten-2 font-small-3"> @{{ user.Email }} </span>
+                            </p>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                    {{ form_start(publicationform) }}
+                        <div class="row" style="margin-top: 50px;">
+                            <div class="col-md-4">
+                                <label>Type :</label>
+                                {{ form_widget(publicationform.type, { 'attr' : { 'class' : 'form-control' } }) }}
+                            </div>
+                            <div class="col-md-8">
+                                <label>Localisation :</label>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        {{ form_widget(publicationform.localisation, { 'attr' : { 'class' : 'form-control','style':'height: 42px;width: 122%;' } }) }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button data-toggle="modal" data-target="#MapsModal" type="button" style="position: relative;left: -22px;top: 7px;background: none;border: none;color: violet;">
+                                            <i class="fa fa-map-marker-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <label>Description:</label>
+                            <div style="margin-bottom: 10px;" class="media border-0">
+                               {{ form_widget(publicationform.description, { 'attr' : { 'class' : 'form-control','placeholder':'Que voulez-vous dire ?' } }) }}
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 50px;">
+                            <label>Fichier :</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    {{ form_widget(publicationform.imageFile, { 'attr' : { 'class' : 'custom-file-input' } }) }}
+                                    <label class="custom-file-label" for="publication_imageFile_file">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_widget(publicationform.Submit, { 'attr' : { 'class' : 'btn btn-primary','style' : 'margin-bottom:30px;display:none;' } }) }}
+                            <button style="width: 100%;" onclick="save()" class="btn btn-primary">Ajouter une publication</button>
+                        </div>
+                        <div class="col-md-6">
+                            <a style="width: 100%;" href="{{ path('publications') }}" class="btn btn-primary">Annuler</a>
+                        </div>
+                    </div>
+
+
+                    {{ form_end(publicationform) }}
+
+
+                    <div style="margin-bottom: 30px;" class="media border-0">
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
     </div>
-
-    {{ form_end(publicationform) }}
-</div>
-
 {% endblock %}
 
 {% block scripts %}
     <script>
         $(".vich-image").hide();
 
-
-
-
-
-
         function save() {
             let publication_idU=document.getElementById("publication_idU").value;
             let publication_description=document.getElementById("publication_description").value;
             let publication_type=document.getElementById("publication_type").value;
             let publication_archive=document.getElementById("publication_archive").value;
+            let publication_localisation=document.getElementById("publication_localisation").value;
             let publication_imageFile_file=$('#publication_imageFile_file').prop('files')[0];//recuperer le fichier selectionné par utilisateur
             let publication_Submit=document.getElementById("publication_Submit").value;
 
@@ -72,5 +172,35 @@
             }
         }
 
+    </script>
+
+
+
+     <script>
+
+         $( document ).ready(function() {
+             if (navigator.geolocation) {
+                 navigator.geolocation.getCurrentPosition(initMap);
+             } else {
+                 alert("Geolocation is not supported by this browser.");
+             }
+         });
+         //document.getElementById("publication_localisation").value = data.results[i].properties.PlaceName;
+
+         function initMap(position) {
+
+             var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 12);
+             var tiles = L.esri.basemapLayer("Streets").addTo(map);
+             var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+             var results = L.layerGroup().addTo(map);
+             results.addLayer(L.marker([position.coords.latitude, position.coords.longitude]));
+             searchControl.on("results", function(data) {
+                 results.clearLayers();
+                 for (var i = data.results.length - 1; i >= 0; i--) {
+                     results.addLayer(L.marker(data.results[i].latlng));
+                     document.getElementById("publication_localisation").value = data.results[i].properties.PlaceName;
+                 }
+             });
+         }
     </script>
 {% endblock %}

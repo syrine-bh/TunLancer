@@ -1,0 +1,27 @@
+{% extends "baseFront.html.twig" %}
+
+{% block section %}
+
+    <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
+
+
+        {{ form_start(signalerform) }}
+        <div class="form-row">
+            <label for="description">description</label>
+            {{ form_widget(signalerform.description, { 'attr' : { 'class' : 'form-control' } }) }}
+        </div>
+
+
+
+        <div style="text-align: center" class="form-group">
+            {{ form_widget(signalerform.Submit, { 'attr' : { 'class' : 'btn btn-primary','style' : 'margin-bottom:30px;display:none;' } }) }}
+            <button  class="btn btn-primary">submit</button>
+            <a href="{{ path('publications') }}" class="btn btn-primary">Annuler</a>
+        </div>
+
+        {{ form_end(signalerform) }}
+    </div>
+
+{% endblock %}
+
+

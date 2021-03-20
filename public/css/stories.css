@@ -1,0 +1,150 @@
+.inside-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 20px 20px;
+    overflow: hidden;
+}
+
+.stories {
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+}
+.stories .stories-item {
+    cursor: pointer;
+    overflow: hidden;
+    height: 90px;
+    width: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    box-shadow: 1px 3px 15px #222;
+    z-index: 100;
+}
+.stories .stories-item:nth-child(1) {
+    width: 90px;
+    height: 90px;
+}
+.stories .stories-item:nth-child(4) {
+    width: 90px;
+}
+.stories .stories-item img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+/*SLIDER SELF STYLES*/
+.sts-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+/*SLIDER SELF STYLES*/
+.ld {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 80px;
+}
+
+.prev,
+.next {
+    display: none;
+}
+
+.nav-btn {
+    top: 0;
+    position: absolute;
+    height: 100%;
+    width: 80px;
+    border: none;
+    cursor: pointer;
+}
+.nav-btn svg {
+    position: absolute;
+    top: 42%;
+}
+.nav-btn--active {
+    display: block;
+}
+
+.prev {
+    left: 0px;
+    border-radius: 20px 0 0 20px;
+    background: linear-gradient(-90deg, rgba(255, 255, 255, 0.01) 10%, white);
+}
+.prev svg {
+    left: 5px;
+}
+
+.next {
+    right: 0px;
+    border-radius: 0 20px 20px 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 10%, white);
+}
+.next svg {
+    right: 5px;
+}
+
+.ld-lightbox {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+}
+.ld-lightbox__vl {
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+}
+.ld-lightbox__content {
+    display: inline-block;
+    margin: auto auto;
+}
+.ld-lightbox__content img,
+.ld-lightbox__content video {
+    height: auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+@media screen and (max-width: 800px) {
+    .nav-btn {
+        outline: none;
+    }
+}
+.ld-lightbox__close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #fff;
+    font-size: 1.3em;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+@media screen and (max-width: 700px) {
+    .nav-btn {
+        outline: none;
+    }
+}

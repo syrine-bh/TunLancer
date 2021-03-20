@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <link rel="stylesheet" href="{{ asset('css/react.css') }}">
 
+    {% block styles %}
+
+    {% endblock %}
 </head>
 
 <body>
@@ -33,7 +36,8 @@
     <!-- Header Area -->
     <header class="site-header site-header--menu-right dynamic-sticky-bg py-7 py-lg-0 site-header--absolute site-header--sticky">
         <div class="container">
-            <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
+            {% block navbar %}
+                <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
                 <!-- Brand Logo-->
                 <div class="brand-logo">
                     <a href="{{ path('home') }}">
@@ -87,6 +91,7 @@
                 </button>
                 <!--/.Mobile Menu Ends-->
             </nav>
+            {% endblock %}
         </div>
     </header>
     {% block acceuil %}

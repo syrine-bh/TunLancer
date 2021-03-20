@@ -1,5 +1,101 @@
 {% extends "baseFront.html.twig" %}
 
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('css/stories.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/notifications.css') }}">
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
+                    <!-- Brand Logo-->
+                    <div class="brand-logo">
+                        <a href="{{ path('home') }}">
+                            <!-- light version logo (logo must be black)-->
+                            <img style="width: 70px;height: 70px;" src="{{ asset('image/logo.png') }}" alt="" class="light-version-logo default-logo">
+                            <!-- Dark version logo (logo must be White)-->
+                            <img style="width: 70px;height: 70px;" src="{{ asset('image/logo.png') }}" alt="" class="dark-version-logo">
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="mobile-menu">
+                        <div class="navbar-nav-wrapper">
+                            <ul class="navbar-nav main-menu">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('home') }}">Acceuil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('publications') }}">Offres</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('publications') }}">Publications</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('publications') }}">Concours</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('publications') }}">Forum</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="d-block d-lg-none offcanvas-btn-close focus-reset" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="true" aria-label="Toggle navigation">
+                            <i class="gr-cross-icon"></i>
+                        </button>
+                    </div>
+                    <div class="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
+                        <div style="margin-left: 10px;" class="panel panel-default">
+                            <div class="panel-body">
+                                <!-- Single button -->
+                                <div class="btn-group pull-right top-head-dropdown">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bell"></i> <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        {% for notification in notifications %}
+                                        {% set type = notification.lien|split(':') %}
+
+                                        <!--single notification-->
+                                        <li>
+                                            {% if type[0]=="publication" %}
+                                            <a href="{{ path('publication',{'idPublication':type[1]}) }}" class="top-text-block">
+                                                <div class="top-text-heading">{{ notification.description }}</div>
+                                                <div class="top-text-light">{{ notification.dateCreation|date("m/d/Y") }}</div>
+                                            </a>
+                                            {% else %}
+                                                <a href="#" class="top-text-block">
+                                                    <div class="top-text-heading">{{ notification.description }}</div>
+                                                    <div class="top-text-light">{{ notification.dateCreation|date("m/d/Y") }}</div>
+                                                </a>
+                                            {% endif %}
+                                        </li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset" href="javacript:" data-toggle="modal" data-target="#login">
+                            connexion
+                        </a>
+                        <a class="btn btn-primary text-uppercase font-size-3" href="javacript:" data-toggle="modal" data-target="#signup">
+                            S'inscrire
+                        </a>
+
+                    </div>
+                    <!-- Mobile Menu Hamburger-->
+                    <button class="navbar-toggler btn-close-off-canvas  hamburger-icon border-0" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <!-- <i class="icon icon-simple-remove icon-close"></i> -->
+                        <span class="hamburger hamburger--squeeze js-hamburger">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+            </span>
+            </span>
+                    </button>
+                    <!--/.Mobile Menu Ends-->
+                </nav>
+{% endblock %}
+
 {% block section %}
     <div class="row" style="display:flex;">
         <div class="col-lg-9">
@@ -10,6 +106,39 @@
             <a style="margin-top: 23px;" href="{{ path('add_publication') }}" class="btn btn-primary">Ajouter une nouvelle publication</a>
         </div>
     </div>
+
+
+
+
+    <div class="ld">
+        <div style="text-align: end;" class="inside-wrapper">
+
+            <a style="margin-right: 40px;color: grey" href="{{ path('stories') }}">Toutes les stories</a>
+            <div class="stories">
+                {% if stories==null %}
+                <p>No available stories</p>
+                {% else %}
+                {% for s in stories %}
+                    <div class="stories-item">
+                        <a href="{{ path('story',{'idUtilisateur':s.idu.id}) }}">
+                            <img src="{{ asset('images/users/' ~ s.idu.Photo) }}" alt="{{ asset('images/users/' ~ s.idu.Photo) }}">
+                        </a>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <button class="nav-btn prev"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#000000" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+                </svg></button>
+            <button class="nav-btn next"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#000000" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                </svg></button>
+        </div>
+    </div>
+
+
+
+
 
 
     <div style="padding: 10px;" class="contain">
@@ -81,68 +210,11 @@
     </div>
 
 
-    {#<center>
-    <table border="1">
-        <thead>
-        <th>details</th>
-        <th>User</th>
-        <th>description</th>
-        <th>type</th>
-        <th>archive</th>
-        <th>Photo</th>
-        <th>Comments</th>
-        <th>Reactions</th>
-        <th>Reagir</th>
-        <th>Add Commentaire</th>
-        <th>Modifier</th>
-        <th>Supprimer</th>
-        </thead>
-        <tbody>
-        {% for row in publications %}
-            <tr>
-                <td><a href="{{ path('publication',{'idPublication':row.id}) }}"><i class="fa fa-link"></i></a></td>
-                <td>{{ row.idU }}</td>
-                <td>{{ row.description }}</td>
-                <td>{{ row.type }}</td>
-                <td>{{ row.archive }}</td>
-                <td><img style="width: 80px;height: 80px;" src="{{ asset('images/publications/' ~ row.imageName) }}" alt=""></td>
-                <td>
-                    {% for commentaire in row.commentaires %}
-                        <p>{{ commentaire.contenuCommentaire }}</p></br>
-                    {% endfor %}
-                </td>
-                <td style="text-align: center;">
-                    {{ row.reactions|length }} reactions
-                </td>
-                <td style="text-align: center">
-                    {% set trouv = 0 %}
-                    {% set idReaction = 0 %}
-                    {% for reaction in row.reactions %}
-                        {% if reaction.idUtilisateur==1 %}
-                            {% set trouv=1 %}
-                            {% set idReaction = reaction.idReaction %}
-                        {% endif %}
-                    {% endfor %}
-                    {% if trouv==0 %}
-                        <a href="{{ path('AddReaction',{'idPublication':row.id}) }}">Reagir</a>
-                    {% else %}
-                        <a href="{{ path('RemoveReaction',{'idReaction':idReaction}) }}">Supprimer Reaction</a>
-                    {% endif %}
-
-                </td>
-                <td><a href="{{ path('add_commentaire',{'idPublication':row.id}) }}">Ajouter commentaire</a></td>
-                <td><a href="{{ path('update_Publication',{'idPublication':row.id}) }}">Modifier</a></td>
-                <td><a href="{{ path('delete_Publication',{'idPublication':row.id}) }}">Supprimer</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <a href="{{ path('add_publication') }}">Ajouter Publication</a>
-</center>  #}
 
 {% endblock %}
 
 {% block scripts %}
+
 {# script video #}
 <script>
     $('.vid').parent().click(function () {
@@ -158,4 +230,17 @@
         }
     });
 </script>
+
+
+
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="{{ asset('js/stories.js') }}"></script>
+
 {% endblock %}

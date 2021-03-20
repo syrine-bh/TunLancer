@@ -19,6 +19,33 @@ class PublicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Publication::class);
     }
 
+    public function getStoriesDistinct(){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT s FROM App\Entity\Publication s WHERE s.type =1 GROUP BY s.idU ");
+        return $query->getResult();
+    }
+
+    public function getUserStoriesDistinct($idUtilisateur){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT s FROM App\Entity\Publication s WHERE s.type =1 AND s.idU='$idUtilisateur' GROUP BY s.idU ");
+        return $query->getResult();
+    }
+
+
+    public function getStories(){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT s FROM App\Entity\Publication s WHERE s.type =1 ORDER BY s.idU");
+        return $query->getResult();
+    }
+
+    public function getUserStories($idUtilisateur){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT s FROM App\Entity\Publication s WHERE s.type =1 AND s.idU='$idUtilisateur' ORDER BY s.idU");
+        return $query->getResult();
+    }
+
+
+
     // /**
     //  * @return Publication[] Returns an array of Publication objects
     //  */

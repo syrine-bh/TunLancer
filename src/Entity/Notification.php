@@ -18,14 +18,14 @@ class Notification
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="notifications")
      */
-    private $idUtilisateur;
+    private $Utilisateur;
+
     /**
      * @ORM\Column(type="integer")
      */
-    private $type;
-
+    private $vu;
     /**
      * @var string
      *
@@ -33,43 +33,113 @@ class Notification
      */
     private $description;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lien", type="string", length=255, nullable=false)
+     */
+    private $lien;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Publication", inversedBy="notifications")
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
-    private $publication;
+    private $dateCreation;
+
+    public function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+        $this->vu = 0;
+    }
 
 
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->Utilisateur;
+    }
+    public function setUtilisateur(?Utilisateur $utilisateur): self
+    {
+        $this->Utilisateur = $utilisateur;
+        return $this;
+    }
 
-
-
-    public function getId(): ?int
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getIdUtilisateur(): ?int
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
     {
-        return $this->idUtilisateur;
+        $this->id = $id;
     }
 
-    public function setIdUtilisateur(int $idUtilisateur): self
+    /**
+     * @return mixed
+     */
+    public function getVu()
     {
-        $this->idUtilisateur = $idUtilisateur;
-
-        return $this;
-    }
-    public function getPublication(): ?Publication
-    {
-        return $this->publication;
+        return $this->vu;
     }
 
-    public function setPublication(?Publication $publication): self
+    /**
+     * @param mixed $vu
+     */
+    public function setVu($vu): void
     {
-        $this->publication = $publication;
-
-        return $this;
+        $this->vu = $vu;
     }
 
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
 
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLien(): string
+    {
+        return $this->lien;
+    }
+
+    /**
+     * @param string $lien
+     */
+    public function setLien(string $lien): void
+    {
+        $this->lien = $lien;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * @param mixed $dateCreation
+     */
+    public function setDateCreation($dateCreation): void
+    {
+        $this->dateCreation = $dateCreation;
+    }
 }

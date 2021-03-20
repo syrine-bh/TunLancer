@@ -19,6 +19,13 @@ class NotificationRepository extends ServiceEntityRepository
         parent::__construct($registry, Notification::class);
     }
 
+
+
+    public function getNotifications($idUtilisateur){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT n FROM App\Entity\Notification n WHERE n.Utilisateur='$idUtilisateur' ORDER BY n.dateCreation DESC");
+        return $query->getResult();
+    }
     // /**
     //  * @return Notification[] Returns an array of Notification objects
     //  */
