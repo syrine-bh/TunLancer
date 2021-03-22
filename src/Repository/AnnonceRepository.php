@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\Annonce;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use InvalidArgumentException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,19 +25,18 @@ class AnnonceRepository extends ServiceEntityRepository
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findBynom($nom)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('annonce')
+            ->Where('annonce.nom LIKE :nom')
+            ->setParameter('nom','%'.$nom.'%')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+
 
     /*
     public function findOneBySomeField($value): ?Annonce
@@ -47,4 +49,7 @@ class AnnonceRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+
 }

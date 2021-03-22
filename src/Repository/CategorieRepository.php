@@ -35,6 +35,15 @@ class CategorieRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findBynom($type)
+    {
+        return $this->createQueryBuilder('categorie')
+            ->Where('categorie.type LIKE :type')
+            ->setParameter('type','%'.$type.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Categorie

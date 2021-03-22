@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\DocBlock\Serializer;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -14,26 +16,36 @@ class Annonce
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:read")
+     *
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups ("post:read")
+     *
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
+     *
      */
     private $description;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups("post:read")
+     *
      */
     private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="annonces")
+     * @Groups("post:read")
+     *
      */
     private $categorie;
 

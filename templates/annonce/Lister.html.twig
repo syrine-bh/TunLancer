@@ -1,80 +1,82 @@
-{% extends "baseFront.html.twig" %}
-{% block section %}
-    <div class="dashboard-sidebar-wrapper pt-11" id="sidebar">
-        <div class="brand-logo px-11">
-            <a href="https://shade.uxtheme.net/shade-pro">
-                <img src="image/logo-main-black.png" alt="">
-            </a>
-        </div>
-        <div class="my-15 px-5">
-            <a href="#" class="btn btn-primary btn-xl w-100 text-uppercase"><span class="mr-5 d-inline-block">+</span></a>
-        </div>
-        <ul class="list-unstyled dashboard-layout-sidebar">
-            <li class=""><a href="dashboard-main.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="icon icon-layout-11 mr-7"></i>Dashboard</a></li>
-            <li class="active"><a href="dashboard-posted-jobs.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-briefcase mr-7"></i>Posted Jobs</a></li>
-            <li class=""><a href="dashboard-posted-applicants.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-user mr-7"></i>Applicants <span class="ml-auto px-1 h-1 bg-dodger text-white font-size-3 rounded-5 max-height-px-18 flex-all-center">14</span></a></li>
-            <li class=""><a href="dashboard-settings.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-cog mr-7"></i>Settings</a></li>
-        </ul>
+
+
+ {% block section  %}
+
+    <input type="text" id="search" class="form-control" placeholder="Search">
+    <div>
+        <table border ="1" id="t" class="table table-hover table-dark">
+            <thead class="thead-dark">
+            <tr>
+                <td  >Name</td>
+                <td >Description</td>
+                <td >Date</td>
+                <td >Editer</td>
+                <td >Supprimer</td>
+            </tr>
+            </thead>
+            <tbody id="all">
+            {% for annonce in list %}
+                <tr>
+                    <td>
+                        {{ annonce.nom }}
+                    </td>
+                    <td>
+                        {{ annonce.description }}
+                    </td>
+                    <td>
+                        {{ annonce.date|date('Y-m-d') }}
+                    </td>
+                    <td>
+                        <a href="{{path('modify', {'id': annonce.id}) }} "> modifier</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('delete', {'id': annonce.id}) }}"> supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tbody id="search">
+            </tbody>
+        </table>
     </div>
-    <a class="sidebar-mobile-button" data-toggle="collapse" href="#sidebar" role="button" aria-expanded="false" aria-controls="sidebar">
-        <i class="icon icon-sidebar-2"></i>
-    </a>
-    <div class="dashboard-main-container mt-25 mt-lg-31" id="dashboard-body">
-        <div class="container">
-            <div class="mb-18">
-                <div class="row mb-11 align-items-center">
-                    <div class="col-lg-6 mb-lg-0 mb-10">
-                        <h3 class="font-size-6 mb-0">Liste des annonces</h3>
-                    </div>
-
-                </div>
-            </div>
-            <div class="bg-white shadow-8 pt-7 rounded pb-9 px-11">
-                <div class="table-responsive ">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th scope="col" class="pl-0 border-0 font-size-4 font-weight-normal">Name</th>
-                            <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Description</th>
-                            <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Catégorie</th>
-                            <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Date</th>
-                            <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal"></th>
-                            <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for annonce in list %}
-                            <tr class="border border-color-2">
-                                <th scope="row" class="pl-6 border-0 py-7 min-width-px-235">
-                                    <div class="">
-                                        <a href="jobdetails.html" class="font-size-4 mb-0 font-weight-semibold text-black-2">{{ annonce.nom}}</a>
-                                    </div>
-                                </th>
-                                <td class="table-y-middle py-7 min-width-px-135">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{  annonce.description}}</h3>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-125">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ annonce.Categorie.type }}</h3>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-155">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ annonce.date|date('Y-m-d')}}</h3>
-                                </td>
-
-                                <td class="table-y-middle py-7 min-width-px-80">
-                                    <a href="{{path('modify', {'id': annonce.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Edit</a>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-100">
-                                    <a href="{{path('delete', {'id': annonce.id})}}" class="font-size-3 font-weight-bold text-red-2 text-uppercase">Delete</a>
-                                </td>
-                            </tr>
-                        {% endfor%}
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-{% endblock section %}
-
+{% endblock %}
+{% block scripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+    $( document ).ready(function() {
+        $("#search").keyup(function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+            var value = $(this).val();
+            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+            $.ajax({
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url : "{{ path('searchannonce') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                type : 'GET',
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                data: {
+                    'searchValue' : value
+                },
+                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success : function(retour){
+                    if(retour){
+                        $('#t tbody#search').empty();
+                        $.each(JSON.parse(retour), function(i, obj) {
+                            $('#t tbody#all').hide();
+                            $('#t tbody#search').append('<tr><td> '+obj.nom+'  </td><td>    '+obj.description+'  </td><td>'+obj.date+' </td><td><a href="modify/'+obj.id+'">modifier</a></td> <td><a href="delete/'+obj.id+'">supprimer</a></td></tr>');
+                        });
+                    }
+                    else
+                    {
+                        $('#t tbody#all').show();
+                        $('#t tbody#search').empty();
+                        $('#t tbody#search').fadeIn('fast');
+                    }
+                },
+            });
+            return false;
+        });
+    });
+</script>
+{% endblock %}

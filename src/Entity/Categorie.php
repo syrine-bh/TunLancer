@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
@@ -23,11 +24,13 @@ class Categorie
     /**
      * @ORM\Column(type="string", length=255)
      * *@Assert\NotBlank(message="type is required")
+     * @Groups("post:read")
      */
     private $type;
 
     /**
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="categorie")
+     *
      */
     private $annonces;
 
