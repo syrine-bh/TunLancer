@@ -1,0 +1,68 @@
+<div id="aller"  class="mb-8">
+    <!-- Single Featured Job -->
+    {% for topic in topics %}
+        <div class="pt-9 px-xl-9 px-lg-7 px-7 pb-7 light-mode-texts bg-white rounded hover-shadow-3 ">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="media align-items-center">
+                        <div class="square-72 d-block mr-8">
+                            <div class="text-green bg-green-opacity-1 square-70 rounded-4 mb-7 font-size-7">
+                                <i class="fa fa-user"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="mb-0"><a class="font-size-6 heading-default-color" href="#">{{ topic.titre }}</a></h3>
+                            <a href="#" class="font-size-4 text-default-color line-height-2">{{ topic.contenu }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-right pt-7 pt-md-5">
+                    <div class="media justify-content-md-end">
+                        <div class="image mr-5 mt-2">
+                            <img src="image/svg/icon-fire-rounded.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-8">
+                <div class="col-md-7">
+                    <ul class="d-flex list-unstyled mr-n3 flex-wrap">
+                        <li>
+                            <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details',{'id':topic.id}) }}">Commenter</a>
+                        </li>
+                        <li>
+                            <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('showcomment') }}">afficher les commentaires</a>
+                        </li>
+                    </ul>
+                    <div class="card-btn-group">
+
+                        <a class="btn btn-outline-mercury text-black-2 text-uppercase btn-medium rounded-3" href="#"><i
+                                    class="icon icon-bookmark-2 font-weight-bold mr-4 font-size-4"></i> Favoris </a>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <ul class="d-flex list-unstyled mr-n3 flex-wrap mr-n8 justify-content-md-end">
+                        <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
+                            <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-clock.svg" alt=""></span>
+                            <span class="font-weight-semibold"><small>Posté le {{ topic.date|date('d/m/Y à H:m') }} </small></span>
+                        </li>
+                        <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
+                            <span class="mr-4" style="margin-top: -2px"><img src="image/svg/user.svg" alt=""></span>
+                            <span class="font-weight-semibold">Par NomUtilisateur</span>
+                        </li>
+                    </ul>
+                    <div class="d-flex justify-content-between align-items-center m-6">
+                        <div class=""><a href="{{ path('updateTopic',{'id':topic.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Editer</a></div>
+                        <div class=""><a href="{{ path('deleteTopic',{'id':topic.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-8">
+        </div>
+        <div class="mb-8">
+
+        </div>
+    {% endfor %}
+</div>

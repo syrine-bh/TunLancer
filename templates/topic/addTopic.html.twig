@@ -1,0 +1,35 @@
+{% extends "baseFront.html.twig" %}
+
+{% block section %}
+
+    <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
+
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputTitle">Titre</label>
+                {{ form_errors(form.titre) }}
+                {{ form_widget(form.titre, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+
+        </div>
+        <div class="form-row ">
+            <div class="form-group col-md-12">
+                <label for="inputContenu" class="tt-note pt-4">Contenu</label>
+                {{ form_errors(form.contenu) }}
+                {{ form_widget(form.contenu, { 'attr' : { 'class' : 'form-control', "rows":"5" } }) }}
+            </div>
+        </div>
+
+
+        <div style="text-align: center" class="form-group">
+            {{ form_widget(form.ajouter, { 'attr' : { 'class' : 'btn btn-primary'} }) }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+

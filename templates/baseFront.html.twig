@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('fonts/icon-font/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/typography-font/typo.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/fontawesome-5/css/all.css') }}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
     <!-- Plugin'stylesheets  -->
     <link rel="stylesheet" href="{{ asset('plugins/aos/aos.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/fancybox/jquery.fancybox.min.css') }}">
@@ -45,7 +47,7 @@
                         <ul class="navbar-nav main-menu">
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('home') }}">Acceuil</a>
+                                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('publications') }}">Offres</a>
@@ -57,7 +59,7 @@
                                 <a class="nav-link" href="{{ path('publications') }}">Concours</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Forum</a>
+                                <a class="nav-link" href="{{ path('topic') }}">Forum</a>
                             </li>
                         </ul>
                     </div>
@@ -86,6 +88,7 @@
             </nav>
         </div>
     </header>
+
     {% block index %}
 
     {% endblock %}
@@ -112,7 +115,7 @@
                         <!-- cta-content end -->
                     </div>
                     <div class="col-xl-5 col-lg-12" data-aos="fade-left" data-aos-duration="800" data-aos-once="true">
-                        run cta-btns start -->
+                        <!-- cta-btns start -->
                         <div class="btns d-flex justify-content-xl-end justify-content-center align-items-xl-center flex-wrap h-100  mx-n4">
                             <a class="btn btn-outline-gallery btn-xl mx-4 mt-6 text-uppercase" href="#" data-toggle="modal" data-target="#login">Log in</a>
                             <a class="btn btn-green btn-h-60 btn-xl mx-4 mt-6 text-uppercase" href="#" data-toggle="modal" data-target="#signup">Register</a>

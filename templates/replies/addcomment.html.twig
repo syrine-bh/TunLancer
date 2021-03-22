@@ -1,0 +1,174 @@
+{% extends "baseFront.html.twig" %}
+
+{% block section %}
+
+<!-- Main Content Start -->
+<div class="bg-default-1 pt-26 pt-lg-16 pb-13 pb-lg-25">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-4 col-md-5 col-xs-8">
+                <!-- Sidebar Start -->
+                <div class="widgets mb-11">
+                    <!-- back Button -->
+                    <div class="row justify-content-center">
+                        <div class="col-12 dark-mode-texts">
+                            <div class="mb-9">
+                                <a class="d-flex align-items-center ml-4" href={{ path('showtopic') }}> <i
+                                            class="icon icon-small-left bg-white circle-40 mr-5 font-size-7 text-black font-weight-bold shadow-8">
+                                    </i><span class="text-uppercase font-size-3 font-weight-bold text-gray">Back</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- back Button End -->
+                    <h4 class="font-size-6 font-weight-semibold mb-6">Catégorie</h4>
+                    <ul class="list-unstyled filter-check-list">
+                        <li class="mb-2"><a href="#" class="toggle-item">Java</a></li>
+                        <li class="mb-2"><a href="#" class="toggle-item">PHP</a></li>
+                        <li class="mb-2"><a href="#" class="toggle-item">CodeNameOne</a></li>
+                        <li class="mb-2"><a href="#" class="toggle-item">Laravel</a></li>
+                        <li class="mb-2"><a href="#" class="toggle-item">Angular</a></li>
+                    </ul>
+                </div>
+                <div class="widgets mb-11 ">
+                    <div class="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
+
+                    </div>
+
+                    <div class="range-slider">
+
+                    </div>
+                </div>
+                <div class="widgets mb-11">
+
+                </div>
+                <div class="widgets mb-11">
+
+                </div>
+                <!-- Sidebar End -->
+            </div>
+            <!-- Main Body -->
+            <div class="col-12 col-xl-8 col-lg-8">
+
+                <!-- form -->
+                <form action="https://uxtheme.net/" class="search-form">
+                    <div class="filter-search-form-2 search-1-adjustment bg-white rounded-sm shadow-7 pr-6 py-6 pl-6">
+                        <div class="filter-inputs">
+                            <div class="form-group position-relative w-lg-45 w-xl-40 w-xxl-45">
+                                <input class="form-control focus-reset pl-13" type="text" id="keyword" placeholder="Topic">
+                                <span class="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
+                    <i class="icon icon-zoom-2 text-primary font-weight-bold"></i>
+                  </span>
+                            </div>
+                        </div>
+                        <div class="button-block">
+                            <button class="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="pt-12">
+                    <div class="d-flex align-items-center justify-content-between mb-6">
+                        <h5 class="font-size-4 font-weight-normal text-gray">
+                            <span class="heading-default-color"></span>
+                            <span class="heading-default-color">Liste des Topic</span>
+                        </h5>
+                        <div class="button-block">
+                            <div class=""><a href="{{ path('addTopic') }}" class="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">Créer un Topic</a></div>
+                        </div>
+
+                        <div class="d-flex align-items-center result-view-type">
+                            <a class="heading-default-color pl-5 font-size-6 hover-text-hitgray active" href="search-list-1.html">
+                                <i class="fa fa-list-ul"></i>
+                            </a>
+                            <a class="heading-default-color pl-5 font-size-6 hover-text-hitgray" href="search-grid.html">
+                                <i class="fa fa-th-large"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <!-- Single Featured Job -->
+                        {% for topic in topics %}
+                        <div class="pt-9 px-xl-9 px-lg-7 px-7 pb-7 light-mode-texts bg-white rounded hover-shadow-3 ">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="media align-items-center">
+                                        <div class="square-72 d-block mr-8">
+                                            <div class="text-green bg-green-opacity-1 square-70 rounded-4 mb-7 font-size-7">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 class="mb-0"><a class="font-size-6 heading-default-color" href="#">{{ topic.titre }}</a></h3>
+                                            <a href="#" class="font-size-4 text-default-color line-height-2">{{ topic.contenu }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-right pt-7 pt-md-5">
+                                    <div class="media justify-content-md-end">
+                                        <div class="image mr-5 mt-2">
+                                            <img src="image/svg/icon-fire-rounded.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row pt-8">
+                                <div class="col-md-7">
+                                    <ul class="d-flex list-unstyled mr-n3 flex-wrap">
+                                        <li>
+                                            <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details') }}">Commenter</a>
+                                            <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('showcomment') }}">Commentaires</a>
+
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                                <div class="col-md-5">
+                                    <ul class="d-flex list-unstyled mr-n3 flex-wrap mr-n8 justify-content-md-end">
+                                        <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
+                                            <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-loaction-pin-black.svg" alt=""></span>
+                                            <span class="font-weight-semibold"><small>Posté le {{ topic.date|date('d/m/Y à H:m') }} </small></span>
+                                        </li>
+                                        <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
+                                            <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-suitecase.svg" alt=""></span>
+                                            <span class="font-weight-semibold">Par NomUtilisateur</span>
+                                        </li>
+                                    </ul>
+                                    <div class="d-flex justify-content-between align-items-center m-6">
+                                        <div class=""><a href="{{ path('updateTopic',{'id':topic.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Editer</a></div>
+                                        <div class=""><a href="{{ path('deleteTopic',{'id':topic.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span></span>
+
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputTitle">Auteur</label>
+                {{ form_errors(form.auteur) }}
+                {{ form_widget(form.auteur, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+
+        </div>
+        <div class="form-row ">
+            <div class="form-group col-md-12">
+                <label for="inputContenu" class="tt-note pt-4">Contenu</label>
+                {{ form_errors(form.contenu) }}
+                {{ form_widget(form.contenu, { 'attr' : { 'class' : 'form-control', "rows":"5" } }) }}
+            </div>
+        </div>
+{#        <div class="form-group">#}
+{#            <label for="inputTopic">Topic</label>#}
+{#            {{ form_widget(form.topic, { 'attr' : { 'class' : 'form-control' } }) }}#}
+{#        </div>#}
+
+        <div style="text-align: center" class="form-group">
+            {{ form_widget(form.ajouter, { 'attr' : { 'class' : 'btn btn-primary'} }) }}
+        </div>
+
+        {{ form_end(form) }}
+                        {% endfor %}
+    </div>
+{% endblock %}
