@@ -30,7 +30,9 @@
                             {% for q in c.quiz %}
                          <a href="{{ path ('home',{'id':q.id}) }}" data-lightbox="portfolio" data-title="App 1" class="link-preview"><i class="bi bi-plus"></i></a>
                             {% endfor %}
-                            <a href="{{ path ('descriptionConcours',{'id':c.id}) }}" class="link-details" title="More Details"><i class="bi bi-link"></i></a>
+{#                            <a href="{{ path ('descriptionConcours',{'id':c.id}) }}" class="link-details" title="More Details"><i class="bi bi-link"></i></a>#}
+                         <a href="{{ path ('concourV',{'id':c.id}) }}" class="link-details" title="More Details"><i class="bi bi-link"></i></a>
+
                         </figure>
 
                         <div class="portfolio-info">

@@ -60,7 +60,7 @@ class User
     private $bibliography;
 
     /**
-     * @ORM\ManyToMany(targetEntity=concour::class, inversedBy="test")
+     * @ORM\ManyToMany(targetEntity=Concour::class, inversedBy="test")
      */
     private $concours;
 

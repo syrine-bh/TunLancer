@@ -38,5 +38,29 @@ class ParticipationRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+    public function findRanks($id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT  v.video_id 
+  FROM
+  votes v
+  WHERE v.video_id IN
+     ( SELECT video_id FROM participation c WHERE c.concour_id = "'.$id.'"
+  ) 
+  
+ GROUP by v.video_id
+ ORDER by count(v.video_id) DESC
+ LIMIT 3';
+        $stmt = $conn->prepare($sql);
+
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+
+
+    }
+
 }
 

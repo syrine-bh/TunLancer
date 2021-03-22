@@ -8,6 +8,9 @@ use App\Form\QuizType;
 use App\Repository\QuizRepository;
 use App\Repository\ReponsetabRepository;
 use App\Repository\ScoreRepository;
+use AppBundle\Entity\competition;
+use AppBundle\Entity\competition_participant;
+use AppBundle\Entity\video;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -96,9 +99,12 @@ class QuizController extends AbstractController implements \ArrayAccess
 
 
     /**
-     * @Route("/result", name="result")
+     * @Route("/result/{id}", name="result")
+     * @param $id
+     * @param $em
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function result()
+    public function result($id)
     {
         /*
          si le formulaire n'est pas soumit ou si on accès d'accedé a la vue result
@@ -110,30 +116,35 @@ class QuizController extends AbstractController implements \ArrayAccess
             $score=$this->findScore($_POST);// on appelle fontions  traitement post =>score
             $em=$this->getDoctrine()->getManager();//initialisation atity manager de doctrine
             $pseudo=$this->repScore->findOneBy(array('pseudo'=>$_POST['pseudo']));//essai recupération pseudo de l'entité score = post['pseudo']
-            if (!$pseudo){ //false! enregistrer le  pseudo et le score dans la base
-                $repScore=new Score();
+            $quizid=$this->repScore->findOneBy(array('quiz'=>$id));//essai recupération pseudo de l'entité score = post['pseudo']
 
+            $quiz=$em->getRepository(Quiz::class)->find($id);
+            if ($quizid!=$id) { //false! enregistrer le  pseudo et le score dans la base
+                $repScore = new Score();
                 $repScore->setPseudo($_POST['pseudo'])
-                    ->setScore($score);
-                $em=$this->getDoctrine()->getManager();
+                    ->setScore($score)->setQuiz($quiz);
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($repScore);
                 $em->flush();
-
-            }else{
-                //true! mettre a jour le score du pseudo
-                $pseudo->setScore($score);
-                $em->flush();
             }
+            else{
+                //true! mettre a jour le score du pseudo
+                $pseudo->setScore($score)->setQuiz($quiz);
+                $em->flush();
+              }
 
             //envoie du score a la vue
-            return $this->render('pages/result.html.twig',['score'=>$score]);
+            return $this->render('pages/result.html.twig',['score'=>$score
+            ,'quiz'=>$id
+            ]);
         }
+
 
     }
     /**
+     * @return Response
      * @Route("/ranking/{id}", name="ranks_feed")
 
-     * @return Response
      */
     public function updateRanks($id)
     {
@@ -141,6 +152,7 @@ class QuizController extends AbstractController implements \ArrayAccess
         usort($scoresUser,  array("App\Entity\Score", "compareScores"));
         return ($this->render('pages/ranks.html.twig', array('scores' => array_slice($scoresUser, 0, 3) )));
     }
+
 
 
 

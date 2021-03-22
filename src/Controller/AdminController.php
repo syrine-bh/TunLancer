@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Participation;
 use App\Entity\Questiontab;
 use App\Entity\Quiz;
 use App\Entity\Reponsetab;
+use App\Entity\Video;
 use App\Form\AddQuestionFormType;
 use App\Form\QuizType;
 use App\Form\ReponseFormType;
 use App\Repository\QuestiontabRepository;
 use App\Repository\ReponsetabRepository;
 use App\Repository\ScoreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -176,7 +179,26 @@ class AdminController extends Controller
     }
 
 
+    /**
+     * @Route("feed/ranking/", name="ranks_feed")
 
+     * @return Response
+     */
+    public function updateRanksAction()
+    {
+        $ranks = $this->getDoctrine()->getRepository(Video::class)->findRanks();
+
+        $res = new ArrayCollection();
+        foreach ($ranks as $r) {
+            $vid = $this->getDoctrine()->getRepository(Video::class)->findById($r['video_id']);
+            dump($vid);
+            $res->add($vid);
+
+        }
+        dump($res);
+        return ($this->render('pages/ranksV.html.twig', ['res' => $res])
+        );
+    }
 
 
 

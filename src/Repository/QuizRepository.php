@@ -59,5 +59,15 @@ class QuizRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult();
 //    }
 
-
+    public function FindByQuizId($id)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.id = :val')
+            ->setParameter('val', $id)
+            ->orderBy('q.id', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

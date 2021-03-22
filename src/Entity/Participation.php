@@ -25,7 +25,7 @@ class Participation
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="participations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
@@ -44,10 +44,10 @@ class Participation
      */
     private $addrIP;
 
-    /**
-     * @ORM\OneToOne(targetEntity=score::class, cascade={"persist", "remove"})
-     */
-    private $score;
+//    /**
+//     * @ORM\OneToOne(targetEntity=score::class, cascade={"persist", "remove"})
+//     */
+//    private $score;
 
     public function getId(): ?int
     {
@@ -114,15 +114,36 @@ class Participation
         return $this;
     }
 
-    public function getScore(): ?score
+//    public function getScore(): ?score
+//    {
+//        return $this->score;
+//    }
+//
+//    public function setScore(?score $score): self
+//    {
+//        $this->score = $score;
+//
+//        return $this;
+//    }
+    /**
+     * @ORM\ManyToOne(targetEntity="Video")
+     * @ORM\JoinColumn(name="video_id", referencedColumnName="id" ,onDelete="CASCADE")
+     */
+    private $video;
+
+    /**
+     * @return mixed
+     */
+    public function getVideo()
     {
-        return $this->score;
+        return $this->video;
     }
 
-    public function setScore(?score $score): self
+    /**
+     * @param mixed $video
+     */
+    public function setVideo($video)
     {
-        $this->score = $score;
-
-        return $this;
+        $this->video = $video;
     }
 }
