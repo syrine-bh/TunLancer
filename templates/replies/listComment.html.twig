@@ -185,10 +185,10 @@
                                                     <span class="js-label">J'aime</span>
                                                     </button>
                                                 </a>
-                                                <a href="#" class="btn btn-link js-like">
+                                                <a href="{{ path('post_dislike', {'id':reply.id}) }}" class="btn btn-link js-like">
                                                     <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">
                                                         <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/thumbdown.png') }}" id="thumbsdown">
-                                                        <span class="js-likes">{{ reply.likes | length }}</span>
+                                                        <span class="js-likes">{{ reply.dislikes | length }}</span>
                                                         <span class="js-label">Je n'aime pas</span>
                                                     </button>
                                                 </a>

@@ -152,6 +152,13 @@ class RepliesController extends AbstractController
         return $this->redirectToRoute('showcomment');
     }
 
+    /**
+     * @Route("/commentaire/{id}/dislike", name="post_dislike")
+     * @param $id
+     * @param PostDislikeRepository $dislikeRepository
+     * @return Response
+     *
+     */
     public function dislike($id, PostDislikeRepository $dislikeRepository): Response{
         $em=$this->getDoctrine()->getManager();
         $replies = $em->getRepository(Replies::class)->find($id);
@@ -159,6 +166,22 @@ class RepliesController extends AbstractController
         $dislike->setReply($replies);
         $em->persist($dislike);
         $em->flush();
+        return $this->redirectToRoute('showcomment');
+
+    }
+
+    /**
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("commentaire/removedislike/{id}", name="remove_dislike")
+     */
+    public function removeDislike(int $id){
+        $em = $this->getDoctrine()->getManager();
+        $dislike = $em->getRepository(PostDislike::class)->find($id);
+        $em->remove($dislike);
+        $em->flush();
+        return $this->redirectToRoute('showcomment');
+
     }
 
 
