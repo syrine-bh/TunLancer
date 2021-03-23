@@ -12,7 +12,7 @@
                         <div class="row justify-content-center">
                             <div class="col-12 dark-mode-texts">
                                 <div class="mb-9">
-                                    <a class="d-flex align-items-center ml-4" href={{ path('showtopic') }}> <i
+                                    <a class="d-flex align-items-center ml-4" href={{ path('topic') }}> <i
                                                 class="icon icon-small-left bg-white circle-40 mr-5 font-size-7 text-black font-weight-bold shadow-8">
                                         </i><span class="text-uppercase font-size-3 font-weight-bold text-gray">Back</span></a>
                                 </div>
@@ -144,14 +144,16 @@
                             <span></span>
 
 
-                                {{ form_start(form) }}
+                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'} })}}
                             <div class="tt-wrapper-inner w-75">
                                 <div class="pt-editor form-default">
                                     <div class="form-group">
+                                        {{ form_errors(form.auteur) }}
                                         {{ form_widget(form.auteur, {'attr': {'class': 'form-control', "name":"user"}}) }}
                                     </div>
                                     <div class="form-group">
-                                        {{ form_widget(form.contenu, {'attr': {'class': 'form-control',"placeholder":"votre commentaire", "name":"message", "rows":"5"}}) }}
+                                        {{ form_errors(form.contenu) }}
+                                        {{ form_widget(form.contenu|raw, {'attr': {'class': 'form-control',"placeholder":"votre commentaire", "name":"message", "rows":"5"}}) }}
                                     </div>
                                     <div class="pt-row">
                                             {{ form_widget(form.ajouter, {'attr': {'class': 'btn btn-secondary btn-width-lg', "type":"submit", "value":""}}) }}
@@ -296,7 +298,7 @@
         </div>
     </footer>
     <!-- footer area function end -->
-    </div>
+
 
     <script>
         function myFunction() {
@@ -330,11 +332,8 @@
                 console.log(value);
 
                 $.ajax({
-                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
                     url : "{{ path('search') }}",
-                    /* La méthode utilisée pour transférer les données est GET */
                     type : 'GET',
-                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
                     data: {
                         'searchValue' : value
                     },

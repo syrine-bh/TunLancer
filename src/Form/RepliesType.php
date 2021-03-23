@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Replies;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,7 +16,7 @@ class RepliesType extends AbstractType
     {
         $builder
             ->add('auteur')
-            ->add('contenu')
+            ->add('contenu', CKEditorType::class)
             ->add('ajouter', SubmitType::class)
         ;
     }

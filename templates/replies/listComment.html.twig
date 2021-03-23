@@ -178,13 +178,20 @@
                                             </div>
                                             <div class="d-flex list-unstyled mr-n4 flex-wrap">
                                                 <a href="{{ path('post_like', {'id':reply.id}) }}" class="btn btn-link js-like">
-                                                    <span class="js-likes">{{ reply.likes | length }}</span>
+
                                                     <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">
-                                                    <img style="width: 30px; height: 26px; margin-left: 12px" src="{{ asset('image/like.png') }}" id="thumbsup">
+                                                   <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/like.png') }}" id="thumbsup">
+                                                        <span class="js-likes">{{ reply.likes | length }}</span>
                                                     <span class="js-label">J'aime</span>
                                                     </button>
                                                 </a>
-
+                                                <a href="#" class="btn btn-link js-like">
+                                                    <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">
+                                                        <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/thumbdown.png') }}" id="thumbsdown">
+                                                        <span class="js-likes">{{ reply.likes | length }}</span>
+                                                        <span class="js-label">Je n'aime pas</span>
+                                                    </button>
+                                                </a>
                                             </div>
 
                                         </div>

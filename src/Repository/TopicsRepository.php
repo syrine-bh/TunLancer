@@ -57,10 +57,5 @@ class TopicsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-//    public function Search($data){
-//        return $this->createQueryBuilder('topic')
-//            ->where('topic.titre LIKE :data')
-//            ->setParameter('data', '%'.$data.'%')
-//            ->getQuery()->getResult();
-//    }
+
 }

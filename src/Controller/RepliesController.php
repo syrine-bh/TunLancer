@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\PostDislike;
 use App\Entity\Replies;
 use App\Entity\Topics;
 use App\Entity\PostLike;
 use App\Form\RepliesType;
+use App\Repository\PostDislikeRepository;
 use App\Repository\PostLikeRepository;
 use Doctrine\Persistence\ObjectManager;
 use http\Message;
@@ -118,7 +120,7 @@ class RepliesController extends AbstractController
 //    }
 
     /**
-     * liker ou unliker
+     * liker
      * @Route("/commentaire/{id}/like", name="post_like")
      * @param $id
      * @param PostLikeRepository $likeRepository
@@ -148,6 +150,15 @@ class RepliesController extends AbstractController
         $em->remove($like);
         $em->flush();
         return $this->redirectToRoute('showcomment');
+    }
+
+    public function dislike($id, PostDislikeRepository $dislikeRepository): Response{
+        $em=$this->getDoctrine()->getManager();
+        $replies = $em->getRepository(Replies::class)->find($id);
+        $dislike = new PostDislike();
+        $dislike->setReply($replies);
+        $em->persist($dislike);
+        $em->flush();
     }
 
 

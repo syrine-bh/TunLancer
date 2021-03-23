@@ -159,6 +159,7 @@ class TopicController extends AbstractController
         $form = $this->createForm(RepliesType::class, $reply);
         $form ->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+
             //$topics->addReply($reply);
             $reply->setTopic($topics);
             $em = $this->getDoctrine()->getManager();

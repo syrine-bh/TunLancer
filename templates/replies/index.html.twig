@@ -137,7 +137,7 @@
                                         <div class="line-divider"></div>
                                         <div class="post-comment">
                                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="profile-photo-sm" width="50" height="50">
-                                            <p><a href="timeline.html" class="profile-link">{{ comment.auteur }} </a><i class="em em-laughing"></i> {{ comment.contenu}} </p>
+                                            <p><a href="timeline.html" class="profile-link">{{ comment.auteur }} </a><i class="em em-laughing"></i> {{ comment.contenu|raw}} </p>
                                         </div>
 
                                         <div class="post-comment">
@@ -167,7 +167,7 @@
             </div>
         </div>
     </div>
-    </div>
+
     <!-- Main Content end -->
     <!-- footer area function start -->
     <!-- cta section -->
@@ -287,5 +287,5 @@
         </div>
     </footer>
     <!-- footer area function end -->
-    </div>
+
 {% endblock %}

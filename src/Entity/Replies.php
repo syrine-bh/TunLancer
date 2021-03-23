@@ -24,6 +24,7 @@ class Replies
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="entrez votre nom")
      */
     private $auteur;
 
@@ -32,7 +33,7 @@ class Replies
      * @Assert\NotBlank(message="ce champ est obligatoire")
      * @Assert\Length(
      *     min="5",
-     *     max="80"
+     *     max="500"
      * )
      */
     private $contenu;
@@ -53,9 +54,15 @@ class Replies
      */
     private $likes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=PostDislike::class, mappedBy="reply")
+     */
+    private $dislikes;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -154,5 +161,35 @@ class Replies
 //        return false;
 //
 //    }
+
+/**
+ * @return Collection|PostDislike[]
+ */
+public function getDislikes(): Collection
+{
+    return $this->dislikes;
+}
+
+public function addDislike(PostDislike $dislike): self
+{
+    if (!$this->dislikes->contains($dislike)) {
+        $this->dislikes[] = $dislike;
+        $dislike->setReply($this);
+    }
+
+    return $this;
+}
+
+public function removeDislike(PostDislike $dislike): self
+{
+    if ($this->dislikes->removeElement($dislike)) {
+        // set the owning side to null (unless already changed)
+        if ($dislike->getReply() === $this) {
+            $dislike->setReply(null);
+        }
+    }
+
+    return $this;
+}
 
 }
