@@ -14,6 +14,10 @@
                             <li class="mb-2"><a href="#" class="toggle-item">CodeNameOne</a></li>
                             <li class="mb-2"><a href="#" class="toggle-item">Laravel</a></li>
                             <li class="mb-2"><a href="#" class="toggle-item">Angular</a></li>
+                            <li class="mb-2"><a href="#" class="toggle-item">Symfony</a> </li>
+{#                            {% for topic in topics %}#}
+{#                            <li class="mb-2"><a href="#" class="toggle-item"> {{ topic.titre }} </a> </li>#}
+{#                            {% endfor %}#}
                         </ul>
                     </div>
                     <div class="widgets mb-11 ">
@@ -56,7 +60,7 @@
                     <div class="pt-12">
                         <div class="d-flex align-items-center justify-content-between mb-6">
                             <h5 class="font-size-5 font-weight-normal text-gray">
-                                <span class="heading-default-color">Liste des Topic</span>
+                                <small class="heading-default-color" style="color: #1b986e">Trouvez la meilleure réponse à votre question technique</small>
                             </h5>
                             <div class="button-block">
                                 <div class=""><a href="{{ path('addTopic') }}" class="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">Créer un Topic</a></div>
@@ -101,10 +105,10 @@
                                     <div class="col-md-7">
                                         <ul class="d-flex list-unstyled mr-n3 flex-wrap">
                                             <li>
-                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details',{'id':topic.id}) }}">Commenter</a>
+                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details',{'id':topic.id}) }}">Commenter <i class="far fa-comment-dots"></i> </a>
                                             </li>
                                             <li>
-                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('showcomment') }}">afficher les commentaires</a>
+                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('showcomment') }}">afficher les commentaires <i class="far fa-comments"></i> </a>
                                             </li>
                                         </ul>
                                         <div class="card-btn-group">

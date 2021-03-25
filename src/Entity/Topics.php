@@ -41,6 +41,7 @@ class Topics
 
     /**
      * @ORM\OneToMany(targetEntity=Replies::class, mappedBy="topic")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $replies;
 
@@ -58,6 +59,11 @@ class Topics
      * @ORM\Column(type="integer", nullable=true)
      */
     private $views;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Utilisateurs::class, inversedBy="topics")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -177,6 +183,18 @@ class Topics
     public function setViews(?int $views): self
     {
         $this->views = $views;
+
+        return $this;
+    }
+
+    public function getUser(): ?Utilisateurs
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Utilisateurs $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

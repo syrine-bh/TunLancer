@@ -1,0 +1,45 @@
+{% extends "baseFront.html.twig" %}
+{% block section %}
+    <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
+        <div class="mb-15 mb-lg-23">
+            <div class="row">
+                <div class="col-xxxl-9 px-lg-13 px-6">
+                    <h6 class="font-size-6 font-weight-semibold mb-11">Modifier votre commentaire</h6>
+                    {{ form_start(form) }}
+                    {{ form_row(form._token) }}
+                    <fieldset>
+                        <div class="row mb-xl-1 mb-9">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="namedash" class="d-block text-black-2 font-size-4 font-weight-semibold mb-4">Commentaire</label>
+                                    {{ form_widget(form.auteur, {'attr': {'class': 'form-control', "id":"comment","placeholder":"", "name":"name", "type":"text"}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="aboutTextarea" class="d-block text-black-2 font-size-4 font-weight-semibold mb-4">Contenu
+                                        <div class="tt-note pt-4">
+                                            {{ form_widget(form.contenu, {'attr': {'class': 'form-control', "id":"comm","placeholder":"modifier votre commentaire", "name":"name", "type":"text", "rows":"5"}}) }}
+                                        </div class="tt-note pt-4">
+                                </div>
+                                </label>
+                            </div>
+                            <div class="col-md-12">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div style="text-align: center" class="form-group">
+                        {{ form_widget(form.modifier, { 'attr' : { 'class' : 'btn btn-primary'} }) }}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+{% endblock %}

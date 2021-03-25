@@ -26,6 +26,7 @@
                             <li class="mb-2"><a href="#" class="toggle-item">CodeNameOne</a></li>
                             <li class="mb-2"><a href="#" class="toggle-item">Laravel</a></li>
                             <li class="mb-2"><a href="#" class="toggle-item">Angular</a></li>
+                            <li class="mb-2"><a href="#" class="toggle-item">Symfony</a> </li>
                         </ul>
                     </div>
                     <div class="widgets mb-11 ">
@@ -70,7 +71,7 @@
                         <div class="d-flex align-items-center justify-content-between mb-6">
                             <h5 class="font-size-4 font-weight-normal text-gray">
                                 <span class="heading-default-color"></span>
-                                <span class="heading-default-color">Liste des Topic</span>
+                                <small class="heading-default-color" style="color: #1b986e">Trouvez la meilleure réponse à votre question technique</small>
                             </h5>
 
                             <div class="button-block">
@@ -115,8 +116,8 @@
                                     <div class="col-md-7">
                                         <ul class="d-flex list-unstyled mr-n3 flex-wrap">
                                             <li>
-                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details',{'id':topics.id}) }}">Commenter</a>
-                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('showcomment') }}">Commentaires</a>
+                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details',{'id':topics.id}) }}">Commenter <i class="far fa-comment-dots"></i> </a>
+                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('showcomment') }}">Commentaires  <i class="far fa-comments"></i> </a>
 
                                             </li>
 
@@ -175,7 +176,7 @@
                 </div>
                 <!-- form end -->
 
-            </div>
+                </div>
         </div>
     </div>
     </div>

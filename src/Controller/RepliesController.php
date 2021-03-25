@@ -7,11 +7,13 @@ use App\Entity\Replies;
 use App\Entity\Topics;
 use App\Entity\PostLike;
 use App\Form\RepliesType;
+use App\Form\RepliesUpdateType;
 use App\Repository\PostDislikeRepository;
 use App\Repository\PostLikeRepository;
 use Doctrine\Persistence\ObjectManager;
 use http\Message;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -42,7 +44,8 @@ class RepliesController extends AbstractController
     public function show(Request $request, PaginatorInterface $paginator){
         $replies = $this->getDoctrine()->getManager()->getRepository(Replies::class)->findAll();
 
-        $data = $this->getDoctrine()->getRepository(Topics::class)->findAll();
+        $data = $this->getDoctrine()->getRepository(Topics::class)->findBy([],
+            ['date'=>'desc']);
         $topics= $paginator->paginate(
             $data,
             $request->query->getInt('page', 1), 3
@@ -80,18 +83,42 @@ class RepliesController extends AbstractController
 //
 
 
-
     /**
      * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @param Request $request
+     * @return void
+     *
      * @Route("/replies/showcomment/{id}", name="deletecommentaire")
      */
-    public function deleteComment($id){
+    public function deleteComment($id, Request $request){
         $em = $this ->getDoctrine()->getManager();
         $reply= $em->getRepository(Replies::class)->find($id);
         $em->remove($reply);
         $em->flush();
-        return $this->redirectToRoute("showcomment");
+//        $response = new Response();
+//        $response->send();
+      return $this->redirectToRoute("showcomment");
+
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("replies/updatecomment/{id}", name="updatecomment")
+     */
+    public function updateComment($id,  Request $request){
+        $em=$this->getDoctrine()->getManager();
+        $reply= $em->getRepository(Replies::class)->find($id);
+        $form=$this->createForm(RepliesUpdateType::class, $reply);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $em->flush();
+            return $this->redirectToRoute("showcomment");
+        }
+        return $this->render('replies/updatecomment.html.twig', array(
+            'form'=>$form->createView()
+        ));
 
     }
 
@@ -167,7 +194,6 @@ class RepliesController extends AbstractController
         $em->persist($dislike);
         $em->flush();
         return $this->redirectToRoute('showcomment');
-
     }
 
     /**
@@ -183,6 +209,8 @@ class RepliesController extends AbstractController
         return $this->redirectToRoute('showcomment');
 
     }
+
+
 
 
 

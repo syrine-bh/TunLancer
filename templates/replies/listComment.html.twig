@@ -27,6 +27,7 @@
                             <li class="mb-2"><a href="#" class="toggle-item">CodeNameOne</a></li>
                             <li class="mb-2"><a href="#" class="toggle-item">Laravel</a></li>
                             <li class="mb-2"><a href="#" class="toggle-item">Angular</a></li>
+                            <li class="mb-2"><a href="#" class="toggle-item">Symfony</a> </li>
                         </ul>
                     </div>
                     <div class="widgets mb-11 ">
@@ -71,7 +72,7 @@
                         <div class="d-flex align-items-center justify-content-between mb-6">
                             <h5 class="font-size-4 font-weight-normal text-gray">
                                 <span class="heading-default-color"></span>
-                                <span class="heading-default-color">Liste des Topic</span>
+                                <small class="heading-default-color" style="color: #1b986e">Trouvez la meilleure réponse à votre question technique</small>
                             </h5>
                             <div class="button-block">
                                 <div class=""><a href="{{ path('addTopic') }}" class="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">Créer un Topic</a></div>
@@ -80,9 +81,6 @@
                             <div class="d-flex align-items-center result-view-type">
                                 <a class="heading-default-color pl-5 font-size-6 hover-text-hitgray active" href="search-list-1.html">
                                     <i class="fa fa-list-ul"></i>
-                                </a>
-                                <a class="heading-default-color pl-5 font-size-6 hover-text-hitgray" href="search-grid.html">
-                                    <i class="fa fa-th-large"></i>
                                 </a>
                             </div>
                         </div>
@@ -115,7 +113,7 @@
                                     <div class="col-md-7">
                                         <ul class="d-flex list-unstyled mr-n3 flex-wrap">
                                             <li>
-                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details', {'id':topic.id}) }}">Commenter</a>
+                                                <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details', {'id':topic.id}) }}">Commenter   <i class="far fa-comment-dots"></i> </a>
                                             </li>
 
 
@@ -124,7 +122,7 @@
                                     <div class="col-md-5">
                                         <ul class="d-flex list-unstyled mr-n3 flex-wrap mr-n8 justify-content-md-end">
                                             <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
-                                                <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-loaction-pin-black.svg" alt=""></span>
+                                                <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-clock.svg" alt=""></span>
                                                 <span class="font-weight-semibold"><small>Posté le {{ topic.date|date('d/m/Y à H:m') }} </small></span>
                                             </li>
                                             <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
@@ -168,7 +166,9 @@
                                             <div class="d-flex justify-content-md-end align-items-lg-end m-6">
                                                 <div class=""> <a href="#"><i class="fa fa-pencil-square-o"></i> </a> </div>
                                                 <div class="">
-
+                                                    <a href="{{ path('updatecomment', {'id':reply.id}) }}">
+                                                        <i class="far fa-edit"></i>
+                                                    </a>
                                                     <a href="{{ path('deletecommentaire', {'id':reply.id}) }}">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
@@ -177,21 +177,20 @@
                                                 <span></span>
                                             </div>
                                             <div class="d-flex list-unstyled mr-n4 flex-wrap">
-                                                <a href="{{ path('post_like', {'id':reply.id}) }}" class="btn btn-link js-like">
-
+                                                <a href="{{ path('post_like', {'id': reply.id}) }}" class="btn btn-link js-like">
                                                     <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">
                                                    <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/like.png') }}" id="thumbsup">
                                                         <span class="js-likes">{{ reply.likes | length }}</span>
                                                     <span class="js-label">J'aime</span>
                                                     </button>
                                                 </a>
-                                                <a href="{{ path('post_dislike', {'id':reply.id}) }}" class="btn btn-link js-like">
+                                                    <a href="{{ path('post_dislike', {'id':reply.id}) }}" class="btn btn-link js-like">
                                                     <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">
                                                         <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/thumbdown.png') }}" id="thumbsdown">
-                                                        <span class="js-likes">{{ reply.dislikes | length }}</span>
+                                                       <span class="js-likes">{{ reply.dislikes | length }}</span>
                                                         <span class="js-label">Je n'aime pas</span>
                                                     </button>
-                                                </a>
+                                                    </a>
                                             </div>
 
                                         </div>
@@ -465,4 +464,25 @@
         //     link.addEventListener('click', OnClickBtnLike);
         //
         // })
+{% endblock %}
+{% block javascripts %}
+<script>
+const replies = document.getElementById('replies');
+
+if (replies) {
+    replies.addEventListener('click', e => {
+        if (e.target.className === 'btn btn-danger') {
+            if (confirm('Are you sure?')) {
+                const id = e.target.getAttribute('data-id');
+
+                fetch(`/replies/showcomment/{id}`, {
+
+                }).then(res => window.location.reload());
+            }
+        }
+    });
+}
+
+
+</script>
 {% endblock %}

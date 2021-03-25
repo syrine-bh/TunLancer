@@ -56,6 +56,7 @@ class Replies
 
     /**
      * @ORM\OneToMany(targetEntity=PostDislike::class, mappedBy="reply")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $dislikes;
 

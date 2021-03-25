@@ -52,7 +52,7 @@ class TopicController extends AbstractController
      * @Route("/topic/list", name="showtopic")
      */
     public function show(Request $request, PaginatorInterface $paginator): Response {
-        $data = $this->getDoctrine()->getRepository(Topics::class)->findAll();
+        $data = $this->getDoctrine()->getRepository(Topics::class)->findBy([],['date'=>'desc']);
         $topics = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1), 3
