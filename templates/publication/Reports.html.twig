@@ -1,0 +1,179 @@
+{% extends "baseBack.html.twig" %}
+
+{% block section %}
+
+    <div class="container">
+        <div class="mb-14">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header">Revenue by Category</h5>
+                        <div class="card-body">
+                            <div id="c3chart_category" style="height: 343px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <h5 class="card-header">Sales By Country Traffic Source</h5>
+                        <div class="card-body p-0">
+                            <ul class="country-sales list-group list-group-flush">
+                                {% for p in pays %}
+                                    {% set pourcentage = p.nbr/count*100 %}
+                                    <li class="country-sales-content list-group-item">
+                                        <span class="mr-2"><i class="flag-icon flag-icon-{{ p.paysCode|lower }}" title="{{ p.paysCode|lower }}" id="{{ p.paysCode|lower }}"></i> </span>
+                                        <span class="">{{ p.pays }}</span><span class="float-right text-dark">{{ pourcentage|number_format(2) }}%</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="#" class="btn-primary-link">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <h5 class="card-header">Sales By Country Traffic Source</h5>
+                        <div class="card-body p-0">
+                            <ul class="country-sales list-group list-group-flush">
+                                {% for r in regions %}
+                                    {% set pourcentage = r.nbr/count*100 %}
+                                    <li class="country-sales-content list-group-item">
+                                        <span style="font-size: 94%;" class="">{{ r.region }}</span><span class="float-right text-dark">{{ pourcentage|number_format(2) }}%</span>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="#" class="btn-primary-link">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;" class="row mb-11 align-items-center">
+                <div class="col-lg-6 mb-lg-0 mb-4">
+                    <h3 class="font-size-6 mb-0">les publications signalées ({{ signaux|length }})</h3>
+                </div>
+            </div>
+            <div class="bg-white shadow-8 pt-7 rounded pb-8 px-11">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="pl-0  border-0 font-size-4 font-weight-normal">Publication</th>
+                            <th style="width: 21%;" scope="col" class="border-0 font-size-4 font-weight-normal">Utilisateurs</th>
+                            <th scope="col" class="border-0 font-size-4 font-weight-normal">Raison</th>
+                            <th scope="col" class="border-0 font-size-4 font-weight-normal"></th>
+                            <th scope="col" class="border-0 font-size-4 font-weight-normal"></th>
+                            <th scope="col" class="border-0 font-size-4 font-weight-normal"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for signal in signaux %}
+                            <tr class="border border-color-2">
+                                <td scope="row" class="pl-6 border-0 py-7 pr-0">
+                                    <img style="box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);margin-top: 4px;margin-left: 4px;width: 45px;height: 45px;border-radius: 50%;position: absolute;object-fit: cover;" src="{{ asset('images/users/' ~  signal.publication.idu.Photo) }}" alt="{{  signal.publication.idu.Photo }}">
+                                    {% set extension = signal.publication.imageName|split('.') %}
+                                    {% if extension[1]=="mp4" %}
+                                        <video id="vids{{ signal.publication.id }}" class="vid" style="border-radius: 13px;max-width: 315px;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);object-fit: cover;height: 351px;" loop controls>
+                                            <source id="video{{ signal.publication.id }}" src="{{ asset('images/publications/' ~ signal.publication.imageName) }}" type="video/mp4">
+                                        </video>
+                                    {% else %}
+                                        <img style="border-radius: 10px;height: 200px;max-width: 315px;object-fit: cover;" src="{{ asset('images/publications/' ~  signal.publication.imageName) }}" alt="" class="img-fluid">
+                                    {% endif %}
+
+                                </td>
+                                <td class="table-y-middle py-7 min-width-px-235 pr-0">
+                                    {% for user in signal.publication.signaux %}
+                                        <div class="media min-width-px-235 align-items-center">
+                                            <div class="circle-36 mr-6">
+                                                <img style="width: 45px;height: 45px;border-radius: 50%;object-fit: cover;" src="{{ asset('images/users/' ~ user.idUtilisateur.Photo) }}" alt="">
+                                            </div>
+                                            <h4 style="margin-left: 6px;" class="font-size-4 mb-0 font-weight-semibold text-black-2">{{ user.idUtilisateur.Prenom~" "~user.idUtilisateur.Nom }}</h4>
+                                        </div>
+                                    {% endfor %}
+                                </td>
+                                <td class="table-y-middle py-7 min-width-px-170 pr-0">
+                                    {% for single in signal.publication.signaux %}
+                                        <h3 style="font-size: 117%;" class="font-size-4 font-weight-normal text-black-2 mb-0">{{ single.description }}</h3>
+                                        {% if signal.publication.signaux|length!=1 %}
+                                            <br>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="table-y-middle py-7">
+                                    <a href="{{ path('publication',{'idPublication':signal.publication.id}) }}" class="font-size-3 font-weight-bold text-black-2 text-uppercase">Details</a>
+                                </td>
+                                <td class="table-y-middle py-7">
+                                    <div class=""><a style="font-size: 83%;" href="{{ path('delete_signal',{'idSignal':signal.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase"><i class="fa fa-check"></i>&nbsp;Deuxieme chance</a></div>
+                                </td>
+                                <td class="table-y-middle py-7">
+                                    <div class=""><a style="font-size: 83%;" href="{{ path('delete_Publication',{'idPublication':signal.publication.id}) }}" class="font-size-3 font-weight-bold text-red-2 text-uppercase"><i class="fa fa-trash"></i>&nbsp;Supprimer</a></div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% block scripts %}
+        <script>
+            $.ajax({
+                url: 'GetOperateurs/',
+                success: function (vues) {
+                    $.ajax({
+                        url: 'GetCountOperateurs/',
+                        success: function (count) {
+                            data=[]
+                            for (var i = 0; i < vues.length; i++) {
+                                data.push([vues[i].operateur,((vues[i].nbr / count)*100)])
+                            }
+                            console.log("data :",data)
+                            initChart(data);
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log("get count failed.");
+                        }
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("get operateur failed.");
+                }
+            });
+            function initChart(data) {
+                var chart = c3.generate({
+                    bindto: "#c3chart_category",
+                    data: {
+                        columns: data,
+                        type: 'donut',
+                        onclick: function(d, i) {
+                            console.log("onclick", d, i);
+                        },
+                        onmouseover: function(d, i) {
+                            console.log("onmouseover", d, i);
+                        },
+                        onmouseout: function(d, i) {
+                            console.log("onmouseout", d, i);
+                        }
+                    },
+                    donut: {
+                        label: {
+                            show: false
+                        }
+                    },
+                });
+            }
+
+        </script>
+    {% endblock %}
+
+{% endblock %}

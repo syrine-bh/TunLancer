@@ -8,15 +8,21 @@ use App\Entity\Publication;
 use App\Entity\Reaction;
 use App\Entity\signaler;
 use App\Entity\Utilisateur;
+use App\Entity\Vues;
 use App\Form\CommentaireType;
 use App\Form\PublicationType;
 use App\Form\SignalerType;
 use App\Repository\PublicationRepository;
+use Psr\Container\ContainerInterface;
+use Rypsx\Ipapi\Ipapi;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class PublicationController extends AbstractController
 {
@@ -87,7 +93,9 @@ class PublicationController extends AbstractController
         //detail publication
         $em = $this->getDoctrine()->getManager();
         $publication = $em->getRepository(Publication::class)->find($idPublication);
-        $user = $em->getRepository(Utilisateur::class)->find(2);
+        $vues = $em->getRepository(Vues::class)->getVues();
+
+        $user = $em->getRepository(Utilisateur::class)->find(1);
         //ajout du commentaire
         $commentaire=new Commentaire();
         $commentaire->setPublication($publication);
@@ -130,7 +138,8 @@ class PublicationController extends AbstractController
             'commentaireform'=>$Form->createView(),
             'user' => $user,
             'isReact' => $trouv,
-            'isReported' => $report
+            'isReported' => $report,
+            'vues' => $vues
         ]);
     }
 
@@ -191,6 +200,18 @@ class PublicationController extends AbstractController
         $em->remove($publication);
         $em->flush();
         return $this->redirectToRoute('publications');
+    }
+
+    /**
+     * @Route("/publications/DeleteSignal/{idSignal}", name="delete_signal")
+     */
+    public function DeleteSignal($idSignal):Response
+    {
+        $em=$this->getDoctrine()->getManager();
+        $signal=$em->getRepository(signaler::class)->find($idSignal);
+        $em->remove($signal);
+        $em->flush();
+        return $this->redirectToRoute('reports');
     }
 
     /**
@@ -351,6 +372,107 @@ class PublicationController extends AbstractController
         return $this->redirectToRoute('publication', ['idPublication' => $idPublication]);
     }
 
+
+    /**
+     * @Route("/dashboard/reports", name="reports")
+     */
+    public function DisplayReports(): Response
+    {
+        $em=$this->getDoctrine()->getManager();
+        $signaux=$em->getRepository(signaler::class)->findAll();
+        $pays=$em->getRepository(Vues::class)->GetPays();
+        $regions=$em->getRepository(Vues::class)->GetRegions();
+        $vues=$em->getRepository(Vues::class)->findAll();
+        return $this->render('publication/Reports.html.twig', array(
+            'signaux'=>$signaux,
+            'pays'=>$pays,
+            'regions'=>$regions,
+            'count'=>sizeof($vues)
+        ));
+    }
+
+    /**
+     * @Route("/publication/GetIpAddressDetails/{ip}", name="GetIpAddressDetails")
+     */
+    public function GetIpAddressDetails($ip)
+    {
+        try {
+            $ipapi = new Ipapi($ip);
+        } catch (\Exception $e) {
+            print $e->getMessage();
+        }
+        return new JsonResponse($ipapi);
+
+    }
+
+    /**
+     * @Route("/publication/AddViewers/{idPublication}/{address}/{operateur}/{pays}/{code}/{region}/{ville}", name="AddViewers")
+     */
+    public function AddViewers($idPublication,$address,$operateur,$pays,$code,$region,$ville){
+
+        $vu = new Vues();
+        $em=$this->getDoctrine()->getManager();
+        $user=$em->getRepository(Utilisateur::class)->find(1);
+        $publication=$em->getRepository(Publication::class)->find($idPublication);
+
+        $vues=$publication->getViewers();
+        $trouv=false;
+        foreach ($vues as $vue) {
+            if ($vue->getUtilisateur()->getId()==$user->getId()){
+                $sysDate = new \DateTime();
+                $interval = $sysDate->diff($vue->getDate());
+                if($interval->i<=5){
+                    $trouv=true;
+                }
+            }
+        }
+
+        if($trouv==false){
+            if ($publication->getIdU()->getId()==$user->getId()){
+                return new JsonResponse("no add");
+            }else{
+                $vu->setUtilisateur($user);
+                $vu->setPublication($publication);
+                $vu->setAdresse($address);
+                $vu->setOperateur($operateur);
+                $vu->setPays($pays);
+                $vu->setPaysCode($code);
+                $vu->setRegion($region);
+                $vu->setVille($ville);
+                $em->persist($vu);
+                $em->flush();
+                return new JsonResponse("vu");
+            }
+
+        }else{
+            return new JsonResponse("deja vu");
+        }
+
+    }
+
+
+    /**
+     * @Route("/dashboard/GetOperateurs", name="getOperateurs")
+     */
+    public function GetOperateurs()
+    {
+        $em=$this->getDoctrine()->getManager();
+        $result=$em->getRepository(Vues::class)->getOperateurs();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $operateurs=$serializer->normalize($result);
+        return new JsonResponse($operateurs);
+    }
+
+
+    /**
+     * @Route("/dashboard/GetCountOperateurs", name="GetCountOperateurs")
+     */
+    public function GetCountOperateurs()
+    {
+        $em=$this->getDoctrine()->getManager();
+        $vues=$em->getRepository(Vues::class)->findAll();
+        return new JsonResponse(sizeof($vues));
+    }
 
 
 }

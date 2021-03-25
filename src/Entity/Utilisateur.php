@@ -89,6 +89,10 @@ class Utilisateur
      */
     private $notifications;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vues", mappedBy="Utilisateur", orphanRemoval=true)
+     */
+    private $viewers;
 
     public function __construct()
     {
@@ -97,6 +101,7 @@ class Utilisateur
         $this->publications = new ArrayCollection();
         $this->signaux = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->viewers = new ArrayCollection();
     }
 
     /**
@@ -169,10 +174,6 @@ class Utilisateur
     }
 
 
-
-
-
-
     /**
      * @return Collection|Reaction[]
      */
@@ -221,7 +222,28 @@ class Utilisateur
     }
 
 
-
+    /**
+     * @return Collection|Vues[]
+     */
+    public function getViewers(): Collection
+    {
+        return $this->viewers;
+    }
+    public function addViewer(Vues $viewer): self
+    {
+        if (!$this->viewers->contains($viewer)) {
+            $this->viewers[] = $viewer;
+            $viewer->setUtilisateur($this);
+        }
+        return $this;
+    }
+    public function removeViewer(Vues $viewer): self
+    {
+        if ($this->viewers->contains($viewer)) {
+            $this->viewers->removeElement($viewer);
+        }
+        return $this;
+    }
 
     /**
      * @return mixed

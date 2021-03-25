@@ -87,6 +87,9 @@
     "jms/metadata": {
         "version": "2.4.0"
     },
+    "kylekatarnls/update-helper": {
+        "version": "1.2.1"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -98,6 +101,9 @@
     },
     "monolog/monolog": {
         "version": "1.26.0"
+    },
+    "nesbot/carbon": {
+        "version": "1.39.1"
     },
     "nikic/php-parser": {
         "version": "v4.10.4"
@@ -122,6 +128,9 @@
     },
     "psr/log": {
         "version": "1.1.3"
+    },
+    "rypsx/ipapi": {
+        "version": "1.0"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",

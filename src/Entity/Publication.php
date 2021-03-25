@@ -83,6 +83,10 @@ class Publication
      */
     private $notifications;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vues", mappedBy="Publication", orphanRemoval=true)
+     */
+    private $viewers;
 
     public function __construct()
     {
@@ -90,6 +94,7 @@ class Publication
         $this->reactions = new ArrayCollection();
         $this->signaux = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->viewers = new ArrayCollection();
     }
 
     /**
@@ -162,6 +167,31 @@ class Publication
         }
         return $this;
     }
+
+
+    /**
+     * @return Collection|Vues[]
+     */
+    public function getViewers(): Collection
+    {
+        return $this->viewers;
+    }
+    public function addViewer(Vues $viewer): self
+    {
+        if (!$this->viewers->contains($viewer)) {
+            $this->viewers[] = $viewer;
+            $viewer->setPublication($this);
+        }
+        return $this;
+    }
+    public function removeViewer(Vues $viewer): self
+    {
+        if ($this->viewers->contains($viewer)) {
+            $this->viewers->removeElement($viewer);
+        }
+        return $this;
+    }
+
 
 
     /**

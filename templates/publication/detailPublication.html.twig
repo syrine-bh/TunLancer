@@ -1,5 +1,6 @@
 {% extends "baseFront.html.twig" %}
 
+
 {% block section %}
     <!-- Modal -->
     <div class="modal fade" id="ReportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -32,6 +33,35 @@
         </div>
     </div>
 
+    {% if user.id==publication.idU.id %}
+        <div class="modal fade" id="StatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label>Nombres de vues :{{ publication.viewers|length }}</label>
+                        {% for vue in vues %}
+                            <div style="margin-bottom: 14px;" class="media min-width-px-235 align-items-center">
+                                <div class="circle-36 mr-6">
+                                    <img style="width: 45px;height: 45px;border-radius: 50%;object-fit: cover;" src="{{ asset('images/users/' ~ vue.Utilisateur.Photo) }}" alt="">
+                                </div>
+                                <h4 style="margin-left: 6px;" class="font-size-4 mb-0 font-weight-semibold text-black-2">{{ vue.Utilisateur.Prenom~" "~vue.Utilisateur.Nom }}</h4>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
 
     <div style="padding: 28px;" class="container">
         <div style="box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);border-radius: 14px;margin-bottom: 14px;" class="row">
@@ -61,6 +91,10 @@
                                 </p>
                             </div>
                             <div class="col-lg-5">
+                                {% if user.id==publication.idU.id %}
+                                    <button data-toggle="modal" data-target="#StatModal" style="color: #98859d;background-color: transparent;border-color: transparent"><i class="fa fa-eye"></i></button>
+                                {% endif %}
+
                                 <a style="color: #d7abe2" href="{{ path('update_Publication',{'idPublication':publication.id}) }}"><i class="fa fa-edit"></i></a>
                                 <button onclick='
                                         var resultat = confirm("Voulez vous supprimer cette publication d`une facon definitive!");
@@ -70,7 +104,9 @@
                                     <i class="fa fa-trash"></i>
                                 </button>
                                 {% if isReported==0 %}
-                                    <button id="ReportBtn" style="color: #d7abe2;background-color: transparent;border-color: transparent" data-toggle="modal" data-target="#ReportModal" ><i class="fa fa-ban"></i></button>
+                                    {% if user.id!=publication.idU.id %}
+                                        <button id="ReportBtn" style="color: #d7abe2;background-color: transparent;border-color: transparent" data-toggle="modal" data-target="#ReportModal" ><i class="fa fa-ban"></i></button>
+                                    {% endif %}
                                 {% endif %}
 
                             </div>
@@ -330,6 +366,42 @@
             });
         }
     </script>
+
+
+    {# vues #}
+    <script>
+        $(function() {
+            $.ajax({
+                url: 'http://api.ipify.org/?format=json',
+                success: function (data) {
+                    console.log("data :",data);
+                    $.ajax({
+                        url: 'GetIpAddressDetails/' + data['ip'],
+                        success: function (seconddata) {
+                            console.log("seconddata :",seconddata);
+                            $.ajax({
+                                url: 'AddViewers/'+ {{ publication.id }} + '/'+ seconddata["ipAdr"] + '/'+ seconddata["ipapi"]["isp"] + '/' + seconddata["ipapi"]["pays"] + '/' + seconddata["ipapi"]["paysCode"] + '/' + seconddata["ipapi"]["region"] + '/' + seconddata["ipapi"]["ville"],
+                                success: function (thirddata) {
+                                    console.log(thirddata);
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log("ajout vue failed.");
+                                }
+                            });
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log("IpAPI failed.");
+                        }
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("api.ipify.org failed.");
+                }
+            });
+        });
+    </script>
+
+
 
 
 {% endblock %}
