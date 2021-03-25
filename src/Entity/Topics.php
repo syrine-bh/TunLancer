@@ -65,6 +65,11 @@ class Topics
      */
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Utilisateurs::class, inversedBy="favoris")
+     */
+    private $favoris;
+
     public function __construct()
     {
         $this->replies = new ArrayCollection();
@@ -195,6 +200,18 @@ class Topics
     public function setUser(?Utilisateurs $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getFavoris(): ?Utilisateurs
+    {
+        return $this->favoris;
+    }
+
+    public function setFavoris(?Utilisateurs $favoris): self
+    {
+        $this->favoris = $favoris;
 
         return $this;
     }

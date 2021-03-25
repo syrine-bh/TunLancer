@@ -54,7 +54,7 @@
                     <div class="pt-12">
                         <div class="d-flex align-items-center justify-content-between mb-6">
                             <h5 class="font-size-5 font-weight-normal text-gray">
-                                <span class="heading-default-color">Liste des Topic</span>
+                                <small class="heading-default-color" style="color: #1b986e">Trouvez la meilleure réponse à votre question technique</small>
                             </h5>
                             <div class="button-block">
                                 <div class=""><a href="{{ path('addTopic') }}" class="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">Créer un Topic</a></div>
@@ -99,16 +99,16 @@
                                         <div class="col-md-7">
                                             <ul class="d-flex list-unstyled mr-n3 flex-wrap">
                                                 <li>
-                                                    <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details',{'id':topic.id}) }}">Commenter</a>
+                                                    <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('details',{'id':topic.id}) }}">Commenter <i class="far fa-comment-dots"></i> </a>
                                                 </li>
                                                 <li>
-                                                    <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('showcomment') }}">afficher les commentaires</a>
+                                                    <a class="bg-regent-opacity-15 min-width-px-96 mr-3 text-center rounded-3 px-6 py-1 font-size-3 text-black-2 mt-2 btn-info" href="{{ path('showcomment') }}">afficher les commentaires <i class="far fa-comments"></i> </a>
                                                 </li>
                                             </ul>
                                             <div class="card-btn-group">
 
-                                                <a class="btn btn-outline-mercury text-black-2 text-uppercase btn-medium rounded-3" href="#"><i
-                                                            class="icon icon-bookmark-2 font-weight-bold mr-4 font-size-4"></i> Favoris </a>
+                                                <a class="btn btn-outline-mercury text-black-2 mt-2 btn-small rounded-1" href="#"><i class="fab fa-gratipay"></i>
+                                                    <span></span>  Favoris </a>
                                             </div>
                                         </div>
 
@@ -120,7 +120,8 @@
                                                 </li>
                                                 <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
                                                     <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-suitecase.svg" alt=""></span>
-                                                    <span class="font-weight-semibold">Par NomUtilisateur</span>
+                                                    <span class="font-weight-semibold">Par Username</span>
+
                                                 </li>
                                             </ul>
                                             <div class="d-flex justify-content-between align-items-center m-6">

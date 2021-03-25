@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Replies;
 use App\Entity\Topics;
+use App\Entity\Utilisateurs;
 use App\Form\RepliesType;
 use App\Form\TopicsType;
 use App\Form\UpdateTopicType;
@@ -53,12 +54,14 @@ class TopicController extends AbstractController
      */
     public function show(Request $request, PaginatorInterface $paginator): Response {
         $data = $this->getDoctrine()->getRepository(Topics::class)->findBy([],['date'=>'desc']);
+        $user=$em=$this->getDoctrine()->getManager()->getRepository(Utilisateurs::class)->find(1);
         $topics = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1), 3
         );
         return $this->render('topic/listTopic.html.twig',[
             "topics" => $topics,
+            "user"=>$user,
         ]);
     }
 
@@ -90,6 +93,9 @@ class TopicController extends AbstractController
      */
     public function add(Request $request){
         $topics = new Topics();
+        $user=$em=$this->getDoctrine()->getManager()->getRepository(Utilisateurs::class)->find(1);
+//        $user=$this->getUser();
+        $topics->setUser($user);
         $topics->setDislikes(0);
         $topics->setLikes(0);
         $topics->setViews(0);
@@ -103,7 +109,10 @@ class TopicController extends AbstractController
             return $this->redirectToRoute('showtopic');
         }
         return $this->render('topic/addTopic.html.twig',
-            ['form'=>$form->createView()]);
+            [
+                'form'=>$form->createView(),
+                'user'=>$user
+            ]);
     }
 
     /**
