@@ -73,6 +73,7 @@ class Topics
     public function __construct()
     {
         $this->replies = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function __toString()
@@ -204,10 +205,31 @@ class Topics
         return $this;
     }
 
-    public function getFavoris(): ?Utilisateurs
+    /**
+     * @return Collection|Utilisateurs[]
+     */
+    public function getFavoris(): Collection
     {
         return $this->favoris;
     }
+
+    public function addFavori(Utilisateurs $favori):self
+    {
+        if (!$this->favoris->contains($favori)){
+            $this->favoris[]=$favori;
+        }
+        return $this;
+    }
+
+    public function removeFavori(Utilisateurs $favori): self
+    {
+        if ($this->favoris->contains($favori)) {
+            $this->favoris->removeElement($favori);
+        }
+
+        return $this;
+    }
+
 
     public function setFavoris(?Utilisateurs $favoris): self
     {

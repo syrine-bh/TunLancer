@@ -205,6 +205,24 @@ class TopicController extends AbstractController
     }
 
 
+    /**
+     * @param topics $topics
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/topic/addfavorite/{id}", name="favoris")
+     */
+    public function addFavorite(topics $topics){
+        if (!$topics){
+            throw new NotFoundHttpException('topic non trouvé');
+        }
+        $topics->getFavoris($this->getUser());
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($topics);
+        $em->flush();
+        return $this->redirectToRoute('topic');
+
+    }
+
+
 
 //
 //    /**
