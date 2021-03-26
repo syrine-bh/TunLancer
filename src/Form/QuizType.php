@@ -6,6 +6,7 @@ use App\Entity\Concour;
 use App\Entity\Quiz;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,11 +15,19 @@ class QuizType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('nbQuestions')
+            ->add('nom',TextType::class
+//                ,[
+//                'attr'=> [
+//                    'placeholder'=>"Nom quiz"]]
+            )
+            ->add('nbQuestions'
+//                'attr'=> [
+//                    'placeholder'=>"Nombre questions"]
+//                ]
+            )
             ->add('concour',EntityType::class,[
                 'class'=>Concour::class,
-                'choice_label'=>'id',
+                'choice_label'=>'nom',
                 'multiple'=>False
             ])
         ;

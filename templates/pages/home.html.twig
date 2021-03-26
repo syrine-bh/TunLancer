@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseFront.html.twig' %}
 {% block title 'Home'%}
-{% block body %}
+{% block section %}
     <div class="container">
         <div class="row  justify-content-center align-items-center">
             <div class="stater col-md-6">
@@ -14,7 +14,7 @@
             </div>
 
             <div class="stater col-md-6 ">
-                <a href="{{ path ('ranks_feed',{'id':app.request.get('id')})}}"><button type="button" class="btn btn-outline-light btn-lg btn-block">Voir les top ranked de ce concours</button></a>
+                <a href="{{ path ('ranks',{'id':app.request.get('id')})}}"><button type="button" class="btn btn-outline-light btn-lg btn-block">Voir les top ranked de ce concours</button></a>
 
             </div>
 

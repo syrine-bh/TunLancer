@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Concour;
 use App\Entity\Questiontab;
+use App\Entity\Quiz;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,12 +16,12 @@ class AddQuestionFormType extends AbstractType
     {
         $builder
             ->add('questions')
-//            ->add('concour',EntityType::class,[
-//                'class'=>Concour::class,
-//                'choice_label'=>'name',
-//                'multiple'=>False
-//            ])
-//
+            ->add('quiz',EntityType::class,[
+                'class'=>Quiz::class,
+                'choice_label'=>'nom',
+                'multiple'=>False
+            ])
+
         ;
     }
 

@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseFront.html.twig' %}
 {% block title 'Quiz'%}
-{% block body %}
+{% block section %}
     <div class="container">
         <div class="row  justify-content-center align-items-center">
             <form method="POST" action="{{ path ('result',{'id':app.request.get('id')}) }}">

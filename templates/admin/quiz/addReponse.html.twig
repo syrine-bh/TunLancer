@@ -1,0 +1,35 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Admin-Add{% endblock %}
+
+{% block section %}
+    <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;"
+         class="container">
+        <div class="row">
+
+            <div class="col-xl-12 col-lg-12 col-md-8 col-sm-12 col-12">
+                <div class="card">
+                    <h5 class="card-header">Ajouter Réponse</h5>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+                        <div class="form-group col-md-10 ">
+                            <label for="nom">Réponse</label>
+                            {{ form_widget(form.reponses, { 'attr' : { 'class' : 'form-control' } }) }}
+                        </div>
+                        <div class="form-group col-md-10 ">
+                            <label for="nom">Réponse correcte ?</label>
+                            {{ form_widget(form.statu, { 'attr' : { 'class' : 'form-control' } }) }}
+                        </div>
+
+                        {{ form_widget(form) }}
+                        <button class="btn btn-success">Enregistrer</button>
+                        <a href="{{ path ('listReponses',{'id':app.request.get('id')}) }}"
+                           class="btn btn-primary mb-3 float-right">Retour</a>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

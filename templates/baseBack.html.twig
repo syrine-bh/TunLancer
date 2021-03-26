@@ -1,487 +1,370 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>TunLancer</title>
-        <link rel="shortcut icon" href={{ asset("images/favicon.png" ) }}type="image/x-icon">
-        <!-- Bootstrap , fonts & icons  -->
-        <link rel="stylesheet" href={{ asset("css/bootstrap.css") }}>
-        <link rel="stylesheet" href={{ asset("fonts/icon-font/css/style.css") }}>
-        <link rel="stylesheet" href={{ asset("fonts/typography-font/typo.css") }}>
-        <link rel="stylesheet" href={{ asset("fonts/fontawesome-5/css/all.css") }}>
-        <!-- Plugin'stylesheets  -->
-        <link rel="stylesheet" href={{ asset("plugins/aos/aos.min.css") }}>
-        <link rel="stylesheet" href={{ asset("plugins/fancybox/jquery.fancybox.min.css") }}>
-        <link rel="stylesheet" href={{ asset("plugins/nice-select/nice-select.min.css") }}>
-        <link rel="stylesheet" href={{ asset("plugins/slick/slick.min.css") }}>
-        <link rel="stylesheet" href={{ asset("plugins/ui-range-slider/jquery-ui.css") }}>
-        <!-- Vendor stylesheets  -->
-        <link rel="stylesheet" href={{ asset("css/main.css") }}>
-        <!-- Custom stylesheet -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link href="{{ asset('adminDashboard/assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('adminDashboard/assets/libs/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/charts/chartist-bundle/chartist.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/charts/morris-bundle/morris.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('adminDashboard/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/charts/c3charts/c3.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
+    <title>Admin Tunlancer</title>
 </head>
+
 <body>
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+<div class="dashboard-main-wrapper">
+    <!-- ============================================================== -->
+    <!-- navbar -->
+    <!-- ============================================================== -->
+    <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <a class="navbar-brand" href="{{ path('homePage') }}">TunLancer</a>
 
-<div class="site-wrapper overflow-hidden bg-default-2">
-    <!-- Header Area -->
-    <header class="site-header site-header--menu-right bg-default position-fixed py-7 py-xs-0 site-header--absolute">
-        <div class="container-fluid-fluid px-10">
-            <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
-                <!-- Brand Logo-->
-                <div class="brand-logo">
-                    <a href="index.html">
-                        <!-- light version logo (logo must be black)-->
-                        <!-- Dark version logo (logo must be White)-->
-                        <img style="width: 70px;height: 70px;" src={{ asset("images/logo.png") }} alt="" class="light-version-logo default-logo">
-
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse" id="mobile-menu">
-                    <div class="navbar-nav-wrapper">
-                        <ul class="navbar-nav main-menu">
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('home') }}">Acceuil</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto navbar-right-top">
+                    <li class="nav-item">
+                        <div id="custom-search" class="top-search-bar">
+                            <input class="form-control" type="text" placeholder="Search..">
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown notification">
+                        <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span
+                                    class="indicator"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                            <li>
+                                <div class="notification-title"> Notification</div>
+                                <div class="notification-list">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item list-group-item-action active">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img
+                                                            src="adminDashboard/assets/images/avatar-2.jpg" alt=""
+                                                            class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block"><span
+                                                            class="notification-list-user-name">Jeremy Rakestraw</span>accepted
+                                                    your invitation to join the team.
+                                                    <div class="notification-date">2 min ago</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img
+                                                            src="adminDashboard/assets/images/avatar-3.jpg" alt=""
+                                                            class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block"><span
+                                                            class="notification-list-user-name">John Abraham </span>is
+                                                    now following you
+                                                    <div class="notification-date">2 days ago</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img
+                                                            src="adminDashboard/assets/images/avatar-4.jpg" alt=""
+                                                            class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block"><span
+                                                            class="notification-list-user-name">Monaan Pechi</span> is
+                                                    watching your main repository
+                                                    <div class="notification-date">2 min ago</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img
+                                                            src="adminDashboard/assets/images/avatar-5.jpg" alt=""
+                                                            class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block"><span
+                                                            class="notification-list-user-name">Jessica Caruso</span>accepted
+                                                    your invitation to join the team.
+                                                    <div class="notification-date">2 min ago</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Offres</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Publications</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('concour') }}">Concours</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Forum</a>
+                            <li>
+                                <div class="list-footer"><a href="#">View all notifications</a></div>
                             </li>
                         </ul>
-                    </div>
-                    <div class="header-btn-devider ml-auto ml-lg-5 pl-2 d-none d-xs-flex align-items-center">
-                        <div>
-                            <a href="#" class="px-3 ml-7 font-size-7 notification-block flex-y-center position-relative">
-                                <i class="fas fa-bell heading-default-color"></i>
-                                <span class="font-size-3 count font-weight-semibold text-white bg-primary circle-24 border border-width-3 border border-white">3</span>
-                            </a>
-                        </div>
-                        <div>
-                            <div class="dropdown show-gr-dropdown py-5">
-                                <a class="proile media ml-7 flex-y-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="circle-40">
-                                        <img src="image/header-profile.png" alt="">
+                    </li>
+                    <li class="nav-item dropdown connection">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
+                        <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+                            <li class="connection-list">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img
+                                                    src="adminDashboard/assets/images/github.png" alt="">
+                                            <span>Github</span></a>
                                     </div>
-                                    <i class="fas fa-chevron-down heading-default-color ml-6"></i>
-                                </a>
-                                <div class="dropdown-menu gr-menu-dropdown dropdown-right border-0 border-width-2 py-2 w-auto bg-default" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase" href="dashboard-settings.html">Settings </a>
-                                    <a class="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase" href="candidate-profile-main.html">Edit Profile</a>
-                                    <a class="dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase" href="#">Log Out</a>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img
+                                                    src="adminDashboard/assets/images/dribbble.png" alt=""> <span>Dribbble</span></a>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img
+                                                    src="adminDashboard/assets/images/dropbox.png" alt="">
+                                            <span>Dropbox</span></a>
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img
+                                                    src="adminDashboard/assets/images/bitbucket.png" alt=""> <span>Bitbucket</span></a>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img
+                                                    src="adminDashboard/assets/images/mail_chimp.png" alt=""><span>Mail chimp</span></a>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img
+                                                    src="adminDashboard/assets/images/slack.png" alt="">
+                                            <span>Slack</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="conntection-footer"><a href="#">More</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown nav-user">
+                        <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><img
+                                    src="adminDashboard/assets/images/avatar-1.jpg" alt=""
+                                    class="user-avatar-md rounded-circle"></a>
+                        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                             aria-labelledby="navbarDropdownMenuLink2">
+                            <div class="nav-user-info">
+                                <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
+                                <span class="status"></span><span class="ml-2">Available</span>
                             </div>
+                            <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
                         </div>
-                    </div>
-                    <!-- Mobile Menu Hamburger-->
-                    <button class="navbar-toggler btn-close-off-canvas  hamburger-icon border-0" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation">
-                        <!-- <i class="icon icon-simple-remove icon-close"></i> -->
-                        <span class="hamburger hamburger--squeeze js-hamburger">
-          <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-            </span>
-            </span>
-                    </button>
-                    <!--/.Mobile Menu Hamburger Ends-->
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end navbar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- left sidebar -->
+    <!-- ============================================================== -->
+    <div class="nav-left-sidebar sidebar-dark">
+        <div class="menu-list">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-divider">
+                            Menu
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false"
+                               data-target="#submenu-1" aria-controls="submenu-1"><i
+                                        class="fa fa-fw fa-user-circle"></i>Users <span
+                                        class="badge badge-success">6</span></a>
+                            <div id="submenu-1" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                           data-target="#submenu-1-2" aria-controls="submenu-1-2">E-Commerce</a>
+                                        <div id="submenu-1-2" class="collapse submenu" style="">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="index.html">E Commerce Dashboard</a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="dashboard-finance.html">Finance</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                               data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Concours</a>
+                            <div id="submenu-2" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('listCadmin') }}">Concours</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('listQuiz') }}">Quiz</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                               data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Offres</a>
+                            <div id="submenu-3" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/chart-c3.html">C3 Charts</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                               data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-fw fa-wpforms"></i>Forums</a>
+                            <div id="submenu-4" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/form-elements.html">Form Elements</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                               data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Recrutements</a>
+                            <div id="submenu-5" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/general-table.html">General Tables</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        {# <li class="nav-divider"> #}
+                        {# Features #}
+                        {# </li> #}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                               data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i>
+                                Publications </a>
+                            <div id="submenu-6" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/blank-page.html">Blank Page</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
                 </div>
             </nav>
         </div>
-    </header>
-    <!-- navbar- -->
-    <!-- Login Modal -->
-    <div class="modal fade form-modal" id="login" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog max-width-px-840 position-relative">
-            <button type="button" class="circle-32 btn-reset bg-white pos-abs-tr mt-md-n6 mr-lg-n6 focus-reset z-index-supper" data-dismiss="modal"><i class="fas fa-times"></i></button>
-            <div class="login-modal-main bg-white rounded-8 overflow-hidden">
-
-            </div>
-        </div>
     </div>
-    <!-- Sign Up Modal -->
-    <div class="modal fade form-modal" id="signup" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog max-width-px-840 position-relative">
-            <button type="button" class="circle-32 btn-reset bg-white pos-abs-tr mt-n6 mr-lg-n6 focus-reset shadow-10" data-dismiss="modal"><i class="fas fa-times"></i></button>
-            <div class="login-modal-main bg-white rounded-8 overflow-hidden">
-                <div class="row no-gutters">
+    <!-- ============================================================== -->
+    <!-- end left sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <!-- ============================================================== -->
+                <!-- pageheader  -->
+                <!-- ============================================================== -->
 
-                    <div class="col-lg-7 col-md-6">
-                        <div class="bg-white-2 h-100 px-11 pt-11 pb-7">
 
-                        </div>
-                    </div>
-                </div>
+                {% block section %}
+                {% endblock %}
+
+
             </div>
         </div>
-    </div>
-    <div class="dashboard-sidebar-wrapper pt-11" id="sidebar">
-        <div class="brand-logo px-11">
-            <a href="https://shade.uxtheme.net/shade-pro">
-                <img src="image/logo.png" alt="">
-            </a>
-        </div>
-        <div class="my-15 px-11">
-            <a href="#" class="btn btn-primary btn-xl w-100 text-uppercase"><span class="mr-5 d-inline-block">+</span>Post a new job</a>
-        </div>
-        <ul class="list-unstyled dashboard-layout-sidebar">
-            <li class="active"><a href="dashboard-main.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="icon icon-layout-11 mr-7"></i>Dashboard</a></li>
-            <li class=""><a href="dashboard-posted-jobs.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-briefcase mr-7"></i>Posted Jobs</a></li>
-            <li class=""><a href="dashboard-posted-applicants.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-user mr-7"></i>Applicants <span class="ml-auto px-1 h-1 bg-dodger text-white font-size-3 rounded-5 max-height-px-18 flex-all-center">14</span></a></li>
-            <li class=""><a href="dashboard-settings.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-cog mr-7"></i>Settings</a></li>
-        </ul>
-    </div>
-    <a class="sidebar-mobile-button" data-toggle="collapse" href="#sidebar" role="button" aria-expanded="false" aria-controls="sidebar">
-        <i class="icon icon-sidebar-2"></i>
-    </a>
-    <div class="dashboard-main-container mt-25 mt-lg-31" id="dashboard-body">
-        <div class="container">
-            <div class="row mb-7">
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                    <!-- Single Category -->
-                    <a href="#" class="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
-                        <div class="text-blue bg-blue-opacity-1 circle-56 font-size-6 mr-7">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <!-- Category Content -->
-                        <div class="">
-                            <h5 class="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1"><span class="counter">05</span></h5>
-                            <p class="font-size-4 font-weight-normal text-gray mb-0">Posted Jobs</p>
-                        </div>
-                    </a>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                    <!-- Single Category -->
-                    <a href="#" class="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
-                        <div class="text-pink bg-pink-opacity-1 circle-56 font-size-6 mr-7">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <!-- Category Content -->
-                        <div class="">
-                            <h5 class="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1"><span class="counter">256</span></h5>
-                            <p class="font-size-4 font-weight-normal text-gray mb-0">Total Applicants</p>
-                        </div>
-                    </a>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                    <!-- Single Category -->
-                    <a href="#" class="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
-                        <div class="text-orange bg-orange-opacity-1 circle-56 font-size-6 mr-7">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <!-- Category Content -->
-                        <div class="">
-                            <h5 class="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1"><span class="counter">16.5</span>K</h5>
-                            <p class="font-size-4 font-weight-normal text-gray mb-0">Jobs View</p>
-                        </div>
-                    </a>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                    <!-- Single Category -->
-                    <a href="#" class="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
-                        <div class="text-egg-blue bg-egg-blue-opacity-1 circle-56 font-size-6 mr-7">
-                            <i class="fas fa-mouse-pointer"></i>
-                        </div>
-                        <!-- Category Content -->
-                        <div class="">
-                            <h5 class="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1"><span class="counter">18.6</span>%</h5>
-                            <p class="font-size-4 font-weight-normal text-gray mb-0">Applied Rate</p>
-                        </div>
-                    </a>
-                    <!-- End Single Category -->
-                </div>
-            </div>
-            <div class="mb-14">
-                <div class="row mb-11 align-items-center">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <h3 class="font-size-6 mb-0">Applicants List (12)</h3>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="d-flex flex-wrap align-items-center justify-content-lg-end">
 
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white shadow-8 pt-7 rounded pb-8 px-11">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col" class="pl-0  border-0 font-size-4 font-weight-normal">...</th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal">...</th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal">...</th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal"></th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal"></th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="border border-color-2">
-                                <th scope="row" class="pl-6 border-0 py-7 pr-0">
-                                    <a href="candidate-profile.html" class="media min-width-px-235 align-items-center">
-                                        <div class="circle-36 mr-6">
-                                            <img src="image/table-one-profile-image-1.png" alt="" class="w-100" />
-                                        </div>
-                                        <h4 class="font-size-4 mb-0 font-weight-semibold text-black-2">Nicolas Bradley</h4>
-                                    </a>
-                                </th>
-                                <td class="table-y-middle py-7 min-width-px-235 pr-0">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">Senior Project Manager</h3>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-170 pr-0">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">12 July, 2020</h3>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-170 pr-0">
-                                    <div class=""><a href="javacript:" class="font-size-3 font-weight-bold text-black-2 text-uppercase" data-toggle="modal" data-target="#employe-profile">View Application</a></div>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-110 pr-0">
-                                    <div class=""><a href="contact.html" class="font-size-3 font-weight-bold text-green text-uppercase">Contact</a></div>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-100 pr-0">
-                                    <div class=""><a href="#" class="font-size-3 font-weight-bold text-red-2 text-uppercase">Reject</a></div>
-                                </td>
-                            </tr>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="pt-2">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination pagination-hover-primary rounded-0 ml-n2">
-                                <li class="page-item rounded-0 flex-all-center">
-                                    <a class="page-link rounded-0 border-0 px-3active" href="#" aria-label="Previous">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">3</a></li>
-                                <li class="page-item disabled"><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">...</a></li>
-                                <li class="page-item "><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">7</a></li>
-                                <li class="page-item rounded-0 flex-all-center">
-                                    <a class="page-link rounded-0 border-0 px-3" href="#" aria-label="Next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- Modal -->
-
-    {% block section %}
-    <div class="dashboard-sidebar-wrapper pt-11" id="sidebar">
-        <div class="brand-logo px-11">
-            <a href="https://shade.uxtheme.net/shade-pro">
-                <img src="image/logo-main-black.png" alt="">
-            </a>
-        </div>
-        <div class="my-15 px-11">
-            <a href="ajouterConcours" class="btn btn-primary btn-xl w-100 text-uppercase"><span class="mr-5 d-inline-block">+</span>Ajouter nouveau concours</a>
-        </div>
-        <div class="my-15 px-11">
-            <a href="listPadmin" class="btn btn-primary btn-xl w-100 text-uppercase"><span class="mr-5 d-inline-block">+</span>ajouterPaticipant</a>
-        </div>
-
-        <ul class="list-unstyled dashboard-layout-sidebar">
-            <li class="active"><a href="dashboard-main.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="icon icon-layout-11 mr-7"></i>Dashboard</a></li>
-            <li class=""><a href="dashboard-posted-jobs.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-briefcase mr-7"></i>Posted Jobs</a></li>
-            <li class=""><a href="dashboard-posted-applicants.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-user mr-7"></i>Applicants <span class="ml-auto px-1 h-1 bg-dodger text-white font-size-3 rounded-5 max-height-px-18 flex-all-center">14</span></a></li>
-            <li class=""><a href="dashboard-settings.html" class="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"><i class="fas fa-cog mr-7"></i>Settings</a></li>
-        </ul>
-    </div>
-    <a class="sidebar-mobile-button" data-toggle="collapse" href="#sidebar" role="button" aria-expanded="false" aria-controls="sidebar">
-        <i class="icon icon-sidebar-2"></i>
-    </a>
-    <div class="dashboard-main-container mt-25 mt-lg-31" id="dashboard-body">
-        <div class="container">
-            <div class="row mb-7">
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                    <!-- Single Category -->
-                    <a href="#" class="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
-                        <div class="text-blue bg-blue-opacity-1 circle-56 font-size-6 mr-7">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <!-- Category Content -->
-                        <div class="">
-                            <h5 class="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1"><span class="counter">05</span></h5>
-                            <p class="font-size-4 font-weight-normal text-gray mb-0">Posted Jobs</p>
-                        </div>
-                    </a>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                    <!-- Single Category -->
-                    <a href="#" class="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
-                        <div class="text-pink bg-pink-opacity-1 circle-56 font-size-6 mr-7">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <!-- Category Content -->
-                        <div class="">
-                            <h5 class="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1"><span class="counter">256</span></h5>
-                            <p class="font-size-4 font-weight-normal text-gray mb-0">Total Applicants</p>
-                        </div>
-                    </a>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                    <!-- Single Category -->
-                    <a href="#" class="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
-                        <div class="text-orange bg-orange-opacity-1 circle-56 font-size-6 mr-7">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <!-- Category Content -->
-                        <div class="">
-                            <h5 class="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1"><span class="counter">16.5</span>K</h5>
-                            <p class="font-size-4 font-weight-normal text-gray mb-0">Jobs View</p>
-                        </div>
-                    </a>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                    <!-- Single Category -->
-                    <a href="#" class="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
-                        <div class="text-egg-blue bg-egg-blue-opacity-1 circle-56 font-size-6 mr-7">
-                            <i class="fas fa-mouse-pointer"></i>
-                        </div>
-                        <!-- Category Content -->
-                        <div class="">
-                            <h5 class="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1"><span class="counter">18.6</span>%</h5>
-                            <p class="font-size-4 font-weight-normal text-gray mb-0">Applied Rate</p>
-                        </div>
-                    </a>
-                    <!-- End Single Category -->
-                </div>
-            </div>
-            <div class="mb-14">
-                <div class="row mb-11 align-items-center">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <h3 class="font-size-6 mb-0">Liste des concours</h3>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="d-flex flex-wrap align-items-center justify-content-lg-end">
-                            <p class="font-size-4 mb-0 mr-6 py-2">Filter by Job:</p>
-                            <div class="h-px-48">
-                                <select name="country" id="country" class="nice-select pl-7 h-100 arrow-3 arrow-3-black min-width-px-273 font-weight-semibold text-black-2">
-                                    <option value="" data-display="Product Designer">Product Designer</option>
-                                    <option value="">Graphics Designer</option>
-                                    <option value="">Web Deverloper</option>
-                                    <option value="">Front End Developer</option>
-                                    <option value="">Backend Developer</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white shadow-8 pt-7 rounded pb-8 px-11">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col" class="pl-0  border-0 font-size-4 font-weight-normal">Nom Concours</th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal">Sujet</th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal">Date lancement</th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal">Date fin</th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal"></th>
-                                <th scope="col" class="border-0 font-size-4 font-weight-normal"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="border border-color-2" {% for d in concour %}>
-                                <th scope="row" class="pl-6 border-0 py-7 pr-0">
-                                    <h4 class="font-size-4 mb-0 font-weight-semibold text-black-2">{{ d.nom }}</h4>
-                                </th>
-                                <td class="table-y-middle py-7 min-width-px-400 pr-0">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ d.sujet }}</h3>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-170 pr-0">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ d.dateDebut|date }}</h3>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-170 pr-0">
-                                    <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ d.dateFin|date }}</h3>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-100 pr-0">
-                                    <div class=""><a href="{{ path('modifierConcours',{'id':d.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Modifier</a></div>
-                                </td>
-                                <td class="table-y-middle py-7 min-width-px-110 pr-0">
-                                    <div class=""><a href="{{ path('supprimerConcours',{'id':d.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
-                                </td>
-
-                                <td class="table-y-middle py-7 min-width-px-110 pr-0">
-                                    <div class=""> <a href="{{ path ('listParticipants',{'id':d.id}) }}">Afficher</a></div>
-                                </td>
-                            </tr {% endfor %}>
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <div class="pt-2">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination pagination-hover-primary rounded-0 ml-n2">
-                                <li class="page-item rounded-0 flex-all-center">
-                                    <a class="page-link rounded-0 border-0 px-3active" href="#" aria-label="Previous">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">3</a></li>
-                                <li class="page-item disabled"><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">...</a></li>
-                                <li class="page-item "><a class="page-link border-0 font-size-4 font-weight-semibold px-3" href="#">7</a></li>
-                                <li class="page-item rounded-0 flex-all-center">
-                                    <a class="page-link rounded-0 border-0 px-3" href="#" aria-label="Next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-    {% endblock %}
-</div>
     </div>
 </div>
+
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Copyright © 2021 Concept. All rights reserved.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">About</a>
+                            <a href="javascript: void(0);">Support</a>
+                            <a href="javascript: void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end main wrapper  -->
+        <!-- ============================================================== -->
+        <!-- Optional JavaScript -->
+        <!-- jquery 3.3.1 -->
+        <script src="{{ asset('adminDashboard/assets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
+        <!-- bootstap bundle js -->
+        <script src="{{ asset('adminDashboard/assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
+        <!-- slimscroll js -->
+        <script src="{{ asset('adminDashboard/assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
+        <!-- main js -->
+        <script src="{{ asset('adminDashboard/assets/libs/js/main-js.js') }}"></script>
+        <!-- chart chartist js -->
+        <script src="{{ asset('adminDashboard/assets/vendor/charts/chartist-bundle/chartist.min.js') }}"></script>
+        <!-- sparkline js -->
+        <script src="{{ asset('adminDashboard/assets/vendor/charts/sparkline/jquery.sparkline.js') }}"></script>
+        <!-- morris js -->
+        <script src="{{ asset('adminDashboard/assets/vendor/charts/morris-bundle/raphael.min.js') }}"></script>
+        <script src="{{ asset('adminDashboard/assets/vendor/charts/morris-bundle/morris.js') }}"></script>
+        <!-- chart c3 js -->
+        <script src="{{ asset('adminDashboard/assets/vendor/charts/c3charts/c3.min.js') }}"></script>
+        <script src="{{ asset('adminDashboard/assets/vendor/charts/c3charts/d3-5.4.0.min.js') }}"></script>
+        <script src="{{ asset('adminDashboard/assets/vendor/charts/c3charts/C3chartjs.js') }}"></script>
+        <script src="{{ asset('adminDashboard/assets/libs/js/dashboard-ecommerce.js') }}"></script>
+
 </body>
 
-<!-- Mirrored from uxtheme.net/demos/jobcamp/dashboard-main.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Feb 2021 15:47:33 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-
-
-
-
-<!-- Vendor Scripts -->
-<script src="js/vendor.min.js"></script>
-<!-- Plugin's Scripts -->
-<script src={{ asset("plugins/fancybox/jquery.fancybox.min.js") }}></script>
-<script src={{ asset("plugins/nice-select/jquery.nice-select.min.js") }}></script>
-<script src={{ asset("plugins/aos/aos.min.js") }}></script>
-<script src={{ asset("plugins/slick/slick.min.js") }}></script>
-<script src={{ asset("plugins/counter-up/jquery.counterup.min.js") }}></script>
-<script src={{ asset("plugins/counter-up/jquery.waypoints.min.js") }}></script>
-<script src={{ asset("plugins/ui-range-slider/jquery-ui.js") }}></script>
-<!-- Activation Script -->
-<!-- <script src="js/drag-n-drop.js"></script> -->
-<script src={{ asset("js/custom.js") }}></script>
 </html>
-
-<!-- Mirrored from uxtheme.net/demos/jobcamp/dashboard-main.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Feb 2021 15:47:41 GMT -->

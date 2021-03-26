@@ -1,36 +1,77 @@
-{% extends 'base.html.twig' %}
-{% block title 'Top 3 Scores'%}
-{% block body %}
+{% extends 'baseBack.html.twig' %}
+{% block title 'Top 3 Scores' %}
+{% block section %}
     <div class="container">
 
-        <a href="{{path ('home') }}"><button type="button" class="btn btn-primary mb-5">Retour</button></a>
-        <div class="row align-items-center">
-            <table class="table">
-                <thead class="table-primary">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Score</th>
-                    <th scope="col">Pourcentage</th>
-                </tr>
-                </thead>
-                <tbody class="text-white">
-                {% set id =0 %}
-                {% for score in scores %}
-                    {% set id=id+1 %}
-                    <tr>
-                        <th scope="row">{{ id }}</th>
-                        <td>{{ score.pseudo }}</td>
-                        <td>{{ score.score }}</td>
-                        <td>{{ score.pourcentage }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        <a href="{{ path ('listQuiz') }}">
+            <button type="button" class="btn btn-primary mb-5">Retour</button>
+        </a>
+
+        <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;"
+             class="container">
+            <div class="row">
+
+                <div class="col-xl-12 col-lg-12 col-md-8 col-sm-12 col-12">
+                    <div class="card">
+                        <h5 class="card-header">Liste des scores</h5>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Score</th>
+                                    <th scope="col">Pourcentage</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set id =0 %}
+                                {% for score in scores %}
+                                    {% set id=id+1 %}
+                                    <tr>
+                                        <th scope="row">{{ id }}</th>
+                                        <td>{{ score.pseudo }}</td>
+                                        <td>{{ score.score }}</td>
+                                        <td>{{ score.pourcentage }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+    <div id="ranking">
+        {{ render(controller(
+            'App\\Controller\\QuizController:ranking', {
+                'id':app.request.get('id')
+            }
+
+        )) }}
+    </div>
+<div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;"
+     class="container">
+    <header class="section-header">
+        <h2 class="section-title text-black text-center">Informez les champions !</h2>
+    </header>
+
+    {% set id =0 %}
+        {% for score in rank %}
+            {% set id=id+1 %}
+            {% if (quiz.concour.dateFin | date('Y-m-d')) < (  "now"|date('Y-m-d') ) %}
+                    <a href="{{ path ('promote_user',{'id':score.user.id }) }}">
+                        <button type="button" class="btn btn-primary mb-5 text-center">
+                            Promote {{ score.user.nom }} {{ score.user.prenom }}</button>
+                    </a>
+            {% endif %}
+
+        {% endfor %}
+
+</div>
 
 {% endblock %}
-
-
-

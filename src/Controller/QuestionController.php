@@ -88,9 +88,9 @@ class QuestionController extends Controller
     }
 
     /**
-     * @Route("/", name="home")
+     * @Route("/participer/{id}", name="participerConcours")
      */
-    public function home()
+    public function participerConcours()
     {
         $concour=$this->repConcour->findAll();
         return $this->render('pages/home.html.twig',['concour'=>$concour]);
@@ -211,7 +211,6 @@ class QuestionController extends Controller
 //      return ($this->render('pages/ranks.html.twig', array('scores' => array_slice($scoresUser, 0, 3) )));
 //    }
 
-
     /**
      * @Route("/promote/{id}", name="promote_user")
      * @param User $id
@@ -239,9 +238,11 @@ class QuestionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($genius);
         $em->flush();
-        return $this->redirectToRoute('ranks_feed');
+        return $this->redirectToRoute('adminHome');
 
 
     }
+
+
 
 }

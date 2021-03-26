@@ -4,9 +4,18 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Job Board & Directory Template</title>
+    <title>TunLancer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Parisienne&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <!-- Bootstrap , fonts & icons  -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
@@ -30,13 +39,14 @@
 <body>
 <div class="site-wrapper overflow-hidden ">
     <!-- Header start  -->
-    <!-- Header Area -->
+    <!-- Header Area --><body class="full-page bg1">
+
     <header class="site-header site-header--menu-right dynamic-sticky-bg py-7 py-lg-0 site-header--absolute site-header--sticky">
         <div class="container">
             <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
                 <!-- Brand Logo-->
                 <div class="brand-logo">
-                    <a href="{{ path('home') }}">
+                    <a href="{{ path('listCadmin') }}">
                         <!-- light version logo (logo must be black)-->
                         <img style="width: 70px;height: 70px;" src="{{ asset('images/logo.png') }}" alt="" class="light-version-logo default-logo">
                         <!-- Dark version logo (logo must be White)-->
@@ -48,7 +58,7 @@
                         <ul class="navbar-nav main-menu">
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('home') }}">Acceuil</a>
+                                <a class="nav-link" href="{{ path('listCadmin') }}">Acceuil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('publications') }}">Offres</a>
@@ -232,9 +242,8 @@
 <!-- Activation Script -->
 <!-- <script src="js/drag-n-drop.js"></script> -->
 <script src="{{ asset('js/custom.js') }}"></script>
-{% block scripts %}
+{% block javascripts %}{% endblock %}
 
-{% endblock %}
 </body>
 
 </html>

@@ -65,12 +65,10 @@ class Concour
     private $test;
 
 
-
     /**
      * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="concour", orphanRemoval=true)
      */
     private $participations;
-
 
 
     /**
@@ -84,18 +82,21 @@ class Concour
     private $categorie;
 
 
-
     /**
      * @ORM\OneToMany(targetEntity=Quiz::class, mappedBy="concour")
      */
     private $quiz;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVideo;
 
     public function __construct()
     {
         $this->participations = new ArrayCollection();
         $this->quiz = new ArrayCollection();
     }
-
 
 
     public function getId(): ?int
@@ -215,8 +216,6 @@ class Concour
     }
 
 
-
-
     /**
      * @return Collection|Participation[]
      */
@@ -246,18 +245,7 @@ class Concour
 
         return $this;
     }
-//
-//    public function getLienImage(): ?string
-//    {
-//        return $this->lienImage;
-//    }
-//
-//    public function setLienImage(?string $lienImage): self
-//    {
-//        $this->lienImage = $lienImage;
-//
-//        return $this;
-//    }
+
 
     public function getImageName(): ?string
     {
@@ -314,7 +302,17 @@ class Concour
         return $this;
     }
 
+    public function getIsVideo(): ?bool
+    {
+        return $this->isVideo;
+    }
 
+    public function setIsVideo(bool $isVideo): self
+    {
+        $this->isVideo = $isVideo;
+
+        return $this;
+    }
 
 
 }

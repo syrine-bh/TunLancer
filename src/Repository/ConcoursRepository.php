@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Concour;
+use App\Entity\Quiz;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -69,6 +70,31 @@ class ConcoursRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+    public function FindByQuizId($id)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.quiz = :val')
+            ->setParameter('val', $id)
+            ->orderBy('q.quiz', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function findQuiz ($id): ?Quiz {
+        return $this
+            ->createQueryBuilder('q')
+            ->andWhere('q.id= :val')
+            ->setParameter('val',$id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
-
+    public function findConcourByNom($nom){
+        return $this->createQueryBuilder('c')
+            ->where('c.nom LIKE :nom')
+            ->setParameter('nom', '%'.$nom.'%')
+            ->getQuery()
+            ->getResult();
+    }
 }

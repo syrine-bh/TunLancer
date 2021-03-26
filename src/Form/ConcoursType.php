@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Concour;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,11 +37,20 @@ class ConcoursType extends AbstractType
             ->add('dateFin',DateType::class,[
                 'widget'=>'single_text',
                 'input'=>'datetime'])
-            ->add('categorie',TextareaType::class,[
+            ->add('categorie',TextType::class,[
                 'attr'=> [
                     'placeholder'=>"Donnez catégorie"
                 ]
             ])
+            ->add('imageName',ImageConcourType::class,
+                [    'label' => false,
+                    'mapped' => false,
+                    'required' => false
+
+
+
+                ])
+            ->add('isVideo')
             ;
 
 

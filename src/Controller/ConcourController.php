@@ -17,18 +17,19 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ConcourController extends AbstractController
 {
-    /**
-     * @Route("/concour", name="concour")
-     */
-    public function index(): Response
-    {
-        return $this->render('concour/list.html.twig', [
-            'controller_name' => 'ConcourController',
-        ]);
-    }
+//    /**
+//     * @Route("/concour", name="concour")
+//     */
+//    public function index(): Response
+//    {
+//        return $this->render('concour/list.html.twig', [
+//            'controller_name' => 'ConcourController',
+//        ]);
+//    }
 
     /**
      * @return Response
@@ -49,77 +50,6 @@ class ConcourController extends AbstractController
         return $this->render('/concour/descriptionConcours.html.twig',[
             'concour'=>$concour
         ]);
-    }
-
-    /**
-     * @return Response
-     * @Route ("/concour/listCadmin",name="listCadmin")
-     */
-    public function listCadmin (){
-        $repo=$this->getDoctrine()->getRepository(Concour::class);
-        $concours=$repo->findAll();
-        return $this->render('concour/listCadmin.html.twig',['concour'=>$concours]);
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     * @Route ("concour/ajoutCadmin",name="ajoutCadmin")
-     */
-    public function ajoutConcours (Request $request){
-        $concours=new Concour();
-        $form=$this->createForm(ConcoursType::class,$concours);
-        $form->add('Ajouter',SubmitType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()&& $form->isValid()){
-            $em=$this->getDoctrine()->getManager();
-            $em->persist($concours);
-            $em->flush();
-            return $this->redirectToRoute('listCadmin');
-        }
-        return $this->render("concour/ajouterConcours.html.twig",[
-            'form'=>$form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route ("concour/modifierConcours{id}",name="modifierConcours")
-     * @param $id
-     * @param $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     */
-    function modifier($id,Request $request){
-        $repo=$this->getDoctrine()->getRepository(Concour::class);
-        $concours=$repo->find($id);
-        $form=$this->createForm(ConcoursType::class,$concours);
-        $form->add('Modifier',SubmitType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()&& $form->isValid()){
-            $em=$this->getDoctrine()->getManager();
-            $em->flush();
-            return $this->redirectToRoute('listCadmin');
-        }
-        return $this->render("concour/modifierConcours.html.twig",[
-            'form'=>$form->createView(),
-            'concour'=>$concours
-        ]);
-    }
-
-
-
-    /**
-     * @return Response
-     * @Route ("/supprimerConcours/{id}",name="supprimerConcours")
-     */
-    public function supprimerConcours($id)
-    {
-        $repo = $this->getDoctrine()->getRepository(Concour::class);
-        $concours = $repo->find($id);
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($concours);
-        $em->flush();
-        return $this->redirectToRoute('listCadmin');
-
     }
 
 
@@ -243,7 +173,7 @@ class ConcourController extends AbstractController
     }
 
     /**
-     * @Route("/ranking/{id}", name="update_ranks")
+     * @Route("/rankingV/{id}", name="update_ranks")
      * @param concour $id
      * @return Response
      */
@@ -265,8 +195,41 @@ class ConcourController extends AbstractController
         return ($this->render('pages/ranksV.html.twig', ['ranks' => $res]
         ));
     }
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("rechercheConcour", name="rechercheConcour")
+     */
 
+    public function rechercheConcour(Request $request, NormalizerInterface $normalizer){
 
+        $repository = $this->getDoctrine()->getRepository(Concour::class);
+        $requestString=$request->get('searchValue');
+
+        $concour = $repository->findConcourByNom($requestString);
+
+        return $this->render("concour/list.html.twig",
+            ['concour'=>$concour]);
+    }
+//    /**
+//     * @param Request $request
+//     * @param NormalizerInterface $normalizer
+//     * @return Response
+//     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+//     * @Route("searchTopic", name="search")
+//     */
+//
+//    public function searchTopic(Request $request, NormalizerInterface $normalizer){
+//        $repository = $this->getDoctrine()->getRepository(Topics::class);
+//        $requestString=$request->get('searchValue');
+//
+//        $topics = $repository->findTopicsByTitre($requestString);
+//
+//        return $this->render("topic/ajax.html.twig",
+//            ['topics'=>$topics]);
+//    }
 
 
 

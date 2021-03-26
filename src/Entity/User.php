@@ -62,7 +62,7 @@ class User
     /**
      * @ORM\ManyToMany(targetEntity=Concour::class, inversedBy="test")
      */
-    private $concours;
+    private $concour;
 
     /**
      * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="user", orphanRemoval=true)

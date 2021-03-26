@@ -28,7 +28,7 @@ class UserController extends AbstractController
     public function getPart(Concour $concour, ParticipationRepository  $rep )
     {
         $test=$rep->FindByConcId($concour->getId());
-        return $this->render('concour/listParticipants.html.twig',['participant'=>$test]);
+        return $this->render('admin/concour/listParticipants.html.twig',['participant'=>$test]);
 
     }
 

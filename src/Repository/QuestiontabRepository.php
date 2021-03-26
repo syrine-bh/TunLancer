@@ -48,6 +48,20 @@ class QuestiontabRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+
+ public function findOneByQuestionId($id): ?Questiontab
+ {
+     return $this->createQueryBuilder('q')
+         ->andWhere('q.id = :val')
+         ->setParameter('val', $id)
+         ->getQuery()
+         ->getOneOrNullResult()
+     ;
+ }
+
+
 //    public function FindByConcId($id)
 //    {
 //        return $this->createQueryBuilder('q')
@@ -66,6 +80,17 @@ class QuestiontabRepository extends ServiceEntityRepository
             ->andWhere('q.quiz = :val')
             ->setParameter('val', $id)
             ->orderBy('q.quiz', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function FindByQuestionId($id)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.id = :val')
+            ->setParameter('val', $id)
+            ->orderBy('q.id', 'ASC')
             ->setMaxResults(100)
             ->getQuery()
             ->getResult()

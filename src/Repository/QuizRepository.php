@@ -50,14 +50,14 @@ class QuizRepository extends ServiceEntityRepository
 
 
 
-//    public function findQuiz ($quiz_id): ?Quiz {
-//        return $this
-//            ->createQueryBuilder('q')
-//            ->andWhere('q.id= :val')
-//            ->setParameter('val',$quiz_id)
-//            ->getQuery()
-//            ->getOneOrNullResult();
-//    }
+    public function findQuiz ($id): ?Quiz {
+        return $this
+            ->createQueryBuilder('q')
+            ->andWhere('q.id= :val')
+            ->setParameter('val',$id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
     public function FindByQuizId($id)
     {
