@@ -6,6 +6,7 @@ use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\DocBlock\Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -24,6 +25,13 @@ class Annonce
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups ("post:read")
+     * @Assert\NotBlank(message="titre is required")
+     *      @Assert\Length(
+     *      min = "3",
+     *      max = "50",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )     *
      *
      */
     private $nom;
@@ -31,6 +39,7 @@ class Annonce
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:read")
+     * @Assert\NotBlank(message="Description  is required")
      *
      */
     private $description;
@@ -38,6 +47,7 @@ class Annonce
     /**
      * @ORM\Column(type="date")
      * @Groups("post:read")
+     * @Assert\NotBlank(message="Date  is required")
      *
      */
     private $date;
@@ -48,6 +58,19 @@ class Annonce
      *
      */
     private $categorie;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="lieux is required")
+     */
+    private $lieux;
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="renumeration is required")
+     */
+    private $renumeration;
 
     public function getId(): ?int
     {
@@ -98,6 +121,30 @@ class Annonce
     public function setCategorie(?categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getLieux(): ?string
+    {
+        return $this->lieux;
+    }
+
+    public function setLieux(string $lieux): self
+    {
+        $this->lieux = $lieux;
+
+        return $this;
+    }
+
+    public function getRenumeration(): ?string
+    {
+        return $this->renumeration;
+    }
+
+    public function setRenumeration(string $renumeration): self
+    {
+        $this->renumeration = $renumeration;
 
         return $this;
     }

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\PostulerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=PostulerRepository::class)
@@ -17,25 +19,38 @@ class Postuler
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $user_id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $cv;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $annonce_id;
+
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $message;
 
 
 
@@ -44,17 +59,7 @@ class Postuler
         return $this->id;
     }
 
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
 
-    public function setUserId(int $user_id): self
-    {
-        $this->user_id = $user_id;
-
-        return $this;
-    }
 
     public function getCv(): ?string
     {
@@ -68,17 +73,6 @@ class Postuler
         return $this;
     }
 
-    public function getAnnonceId(): ?int
-    {
-        return $this->annonce_id;
-    }
-
-    public function setAnnonceId(int $annonce_id): self
-    {
-        $this->annonce_id = $annonce_id;
-
-        return $this;
-    }
 
     public function getEmail(): ?string
     {
@@ -88,6 +82,54 @@ class Postuler
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(int $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(string $message): self
+    {
+        $this->message = $message;
 
         return $this;
     }

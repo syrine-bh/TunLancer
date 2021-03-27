@@ -6,20 +6,35 @@
     <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
         <h5>Ajouter une  Annonce</h5>
 
-        {{ form_start(form) }}
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
         <div class="form-row">
             <div class="form-group col-md-6">
+
                 <label for="inputEmail4">titre</label>
+                {{ form_errors(form.nom) }}
+
                 {{ form_widget(form.nom, { 'attr' : { 'class' : 'form-control' } }) }}
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Description</label>
+                {{ form_errors(form.description) }}
                 {{ form_widget(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
             </div>
         </div>
         <div class="form-group">
             <label for="inputAddress">Date</label>
+            {{ form_errors(form.date) }}
             {{ form_widget(form.date, { 'attr' : { 'class' : 'form-control' } }) }}
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Lieux</label><br>
+            {{ form_errors(form.lieux) }}
+            {{ form_widget(form.lieux, { 'attr' : { 'class' : 'form-control' } }) }}
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Rénumeration</label><br>
+            {{ form_widget(form.renumeration, { 'attr' : { 'class' : 'form-control' } }) }}
+            {{ form_errors(form.renumeration) }}
         </div>
         <div class="form-group">
             <label for="inputAddress2">categorie</label><br>

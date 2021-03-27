@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 
 
+
 class PostulerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -18,8 +19,13 @@ class PostulerType extends AbstractType
         $builder
 
             ->add('email')
+            ->add('nom')
+            ->add('prenom')
+            ->add('message')
+            ->add('telephone')
             ->add('cv',FileType::class, [
-                'label' =>'choisir votre fichier',
+                'label' => null,
+                'attr' => ['placeholder' => 'Choose file'],
                 'mapped' => false,
                 'constraints' => [
                     new File([

@@ -27,6 +27,8 @@ class AnonceType extends AbstractType
             'choice_label' => 'type',
 
              ])
+            ->add('lieux')
+            ->add('renumeration')
             ->add('Ajouter', SubmitType::class);
     }
 

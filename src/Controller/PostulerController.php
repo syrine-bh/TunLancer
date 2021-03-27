@@ -24,7 +24,7 @@ class PostulerController extends AbstractController
     }
 
     /**
-     * @Route("/add_postuler", name="add_postuler")
+     * @Route("/add_p", name="add_p")
      */
     public function postuler(Request $request)
     {
@@ -35,35 +35,16 @@ class PostulerController extends AbstractController
             $file=$form->get('cv')->getData();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'),$filename);
-            $postuler->setCv($file);
-            $postuler->setUserId(1);
+           $postuler->setCv($file);
+            /*$postuler->setUserId(1);
             $postuler->setAnnonceId(11);
-            $postuler->setEmail("siwarbenkraiem98@gmail.Com");
+            $postuler->setEmail("siwarbenkraiem98@gmail.Com");*/
             $em=$this->getDoctrine()->getManager();
             $em->persist($postuler);
             $em->flush();
 
 
 
-
-            /* if ($file) {
-                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                 // this is needed to safely include the file name as part of the URL
-                 $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                 $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
-
-                 // Move the file to the directory where brochures are stored
-                 try {
-                     $file->move(
-                         $this->getParameter('upload_directory'),
-                         $newFilename
-                     );
-                 } catch (FileException $e) {
-                     // ... handle exception if something happens during file upload
-                 }
-
-                 $postuler->setCv( $newFilename);
-             }*/
 
          }
 

@@ -1,5 +1,25 @@
 {% extends "baseFront.html.twig" %}
 {% block section     %}
 {{ form(form) }}
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1"> Message Et Motivation</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+
+        <section class="section-preview">
+
+            <form class="md-form my-3">
+                <div class="file-field">
+                    <div class="btn btn-primary btn-sm float-left waves-effect waves-light">
+                        <span>Choose file</span>
+                        <input type="file">
+                    </div>
+
+                </div>
+            </form>
+
+        </section>
+
+
 
 {% endblock %}
