@@ -1,0 +1,29 @@
+
+{% extends "baseFront.html.twig" %}
+
+{% block section %}
+
+    <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
+        <h5>Ajouter une categorie</h5>
+
+        {{ form_start(form) }}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">titre</label>
+                {{ form_widget(form.type, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+
+
+        <div style="text-align: center" class="form-group">
+            {{ form_widget(form.Ajouter, { 'attr' : { 'class' : 'btn btn-primary' } }) }}
+
+        </div>
+
+
+
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+

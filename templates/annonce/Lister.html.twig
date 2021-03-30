@@ -1,0 +1,107 @@
+
+{% extends "baseFront.html.twig" %}
+ {% block section  %}
+
+
+     <input class="form-control focus-reset pl-13" onkeyup="myFunction()" type="text" id="keyword" placeholder="searche">
+
+    <div>
+        <table border ="1" id="t" class="table table-hover table-dark">
+            <thead class="thead-dark">
+            <tr>
+                <td  >Name</td>
+                <td >Description</td>
+                <td >Date</td>
+                <td >Editer</td>
+                <td >Supprimer</td>
+            </tr>
+            </thead>
+            <tbody id="aller">
+            {% for annonce in list %}
+                <tr>
+                    <td>
+                        <a href="{{path('show', {'id': annonce.id}) }} "> {{ annonce.nom }}</a>
+                    </td>
+                    <td>
+                        {{ annonce.description }}
+                    </td>
+                    <td>
+                        {{ annonce.date|date('Y-m-d') }}
+                    </td>
+                    <td>
+                        <a href="{{path('modify', {'id': annonce.id}) }} "> modifier</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('delete', {'id': annonce.id}) }}"> supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tbody id="search">
+            </tbody>
+        </table>
+    </div>
+     <script>
+         function myFunction() {
+             var p = document.getElementById("keyword").value;
+             console.log(p);
+
+             $.ajax({
+                 /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                 url : "{{ path('search') }}",
+                 /* La méthode utilisée pour transférer les données est GET */
+                 type : 'GET',
+                 /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                 data: {
+                     'searchValue' : p
+                 },
+                 /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                 success : function(data){
+                     $('#t tbody#aller').html(data);
+                 },
+             });
+         }
+     </script>
+{% endblock %}
+{% block scripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#search").keyup(function(e){
+                var value = $(this).val();
+                console.log(value);
+
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('search') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#search').empty();
+                            $.each(JSON.parse(retour), function(i, obj) {
+                                $('#t tbody#all').hide();
+                                $('#t tbody#search').append('<tr><td> '+obj.nom+'  </td><td>  '+obj.description+'  </td><td>'+obj.date+' </td><td><a href="modify/'+obj.id+'">modifier</a></td> <td><a href="delete/'+obj.id+'">supprimer</a></td></tr>');
+                            });
+                        }
+                        else
+                        {
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
