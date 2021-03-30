@@ -72,7 +72,7 @@ class ConcourController extends Controller
         $concour = $this->getDoctrine()->getRepository(Concour::class)->find($id);
 
         $participation = $this->getDoctrine()->getRepository(Participation::class)->findByUser($this->getUser());
-        $m = $participation = $this->getDoctrine()->getRepository(Participation::class)->findBy(['user' => $this->getUser(), 'concour' => $concour]);
+//        $m = $participation = $this->getDoctrine()->getRepository(Participation::class)->findBy(['user' => $this->getUser(), 'concour' => $concour]);
 //        if (($m != null) || in_array('ROLE_TALENTED',
 //                $this->getUser()->getRoles()))
 //        return $this->redirectToRoute('competition_index');
@@ -289,4 +289,8 @@ class ConcourController extends Controller
 
         ));
     }
+
+
+
+
 }

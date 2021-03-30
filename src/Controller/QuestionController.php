@@ -8,6 +8,7 @@ use App\Entity\Quiz;
 use App\Entity\Reponsetab;
 use App\Entity\Score;
 use App\Entity\User;
+use App\Entity\Video;
 use App\Repository\ConcoursRepository;
 use App\Repository\QuestiontabRepository;
 use App\Repository\QuizRepository;
@@ -91,9 +92,22 @@ class QuestionController extends Controller
     /**
      * @Route("/participer/{id}", name="participerConcours")
      */
-    public function participerConcours()
+    public function participerConcours($id)
     {
-        $concour=$this->repConcour->findAll();
+        $concour=$this->repConcour->find($id);
+        $participation = $this->getDoctrine()->getRepository(Participation::class)->findByUser($this->getUser());
+$em=$this->getDoctrine()->getManager();
+        $participation = new Participation();
+//        $user = $this->getUser();
+        $user = $this->getDoctrine()->getRepository(User::class)->find('2');
+
+        $participation->setConcour($concour);
+//            $participation->setParticipationDate($video->getPublishDate());
+        $video=$this->getDoctrine()->getRepository(Video::class)->find('0');
+        $participation->setUser($user);
+        $participation->setVideo($video);
+        $em->persist($participation);
+        $em->flush();
         return $this->render('pages/home.html.twig',['concour'=>$concour]);
     }
 

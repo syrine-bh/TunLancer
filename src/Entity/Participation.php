@@ -29,25 +29,8 @@ class Participation
      */
     private $user;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $note;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $userAgent;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $addrIP;
-
-//    /**
-//     * @ORM\OneToOne(targetEntity=score::class, cascade={"persist", "remove"})
-//     */
-//    private $score;
 
     public function getId(): ?int
     {
@@ -78,53 +61,7 @@ class Participation
         return $this;
     }
 
-    public function getNote(): ?int
-    {
-        return $this->note;
-    }
 
-    public function setNote(?int $note): self
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    public function getUserAgent(): ?string
-    {
-        return $this->userAgent;
-    }
-
-    public function setUserAgent(?string $userAgent): self
-    {
-        $this->userAgent = $userAgent;
-
-        return $this;
-    }
-
-    public function getAddrIP(): ?string
-    {
-        return $this->addrIP;
-    }
-
-    public function setAddrIP(?string $addrIP): self
-    {
-        $this->addrIP = $addrIP;
-
-        return $this;
-    }
-
-//    public function getScore(): ?score
-//    {
-//        return $this->score;
-//    }
-//
-//    public function setScore(?score $score): self
-//    {
-//        $this->score = $score;
-//
-//        return $this;
-//    }
     /**
      * @ORM\ManyToOne(targetEntity="Video")
      * @ORM\JoinColumn(name="video_id", referencedColumnName="id" ,onDelete="CASCADE")
@@ -132,7 +69,7 @@ class Participation
     private $video;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true,options={"default": "CURRENT_TIMESTAMP"})
      */
     private $dateParticipation;
 
