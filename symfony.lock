@@ -105,6 +105,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.2.0"
     },
+    "mercuryseries/flashy-bundle": {
+        "version": "v3.0.2"
+    },
     "monolog/monolog": {
         "version": "1.26.0"
     },
@@ -112,11 +115,9 @@
         "version": "v4.10.4"
     },
     "php": {
-<<<<<<< HEAD
-        "version": "7.2"
-=======
+
         "version": "7.3"
->>>>>>> Recrutement
+
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
