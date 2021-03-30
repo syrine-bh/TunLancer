@@ -53,12 +53,16 @@
                                     <!-- card-btn-group start -->
                                     <div class="card-btn-group">
                                         {% if (c.dateFin | date('Y-m-d')) > (  "now"|date('Y-m-d') ) %}
+                                            {% if not c.isVideo %}
+                                                {% for q in c.quiz %}
 
-                                            {% for q in c.quiz %}
-
+                                                    <a class="btn btn-green text-uppercase btn-medium rounded-3 w-180 mr-4 mb-5"
+                                                       href="{{ path ('participerConcours',{'id':q.id}) }}">Participer</a>
+                                                {% endfor %}
+                                            {% else %}
                                                 <a class="btn btn-green text-uppercase btn-medium rounded-3 w-180 mr-4 mb-5"
-                                                   href="{{ path ('participerConcours',{'id':q.id}) }}">Participer</a>
-                                            {% endfor %}
+                                                   href="{{ path ('concourV',{'id':c.id}) }}">Participer</a>
+                                            {% endif %}
                                         {% else %}
                                             {% for q in c.quiz %}
 
@@ -114,7 +118,7 @@
                                                 <a class="btn btn-green text-uppercase btn-medium w-180 h-px-48 rounded-3 mr-4 mt-6"
                                                    href="{{ path ('participerConcours',{'id':q.id}) }}">Participer</a>
                                             {% endfor %}
-                                       {% endif %}
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

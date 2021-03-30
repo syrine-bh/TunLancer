@@ -92,6 +92,11 @@ class Concour
      */
     private $isVideo;
 
+    /**
+     * @ORM\Column(type="string", length=7, nullable=true)
+     */
+    private $couleur;
+
     public function __construct()
     {
         $this->participations = new ArrayCollection();
@@ -310,6 +315,18 @@ class Concour
     public function setIsVideo(bool $isVideo): self
     {
         $this->isVideo = $isVideo;
+
+        return $this;
+    }
+
+    public function getCouleur(): ?string
+    {
+        return $this->couleur;
+    }
+
+    public function setCouleur(?string $couleur): self
+    {
+        $this->couleur = $couleur;
 
         return $this;
     }

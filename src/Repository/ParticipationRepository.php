@@ -38,6 +38,26 @@ class ParticipationRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+    public function findOneByConcour($concour): ?Participation
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.concour = :val')
+            ->setParameter('val', $concour)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+    public function findByConcour($idConcour)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.concour = :val')
+            ->setParameter('val', $idConcour)
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     public function findRanks($id)
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -61,6 +81,17 @@ class ParticipationRepository extends ServiceEntityRepository
 
 
     }
+    /**
+     * Returns number of "participations" per day
+     * @return void
+     */
+    public function countByDate(){
 
+        $query = $this->getEntityManager()->createQuery("
+                SELECT SUBSTRING(a.dateParticipation, 1, 10) as dateParticipation, COUNT(a) as count FROM App\Entity\Participation 
+                a GROUP BY dateParticipation
+        ");
+        return $query->getResult();
+    }
 }
 

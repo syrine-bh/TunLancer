@@ -38,40 +38,44 @@
                                 </tbody>
                             </table>
 
+                            {{ knp_pagination_render(scores) }}
 
-                        </div>
+
+                       </div>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-    <div id="ranking">
-        {{ render(controller(
-            'App\\Controller\\QuizController:ranking', {
-                'id':app.request.get('id')
-            }
+    {% if (quiz.concour.dateFin | date('Y-m-d')) < (  "now"|date('Y-m-d') ) %}
+        <div id="ranking">
+            {{ render(controller(
+                'App\\Controller\\QuizController:ranking', {
+                    'id':app.request.get('id')
+                }
 
-        )) }}
-    </div>
-<div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;"
-     class="container">
-    <header class="section-header">
-        <h2 class="section-title text-black text-center">Informez les champions !</h2>
-    </header>
+            )) }}
+        </div>
 
-    {% set id =0 %}
-        {% for score in rank %}
-            {% set id=id+1 %}
-            {% if (quiz.concour.dateFin | date('Y-m-d')) < (  "now"|date('Y-m-d') ) %}
+        <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;"
+             class="container">
+            <header class="section-header">
+                <h2 class="section-title text-black text-center">Informez les champions !</h2>
+            </header>
+
+            {% set id =0 %}
+            {% for score in rank %}
+                {% set id=id+1 %}
+                {% if (quiz.concour.dateFin | date('Y-m-d')) < (  "now"|date('Y-m-d') ) %}
                     <a href="{{ path ('promote_user',{'id':score.user.id }) }}">
                         <button type="button" class="btn btn-primary mb-5 text-center">
                             Promote {{ score.user.nom }} {{ score.user.prenom }}</button>
                     </a>
-            {% endif %}
+                {% endif %}
 
-        {% endfor %}
+            {% endfor %}
 
-</div>
-
+        </div>
+    {% endif %}
 {% endblock %}

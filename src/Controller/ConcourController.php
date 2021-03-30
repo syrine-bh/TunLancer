@@ -10,16 +10,16 @@ use App\Entity\Video;
 use App\Form\ConcoursType;
 use App\Form\VideoType;
 use Doctrine\Common\Collections\ArrayCollection;
-//use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller ;
 
-class ConcourController extends AbstractController
+class ConcourController extends Controller
 {
 //    /**
 //     * @Route("/concour", name="concour")
@@ -35,34 +35,38 @@ class ConcourController extends AbstractController
      * @return Response
      * @Route ("/concour/list",name="list")
      */
-    public function list (){
-        $repo=$this->getDoctrine()->getRepository(Concour::class);
-        $concours=$repo->findAll();
-        return $this->render('concour/list.html.twig',['concour'=>$concours]);
+    public function list(Request $request, PaginatorInterface $paginator)
+    {
+        $donnees = $this->getDoctrine()->getRepository(Concour::class)->findAll();
+
+        $concour = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            3);
+        return $this->render('concour/list.html.twig', ['concour' => $concour]);
     }
 
     /**
      * @Route ("/concour/descriptionConcours/{id}",name="descriptionConcours")
      */
-    public function descriptionConcours($id){
-        $repo=$this->getDoctrine()->getRepository(Concour::class);
-        $concour=$repo->findAll();
-        return $this->render('/concour/descriptionConcours.html.twig',[
-            'concour'=>$concour
+    public function descriptionConcours($id)
+    {
+        $repo = $this->getDoctrine()->getRepository(Concour::class);
+        $concour = $repo->findAll();
+
+        return $this->render('/concour/descriptionConcours.html.twig', [
+            'concour' => $concour
         ]);
     }
 
 
-
     /**
-     * Creates a new competition entity.
-     *
      * @Route("concourV/participate/{id}", name="concourV", requirements={"id":"\d+"}))
      * @param Request $request
      * @param concour $id
      * @return RedirectResponse|Response
      */
-    public function newVideoAction(Request $request, concour $id)
+    public function newVideoAction(Request $request, concour $id,PaginatorInterface $paginator)
     {
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $concour = $this->getDoctrine()->getRepository(Concour::class)->find($id);
@@ -97,7 +101,7 @@ class ConcourController extends AbstractController
 
         return $this->render('concour/participationVideo.html.twig', array(
             'video' => $video, 'participant' => $participation,
-            'concour'=>$concour,
+            'concour' => $concour,
             'form' => $form->createView(),
         ));
     }
@@ -107,31 +111,28 @@ class ConcourController extends AbstractController
      * @param concour $id
      * @return Response
      */
-    public function show($id, Request $request)
+    public function show($id, Request $request,PaginatorInterface $paginator)
     {
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-//        $paginator = $this->get(PaginatorInterface::class);
         $concour = $this->getDoctrine()->getRepository(Concour::class)->find($id);
         $participations = $this->getDoctrine()->getRepository(Participation::class)->findByConcour($id);
-//        $pagination = $paginator->paginate($participations, $request->query->getInt('page', 1), 3);
-        $user= $this->getDoctrine()->getRepository(User::class)->find($id);
-        $scoresUser=$this->getDoctrine()->getRepository(Score::class)->FindByQuizId($id);
-        usort($scoresUser,  array("App\Entity\Score", "compareScores"));
+        $pagination = $paginator->paginate($participations, $request->query->getInt('page', 1), 3);
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $scoresUser = $this->getDoctrine()->getRepository(Score::class)->FindByQuizId($id);
+        usort($scoresUser, array("App\Entity\Score", "compareScores"));
         $ranks = $this->getDoctrine()->getRepository(Participation::class)->findRanks($id);
 
         $res = new ArrayCollection();
         foreach ($ranks as $r) {
-            $vid = $this->getDoctrine()->getRepository(video::class)->findById($r['video_id']);
+            $vid = $this->getDoctrine()->getRepository(Video::class)->findById($r['video_id']);
 
             $res->add($vid);
 
         }
 
-        return ($this->render('concour/concourVlist.html.twig', array('concour' => $concour, 'participations' => $participations,
-            'ranks' => $res,'user'=>$user, 'scores' => array_slice($scoresUser, 0, 3) ))
-        );
+        return ($this->render('concour/concourVlist.html.twig', array('concour' => $concour,'user'=>$user,
+            'participations' => $pagination, 'ranks' => $res)));
     }
-
 
 
     /**
@@ -142,14 +143,14 @@ class ConcourController extends AbstractController
     {
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 //        $user = $this->getUser();
-        $user=$this->getDoctrine()->getRepository(User::class)->find('4');
+        $user = $this->getDoctrine()->getRepository(User::class)->find('2');
         $video = $this->getDoctrine()->getRepository(Video::class)->find($id);
         $video->getVotes()->add($user);
         $em = $this->getDoctrine()->getManager();
         $em->persist($video);
         $em->flush();
-      return new Response();
-      return $this->redirectToRoute('concour_vote');
+        return new Response();
+        return $this->redirectToRoute('concourVlist');
 
     }
 
@@ -161,7 +162,7 @@ class ConcourController extends AbstractController
     {
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 //        $user = $this->getUser();
-        $user=$this->getDoctrine()->getRepository(User::class)->find('4');
+        $user = $this->getDoctrine()->getRepository(User::class)->find('1');
 
         $video = $this->getDoctrine()->getRepository(video::class)->find($id);
         $video->getVotes()->removeElement($user);
@@ -192,9 +193,10 @@ class ConcourController extends AbstractController
 
         }
 
-        return ($this->render('pages/ranksV.html.twig', ['ranks' => $res]
+        return ($this->render('pages/ranksV.html.twig', ['res' => $res]
         ));
     }
+
     /**
      * @param Request $request
      * @param NormalizerInterface $normalizer
@@ -203,15 +205,16 @@ class ConcourController extends AbstractController
      * @Route("rechercheConcour", name="rechercheConcour")
      */
 
-    public function rechercheConcour(Request $request, NormalizerInterface $normalizer){
+    public function rechercheConcour(Request $request, NormalizerInterface $normalizer)
+    {
 
         $repository = $this->getDoctrine()->getRepository(Concour::class);
-        $requestString=$request->get('searchValue');
+        $requestString = $request->get('searchValue');
 
         $concour = $repository->findConcourByNom($requestString);
 
         return $this->render("concour/list.html.twig",
-            ['concour'=>$concour]);
+            ['concour' => $concour]);
     }
 //    /**
 //     * @param Request $request
@@ -233,60 +236,57 @@ class ConcourController extends AbstractController
 
 
 
-//
-//    /**
-//     * Deletes a competition entity.
-//     *
-//     * @Route("/competition/participation/delete/{id}", name="participation_delete")
-//     * @Method("DELETE")
-//     * @param Request $request
-//     * @param competition_participant $id
-//     * @return Response
-//     */
-//    public function participationDeleteAction(Request $request, competition_participant $id)
-//    {
+    /**
+     * Deletes a competition entity.
+     *
+     * @Route("/concour/participation/delete/{id}", name="participation_delete")
+     * @param Request $request
+     * @param Participation $id
+     * @return Response
+     */
+    public function participationDeleteAction(Request $request, Participation $id)
+    {
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-//        $participation = $this->getDoctrine()->getRepository(competition_participant::class)->find($id);
-//        $video = $participation->getVideo();
-//        $entityManager = $this->getDoctrine()->getManager();
-//        $entityManager->remove($participation);
-//        $entityManager->remove($video);
-//        $entityManager->flush();
-//
-//        $response = new Response();
-//        $response->send();
-//
-//        return $this->redirectToRoute('competition_show', ['id' => $participation->getcompetition()->getid()]);
-//    }
-//
-//    /**
-//     * Displays a form to edit an existing competition entity.
-//     *
-//     * @Route("/participation/{id}", name="participation_edit")
-//     * @Method({"GET", "POST"})
-//     * @param Request $request
-//     * @param competition_participant $id
-//     * @return RedirectResponse|Response
-//     */
-//    public function participationEditAction(Request $request, competition_participant $id)
-//    {
+        $participation = $this->getDoctrine()->getRepository(Participation::class)->find($id);
+        $video = $participation->getVideo();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($participation);
+        $entityManager->remove($video);
+        $entityManager->flush();
+
+        $response = new Response();
+        $response->send();
+
+        return $this->redirectToRoute('concourVlist', ['id' => $participation->getConcour()->getid()]);
+    }
+
+    /**
+     * Displays a form to edit an existing competition entity.
+     *
+     * @Route("/participation/{id}", name="participation_edit")
+     * @param Request $request
+     * @param Participation $id
+     * @return RedirectResponse|Response
+     */
+    public function participationEditAction(Request $request, Participation $id)
+    {
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-//        $participation = new competition_participant();
-//        $participation = $this->getDoctrine()->getRepository(competition_participant::class)->find($id);
-//        $video = $participation->getVideo();
-//        $editForm = $this->createForm('CompetitionsBundle\Form\videoType', $video);
-//        $editForm->handleRequest($request);
-//
-//        if ($editForm->isSubmitted() && $editForm->isValid()) {
-//            $this->getDoctrine()->getManager()->flush();
-//
-//            return $this->redirectToRoute('competition_show', ['id' => $participation->getcompetition()->getid()]);
-//        }
-//
-//        return $this->render('CompetitionsBundle:Default:participation_edit.html.twig', array(
-//
-//            'form' => $editForm->createView(), 'participation' => $participation
-//
-//        ));
-//    }
+        $participation = new Participation();
+        $participation = $this->getDoctrine()->getRepository(Participation::class)->find($id);
+        $video = $participation->getVideo();
+        $editForm = $this->createForm(VideoType::class, $video);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('concourVlist', ['id' => $participation->getConcour()->getid()]);
+        }
+
+        return $this->render('concour/participation_edit.html.twig', array(
+
+            'form' => $editForm->createView(), 'participation' => $participation
+
+        ));
+    }
 }

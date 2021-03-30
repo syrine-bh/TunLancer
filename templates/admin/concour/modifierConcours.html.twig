@@ -43,10 +43,21 @@
                             <label for="imageName">Image</label>
                             {{ form_widget(form.imageName, { 'attr' : { 'class' : 'form-control' } }) }}
                         </div>
+                        <div class="form-group col-md-10">
+                            <label for="isVideo">ce concours est un concours de videos ?</label>
+                            {{ form_widget(form.isVideo, { 'attr' : { 'class' : 'form-control' } }) }}
+                        </div>
+                        <div class="form-group col-md-10">
+                            <label for="Color">Couleur</label>
+                            {{ form_widget(form.couleur, { 'attr' : { 'class' : 'form-control' } }) }}
+                        </div>
+
                         <br>
                         <div class="col-sm-6 pl-0">
-                                <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-space btn-secondary">Cancel</button>
+{#                            <a href="{{ path('notification',{'idConcour':app.request.get('id') }) }}" button type="submit" class="btn btn-space btn-success">submit</a></button>#}
+                            <button type="submit" class="btn btn-space btn-secondary">Submit</button>
+
+                            <button type="reset" class="btn btn-space btn-secondary">Cancel</button>
                         </div>
                         {{ form_end(form) }}
 
@@ -55,6 +66,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 {% endblock %}
 

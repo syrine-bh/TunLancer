@@ -7,6 +7,7 @@ use App\Entity\Concour;
 use App\Entity\Quiz;
 use App\Entity\Reponsetab;
 use App\Entity\Score;
+use App\Entity\User;
 use App\Repository\ConcoursRepository;
 use App\Repository\QuestiontabRepository;
 use App\Repository\QuizRepository;
@@ -115,90 +116,6 @@ class QuestionController extends Controller
         return $this->render('pages/quiz.html.twig',['questions'=>$questions]);
 
     }
-
-//
-//    /**
-//     * @Route("/quizConcour{id}", name="quizConcour")
-//     */
-//    public function quizConcour($id)
-//    {
-//        $concour=$this->repConcour->findAll();
-//      $questions=$this->repQuestion->FindByQuizId($id);
-//        $quiz=$this->repQuiz->findAll();
-//        return $this->render('pages/home.html.twig',['concour'=>$concour,
-//            'quiz'=>$quiz]);
-//    }
-
-
-
-
-
-
-
-//    /**
-//     * @Route("/quizHome{id}", name="quizHome")
-//     */
-//    public function quiz($id)
-//    {   $repo=$this->getDoctrine()->getRepository(Concour::class);
-//        $concour=$repo->findAll();
-////        $questions=$this->repQuestion->FindByQuizId($id);
-//        return $this->render('pages/home.html.twig',['questions'=>$questions,
-//            'concour'=>$concour]);
-//    }
-
-//    /**
-//     * @Route ("/question/{id}",name="quiz")
-//     */
-//    public function question(Concour $concour, QuestiontabRepository $rep){
-//        $test=$rep->FindByConcId($concour->getId());
-//        return $this->render('pages/quiz.html.twig',['questions'=>$test]);
-//
-//    }
-
-
-
-
-//    /**
-//     * @Route("/score", name="score")
-//     */
-//    public function score()
-//    {
-//        $scoresUser=$this->repScore->findAll();//recuperation des scores
-//
-//        return $this->render('pages/score.html.twig',['scores'=>$scoresUser]);
-//    }
-//    /**
-//     * @Route("/result", name="result")
-//     */
-//    public function result()
-//    {
-//        /*
-//         si le formulaire n'est pas soumit ou si on accès d'accedé a la vue result
-//        par url, une redirection est encrenché vers la page d'acceuile.
-//         */
-//        if (!isset($_POST['pseudo'])){
-//            return $this->redirectToRoute('home');
-//        }else{
-//            $score=$this->findScore($_POST);// on appelle fontions  traitement post =>score
-//            $em=$this->getDoctrine()->getManager();//initialisation atity manager de doctrine
-//            $pseudo=$this->repScore->findOneBy(array('pseudo'=>$_POST['pseudo']));//essai recupération pseudo de l'entité score = post['pseudo']
-//            if (!$pseudo){ //false! enregistrer le  pseudo et le score dans la base
-//                $repScore=new Score();
-//                $repScore->setPseudo($_POST['pseudo'])
-//                    ->setScore($score);
-//                $em=$this->getDoctrine()->getManager();
-//                $em->persist($repScore);
-//                $em->flush();
-//            }else{
-//                //true! mettre a jour le score du pseudo
-//                $pseudo->setScore($score);
-//                $em->flush();
-//            }
-//            //envoie du score a la vue
-//            return $this->render('pages/result.html.twig',['score'=>$score]);
-//        }
-//
-//    }
 //    /**
 //     * @Route("/ranking", name="ranks_feed")
 //
@@ -210,6 +127,47 @@ class QuestionController extends Controller
 //        usort($scoresUser,  array("App\Entity\Score", "compareScores"));
 //      return ($this->render('pages/ranks.html.twig', array('scores' => array_slice($scoresUser, 0, 3) )));
 //    }
+
+
+    /**
+     * @Route("/notificationModification/{idConcour}/{idUser}", name="notificationModification")
+     * @param User $id
+     * @return Response
+     *
+     */
+    public function notificationModification($idConcour, $idUser)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $concour=$this->repConcour->find($idConcour);
+        $participant = $this->getDoctrine()->getRepository(Participation::class)->findByConcour($concour);
+        $user=$em->getRepository(User::class)->find($idUser);
+
+        $message = (new \Swift_Message('Update Email'))
+            ->setFrom('tunlancer.coders@gmail.com')
+            ->setTo($user->getEmail());
+        $message->setBody(
+            '<html>' .
+            ' <body>' .
+            '  <h1>Modification date concours</h1><br><img src="' .
+            $message->embed(\Swift_Image::fromPath('D:\congrats.png')) .
+            '" alt="Image" />' .
+            ' Madame/Monsieur,' .
+            'Nous vous prions de bien vouloir noter que la date de Concours à était modifiée' .
+
+            ' </body>' .
+            '</html>',
+            'text/html');
+        $this->get('mailer')->send($message);
+//        $em = $this->getDoctrine()->getManager();
+//        $em->persist($participant);
+//        $em->flush();
+        return $this->redirectToRoute('listCadmin');
+        return $this->render("admin/concour/notifMail.html.twig",[
+
+            'idUser'=>$user,'participant'=>$participant]);
+
+    }
+
 
     /**
      * @Route("/promote/{id}", name="promote_user")
@@ -238,11 +196,8 @@ class QuestionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($genius);
         $em->flush();
-        return $this->redirectToRoute('adminHome');
+        return $this->redirectToRoute('list');
 
 
     }
-
-
-
 }

@@ -49,6 +49,11 @@ class Quiz
      */
     private $scores;
 
+    /**
+     * @ORM\Column(type="string", length=7, nullable=true)
+     */
+    private $couleur;
+
 
 
     public function __construct()
@@ -185,6 +190,18 @@ class Quiz
                 $score->setQuiz(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCouleur(): ?string
+    {
+        return $this->couleur;
+    }
+
+    public function setCouleur(?string $couleur): self
+    {
+        $this->couleur = $couleur;
 
         return $this;
     }

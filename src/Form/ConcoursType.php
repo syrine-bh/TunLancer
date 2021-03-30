@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Concour;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -42,13 +43,12 @@ class ConcoursType extends AbstractType
                     'placeholder'=>"Donnez catégorie"
                 ]
             ])
+            ->add('couleur',ColorType::class)
+
             ->add('imageName',ImageConcourType::class,
                 [    'label' => false,
                     'mapped' => false,
                     'required' => false
-
-
-
                 ])
             ->add('isVideo')
             ;

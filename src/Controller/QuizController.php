@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Quiz;
 use App\Entity\Score;
+use App\Entity\Stars;
+use Knp\Component\Pager\PaginatorInterface;
 use Swift_Message;
 use App\Form\QuizType;
 use App\Repository\ConcoursRepository;
@@ -96,13 +98,17 @@ class QuizController extends AbstractController implements \ArrayAccess
     /**
      * @Route ("/scoreQ/{id}",name="scoreQ")
      */
-    public function scoreQ($id)
+    public function scoreQ($id,Request $request,PaginatorInterface $paginator)
     {
         $quiz = $this->repQuiz->findQuiz($id);
-        $scoresUser = $this->repScore->FindByQuizId($id);//recuperation des score de chaque quiz
-        usort($scoresUser, array("App\Entity\Score", "compareScores"));
-        $rank = array_slice($scoresUser, 0, 3);
 
+        $donnees = $this->repScore->FindByQuizId($id);//recuperation des score de chaque quiz
+        usort($donnees, array("App\Entity\Score", "compareScores"));
+        $rank = array_slice($donnees, 0, 3);
+        $scoresUser= $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            6);
         return $this->render('pages/score.html.twig', ['scores' => $scoresUser, 'quiz' => $quiz, 'rank' => $rank]);
 
     }
@@ -173,6 +179,7 @@ class QuizController extends AbstractController implements \ArrayAccess
         return ($this->render('pages/ranks.html.twig', array('scores' => array_slice($scoresUser, 0, 3),
             'rank' => $rank)));
     }
+
 
 
 }

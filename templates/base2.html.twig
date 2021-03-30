@@ -76,7 +76,7 @@
                             <nav class="classy-navbar justify-content-between" id="musicaNav">
 
                                 <!-- Nav brand -->
-                                <a href="{{ path('home') }}" class="nav-brand"><img src="{{asset('assets2/img/core-img/logo.png')}}" alt=""></a>
+                                <a href="{{ path('list') }}" class="nav-brand"><img src="{{asset('assets2/img/core-img/logo.png')}}" alt=""></a>
 
                                 <!-- Navbar Toggler -->
                                 <div class="classy-navbar-toggler">
@@ -95,7 +95,7 @@
                                     <div class="classynav">
 
                                         <ul>
-                                            <li><a href="{{ path('home') }}" class="">Home
+                                            <li><a href="{{ path('list') }}" class="">list
                                                     <div class="equalizer">
                                                         <span class="bar bar-1"></span>
                                                         <span class="bar bar-2"></span>
@@ -110,7 +110,7 @@
                                                     </div></a></li>
                                             {% if  app.user %}
 
-                                                <li><a href="{{ path('home',{'id':app.user.id}) }}" class="show">Profile
+                                                <li><a href="{{ path('list',{'id':app.user.id}) }}" class="show">Profile
                                                         <div class="equalizer">
                                                             <span class="bar bar-1"></span>
                                                             <span class="bar bar-2"></span>
@@ -123,9 +123,9 @@
                                                             <span class="bar bar-9"></span>
                                                             <span class="bar bar-10"></span>
                                                         </div></a></li>
-                                                <li><a href="{{ path('home') }}" class="show">Competitions
-                                                
-                                               
+                                                <li><a href="{{ path('list') }}" class="show">Competitions
+
+
                                                         <div class="equalizer">
                                                             <span class="bar bar-1"></span>
                                                             <span class="bar bar-2"></span>
@@ -138,7 +138,7 @@
                                                             <span class="bar bar-9"></span>
                                                             <span class="bar bar-10"></span>
                                                         </div></a></li>
-                                                <li><a href="{{ path('home') }}" class="show">Shop
+                                                <li><a href="{{ path('list') }}" class="show">Shop
                                                         <div class="equalizer">
                                                             <span class="bar bar-1"></span>
                                                             <span class="bar bar-2"></span>
@@ -152,7 +152,7 @@
                                                             <span class="bar bar-10"></span>
                                                         </div></a></li>
                                             {% endif %}
-                                            <li><a href="{{ path('home') }}" class="show">Events
+                                            <li><a href="{{ path('list') }}" class="show">Events
                                                     <div class="equalizer">
                                                         <span class="bar bar-1"></span>
                                                         <span class="bar bar-2"></span>
@@ -165,7 +165,7 @@
                                                         <span class="bar bar-9"></span>
                                                         <span class="bar bar-10"></span>
                                                     </div></a></li>
-                                            <li><a href="{{ path('home') }}" class="">News
+                                            <li><a href="{{ path('list') }}" class="">News
                                                     <div class="equalizer">
                                                         <span class="bar bar-1"></span>
                                                         <span class="bar bar-2"></span>
@@ -180,7 +180,7 @@
                                                     </div></a>
 
                                             </li>
-                                            <li><a href="{{ path('home') }}" class="show">Blog
+                                            <li><a href="{{ path('list') }}" class="show">Blog
                                                     <div class="equalizer">
                                                         <span class="bar bar-1"></span>
                                                         <span class="bar bar-2"></span>
@@ -195,7 +195,7 @@
                                                     </div></a>
 
                                             </li>
-                                            <li><a href="{{path('home')}}" class="show">Rate Us
+                                            <li><a href="{{path('list')}}" class="show">Rate Us
                                                     <div class="equalizer">
                                                         <span class="bar bar-1"></span>
                                                         <span class="bar bar-2"></span>
@@ -208,7 +208,7 @@
                                                         <span class="bar bar-9"></span>
                                                         <span class="bar bar-10"></span>
                                                     </div></a></li>
-                                            <li><a href="{{ path('home') }}" class="show">Contact us
+                                            <li><a href="{{ path('list') }}" class="show">Contact us
                                                     <div class="equalizer">
                                                         <span class="bar bar-1"></span>
                                                         <span class="bar bar-2"></span>
@@ -235,7 +235,7 @@
 {#                                        <a href="{{ path('fos_user_registration_register') }}"  class="btn musica-btn m-2 log">Register now!</a>#}
 {#                                        {% else %}#}
 {#                                        {% if  app.user.roles[0] is same as ('ROLE_ADMIN') %}#}
-{#                                            <a  href="{{ path('admin') }}"  class="btn musica-btn btn-3 m-2"   >Dashboard</a>#}
+{#                                            <a  href="{{ path('adminHome') }}"  class="btn musica-btn btn-3 m-2"   >Dashboard</a>#}
 {#                                            {% endif %}#}
 {#                                            <a  href="{{ path('fos_user_security_logout') }}"  class="btn musica-btn btn-3 m-2"   >Log Out!</a>#}
 {#                                        {% endif %}#}

@@ -1,4 +1,17 @@
 {
+    "andchir/shopkeeper4-comments": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "8a05fa761a475e2e95f7b556e54d9ab33d532aa9"
+        },
+        "files": [
+            "./config/packages/comments.yaml",
+            "./config/routes/comments.yaml"
+        ]
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
@@ -25,6 +38,9 @@
     },
     "doctrine/dbal": {
         "version": "2.10.4"
+    },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
     },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
@@ -81,8 +97,44 @@
     "egulias/email-validator": {
         "version": "2.1.25"
     },
+    "firebase/php-jwt": {
+        "version": "v3.0.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
+    },
+    "google/apiclient": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "49c5d7a66d863d28513979bf0666dc77599100c0"
+        },
+        "files": [
+            "./config/packages/google_apiclient.yaml"
+        ]
+    },
+    "google/apiclient-services": {
+        "version": "v0.165.0"
+    },
+    "google/auth": {
+        "version": "v0.8"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.2.0"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.4.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.2.3"
+    },
+    "knplabs/knp-components": {
+        "version": "v2.5.1"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.3.0"
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
@@ -111,11 +163,17 @@
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
     },
+    "phpseclib/phpseclib": {
+        "version": "2.0.30"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
     "psr/container": {
         "version": "1.1.1"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
     },
     "psr/link": {
         "version": "1.0.0"

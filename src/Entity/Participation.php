@@ -132,6 +132,11 @@ class Participation
     private $video;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateParticipation;
+
+    /**
      * @return mixed
      */
     public function getVideo()
@@ -145,5 +150,17 @@ class Participation
     public function setVideo($video)
     {
         $this->video = $video;
+    }
+
+    public function getDateParticipation(): ?\DateTimeInterface
+    {
+        return $this->dateParticipation;
+    }
+
+    public function setDateParticipation(?\DateTimeInterface $dateParticipation): self
+    {
+        $this->dateParticipation = $dateParticipation;
+
+        return $this;
     }
 }
