@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Annonce;
 use App\Entity\Postuler;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -19,6 +21,11 @@ class PostulerType extends AbstractType
         $builder
 
             ->add('email')
+          /*  ->add('annonce',EntityType::class,[
+                'class' => Annonce::class,
+                'choice_label' => 'nom',
+
+            ])*/
             ->add('nom')
             ->add('prenom')
             ->add('message')

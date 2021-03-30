@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\DocBlock\Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -71,6 +73,18 @@ class Annonce
      * @Assert\NotBlank(message="renumeration is required")
      */
     private $renumeration;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Postuler::class, mappedBy="annonce")
+     */
+    private $postuler;
+
+
+    public function __construct()
+    {
+        $this->postulers = new ArrayCollection();
+        $this->postuler = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -148,4 +162,36 @@ class Annonce
 
         return $this;
     }
+
+    /**
+     * @return Collection|Postuler[]
+     */
+    public function getPostuler(): Collection
+    {
+        return $this->postuler;
+    }
+
+    public function addPostuler(Postuler $postuler): self
+    {
+        if (!$this->postuler->contains($postuler)) {
+            $this->postuler[] = $postuler;
+            $postuler->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostuler(Postuler $postuler): self
+    {
+        if ($this->postuler->removeElement($postuler)) {
+            // set the owning side to null (unless already changed)
+            if ($postuler->getAnnonce() === $this) {
+                $postuler->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

@@ -52,6 +52,12 @@ class Postuler
      */
     private $message;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="postuler")
+     */
+    private $annonce;
+
+
 
 
     public function getId(): ?int
@@ -133,6 +139,20 @@ class Postuler
 
         return $this;
     }
+
+    public function getAnnonce(): ?annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?annonce $annonce): self
+    {
+        $this->annonce = $annonce;
+
+        return $this;
+    }
+
+
 
 
 }

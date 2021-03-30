@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Entity\Postuler;
 use App\Form\AnonceType;
+use App\Form\PostulerType;
 use App\Repository\AnnonceRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +18,43 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class AnnonceController extends AbstractController
 {
     /**
-     * @Route("/annonce", name="annonce")
+     * @Route("/indexe", name="indexe")
      */
     public function index(): Response
+
     {
+        $annonce = $this->getDoctrine()->getManager()->getRepository(Annonce::class)->findAll();
+
         return $this->render('annonce/index.html.twig', [
-            'controller_name' => 'AnnonceController',
+            'annonce' => '$annonce',
+        ]);
+    }
+
+    /**
+     * @Route("/show/{id}", name="show")
+     */
+    public function show(int $id,Request $request)
+    {
+        $annonce = $this->getDoctrine()->getManager()->getRepository(Annonce::class)->find($id);
+        $postuler= new Postuler();
+        $form=$this->createForm(PostulerType::class,$postuler);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $file=$form->get('cv')->getData();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('upload_directory'),$filename);
+            $postuler->setCv($file);
+            $postuler->setAnnonce($annonce);
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($postuler);
+            $em->flush();
+
+
+        }
+        return $this->render('annonce/show.html.twig', [
+            'annonce' => $annonce,
+            'form'=>$form->createView(),
         ]);
     }
 
@@ -38,8 +71,14 @@ class AnnonceController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush();
-            return $this->redirectToRoute('liste');
+
         }
+        $this->addFlash(
+            'success',
+            "L'annonce a bien ete enregistree"
+        );
+        return $this->redirectToRoute('liste');
+
         return $this->render('annonce/add.html.twig', [
             "form" => $form->createView(),
         ]);
@@ -56,7 +95,7 @@ class AnnonceController extends AbstractController
             $request->query->getInt('page', 1),
             3
         );
-        return $this->render('Annonce/test.html.twig', [
+        return $this->render('Annonce/Lister.html.twig', [
             "list" => $annonce,
         ]);
     }
@@ -103,9 +142,9 @@ class AnnonceController extends AbstractController
     }
 
     /**
-     * @Route("/searchannonce", name="searchannonce")
+     * @Route("/search", name="search")
      */
-    public function searchannonce(Request $request,NormalizerInterface $Normalizer)
+    public function search(Request $request,NormalizerInterface $Normalizer)
     {
         $repository = $this->getDoctrine()->getRepository(Annonce::class);
         $requestString=$request->get('searchValue');

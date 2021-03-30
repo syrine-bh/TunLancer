@@ -116,9 +116,9 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/search", name="search")
+     * @Route("/searchcat", name="searchcat")
      */
-    public function search(Request $request,NormalizerInterface $Normalizer)
+    public function searchcat(Request $request,NormalizerInterface $Normalizer)
     {
         $repository = $this->getDoctrine()->getRepository(Categorie::class);
         $requestString=$request->get('searchValue');
