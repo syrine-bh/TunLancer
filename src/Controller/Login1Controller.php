@@ -49,7 +49,16 @@ class Login1Controller extends AbstractController
                 $is_valid = $encoder->isPasswordValid($user, $request->get("password"));
 
                 if ($is_valid==true){
-                    return $this->redirectToRoute("profil");
+                    $session->set("user",$user);
+                    if ($user->getRole()=="admin") {
+
+                        return $this->redirectToRoute("tasklist");
+                    }
+
+                    else {
+                        return $this->redirectToRoute("profil");
+
+                    }
                 }
                 else {
                     $error = "Email or password are invalid";
@@ -65,7 +74,7 @@ class Login1Controller extends AbstractController
         ]);}
 
     /**
-     * @Route("/logout", name="/logout")
+     * @Route("/logout", name="logout")
      */
 
     public function logoutAction(SessionInterface $session){

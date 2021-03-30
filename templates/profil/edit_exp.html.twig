@@ -1,26 +1,29 @@
 
 
-<div class="modal fade" id="addModalexperience" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="edittModalexperience" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
-                <h5 class="modal-title" id="addModalLabel">Edit experience</h5>
+                <h5 class="modal-title" id="addModalLabel">Edit Experience</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
             <div class="modal-body">
-                {{ form_start(form, {'action': path ('modifierexp', {'id':id, "experience":experience}), 'method': 'POST'}) }}
+                {{ form_start(form, {'action': path('modifierexp', {'id':id, "experiences":experiences}), 'method': 'POST'}) }}
+
                 <div class="form-group">
                     <label for="email1">Poste</label>
-                    {{ form_widget(form.poste, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.Poste, {'attr': {'class': 'form-control'}}) }}
 
                 </div>
                 <label for="inputPassword4">Societe</label>
-                {{ form_widget(form.societe, { 'attr' : { 'class' : 'form-control' } }) }}
-                <label for="inputPassword4">Date</label>
-                {{ form_widget(form.periode, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_widget(form.Societe, { 'attr' : { 'class' : 'form-control' } }) }}
+                <label for="inputPassword4">Datedeb</label>
+                {{ form_widget(form.datedeb, { 'attr' : { 'class' : 'form-control' } }) }}
+                <label for="inputPassword4">DateFin</label>
+                {{ form_widget(form.dateFin, { 'attr' : { 'class' : 'form-control' } }) }}
 
             </div>
             <div class="modal-footer border-top-0 d-flex justify-content-center">

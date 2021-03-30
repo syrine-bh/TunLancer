@@ -56,9 +56,10 @@ class ExperienceController extends AbstractController
      * @param int $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function editExp(experiences $experiences ,Request $request,int $id)
+
+    public function editExp(Request $request, int $id, experiences $experiences)
     {
-        $form = $this->createForm(ExperienceType::class, $experiences);
+        $form = $this->createForm(ExperiencesType::class, $experiences);
         $form->add('modifier', SubmitType::class, array('label' => 'Modifier'));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -66,11 +67,11 @@ class ExperienceController extends AbstractController
             $experiences= $entityManager->getRepository(Experiences::class)->find($id);
             $entityManager->persist($experiences);
             $entityManager->flush();
-            $this->addFlash('message', 'competence modifié avec succès');
-            return $this->redirectToRoute("list");
+            $this->addFlash('message', 'experiences modifié avec succès');
+            return $this->redirectToRoute("profil");
         }
         return $this->render('profil/edit_exp.html.twig',[
-            'form'=>$form->createView(),"experiences"=>$experiences ]);
+            'form'=>$form->createView(), 'id'=>$id, "experiences"=>$experiences]);
 
     }
 

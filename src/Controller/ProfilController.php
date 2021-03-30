@@ -27,7 +27,7 @@ class ProfilController extends AbstractController
     public function index(): Response
     {
         $orm = $this->getDoctrine()->getManager();
-        $us = $orm->getRepository(Users::class)->find(17);
+        $us = $orm->getRepository(Users::class)->find(5);
 
 
         return $this->render('profil/profil.html.twig', [
