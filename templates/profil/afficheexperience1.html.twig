@@ -1,0 +1,35 @@
+
+
+<div class="section-block">
+
+    <h3 class="section-title">Experiences</h3>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="media influencer-profile-data d-flex align-items-center p-2">
+                <div class="mr-4">
+
+
+
+                </div>
+                <div class="media-body">
+                {% for experience in experiences %}
+                    <img src="{{ asset('image/'~ experience.Image) }}"  class="user-avatar-md rounded-circle">
+                    <h3 class="m-b-10">{{ experience.Poste }} </h3>
+                    <p><span class="m-r-20 d-inline-block">Date Debut<span class="m-l-10 d-inline-block text-primary">{{ experience.datedeb|date('d/m/Y ')}}</span></span><span class="m-r-20 d-inline-block"> Date Fin<span class="m-l-10 text-secondary">{{ experience.dateFin|date('d/m/Y ')}}</span></span><span class="m-r-20"><span class="m-l-10 text-info"></span></span>
+                        <a href="" data-toggle="modal" data-target="#addModalexperience" style="align-content:center "> <i class=" fas fa-edit"></i></a>
+                        <a href="{{path('delete_exp', {id:experience.id})}}" > <i class=" fas fa-trash"></i></a>
+                    </p>
+
+<br>
+
+                {% endfor %}
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

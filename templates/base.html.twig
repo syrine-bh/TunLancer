@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <style>
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 0.88rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            text-align: left;
+            background-color: #6200EA
+        }
+
+        i {
+            font-style: italic
+        }
+
+        .container {
+            margin-top: 100px
+        }
+
+        .card {
+            box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+            border-width: 0;
+            transition: all .2s
+        }
+
+        .card-header:first-child {
+            border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            border-bottom-width: 1px;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 0.625rem;
+            height: 3.5rem;
+            background-color: #fff
+        }
+
+        .widget-subheading {
+            color: #858a8e;
+            font-size: 10px
+        }
+
+        .card-header.card-header-tab .card-header-title {
+            display: flex;
+            align-items: center;
+            white-space: nowrap
+        }
+
+        .card-header .header-icon {
+            font-size: 1.65rem;
+            margin-right: 0.625rem
+        }
+
+        .card-header.card-header-tab .card-header-title {
+            display: flex;
+            align-items: center;
+            white-space: nowrap
+        }
+
+        .btn-actions-pane-right {
+            margin-left: auto;
+            white-space: nowrap
+        }
+
+        .text-capitalize {
+            text-transform: capitalize !important
+        }
+
+        .scroll-area-sm {
+            height: 288px;
+            overflow-x: hidden
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: -1px;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.125)
+        }
+
+        .list-group {
+            display: flex;
+            flex-direction: column;
+            padding-left: 0;
+            margin-bottom: 0
+        }
+
+        .todo-indicator {
+            position: absolute;
+            width: 4px;
+            height: 60%;
+            border-radius: 0.3rem;
+            left: 0.625rem;
+            top: 20%;
+            opacity: .6;
+            transition: opacity .2s
+        }
+
+        .bg-warning {
+            background-color: #f7b924 !important
+        }
+
+        .widget-content {
+            padding: 1rem;
+            flex-direction: row;
+            align-items: center
+        }
+
+        .widget-content .widget-content-wrapper {
+            display: flex;
+            flex: 1;
+            position: relative;
+            align-items: center
+        }
+
+        .widget-content .widget-content-right.widget-content-actions {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity .2s
+        }
+
+        .widget-content .widget-content-right {
+            margin-left: auto
+        }
+
+        .btn:not(:disabled):not(.disabled) {
+            cursor: pointer
+        }
+
+        .btn {
+            position: relative;
+            transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s
+        }
+
+        .btn-outline-success {
+            color: #3ac47d;
+            border-color: #3ac47d
+        }
+
+        .btn-outline-success:hover {
+            color: #fff;
+            background-color: #3ac47d;
+            border-color: #3ac47d
+        }
+
+        .btn-outline-success:hover {
+            color: #fff;
+            background-color: #3ac47d;
+            border-color: #3ac47d
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #3f6ad8;
+            border-color: #3f6ad8
+        }
+
+        .btn {
+            position: relative;
+            transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+            outline: none !important
+        }
+
+        .card-footer {
+            background-color: #fff
+        }
+    </style>
+    {% block css %}
+        <!-- Required meta tags -->
+
+        <script href= "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script href=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+            <link href="{{ asset('adminDashboard/assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('adminDashboard/assets/libs/css/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+            <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/charts/chartist-bundle/chartist.css') }}">
+            <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/charts/morris-bundle/morris.css') }}">
+            <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/charts/c3charts/c3.css') }}">
+            <link rel="stylesheet" href="{{ asset('adminDashboard/assets/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
+            <title>Admin Tunlancer</title>
+
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+<div class="dashboard-main-wrapper">
+    <!-- ============================================================== -->
+    <!-- navbar -->
+    <!-- ============================================================== -->
+    <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <a class="navbar-brand" href="index.html">TunLancer</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto navbar-right-top">
+
+
+
+                    <li class="nav-item dropdown nav-user">
+                        <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                            <div class="nav-user-info">
+                                <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
+                                <span class="status"></span><span class="ml-2">Available</span>
+                            </div>
+                            <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end navbar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- left sidebar -->
+    <!-- ============================================================== -->
+    <div class="nav-left-sidebar sidebar-dark">
+        <div class="menu-list">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-divider">
+                            Menu
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Users <span class="badge badge-success">6</span></a>
+                            <div id="submenu-1" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">Dashboard</a>
+                                        <div id="submenu-1-2" class="collapse submenu" style="">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ path('tasklist') }}">Statistiques</a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('list') }}">Liste Utilisateurs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Concours</a>
+                            <div id="submenu-2" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="">Concours</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/general.html">Quiz</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Offres</a>
+                            <div id="submenu-3" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/chart-c3.html">C3 Charts</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-fw fa-wpforms"></i>Forums</a>
+                            <div id="submenu-4" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/form-elements.html">Form Elements</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Recrutements</a>
+                            <div id="submenu-5" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/general-table.html">General Tables</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        {#                        <li class="nav-divider">#}
+                        {#                            Features#}
+                        {#                        </li>#}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Publications </a>
+                            <div id="submenu-6" class="collapse submenu" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/blank-page.html">Blank Page</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end left sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <!-- ============================================================== -->
+                <!-- pageheader  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Admin Dashboard </h2>
+                            <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Statistiques</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- ============================================================== -->
+                    <!-- four widgets   -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- total views   -->
+                    <!-- ============================================================== -->
+
+
+                    <!-- ============================================================== -->
+                    <!-- end recent orders  -->
+
+
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- customer acquistion  -->
+                    <!-- ============================================================== -->
+
+
+                    <!-- ============================================================== -->
+                    <!-- end product category  -->
+                    <!-- product sales  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <!-- <div class="float-right">
+                                        <select class="custom-select">
+                                            <option selected>Today</option>
+                                            <option value="1">Weekly</option>
+                                            <option value="2">Monthly</option>
+                                            <option value="3">Yearly</option>
+                                        </select>
+                                    </div> -->
+                                <h5 class="mb-0"> Nombre d'inscription par mois</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-6-chart">
+                                    <canvas id="myChart2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <!-- <div class="float-right">
+                                        <select class="custom-select">
+                                            <option selected>Today</option>
+                                            <option value="1">Weekly</option>
+                                            <option value="2">Monthly</option>
+                                            <option value="3">Yearly</option>
+                                        </select>
+                                    </div> -->
+                                <h5 class="mb-0"> Nombre profils selon Pays</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-6-chart">
+                                    <canvas id="myChart3"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12 col-md-4 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Profils Selon Competence</h5>
+                            <div class="card-body">
+                                <canvas id="myChart" width="220" height="300"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12 col-md-4 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Profils Selon Age</h5>
+                            <div class="card-body">
+                                <canvas id="myChart4" width="220" height="300"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12 col-md-4 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Profils Selon Sexe</h5>
+                            <div class="card-body">
+                                <canvas id="myChart5" width="220" height="300"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex  container">
+                        <div class="col-md-8">
+                            <div class="card-hover-shadow-2x mb-3 card">
+                                <div class="card-header-tab card-header">
+                                    <div class="card-header-title font-size-lg text-capitalize font-weight-bold"><i class="fa fa-tasks"></i>&nbsp;Task Lists</div>
+                                </div>
+                                <div class="scroll-area-sm">
+                                    <perfect-scrollbar class="ps-show-limits">
+                                        <div style="position: static;" class="ps ps--active-y">
+                                            <div class="ps-content">
+                                                <ul class=" list-group list-group-flush">
+                                                    {% for task in task %}
+
+                                                    <li class="list-group-item">
+                                                        <div class="todo-indicator bg-focus"></div>
+                                                        <div class="widget-content p-0">
+                                                            <div class="widget-content-wrapper">
+                                                                <div class="widget-content-left mr-2">
+                                                                    <div class="custom-checkbox custom-control"><input class="custom-control-input" id="exampleCustomCheckbox1" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox1">&nbsp;</label></div>
+                                                                </div>
+                                                                <div class="widget-content-left">
+                                                                    <div class="widget-heading">{{ task.Titre}}</div>
+                                                                    <div class="widget-subheading">
+                                                                        <div>{{ task.Date|date('d/m/Y ')}} <div class="badge badge-pill badge-info ml-2">{{ task.Priorite}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <a href="{{path('deletetask', {id:task.id})}}"> <button class="border-0 btn-transition btn btn-outline-danger"><i class="fa fa-trash"></i> </button> </a></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </perfect-scrollbar>
+                                </div>
+                                <div class="footer">
+                                <a href="" class="btn btn-primary"  data-toggle="modal" data-target="#addModalExperience" style="align-content:center ">Add Task</a>
+                                    </div>
+
+                                {{ render(controller(
+                                    'App\\Controller\\TaskController::add_taskAction',
+
+                                )) }}
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+
+                    <!-- ============================================================== -->
+                    <!-- footer -->
+                    <!-- ============================================================== -->
+                    <div class="footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="text-md-right footer-links d-none d-sm-block">
+                                        <a href="javascript: void(0);">About</a>
+                                        <a href="javascript: void(0);">Support</a>
+                                        <a href="javascript: void(0);">Contact Us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end footer -->
+                    <!-- ============================================================== -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- end wrapper  -->
+                <!-- ============================================================== -->
+            </div>
+        </div>
+
+
+
+        <!-- ============================================================== -->
+        <!-- end main wrapper  -->
+        <!-- ============================================================== -->
+        <!-- Optional JavaScript -->
+        <!-- jquery 3.3.1 -->
+        {% block js %}
+            <LINK href={{ asset("js/script.js")}}>
+            <script src={{ asset("assets/vendor/jquery/jquery-3.3.1.min.js")}}></script>
+            <!-- bootstap bundle js -->
+            <script src={{ asset("assets/vendor/bootstrap/js/bootstrap.bundle.js")}}></script>
+            <!-- slimscroll js -->
+            <script src={{ asset("assets/vendor/slimscroll/jquery.slimscroll.js")}}></script>
+            <!-- main js -->
+            <script src={{ asset("assets/libs/js/main-js.js")}}></script>
+            <!-- chart chartist js -->
+            <script src={{ asset("assets/vendor/charts/chartist-bundle/chartist.min.js")}}></script>
+            <!-- sparkline js -->
+            <script src={{ asset("assets/vendor/charts/sparkline/jquery.sparkline.js")}}></script>
+
+            <script src={{ asset("assets/vendor/charts/morris-bundle/raphael.min.js")}}></script>
+
+
+
+            <script src={{ asset("assets/vendor/charts/c3charts/c3.min.js")}}></script>
+
+            <script src={{ asset("assets/vendor/charts/c3charts/d3-5.4.0.min.js")}}></script>
+            <script src={{ asset("assets/vendor/charts/c3charts/C3chartjs.js")}}></script>
+
+            <script >
+
+                $.get( "http://127.0.0.1:8000/chart_comp", function( data ) {
+
+                    let labels1= data["labels"];
+                    let data1=data["data"];
+                    let colors1=data["colors"];
+
+
+                    let myChart1 =document.getElementById("myChart").getContext('2d');
+                    let chart1 = new Chart(myChart1,{
+                        type:'doughnut',
+                        data:{
+                            labels: labels1,
+                            datasets: [{
+                                data: data1,
+                                backgroundColor: colors1
+                            }]
+                        },
+                        options:{
+                            title:{
+                                display:true
+                            }
+                        }
+
+                    });
+
+                });
+
+
+                $.get( "http://127.0.0.1:8000/chart_comp_2", function( data ) {
+
+
+
+                    let labels2 = data["labels"];
+                    let data2 =data["data"];
+
+                    let myChart2 = document.getElementById("myChart2").getContext('2d');
+                    let chart2 = new Chart(myChart2,{
+                        type:'bar',
+                        data:{
+                            labels: labels2,
+                            datasets: [{
+                                data: data2,
+
+                            }]
+                        },
+                        options:{
+                            title:{
+
+                                display:true
+                            },
+                            legend: {
+                                display:false
+                            }
+                        }
+                    });
+
+
+                });
+
+                $.get( "http://127.0.0.1:8000/chart_comp_1", function( data ) {
+
+
+
+                    let labels3 = data["labels"];
+                    let data3 =data["data"];
+                    let colors3=data["colors"];
+
+                    let myChart3 = document.getElementById("myChart3").getContext('2d');
+                    let chart3 = new Chart(myChart3,{
+                        type:'line',
+                        data:{
+                            labels: labels3,
+                            datasets: [{
+                                data: data3,
+                                fontColor: 'blue',
+                                backgroundColor: colors3
+
+                            }]
+                        },
+                        options:{
+                            title:{
+
+                                display:true
+                            },
+                            legend: {
+                                display:false
+                            }
+                        }
+                    });
+
+
+
+                });
+                $.get( "http://127.0.0.1:8000/chart2", function( data ) {
+
+                    let labels4= data["labels"];
+                    let data4=data["data"];
+                    let colors4=data["colors"];
+
+
+                    let myChart4 =document.getElementById("myChart4").getContext('2d');
+                    let chart4 = new Chart(myChart4,{
+                        type:'pie',
+                        data:{
+                            labels: labels4,
+                            datasets: [{
+                                data: data4,
+                                backgroundColor: colors4
+                            }]
+                        },
+                        options:{
+                            title:{
+                                display:true
+                            }
+                        }
+
+                    });
+
+                });
+
+
+                $.get( "http://127.0.0.1:8000/chart3", function( data ) {
+
+                    let labels5= data["labels"];
+                    let data5=data["data"];
+                    let colors5=data["colors"];
+
+
+                    let myChart5 =document.getElementById("myChart5").getContext('2d');
+                    let chart5 = new Chart(myChart5,{
+                        type:'doughnut',
+                        data:{
+                            labels: labels5,
+                            datasets: [{
+                                data: data5,
+                                backgroundColor: colors5
+                            }]
+                        },
+                        options:{
+                            title:{
+                                display:true
+                            }
+                        }
+
+                    });
+
+                });
+            </script>
+        {% endblock %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+
+</html>
