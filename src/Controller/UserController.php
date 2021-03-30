@@ -32,9 +32,11 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             return $this->redirectToRoute('user');
-        }}}
-return $this->render('user//add_user.html.twig', [
-'Form' => $Form->createView(),
-]);
+        }
+        return $this->render('user/add_user.html.twig', [
+            "Form" => $form->createView(),
+        ]);
+    }}
+
 
 
