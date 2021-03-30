@@ -1,0 +1,56 @@
+{% extends "baseBack.html.twig" %}
+{% block section %}
+
+    <div class="mb-18">
+    <div class="row mb-11  align-items-center">
+        <div class="col-lg-6 mb-lg-0 mb-4">
+            <h3 class="font-size-6 mb-0 align-text center"></h3>
+        </div>
+        <div class="col-lg-6">
+        </div>
+    </div>
+    <div class="bg-white shadow-8 pt-7 rounded pb-9 px-11">
+        <div class="table-responsive ">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col" class="pl-0 border-0 font-size-4 font-weight-normal">Titre</th>
+                    <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Description</th>
+                    <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Date de création</th>
+                    <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Auteur</th>
+                    <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal">Action</th>
+                    <th scope="col" class="pl-4 border-0 font-size-4 font-weight-normal"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for r in topics %}
+                <tr class="border border-color-2">
+                    <th scope="row" class="pl-6 border-0 py-7 min-width-px-235">
+                        <div class="">
+                            <a href="jobdetails.html" class="font-size-4 mb-0 font-weight-semibold text-black-2"> {{ r.titre }}</a>
+                        </div>
+                    </th>
+                    <td scope="row" class="pl-6 border-0 py-7 pr-0">
+                        <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ r.contenu|raw }}</h3>
+                    </td>
+                    <td class="table-y-middle py-7 min-width-px-125">
+                        <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">{{ r.date|date('d/m/Y à H:m') }}</h3>
+                    </td>
+                    <td class="table-y-middle py-7 min-width-px-155">
+                        <h3 class="font-size-4 font-weight-normal text-black-2 mb-0">auteur</h3>
+                    </td>
+
+                    <td class="table-y-middle py-7 min-width-px-100">
+                        <a href="#" class="font-size-3 font-weight-bold text-red-2 text-uppercase">Delete</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}
