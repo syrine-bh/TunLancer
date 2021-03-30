@@ -23,7 +23,7 @@ class Publication
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="publications")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="publications")
      */
     private $idU;
 
@@ -79,11 +79,6 @@ class Publication
     private $signaux;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="publication", orphanRemoval=true)
-     */
-    private $notifications;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Vues", mappedBy="Publication", orphanRemoval=true)
      */
     private $viewers;
@@ -93,7 +88,6 @@ class Publication
         $this->commentaires = new ArrayCollection();
         $this->reactions = new ArrayCollection();
         $this->signaux = new ArrayCollection();
-        $this->notifications = new ArrayCollection();
         $this->viewers = new ArrayCollection();
     }
 
@@ -194,29 +188,6 @@ class Publication
 
 
 
-    /**
-     * @return Collection|Notification[]
-     */
-    public function getNotifications(): Collection
-    {
-        return $this->notifications;
-    }
-    public function addNotification (Notification $notification): self
-    {
-        if (!$this->notifications->contains($notification)) {
-            $this->notifications[] = $notification;
-            $notification->setPublication($this);
-        }
-        return $this;
-    }
-    public function removeNotification (Notification $notification): self
-    {
-        if ($this->notifications->contains($notification)) {
-            $this->notifications->removeElement($notification);
-        }
-        return $this;
-    }
-
 
 
 
@@ -270,11 +241,11 @@ class Publication
         return $this->id;
     }
 
-    public function getIdU(): ?Utilisateur
+    public function getIdU(): ?Users
     {
         return $this->idU;
     }
-    public function setIdU(Utilisateur  $utilisateur): self
+    public function setIdU(Users  $utilisateur): self
     {
         $this->idU = $utilisateur;
         return $this;

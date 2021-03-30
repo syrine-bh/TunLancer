@@ -6,15 +6,17 @@ use App\Entity\Commentaire;
 use App\Entity\Notification;
 use App\Entity\Publication;
 use App\Entity\Reaction;
-use App\Entity\signaler;
-use App\Entity\Utilisateur;
+use App\Entity\Signaler;
+use App\Entity\Users;
 use App\Entity\Vues;
 use App\Form\CommentaireType;
 use App\Form\PublicationType;
 use App\Form\SignalerType;
 use App\Repository\PublicationRepository;
+use http\Client\Curl\User;
 use Psr\Container\ContainerInterface;
 use Rypsx\Ipapi\Ipapi;
+use Snipe\BanBuilder\CensorWords;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,15 +35,20 @@ class PublicationController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $publications = $em->getRepository(Publication::class)->findAll();
-        $user=$em->getRepository(Utilisateur::class)->find(1);
+        $user=$em->getRepository(Users::class)->find(1);
         $notifications = $em->getRepository(Notification::class)->getNotifications($user->getId());
         $stories = $em->getRepository(Publication::class)->getStoriesDistinct();
+
+        $censor = new CensorWords;
+        $langs = array('fr','en-us');
+        $censor->setDictionary($langs);
 
         return $this->render('publication/DisplayPublications.html.twig', [
             'controller_name' => 'PublicationController',
             'publications' => $publications,
             'notifications' => $notifications,
-            'stories' => $stories
+            'stories' => $stories,
+            'censor' => $censor
         ]);
     }
 
@@ -50,7 +57,7 @@ class PublicationController extends AbstractController
      */
     public function DisplayStoriesAction(){
         $em = $this->getDoctrine()->getManager();
-        $user=$em->getRepository(Utilisateur::class)->find(1);
+        $user=$em->getRepository(Users::class)->find(1);
         $storyusers = $em->getRepository(Publication::class)->getStoriesDistinct();
         $stories = $em->getRepository(Publication::class)->getStories();
 
@@ -70,7 +77,7 @@ class PublicationController extends AbstractController
      */
     public function DisplayUserStoriesAction($idUtilisateur){
         $em = $this->getDoctrine()->getManager();
-        $user=$em->getRepository(Utilisateur::class)->find(1);
+        $user=$em->getRepository(Users::class)->find(1);
         $storyusers = $em->getRepository(Publication::class)->getUserStoriesDistinct($idUtilisateur);
         $stories = $em->getRepository(Publication::class)->getUserStories($idUtilisateur);
 
@@ -95,7 +102,7 @@ class PublicationController extends AbstractController
         $publication = $em->getRepository(Publication::class)->find($idPublication);
         $vues = $em->getRepository(Vues::class)->getVues();
 
-        $user = $em->getRepository(Utilisateur::class)->find(1);
+        $user = $em->getRepository(Users::class)->find(1);
         //ajout du commentaire
         $commentaire=new Commentaire();
         $commentaire->setPublication($publication);
@@ -127,11 +134,19 @@ class PublicationController extends AbstractController
             $notification->setUtilisateur($publication->getIdU());
             $notification->setLien("publication:".$publication->getId());
             $notification->setDescription($user->getPrenom()." ".$user->getNom()." a commenté votre publication");
-            $em->persist($notification);
+            //var_dump("connectedUser :".$user->getId()." publication user : ".$publication->getIdU()->getId());
+            if ($user->getId()!=$publication->getIdU()->getId()){
+                $em->persist($notification);
+            }
+
             $em->persist($commentaire);
             $em->flush();
             return $this->redirectToRoute('publication', ['idPublication' => $idPublication]);
         }
+
+        $censor = new CensorWords;
+        $langs = array('fr','en-us');
+        $censor->setDictionary($langs);
 
         return $this->render('publication/detailPublication.html.twig', [
             'publication' => $publication,
@@ -139,7 +154,8 @@ class PublicationController extends AbstractController
             'user' => $user,
             'isReact' => $trouv,
             'isReported' => $report,
-            'vues' => $vues
+            'vues' => $vues,
+            'censor' => $censor
         ]);
     }
 
@@ -171,7 +187,7 @@ class PublicationController extends AbstractController
     public function Add(Request $request): Response
     {
         $publication=new Publication();
-        $user=$em=$this->getDoctrine()->getManager()->getRepository(Utilisateur::class)->find(1);
+        $user=$em=$this->getDoctrine()->getManager()->getRepository(Users::class)->find(1);
         $publication->setIdU($user);
         $publication->setArchive(0);
         $Form=$this->createForm(PublicationType::class,$publication);
@@ -195,20 +211,35 @@ class PublicationController extends AbstractController
      */
     public function DeletePublication($idPublication):Response
     {
+
         $em=$this->getDoctrine()->getManager();
-        $publication=$em->getRepository(publication::class)->find($idPublication);
+        $publication=$em->getRepository(Publication::class)->find($idPublication);
+
         $em->remove($publication);
         $em->flush();
-        return $this->redirectToRoute('publications');
+        return $this->redirectToRoute('publication', ['idPublication' => $idPublication]);
     }
 
+    /**
+     * @Route("/publications/DeletePublicationAdmin/{idPublication}", name="delete_Publication_admin")
+     */
+    public function DeletePublicationAdmin($idPublication):Response
+    {
+
+        $em=$this->getDoctrine()->getManager();
+        $publication=$em->getRepository(Publication::class)->find($idPublication);
+
+        $em->remove($publication);
+        $em->flush();
+        return $this->redirectToRoute('reports');
+    }
     /**
      * @Route("/publications/DeleteSignal/{idSignal}", name="delete_signal")
      */
     public function DeleteSignal($idSignal):Response
     {
         $em=$this->getDoctrine()->getManager();
-        $signal=$em->getRepository(signaler::class)->find($idSignal);
+        $signal=$em->getRepository(Signaler::class)->find($idSignal);
         $em->remove($signal);
         $em->flush();
         return $this->redirectToRoute('reports');
@@ -221,6 +252,7 @@ class PublicationController extends AbstractController
 {
     $em=$this->getDoctrine()->getManager();
     $publication=$em->getRepository(publication::class)->find($idPublication);
+    $user=$em->getRepository(Users::class)->find(1);
     $Form=$this->createForm(PublicationType::class,$publication);
     $Form->handleRequest($request);
     if ($Form->isSubmitted())
@@ -229,7 +261,9 @@ class PublicationController extends AbstractController
         return $this->redirectToRoute('publication', ['idPublication' => $idPublication]);
     }
     return $this->render('publication/UpdatePublication.html.twig', array(
-        'publicationform'=>$Form->createView()
+        'publicationform'=>$Form->createView(),
+        'publication'=>$publication,
+        'user'=>$user
     ));
 }
 
@@ -240,12 +274,12 @@ class PublicationController extends AbstractController
         $commentaire=new Commentaire();
         $em=$this->getDoctrine()->getManager();
         $publication=$em->getRepository(Publication::class)->find($idPublication);
-        $user = $em->getRepository(Utilisateur::class)->find(1);
+        $user = $em->getRepository(Users::class)->find(1);
         if ($publication==null){
             echo "publication not found";
         }else{
             $commentaire->setPublication($publication);
-            $commentaire->setIdUtilisateur(1);
+            $commentaire->setIdUtilisateur($user);
             $Form=$this->createForm(CommentaireType::class,$commentaire);
             $Form->handleRequest($request);
             if ($Form->isSubmitted()&&$Form->isValid())/*verifier */
@@ -304,9 +338,10 @@ class PublicationController extends AbstractController
      * @Route("/publication/AddReaction/{idPublication}/{type}", name="AddReaction")
      */
     public function ReactAction($idPublication,$type){
+
         $em=$this->getDoctrine()->getManager();
         $publication=$em->getRepository(Publication::class)->find($idPublication);
-        $user=$em->getRepository(Utilisateur::class)->find(2);
+        $user=$em->getRepository(Users::class)->find(1);
         $trouv=false;
         $reactions=$publication->getReactions();
         foreach ($reactions as $reaction) {
@@ -326,8 +361,10 @@ class PublicationController extends AbstractController
             $notification =new Notification();
             $notification->setUtilisateur($publication->getIdU());
             $notification->setLien("publication:".$publication->getId());
-            $notification->setDescription($user->getPrenom()." ".$user->getNom()." a commenté votre publication");
-            $em->persist($notification);
+            $notification->setDescription($user->getPrenom()." ".$user->getNom()." a reagi a votre publication");
+            if ($user->getId()!=$publication->getIdU()->getId()){
+                $em->persist($notification);
+            }
             $em->persist($react);
             $em->flush();
             return new JsonResponse("added");
@@ -341,9 +378,9 @@ class PublicationController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $publication = $em->getRepository(Publication::class)->find($idPublication);
-        $user = $em->getRepository(Utilisateur::class)->find(1);
+        $user = $em->getRepository(Users::class)->find(1);
         //signal
-        $signaler=new signaler();
+        $signaler=new Signaler();
         $signaler->setPublication($publication);
         $signaler->setDescription($description);
         $signaler->setIdUtilisateur($user);
@@ -361,7 +398,7 @@ class PublicationController extends AbstractController
     {
         $em=$this->getDoctrine()->getManager();
         $publication=$em->getRepository(Publication::class)->find($idPublication);
-        $user=$em->getRepository(Utilisateur::class)->find(1);
+        $user=$em->getRepository(Users::class)->find(1);
         $reactions=$publication->getReactions();
         foreach ($reactions as $reaction) {
             if(($reaction->getIdUtilisateur()->getId()==$user->getId()) && ($publication->getId()==$idPublication)){
@@ -379,7 +416,7 @@ class PublicationController extends AbstractController
     public function DisplayReports(): Response
     {
         $em=$this->getDoctrine()->getManager();
-        $signaux=$em->getRepository(signaler::class)->findAll();
+        $signaux=$em->getRepository(Signaler::class)->findAll();
         $pays=$em->getRepository(Vues::class)->GetPays();
         $regions=$em->getRepository(Vues::class)->GetRegions();
         $vues=$em->getRepository(Vues::class)->findAll();
@@ -412,7 +449,7 @@ class PublicationController extends AbstractController
 
         $vu = new Vues();
         $em=$this->getDoctrine()->getManager();
-        $user=$em->getRepository(Utilisateur::class)->find(1);
+        $user=$em->getRepository(Users::class)->find(1);
         $publication=$em->getRepository(Publication::class)->find($idPublication);
 
         $vues=$publication->getViewers();

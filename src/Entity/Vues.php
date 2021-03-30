@@ -18,7 +18,7 @@ class Vues
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="viewers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="viewers")
      */
     private $Utilisateur;
 
@@ -72,12 +72,12 @@ class Vues
         return $this->id;
     }
 
-    public function getUtilisateur(): ?Utilisateur
+    public function getUtilisateur(): ?Users
     {
         return $this->Utilisateur;
     }
 
-    public function setUtilisateur(?Utilisateur $utilisateur): self
+    public function setUtilisateur(?Users $utilisateur): self
     {
         $this->Utilisateur = $utilisateur;
         return $this;

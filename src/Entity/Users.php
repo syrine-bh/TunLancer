@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UtilisateurRepository;
+use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
+ * @ORM\Entity(repositoryClass=UsersRepository::class)
  */
-class Utilisateur
+class Users implements UserInterface
 {
     /**
      * @ORM\Id
@@ -405,5 +406,21 @@ class Utilisateur
         $this->id = $id;
     }
 
+    public function getRoles()
+    {
+        return ['ROLE-USER'];
+    }
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() met
+    }
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredenti
+    }
+    public function getUsername()
+    {
+        // TODO: Implement getUsername()
+    }
 
 }

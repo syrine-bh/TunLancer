@@ -200,7 +200,7 @@
                             </div>
                         {% else %}
                             <span style="padding: 10px;" class="info">
-                                {{ publication.description }}
+                                {{ censor.censorString( publication.description )['clean'] |raw  }}
                             </span>
                         {% endif %}
                     </div>

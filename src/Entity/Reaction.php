@@ -23,7 +23,7 @@ class Reaction
     private $publication;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="reactions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="reactions")
      */
     private $idUtilisateur;
 
@@ -68,12 +68,12 @@ class Reaction
         return $this;
     }
 
-    public function getIdUtilisateur(): ?Utilisateur
+    public function getIdUtilisateur(): ?Users
     {
         return $this->idUtilisateur;
     }
 
-    public function setIdUtilisateur(?Utilisateur $utilisateur): self
+    public function setIdUtilisateur(?Users $utilisateur): self
     {
         $this->idUtilisateur = $utilisateur;
         return $this;

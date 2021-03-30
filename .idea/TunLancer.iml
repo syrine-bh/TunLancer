@@ -112,6 +112,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/rypsx/ipapi" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kylekatarnls/update-helper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/snipe/banbuilder" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -124,5 +125,6 @@
     <orderEntry type="library" name="amp-story-1.0" level="application" />
     <orderEntry type="library" name="amp-video-0.1" level="application" />
     <orderEntry type="library" name="amp-story-auto-ads-0.1" level="application" />
+    <orderEntry type="library" name="a81368914c" level="application" />
   </component>
 </module>

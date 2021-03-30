@@ -19,7 +19,7 @@ class Signaler
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="signaux")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="signaux")
      */
     private $idUtilisateur;
 
@@ -47,11 +47,11 @@ class Signaler
         return $this->id;
     }
 
-    public function getIdUtilisateur(): ?Utilisateur
+    public function getIdUtilisateur(): ?Users
     {
         return $this->idUtilisateur;
     }
-    public function setIdUtilisateur(?Utilisateur $utilisateur): self
+    public function setIdUtilisateur(?Users $utilisateur): self
     {
         $this->idUtilisateur = $utilisateur;
         return $this;

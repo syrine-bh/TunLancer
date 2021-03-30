@@ -18,7 +18,7 @@ class Notification
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="notifications")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="notifications")
      */
     private $Utilisateur;
 
@@ -26,6 +26,7 @@ class Notification
      * @ORM\Column(type="integer")
      */
     private $vu;
+
     /**
      * @var string
      *
@@ -53,11 +54,11 @@ class Notification
     }
 
 
-    public function getUtilisateur(): ?Utilisateur
+    public function getUtilisateur(): ?Users
     {
         return $this->Utilisateur;
     }
-    public function setUtilisateur(?Utilisateur $utilisateur): self
+    public function setUtilisateur(?Users $utilisateur): self
     {
         $this->Utilisateur = $utilisateur;
         return $this;

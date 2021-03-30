@@ -112,7 +112,7 @@
                                     <div class=""><a style="font-size: 83%;" href="{{ path('delete_signal',{'idSignal':signal.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase"><i class="fa fa-check"></i>&nbsp;Deuxieme chance</a></div>
                                 </td>
                                 <td class="table-y-middle py-7">
-                                    <div class=""><a style="font-size: 83%;" href="{{ path('delete_Publication',{'idPublication':signal.publication.id}) }}" class="font-size-3 font-weight-bold text-red-2 text-uppercase"><i class="fa fa-trash"></i>&nbsp;Supprimer</a></div>
+                                    <div class=""><a style="font-size: 83%;" href="{{ path('delete_Publication_admin',{'idPublication':signal.publication.id}) }}" class="font-size-3 font-weight-bold text-red-2 text-uppercase"><i class="fa fa-trash"></i>&nbsp;Supprimer</a></div>
                                 </td>
                             </tr>
                         {% endfor %}
