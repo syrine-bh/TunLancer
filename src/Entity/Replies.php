@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Utilisateurs;
 
 
 /**
@@ -33,7 +34,7 @@ class Replies
      * @Assert\NotBlank(message="ce champ est obligatoire")
      * @Assert\Length(
      *     min="5",
-     *     max="500"
+     *     max="800"
      * )
      */
     private $contenu;
@@ -59,6 +60,11 @@ class Replies
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $dislikes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Utilisateurs::class, inversedBy="replies")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -149,19 +155,19 @@ class Replies
         return $this;
     }
 
-//    /**
-//     * le commentaire est liké par un utilisateur
-//     * @param User $user
-//     * @return bool
-//     */
-//    public function isLikedByUser(User $user): bool {
-//        foreach ($this->likes as $like){
-//            if ($like->getUser()=== $user) return true;
-//        }
-//
-//        return false;
-//
-//    }
+    /**
+     * le commentaire est liké par un utilisateur
+     * @param Utilisateurs $user
+     * @return bool
+     */
+    public function isLikedByUser(Utilisateurs $user): bool {
+        foreach ($this->likes as $like){
+            if ($like->getUser()=== $user) return true;
+        }
+
+        return false;
+
+    }
 
 /**
  * @return Collection|PostDislike[]
@@ -189,6 +195,18 @@ public function removeDislike(PostDislike $dislike): self
             $dislike->setReply(null);
         }
     }
+
+    return $this;
+}
+
+public function getUser(): ?Utilisateurs
+{
+    return $this->user;
+}
+
+public function setUser(?Utilisateurs $user): self
+{
+    $this->user = $user;
 
     return $this;
 }

@@ -58,4 +58,10 @@ class TopicsRepository extends ServiceEntityRepository
     }
 
 
+    public function countByDate(){
+        $query = $this->getEntityManager()->createQuery("SELECT SUBSTRING(a.date, 1, 10) as date, COUNT(a) as count FROM App\Entity\Topics a GROUP BY date");
+        return $query->getResult();
+    }
+
+
 }

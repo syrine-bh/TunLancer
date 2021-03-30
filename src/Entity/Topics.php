@@ -70,6 +70,11 @@ class Topics
      */
     private $favoris;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
     public function __construct()
     {
         $this->replies = new ArrayCollection();
@@ -213,7 +218,7 @@ class Topics
         return $this->favoris;
     }
 
-    public function addFavori(Utilisateurs $favori):self
+    public function addFavori(Utilisateurs $favori): self
     {
         if (!$this->favoris->contains($favori)){
             $this->favoris[]=$favori;
@@ -234,6 +239,18 @@ class Topics
     public function setFavoris(?Utilisateurs $favoris): self
     {
         $this->favoris = $favoris;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

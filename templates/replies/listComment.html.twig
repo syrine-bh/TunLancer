@@ -5,14 +5,14 @@
     <div class="bg-default-1 pt-26 pt-lg-16 pb-13 pb-lg-25">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-4 col-md-5 col-xs-8">
+                <div class="col-12 col-xxl-3 col-lg-4 col-md-5 mb-11 mb-lg-0">
                     <!-- Sidebar Start -->
                     <div class="widgets mb-11">
                         <!-- back Button -->
                         <div class="row justify-content-center">
                             <div class="col-12 dark-mode-texts">
                                 <div class="mb-9">
-                                    <a class="d-flex align-items-center ml-4" href={{ path('showtopic') }}> <i
+                                    <a class="d-flex align-items-center ml-4" href={{ path('topic') }}> <i
                                                 class="icon icon-small-left bg-white circle-40 mr-5 font-size-7 text-black font-weight-bold shadow-8">
                                         </i><span class="text-uppercase font-size-3 font-weight-bold text-gray">Back</span></a>
                                 </div>
@@ -72,7 +72,7 @@
                         <div class="d-flex align-items-center justify-content-between mb-6">
                             <h5 class="font-size-4 font-weight-normal text-gray">
                                 <span class="heading-default-color"></span>
-                                <small class="heading-default-color" style="color: #1b986e">Trouvez la meilleure réponse à votre question technique</small>
+                                <small class="heading-default-color" style="color: black">Trouvez la meilleure réponse à votre question technique</small>
                             </h5>
                             <div class="button-block">
                                 <div class=""><a href="{{ path('addTopic') }}" class="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">Créer un Topic</a></div>
@@ -92,7 +92,7 @@
                                         <div class="media align-items-center">
                                             <div class="square-72 d-block mr-8">
                                                 <div class="text-green bg-green-opacity-1 square-70 rounded-4 mb-7 font-size-7">
-                                                    <i class="fa fa-user"></i>
+                                                    <img src="/image/career.png" width="40" height="40" alt="">
                                                 </div>
                                             </div>
                                             <div>
@@ -104,7 +104,7 @@
                                     <div class="col-md-6 text-right pt-7 pt-md-5">
                                         <div class="media justify-content-md-end">
                                             <div class="image mr-5 mt-2">
-                                                <img src="image/svg/icon-fire-rounded.svg" alt="">
+                                                <img src="/image/bavarder.png" alt="" width="25px" height="25px">
                                             </div>
                                         </div>
                                     </div>
@@ -122,81 +122,143 @@
                                     <div class="col-md-5">
                                         <ul class="d-flex list-unstyled mr-n3 flex-wrap mr-n8 justify-content-md-end">
                                             <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
-                                                <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-clock.svg" alt=""></span>
+                                                <span class="mr-4" style="margin-top: -2px"><img src="/image/svg/icon-clock.svg" alt=""></span>
                                                 <span class="font-weight-semibold"><small>Posté le {{ topic.date|date('d/m/Y à H:m') }} </small></span>
                                             </li>
                                             <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
-                                                <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-suitecase.svg" alt=""></span>
-                                                <span class="font-weight-semibold">Par NomUtilisateur</span>
+                                                <span class="mr-4" style="margin-top: -2px"><img src="image/svg/user.svg" alt=""></span>
+                                                <span class="font-weight-semibold">Par {{ topic.user.Prenom ~" " ~topic.user.Nom}}</span>
                                             </li>
                                         </ul>
                                         <div class="d-flex justify-content-between align-items-center m-6">
                                             <div class=""><a href="{{ path('updateTopic',{'id':topic.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Editer</a></div>
-                                            <div class=""><a href="{{ path('deleteTopic',{'id':topic.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
+                                            <div class="delete"><a href="{{ path('deleteTopic',{'id':topic.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-2">
-                                <div class="mb-4">
+                            <div class="container mt-5">
+                                <div class="col-md-10">
+
                                     {% for reply in topic.replies %}
-                                        <div class="tt-single-topic rounded-lg" style="margin-top:20px;box-shadow: 6px 6px 10px rgba(0,0,0,0.2), -6px -6px 10px    rgba(255,255,255, 0.8); background-color: #ecf0f1;">
-                                            <ul>
-                                                <li class="icon">
-                                                    <i class="far fa-comments"></i>
-                                                </li>
-                                                <li class="card-title">
-                                                <div class="tt-item-info info-top">
-                                                        <a href="#">{{ reply.auteur }}</a>
+                                        <div class="card p-3">
+
+                                            <div class="d-flex justify-content-between align-items-center">
+
+                                                   <div class="user d-flex flex-row align-items-center">
+                                                       <div>
+                                                           <img src="/image/developer.png" width="30" class="user-img rounded-circle mr-2">
+                                                       </div>
+                                                        <span></span>
+                                                       <span>
+                                                        <div class="tt-item-info info-top">
+                                                            <small class="font-weight-bold text-primary">{{ reply.auteur }}</small>
+                                                        </div>
+                                                        <div class="comment-row">
+                                                            <small class="font-weight-bold">{{ reply.contenu|raw }}</small>
+                                                        </div>
+                                                       </span>
+
+                                                   </div>
+
+                                                <div class="d-flex justify-content-md-end align-items-lg-end m-6">
+                                                    <span class="mt-2 mr-8 font-size-small text-black-2 d-flex"><small class="hover"> {{ reply.createdAt| date('d/m/Y à H:m') }}</small></span>
                                                 </div>
-                                                </li>
-                                                <li class="border-info">
-                                                    <div class="col-sm-5">
-                                                    <div class="mb-8">
-                                                    <div class="d-flex flex-row comment-row">
 
-                                                    {{ reply.contenu | raw}}
+                                            </div>
 
-                                                    </div>
-
-                                                    </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="d-flex justify-content-md-end align-items-lg-end m-6">
-                                                <div class=""> <a href="#"><i class="fa fa-pencil-square-o"></i> </a> </div>
-                                                <div class="">
+                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                <div class="reply px-4">
+                                                    <a href="{{ path('post_like', {'id': reply.id}) }}" class="btn btn-link js-like">
+                                                        <button  id="likecontainer" onclick="like({{ reply.id }});" style="background: none;border: none;cursor: pointer;">
+                                                            <img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/like.png') }}" id="thumbsup">
+                                                            <span class="js-likes">{{ reply.likes | length }}</span>
+                                                            <span class="js-label">J'aime</span>
+                                                        </button>
+                                                    </a>
+                                                    <a id="removeLike" href="{{ path('remove_like',{'id':reply.id}) }}" style="display:none;background-color: #98859d;border-radius: 50%;font-size: 14px;width: 26px;height: 26px;position: relative;right: 22px;bottom: 13px;color: wheat;">
+                                                        <i style="position: relative;left: 7px;top: 2px;" class="fa fa-trash"></i>
+                                                    </a>
+                                                    <a href="{{ path('post_dislike', {'id':reply.id}) }}" class="btn btn-link js-like">
+                                                        <button  id="dislikecontainer" onclick="dislike({{ reply.id }});" style="background: none;border: none;cursor: pointer;">
+                                                            <img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/thumbdown.png') }}" id="thumbsdown">
+                                                            <span class="js-likes">{{ reply.dislikes | length }}</span>
+                                                            <span class="js-label">Je n'aime pas</span>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                <div class="icons align-items-center">
                                                     <a href="{{ path('updatecomment', {'id':reply.id}) }}">
                                                         <i class="far fa-edit"></i>
                                                     </a>
-                                                    <a href="{{ path('deletecommentaire', {'id':reply.id}) }}">
+                                                    <a href="{{ path('deletecommentaire', {'id':reply.id}) }}" id="delete">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
-
                                                 </div>
-                                                <span></span>
                                             </div>
-                                            <div class="d-flex list-unstyled mr-n4 flex-wrap">
-                                                <a href="{{ path('post_like', {'id': reply.id}) }}" class="btn btn-link js-like">
-                                                    <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">
-                                                   <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/like.png') }}" id="thumbsup">
-                                                        <span class="js-likes">{{ reply.likes | length }}</span>
-                                                    <span class="js-label">J'aime</span>
-                                                    </button>
-                                                </a>
-                                                    <a href="{{ path('post_dislike', {'id':reply.id}) }}" class="btn btn-link js-like">
-                                                    <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">
-                                                        <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/thumbdown.png') }}" id="thumbsdown">
-                                                       <span class="js-likes">{{ reply.dislikes | length }}</span>
-                                                        <span class="js-label">Je n'aime pas</span>
-                                                    </button>
-                                                    </a>
-                                            </div>
-
                                         </div>
+{#                                        <div class="tt-single-topic rounded-lg" style="margin-top:20px;box-shadow: 6px 6px 10px rgba(0,0,0,0.2), -6px -6px 10px    rgba(255,255,255, 0.8); background-color: #ecf0f1;">#}
+{#                                            <ul>#}
+{#                                                <li class="icon">#}
+{#                                                    <i class="far fa-comments"></i>#}
+{#                                                </li>#}
+{#                                                <li class="card-title">#}
+{#                                                <div class="tt-item-info info-top">#}
+{#                                                        <a href="#"><span class="font-weight-semibold" style="color:black;">{{ reply.auteur }}</span</a>#}
+{#                                                </div>#}
+{#                                                </li>#}
+{#                                                <li class="border-info">#}
+{#                                                    <div class="col-sm-3">#}
+{#                                                    <div class="mb-6">#}
+{#                                                    <div class="d-flex flex-row comment-row">#}
+{#                                                    {{ reply.contenu | raw}}#}
+{#                                                    </div>#}
+{#                                                    </div>#}
+{#                                                    </div>#}
+{#                                                </li>#}
+{#                                            </ul>#}
+
+{#                                            <div class="d-flex justify-content-md-end align-items-lg-end m-6">#}
+{#                                                <div class="">#}
+{#                                                <span class="font-weight-semibold"><small style="color: black"> Posté le {{ reply.createdAt| date('d/m/Y à H:m')}} </small></span>#}
+{#                                                </div> <br>#}
+{#                                                <div class=""> <a href="#"><i class="fa fa-pencil-square-o"></i> </a> </div>#}
+{#                                                <div class="">#}
+{#                                                    <a href="{{ path('updatecomment', {'id':reply.id}) }}">#}
+{#                                                        <i class="far fa-edit"></i>#}
+{#                                                    </a>#}
+{#                                                    <a href="{{ path('deletecommentaire', {'id':reply.id}) }}">#}
+{#                                                        <i class="far fa-trash-alt"></i>#}
+{#                                                    </a>#}
+
+{#                                                </div>#}
+{#                                                <span></span>#}
+{#                                            </div>#}
+{#                                            <div class="d-flex list-unstyled mr-n4 flex-wrap">#}
+{#                                                <a href="{{ path('post_like', {'id': reply.id}) }}" class="btn btn-link js-like">#}
+{#                                                    <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">#}
+{#                                                   <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/like.png') }}" id="thumbsup">#}
+{#                                                        <span class="js-likes">{{ reply.likes | length }}</span>#}
+{#                                                    <span class="js-label">J'aime</span>#}
+{#                                                    </button>#}
+{#                                                </a>#}
+{#                                                <a id="removeLike" href="{{ path('remove_like',{'id':reply.id}) }}" style="display:none;background-color: #98859d;border-radius: 50%;font-size: 14px;width: 26px;height: 26px;position: relative;right: 22px;bottom: 13px;color: wheat;">#}
+{#                                                    <i style="position: relative;left: 7px;top: 2px;" class="fa fa-trash"></i>#}
+{#                                                </a>#}
+{#                                                    <a href="{{ path('post_dislike', {'id':reply.id}) }}" class="btn btn-link js-like">#}
+{#                                                    <button  id="likecontainer" onclick="like({{ reply.id }},2);" style="background: none;border: none;cursor: pointer;">#}
+{#                                                        <img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/thumbdown.png') }}" id="thumbsdown">#}
+{#                                                       <span class="js-likes">{{ reply.dislikes | length }}</span>#}
+{#                                                        <span class="js-label">Je n'aime pas</span>#}
+{#                                                    </button>#}
+{#                                                    </a>#}
+{#                                            </div>#}
+
+{#                                        </div>#}
 
                                     {% endfor %}
                                 </div>
+                                <span></span>
 
                             </div>
                         </div>
@@ -210,8 +272,9 @@
                     </div>
 
                     <div class="text-center pt-5 pt-lg-13">
-                        <a class="text-green font-weight-bold text-uppercase font-size-3" href={{ knp_pagination_render(topics) }}
+                        <a class="text-green font-weight-bold text-uppercase font-size-3" href={{ knp_pagination_render(topics) }}>
                         </a>
+
                     </div>
                 </div>
                 <!-- form end -->
@@ -362,109 +425,141 @@
             });
         }
     </script>
-{% endblock %}
-{% block script %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    </script>
     <script>
-        $(document).ready(function() {
-            $("#search").keyup(function(e){
-                var value = $(this).val();
-                console.log(value);
+        function bigImg(x) {
+            x.style.height= "40px";
+            x.style.width= "52px";
+        }
 
-                $.ajax({
-                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
-                    url : "{{ path('search') }}",
-                    /* La méthode utilisée pour transférer les données est GET */
-                    type : 'GET',
-                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
-                    data: {
-                        'searchValue' : value
-                    },
-                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
-                    success : function(retour){
-                        if(retour){
-                            $('#search').empty();
-                            $.each(JSON.parse(retour), function(i, topic) {
-                                $('#all').hide();
-                                $('#search').append('<div> '+topic.id+'  </div><div>   '+topic.titre+' + '+topic.contenu+' </div><div><a href="{{ path('updateTopic',{'id': 'x'}) }}'+topic.id+'">editer</a> <div> <a href="{{ path('deleteTopic', {'id': 'x'}) }}/'+topic.id+'">supprimer</a></div>');
-                            });
-                        }
-                        else
-                        {
-                            $('#all').show();
-                            $('#search').empty();
-                            $('#search').fadeIn('fast');
-                        }
-                    },
-                });
-                return false;
-            });
-        });
+        function normalImg(x) {
+            x.style.height="20px";
+            x.style.width="26px"
+
+        }
     </script>
-{#    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>#}
 
-{#    <script>#}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("button").click(function () {
+            $.ajax({url:'commentaire/' + id + '/' + 'like', success: function (result) {
+                $("likecontainer").html(result)
 
-{#    function like(id) {#}
-{#        $.ajax({#}
-{#            url:'commentaire/'+id+'/'+'like',#}
-{#            success function (data) {#}
-{#                var container='likecontainer';#}
-{#                document.getElementById(container).click();#}
-{#                if (data== "likeadded"){#}
-{#                    document.getElementById(container).innerHTML="<img style="width: 30px; height: 26px; margin-left: 12px" src="{{ asset('image/like.png') }}" id="thumbsup"/>";#}
-{#                },#}
-{#                error: function (xhr, textStatus, errorThrown) {#}
-{#                    console.log("failed. data");#}
+                } })
 
-{#                }#}
+        })
+
+    })
+    
+
+        {#function like(id) {#}
+        {#    $.ajax({#}
+        {#        url: 'commentaire/' + id + '/' + 'like',#}
+        {#        success function (data) {#}
+        {#            var container = 'likecontainer';#}
+        {#            document.getElementById(container).click();#}
+        {#            $('#removeLike').show('slow')#}
+        {#            if (data === "like added") {#}
+        {#                document.getElementById(container).innerHTML=#}
+        {#                    "<img style="width: 26px; height: 20px; margin-left: 12px" src="{{ asset('image/thumbdown.png') }}" id="thumbsdown">";#}
+        {#            },#}
+        
+        {#            error: function (xhr, textStatus, errorThrown) {#}
+        {#                console.log("failed. data");#}
+        
+        {#            }#}
+        {#        }#}
+        {#    });#}
+        {#}#}
+    {#function like() {#}
+    {#    document.getElementById("likecontainer").innerHTML= "<img style=\"width: 26px; height: 20px; margin-left: 12px\" src=\"{{ asset('image/like.png') }}\" id=\"thumbsup\">";#}
+    {#}#}
+
+    function dislike() {
+        document.getElementById("dislikecontainer").innerHTML= "<img style=\"width: 26px; height: 20px; margin-left: 12px\" src=\"{{ asset('image/thumbsdown.png') }}\" id=\"thumbsdown\">";
 
 
-
-{#            }#}
-{#        })#}
-
-{#    }#}
+    }
+</script>
 
 
-        // $("a.js-like").click(function () {
-        //     $.ajax({
-        //         type: "Post",
-        //         url: $(this).attr("href"),
-        //         success: function (retour) {
-        //             $("#rpse").empty().append(retour);
-        //
-        //         }
-        //
-        //     })
-        //     return false;
-        // })
-        //
-        // /**
-        //  *
-        //  */
-        // function OnClickBtnLike(event) {
-        //     event.preventDefault();
-        //
-        //     const url = this.href;
-        //     const spanCount = $this.querySelectorAll('span.js-likes');
-        //
-        //
-        //
-        //     axios.get(url).then(function (response) {
-        //         spanCount.textContent = response.data.likes;
-        //
-        //
-        //     })
-        //     }
-        // }
-        //
-        // document.querySelectorAll('a.js-like').forEach(function (link) {
-        //     link.addEventListener('click', OnClickBtnLike);
-        //
-        // })
 {% endblock %}
+{#{% block script %}#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">#}
+{#    </script>#}
+{#    <script>#}
+{#        $(document).ready(function() {#}
+{#            $("#search").keyup(function(e){#}
+{#                var value = $(this).val();#}
+{#                console.log(value);#}
+
+{#                $.ajax({#}
+{#                    url : "{{ path('search') }}",#}
+{#                    type : 'GET',#}
+{#                    data: {#}
+{#                        'searchValue' : value#}
+{#                    },#}
+{#                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/#}
+{#                    success : function(retour){#}
+{#                        if(retour){#}
+{#                            $('#search').empty();#}
+{#                            $.each(JSON.parse(retour), function(i, topic) {#}
+{#                                $('#all').hide();#}
+{#                                $('#search').append('<div> '+topic.id+'  </div><div>   '+topic.titre+' + '+topic.contenu+' </div><div><a href="{{ path('updateTopic',{'id': 'x'}) }}'+topic.id+'">editer</a> <div> <a href="{{ path('deleteTopic', {'id': 'x'}) }}/'+topic.id+'">supprimer</a></div>');#}
+{#                            });#}
+{#                        }#}
+{#                        else#}
+{#                        {#}
+{#                            $('#all').show();#}
+{#                            $('#search').empty();#}
+{#                            $('#search').fadeIn('fast');#}
+{#                        }#}
+{#                    },#}
+{#                });#}
+{#                return false;#}
+{#            });#}
+{#        });#}
+{#</script>#}
+
+
+
+{#        // $("a.js-like").click(function () {#}
+{#        //     $.ajax({#}
+{#        //         type: "Post",#}
+{#        //         url: $(this).attr("href"),#}
+{#        //         success: function (retour) {#}
+{#        //             $("#rpse").empty().append(retour);#}
+{#        //#}
+{#        //         }#}
+{#        //#}
+{#        //     })#}
+{#        //     return false;#}
+{#        // })#}
+{#        //#}
+{#        // /**#}
+{#        //  *#}
+{#        //  */#}
+{#        // function OnClickBtnLike(event) {#}
+{#        //     event.preventDefault();#}
+{#        //#}
+{#        //     const url = this.href;#}
+{#        //     const spanCount = $this.querySelectorAll('span.js-likes');#}
+{#        //#}
+{#        //#}
+{#        //#}
+{#        //     axios.get(url).then(function (response) {#}
+{#        //         spanCount.textContent = response.data.likes;#}
+{#        //#}
+{#        //#}
+{#        //     })#}
+{#        //     }#}
+{#        // }#}
+{#        //#}
+{#        // document.querySelectorAll('a.js-like').forEach(function (link) {#}
+{#        //     link.addEventListener('click', OnClickBtnLike);#}
+{#        //#}
+{#        // })#}
+{#{% endblock %}#}
 {% block javascripts %}
 <script>
 const replies = document.getElementById('replies');
@@ -482,6 +577,7 @@ if (replies) {
         }
     });
 }
+
 
 
 </script>

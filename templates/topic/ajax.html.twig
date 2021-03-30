@@ -12,14 +12,14 @@
                         </div>
                         <div>
                             <h3 class="mb-0"><a class="font-size-6 heading-default-color" href="#">{{ topic.titre }}</a></h3>
-                            <a href="#" class="font-size-4 text-default-color line-height-2">{{ topic.contenu }}</a>
+                            <a href="#" class="font-size-4 text-default-color line-height-2">{{ topic.contenu|raw }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-right pt-7 pt-md-5">
                     <div class="media justify-content-md-end">
                         <div class="image mr-5 mt-2">
-                            <img src="image/svg/icon-fire-rounded.svg" alt="">
+                            <img src="image/bavarder.png" alt="" width="25px" height="25px">
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                         </li>
                         <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
                             <span class="mr-4" style="margin-top: -2px"><img src="image/svg/user.svg" alt=""></span>
-                            <span class="font-weight-semibold">Par NomUtilisateur</span>
+                            <span class="font-weight-semibold">Par {{ topic.user.Prenom }}</span>
                         </li>
                     </ul>
                     <div class="d-flex justify-content-between align-items-center m-6">
@@ -64,5 +64,6 @@
         <div class="mb-8">
 
         </div>
+
     {% endfor %}
 </div>

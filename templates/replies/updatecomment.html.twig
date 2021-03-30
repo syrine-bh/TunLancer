@@ -21,8 +21,8 @@
                                 <div class="form-group">
                                     <label for="aboutTextarea" class="d-block text-black-2 font-size-4 font-weight-semibold mb-4">Contenu
                                         <div class="tt-note pt-4">
-                                            {{ form_widget(form.contenu, {'attr': {'class': 'form-control', "id":"comm","placeholder":"modifier votre commentaire", "name":"name", "type":"text", "rows":"5"}}) }}
-                                        </div class="tt-note pt-4">
+                                            {{ form_widget(form.contenu|raw, {'attr': {'class': 'form-control', "id":"comm","placeholder":"modifier votre commentaire", "name":"name", "type":"text", "rows":"5"}}) }}
+                                        </div>
                                 </div>
                                 </label>
                             </div>

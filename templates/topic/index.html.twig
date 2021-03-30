@@ -1,12 +1,17 @@
 {% extends "baseFront.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
+{% endblock %}
+
 {% block section %}
     <!-- Main Content Start -->
     <div class="bg-default-1 pt-26 pt-lg-16 pb-13 pb-lg-25">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-4 col-md-5 col-xs-8">
+                <div class="col-12 col-xxl-3 col-lg-4 col-md-5 mb-11 mb-lg-0">
                     <!-- Sidebar Start -->
-                    <div class="widgets mb-11">
+                    <div class="bg-white shadow-9 rounded-4">
                         <h4 class="font-size-6 font-weight-semibold mb-6">Catégorie</h4>
                         <ul class="list-unstyled filter-check-list">
                             <li class="mb-2"><a href="#" class="toggle-item">Java</a></li>
@@ -15,9 +20,6 @@
                             <li class="mb-2"><a href="#" class="toggle-item">Laravel</a></li>
                             <li class="mb-2"><a href="#" class="toggle-item">Angular</a></li>
                             <li class="mb-2"><a href="#" class="toggle-item">Symfony</a> </li>
-{#                            {% for topic in topics %}#}
-{#                            <li class="mb-2"><a href="#" class="toggle-item"> {{ topic.titre }} </a> </li>#}
-{#                            {% endfor %}#}
                         </ul>
                     </div>
                     <div class="widgets mb-11 ">
@@ -35,7 +37,8 @@
                     <div class="widgets mb-11">
 
                     </div>
-                    <!-- Sidebar End -->
+
+                        <!-- Sidebar End -->
                 </div>
                 <!-- Main Body -->
                 <div class="col-12 col-xl-8 col-lg-8">
@@ -60,7 +63,7 @@
                     <div class="pt-12">
                         <div class="d-flex align-items-center justify-content-between mb-6">
                             <h5 class="font-size-5 font-weight-normal text-gray">
-                                <small class="heading-default-color" style="color: #1b986e">Trouvez la meilleure réponse à votre question technique</small>
+                                <small class="heading-default-color" style="color: black; margin-left: 25px; margin-top: 8px">Trouvez la meilleure réponse à votre question technique</small>
                             </h5>
                             <div class="button-block">
                                 <div class=""><a href="{{ path('addTopic') }}" class="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">Créer un Topic</a></div>
@@ -84,7 +87,8 @@
                                         <div class="media align-items-center">
                                             <div class="square-72 d-block mr-8">
                                                 <div class="text-green bg-green-opacity-1 square-70 rounded-4 mb-7 font-size-7">
-                                                    <i class="fa fa-user"></i>
+{#                                                    <i class="fa fa-user"></i>#}
+                                                    <img src="image/career.png" height="40" width="40">
                                                 </div>
                                             </div>
                                             <div>
@@ -96,7 +100,7 @@
                                     <div class="col-md-6 text-right pt-7 pt-md-5">
                                         <div class="media justify-content-md-end">
                                             <div class="image mr-5 mt-2">
-                                                <img src="image/svg/icon-fire-rounded.svg" alt="">
+                                                <img src="image/bavarder.png" alt="" width="25px" height="25px">
                                             </div>
                                         </div>
                                     </div>
@@ -112,8 +116,25 @@
                                             </li>
                                         </ul>
                                         <div class="card-btn-group">
-                                            <a class="btn btn-outline-mercury text-black-2 mt-2 btn-small rounded-1" href="{{ path('favoris', {'id': topic.id}) }}"><i class="fab fa-gratipay"></i>
-                                                <span></span>  Favoris </a>
+{#                                {% if is_granted("ROLE_USER") %}#}
+                                            {% set isFavorite = false %}
+                                                {% for favoris in topic.favoris %}
+                                                    {% if favoris.id == topic.user.id %}
+                                            {% set isFavorite = true %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% if isFavorite %}
+                                            <a class="btn btn-outline-mercury text-black-2 mt-2 btn-small rounded-1" href="{{ path('removefavoris', {'id': topic.id}) }}">
+                                                <i class="fas fa-heart"></i>
+                                                <span> Favoris </span>
+                                            </a>
+                                            {% else %}
+                                            <a class="btn btn-outline-mercury text-black-2 mt-2 btn-small rounded-1" href="{{ path('favoris', {'id': topic.id}) }}">
+                                                <i class="far fa-heart"> </i>
+                                                <span></span>  Favoris
+                                            </a>
+                                            {% endif %}
+
                                         </div>
                                     </div>
 
@@ -125,7 +146,7 @@
                                             </li>
                                             <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
                                                 <span class="mr-4" style="margin-top: -2px"><img src="image/svg/user.svg" alt=""></span>
-                                                <span class="font-weight-semibold">Par NomUtilisateur</span>
+                                                <span class="font-weight-semibold">Par {{ topic.user.Prenom ~" " ~topic.user.Nom}}</span>
                                             </li>
                                         </ul>
                                         <div class="d-flex justify-content-between align-items-center m-6">
@@ -304,46 +325,54 @@
                 },
             });
         }
+
     </script>
 
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 {% endblock %}
 {% block script %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-</script>
-<script>
-    $(document).ready(function() {
-        $("#search").keyup(function(e){
-            var value = $(this).val();
-            console.log(value);
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    {#$(document).ready(function() {#}
+    {#    $("#search").keyup(function(e){#}
+    {#        var value = $(this).val();#}
+    {#        console.log(value);#}
 
-            $.ajax({
-                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
-                url : "{{ path('search') }}",
-                /* La méthode utilisée pour transférer les données est GET */
-                type : 'GET',
-                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
-                data: {
-                    'searchValue' : value
-                },
-                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
-                success : function(retour){
-                    if(retour){
-                        $('#search').empty();
-                        $.each(JSON.parse(retour), function(i, topic) {
-                            $('#all').hide();
-                            $('#search').append('<div> '+topic.id+'  </div><div>   '+topic.titre+' + '+topic.contenu+' </div><div><a href="{{ path('updateTopic',{'id': 'x'}) }}'+topic.id+'">editer</a> <div> <a href="{{ path('deleteTopic', {'id': 'x'}) }}/'+topic.id+'">supprimer</a></div>');
-                        });
-                    }
-                    else
-                    {
-                        $('#all').show();
-                        $('#search').empty();
-                        $('#search').fadeIn('fast');
-                    }
-                },
-            });
-            return false;
-        });
-    });
-</script>
+    {#        $.ajax({#}
+    {#            /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */#}
+    {#            url : "{{ path('search') }}",#}
+    {#            /* La méthode utilisée pour transférer les données est GET */#}
+    {#            type : 'GET',#}
+    {#            /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */#}
+    {#            data: {#}
+    {#                'searchValue' : value#}
+    {#            },#}
+    {#            /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/#}
+    {#            success : function(retour){#}
+    {#                if(retour){#}
+    {#                    $('#search').empty();#}
+    {#                    $.each(JSON.parse(retour), function(i, topic) {#}
+    {#                        $('#all').hide();#}
+    {#                        $('#search').append('<div> '+topic.id+'  </div><div>   '+topic.titre+' + '+topic.contenu+' </div><div><a href="{{ path('updateTopic',{'id': 'x'}) }}'+topic.id+'">editer</a> <div> <a href="{{ path('deleteTopic', {'id': 'x'}) }}/'+topic.id+'">supprimer</a></div>');#}
+    {#                    });#}
+    {#                }#}
+    {#                else#}
+    {#                {#}
+    {#                    $('#all').show();#}
+    {#                    $('#search').empty();#}
+    {#                    $('#search').fadeIn('fast');#}
+    {#                }#}
+    {#            },#}
+    {#        });#}
+    {#        return false;#}
+    {#    });#}
+    {#});#}
+
 {% endblock %}
+
+
+
+
+

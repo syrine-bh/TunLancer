@@ -5,7 +5,7 @@
     <div class="bg-default-1 pt-26 pt-lg-16 pb-13 pb-lg-25">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-4 col-md-5 col-xs-8">
+                <div class="col-12 col-xxl-3 col-lg-4 col-md-5 mb-11 mb-lg-0">
                     <!-- Sidebar Start -->
                     <div class="widgets mb-11">
                         <!-- back Button -->
@@ -71,7 +71,7 @@
                         <div class="d-flex align-items-center justify-content-between mb-6">
                             <h5 class="font-size-4 font-weight-normal text-gray">
                                 <span class="heading-default-color"></span>
-                                <small class="heading-default-color" style="color: #1b986e">Trouvez la meilleure réponse à votre question technique</small>
+                                <small class="heading-default-color" style="color: black">Trouvez la meilleure réponse à votre question technique</small>
                             </h5>
 
                             <div class="button-block">
@@ -95,7 +95,7 @@
                                         <div class="media align-items-center">
                                             <div class="square-72 d-block mr-8">
                                                 <div class="text-green bg-green-opacity-1 square-70 rounded-4 mb-7 font-size-7">
-                                                    <i class="fa fa-user"></i>
+                                                    <img src="image/career.png" height="40" width="40" alt="">
                                                 </div>
                                             </div>
                                             <div>
@@ -107,7 +107,7 @@
                                     <div class="col-md-6 text-right pt-7 pt-md-5">
                                         <div class="media justify-content-md-end">
                                             <div class="image mr-5 mt-2">
-                                                <img src="image/svg/icon-fire-rounded.svg" alt="">
+                                                <img src="image/bavar.png" alt="" width="25px" height="25px">
                                             </div>
                                         </div>
                                     </div>
@@ -132,9 +132,10 @@
                                             </li>
                                             <li class="mt-2 mr-8 font-size-small text-black-2 d-flex">
                                                 <span class="mr-4" style="margin-top: -2px"><img src="image/svg/icon-suitecase.svg" alt=""></span>
-                                                <span class="font-weight-semibold">Par NomUtilisateur</span>
+                                                <span class="font-weight-semibold">Par {{ topics.user.Prenom ~" " ~topics.user.Nom}}</span>
                                             </li>
                                         </ul>
+
                                         <div class="d-flex justify-content-between align-items-center m-6">
                                             <div class=""><a href="{{ path('updateTopic',{'id':topics.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Editer</a></div>
                                             <div class=""><a href="{{ path('deleteTopic',{'id':topics.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
@@ -157,7 +158,7 @@
                                         {{ form_widget(form.contenu|raw, {'attr': {'class': 'form-control',"placeholder":"votre commentaire", "name":"message", "rows":"5"}}) }}
                                     </div>
                                     <div class="pt-row">
-                                            {{ form_widget(form.ajouter, {'attr': {'class': 'btn btn-secondary btn-width-lg', "type":"submit", "value":""}}) }}
+                                            {{ form_widget(form.ajouter, {'attr': {'class': 'btn btn-primary btn-width-lg', "type":"submit", "value":""}}) }}
                                     </div>
                                     </div>
                             </div>

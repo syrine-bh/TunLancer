@@ -9,10 +9,12 @@ use App\Entity\Utilisateurs;
 use App\Form\RepliesType;
 use App\Form\TopicsType;
 use App\Form\UpdateTopicType;
+use App\Repository\RepliesRepository;
 use App\Repository\TopicsRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use http\Exception\InvalidArgumentException;
 use Knp\Component\Pager\PaginatorInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -90,8 +92,10 @@ class TopicController extends AbstractController
 
     /**
      * @Route("/topic/add", name="addTopic")
+     * @param Request $request
+     * @param FlashyNotifier $flashy
      */
-    public function add(Request $request){
+    public function add(Request $request, FlashyNotifier $flashy){
         $topics = new Topics();
         $user=$em=$this->getDoctrine()->getManager()->getRepository(Utilisateurs::class)->find(1);
 //        $user=$this->getUser();
@@ -106,7 +110,8 @@ class TopicController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($topics);
             $em->flush();
-            return $this->redirectToRoute('showtopic');
+            $flashy->success('Topic créé');
+            return $this->redirectToRoute('topic');
         }
         return $this->render('topic/addTopic.html.twig',
             [
@@ -137,15 +142,17 @@ class TopicController extends AbstractController
 
     /**
      * @param int $id
+     * @param FlashyNotifier $flashy
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/topic/delete/{id}", name="deleteTopic")
      */
-    public function delete(int $id){
+    public function delete(int $id, FlashyNotifier $flashy){
         $entityManager = $this->getDoctrine()->getManager();
         $topics= $entityManager->getRepository(Topics::class)->find($id);
         $entityManager->remove($topics);
         $entityManager->flush();
-        return $this->redirectToRoute("showtopic");
+        $flashy->primary('suppression avec succès');
+        return $this->redirectToRoute('topic');
 
     }
 
@@ -159,6 +166,7 @@ class TopicController extends AbstractController
         $entitymanager = $this->getDoctrine()->getManager();
         /*$topics = $entitymanager->getRepository(Topics::class)->findAll();*/
         $topics = $entitymanager->getRepository(Topics::class)->find($id);
+        $user=$entitymanager->getRepository(Utilisateurs::class)->find(1);
 
         $entitymanager ->flush();
         $reply = new Replies();
@@ -171,6 +179,7 @@ class TopicController extends AbstractController
 
             //$topics->addReply($reply);
             $reply->setTopic($topics);
+            $reply->setUser($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($reply);
             $em->flush();
@@ -214,11 +223,57 @@ class TopicController extends AbstractController
         if (!$topics){
             throw new NotFoundHttpException('topic non trouvé');
         }
-        $topics->getFavoris($this->getUser());
+        $topics->addFavori($this->getUser());
         $em=$this->getDoctrine()->getManager();
         $em->persist($topics);
         $em->flush();
         return $this->redirectToRoute('topic');
+
+    }
+
+    /**
+     * @param Topics $topics
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/topic/removefavorite/{id}", name="removefavoris")
+     */
+    public function removeFavorite(topics $topics){
+        if (!$topics){
+            throw new NotFoundHttpException('topic non trouvé');
+        }
+        $topics->removeFavori($this->getUser());
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($topics);
+        $em->flush();
+        return $this->redirectToRoute('topic');
+    }
+
+
+    /**
+     * @param TopicsRepository $topicsRepository
+     * @return Response
+     * @Route("/admin/stats", name="adminstat")
+     */
+
+    public function adminStat(TopicsRepository $topicsRepository){
+        $topics= $topicsRepository->countByDate();
+        $dates = [];
+        $topicCount=[];
+
+
+        foreach ($topics as $topic){
+            $dates[]= $topic['date'];
+            $topicCount[]=$topic['count'];
+        }
+
+
+        return $this->render('topic/admin/stats.html.twig', [
+            'dates'=>json_encode($dates),
+            'topicCount'=>json_encode($topicCount)
+
+        ]);
+
+
+
 
     }
 

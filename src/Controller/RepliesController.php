@@ -6,6 +6,7 @@ use App\Entity\PostDislike;
 use App\Entity\Replies;
 use App\Entity\Topics;
 use App\Entity\PostLike;
+use App\Entity\Utilisateurs;
 use App\Form\RepliesType;
 use App\Form\RepliesUpdateType;
 use App\Repository\PostDislikeRepository;
@@ -156,14 +157,26 @@ class RepliesController extends AbstractController
     public function like($id, PostLikeRepository $likeRepository) : Response{
         $em = $this->getDoctrine()->getManager();
         $replies=$em->getRepository(Replies::class)->find($id);
-        $like = new PostLike();
-        $like->setReply($replies);
-        $em->persist($like);
-        $em->flush();
+        $user=$em->getRepository(Utilisateurs::class)->find(1);
+        $find=false;
+        $likes=$replies->getLikes();
+        foreach ($likes as $like){
+            if ($like->getUser()->getId()==$user->getId()){
+                $find=true;
+            }
+        }
+        if ($find==true){
+            return new JsonResponse("vous avez déjà aimé");
+        }else {
+            $like = new PostLike();
+            $like->setReply($replies);
+            $like->setUser($user);
+            $em->persist($like);
+            $em->flush();
 
 //        return new JsonResponse("like added");
-        return $this->redirectToRoute('showcomment');
-
+            return $this->redirectToRoute('showcomment');
+        }
     }
 
     /**
@@ -173,9 +186,17 @@ class RepliesController extends AbstractController
      */
     public function removeLike(int $id) {
         $em=$this->getDoctrine()->getManager();
-        $like=$em->getRepository(PostLike::class)->find($id);
-        $em->remove($like);
-        $em->flush();
+        $replies= $em->getRepository(Replies::class)->find($id);
+        $user=$em->getRepository(Utilisateurs::class)->find(1);
+//        $like=$em->getRepository(PostLike::class)->find($id);
+        $likes=$replies->getLikes();
+        foreach ($likes as $like){
+            if (($like->getUser()->getId()==$user->getId()) && ($replies->getId()==$id))
+                $em->remove($like);
+                $em->flush();
+        }
+//        $em->remove($like);
+//        $em->flush();
         return $this->redirectToRoute('showcomment');
     }
 

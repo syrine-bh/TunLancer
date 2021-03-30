@@ -24,14 +24,13 @@ class PostLike
     private $reply;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=Utilisateurs::class, inversedBy="likes")
      */
     private $user;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
+
+
 
     public function getReply(): ?Replies
     {
@@ -45,15 +44,21 @@ class PostLike
         return $this;
     }
 
-    public function getUser(): ?string
-    {
-        return $this->user;
-    }
 
-    public function setUser(string $user): self
-    {
-        $this->user = $user;
 
-        return $this;
-    }
+public function getUser(): ?Utilisateurs
+{
+    return $this->user;
+}
+
+public function setUser(?Utilisateurs $user): self
+{
+    $this->user = $user;
+
+    return $this;
+}
+
+
+
+
 }
