@@ -4,16 +4,27 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Job Board & Directory Template</title>
-    <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/x-icon">
+    <title>TunLancer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ asset('assets2/js/jquery/jquery-2.2.4.min.js') }}"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Parisienne&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <!-- Bootstrap , fonts & icons  -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/icon-font/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/typography-font/typo.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/fontawesome-5/css/all.css') }}">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
 
     <!-- Plugin'stylesheets  -->
     <link rel="stylesheet" href="{{ asset('plugins/aos/aos.min.css') }}">
@@ -23,23 +34,37 @@
     <link rel="stylesheet" href="{{ asset('plugins/ui-range-slider/jquery-ui.css') }}">
     <!-- Vendor stylesheets  -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <!-- Custom stylesheet -->
+
+    <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/react.css') }}">
+
+{#        <link rel="stylesheet" href="{{asset('assets2/style.css')}}">#}
+        <link rel="stylesheet" href="{{asset('bundles/foscomment/css/comments.css')}}">
+
+        <link rel="stylesheet" href="{{asset('assets2/beat.css')}}">
+
+        <link rel="icon" type="image/png" href="{{asset('assets2/img/icon.png')}}">
+        <link href="{{ asset('assets2/css/pp.css') }}" type="text/css" rel="stylesheet" />
+{% block stylsheets %}{% endblock %}
+
+
 </head>
 
 <body>
 <div class="site-wrapper overflow-hidden ">
     <!-- Header start  -->
-    <!-- Header Area -->
+    <!-- Header Area --><body >
+
     <header class="site-header site-header--menu-right dynamic-sticky-bg py-7 py-lg-0 site-header--absolute site-header--sticky">
         <div class="container">
             <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
                 <!-- Brand Logo-->
                 <div class="brand-logo">
-                    <a href="{{ path('home') }}">
+                    <a href="{{ path('listCadmin') }}">
                         <!-- light version logo (logo must be black)-->
-                        <img style="width: 70px;height: 70px;" src="{{ asset('image/logo.png') }}" alt="" class="light-version-logo default-logo">
+                        <img style="width: 70px;height: 70px;" src="{{ asset('images/logo.png') }}" alt="" class="light-version-logo default-logo">
                         <!-- Dark version logo (logo must be White)-->
-                        <img style="width: 70px;height: 70px;" src="{{ asset('image/logo.png') }}" alt="" class="dark-version-logo">
+                        <img style="width: 70px;height: 70px;" src="{{ asset('images/logo.png') }}" alt="" class="dark-version-logo">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="mobile-menu">
@@ -47,7 +72,8 @@
                         <ul class="navbar-nav main-menu">
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+
+                                <a class="nav-link" href="{{ path('listCadmin') }}">Acceuil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('publications') }}">Offres</a>
@@ -56,10 +82,9 @@
                                 <a class="nav-link" href="{{ path('publications') }}">Publications</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Recrutement</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Concours</a>
+
+                                <a class="nav-link" href="{{ path('list') }}">Concours</a>
+
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('topic') }}">Forum</a>
@@ -72,10 +97,10 @@
                 </div>
                 <div class="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
                     <a class="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset" href="javacript:" data-toggle="modal" data-target="#login">
-                        Log in
+                        connexion
                     </a>
                     <a class="btn btn-primary text-uppercase font-size-3" href="javacript:" data-toggle="modal" data-target="#signup">
-                        Sign up
+                        S'inscrire
                     </a>
                 </div>
                 <!-- Mobile Menu Hamburger-->
@@ -87,15 +112,14 @@
             </span>
             </span>
                 </button>
-                <!--/.Mobile Menu Hamburger Ends-->
+                <!--/.Mobile Menu Ends-->
             </nav>
         </div>
     </header>
-
-    {% block index %}
+    {% block acceuil %}
 
     {% endblock %}
-    <section class="pt-7 pt-lg-16 pb-2 pb-lg-32">
+    <section style="margin: 10px;" class="pt-7 pt-lg-16 pb-2 pb-lg-32">
         {% block section %}
 
 
@@ -103,7 +127,7 @@
         {% endblock %}
     </section>
 
-
+{% block footer %}
     <footer class="footer bg-ebony-clay dark-mode-texts">
         <div class="container">
             <!-- Cta section -->
@@ -118,9 +142,9 @@
                         <!-- cta-content end -->
                     </div>
                     <div class="col-xl-5 col-lg-12" data-aos="fade-left" data-aos-duration="800" data-aos-once="true">
-                        <!-- cta-btns start -->
+                        run cta-btns start -->
                         <div class="btns d-flex justify-content-xl-end justify-content-center align-items-xl-center flex-wrap h-100  mx-n4">
-                            <a class="btn btn-outline-gallery btn-xl mx-4 mt-6 text-uppercase" href="#" data-toggle="modal" data-target="#login">Log in</a>
+                            <a class="btn btn-outline-gallery btn-xl mx-4 mt-6 text-uppercase" href="#" data-toggle="modal" data-target="#login">log in</a>
                             <a class="btn btn-green btn-h-60 btn-xl mx-4 mt-6 text-uppercase" href="#" data-toggle="modal" data-target="#signup">Register</a>
                         </div>
                         <!-- cta-btns end -->
@@ -132,11 +156,11 @@
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-lg-0 mb-9">
                     <!-- footer logo start -->
-                    <img src="{{ asset('image/logo-main-white.png') }}" alt="" class="footer-logo mb-14">
+                    <img src="{{ asset('images/logo-main-white.png') }}" alt="" class="footer-logo mb-14">
                     <!-- footer logo End -->
                     <!-- media start -->
                     <div class="media mb-11">
-                        <img src="{{ asset('image/l1/png/message.png') }}" class="align-self-center mr-3" alt="">
+                        <img src="{{ asset('images/l1/png/message.png') }}" class="align-self-center mr-3" alt="">
                         <div class="media-body pl-5">
                             <p class="mb-0 font-size-4 text-white">Contact us at</p>
                             <a class="mb-0 font-size-4 font-weight-bold" href="mailto:support@uxtheme.net">support@uxtheme.net</a>
@@ -219,7 +243,8 @@
             </div>
         </div>
     </footer>
-
+    {% endblock %}
+    </body>
 </div>
 <!-- Vendor Scripts -->
 <script src="{{ asset('js/vendor.min.js') }}"></script>
@@ -231,9 +256,25 @@
 <script src="{{ asset('plugins/counter-up/jquery.counterup.min.js') }}"></script>
 <script src="{{ asset('jplugins/counter-up/jquery.waypoints.min.js') }}"></script>
 <script src="{{ asset('plugins/ui-range-slider/jquery-ui.js') }}"></script>
+<script src="{{ asset('plugins/jquery.nicescroll.min.js') }}"></script>
 <!-- Activation Script -->
 <!-- <script src="js/drag-n-drop.js"></script> -->
 <script src="{{ asset('js/custom.js') }}"></script>
+<!-- jQuery-2.2.4 js -->
+<script src="{{asset('assets2/js/jquery/jquery-2.2.4.min.js')}}"></script>
+<!-- Popper js -->
+<script src="{{asset('assets2/js/bootstrap/popper.min.js')}}"></script>
+<!-- Bootstrap js -->
+<script src="{{asset('assets2/js/bootstrap/bootstrap.min.js')}}"></script>
+<!-- All Plugins js -->
+<script src="{{asset('assets2/js/plugins/plugins.js')}}"></script>
+<!-- Active js -->
+<script src="{{asset('assets2/js/active.js')}}"></script>
+
+
+
+{% block javascripts %}{% endblock %}
+
 </body>
 
 </html>

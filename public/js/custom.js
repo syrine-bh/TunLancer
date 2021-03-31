@@ -7,7 +7,7 @@ $(document).ready(function() {
     AOS.init();
     window.addEventListener("load", AOS.refresh);
 
-    if (jQuery(".testimonial-slider-one").length > 0) {
+    if (jhQuery(".testimonial-slider-one").length > 0) {
         $(".testimonial-slider-one").slick({
             dots: true,
             infinite: true,

@@ -1,0 +1,53 @@
+
+{#{% block title %}Statistiques{% endblock %}#}
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous">
+
+
+
+    <div class="container">
+        <h1>Statistiques</h1>
+        <canvas id="concours" width="400" height="100"></canvas>
+
+        <canvas id="participations" width="400" height="100"></canvas>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <script>
+        let concours = document.querySelector("#concours")
+        let concGraph = new Chart(concours, {
+            type: "pie",
+            data: {
+                labels: {{ concNom|raw }},
+                datasets: [{
+                    label: "Répartition des concours selon nombre partcipants",
+                    data: {{ concCount|raw }},
+                    backgroundColor: {{ concColor|raw }}
+                }]
+            }
+        })
+        let participations = document.querySelector("#participations")
+        let partGraph = new Chart(participations, {
+            type: "line",
+            data: {
+                labels: {{ dates|raw }},
+                datasets: [{
+                    label: "Nombre d'annonces",
+                    data: {{ participationsCount|raw }}
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        })
+    </script>
+<div id="visites" style="height: 400px; padding:0;">

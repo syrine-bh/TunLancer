@@ -1,0 +1,190 @@
+{% extends "baselist.html.twig" %}
+{% block section %}
+    <!-- jobDetails-section -->
+    <div class="jobDetails-section bg-default-1 pt-28 pt-lg-27 pb-xl-25 pb-12">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- back Button -->
+                <div class="col-xl-10 col-lg-11 mt-4 ml-xxl-32 ml-xl-15 dark-mode-texts">
+                    <div class="mb-9">
+                        <a class="d-flex align-items-center ml-4" href="dashboard-main.html"> <i
+                                    class="icon icon-small-left bg-white circle-40 mr-5 font-size-7 text-black font-weight-bold shadow-8">
+                            </i><span class="text-uppercase font-size-3 font-weight-bold text-gray">Retour </span></a>
+                    </div>
+                </div>
+                <!-- back Button End -->
+
+                {% for c in concour %}
+                {% if c.id == app.request.get('id') %}
+                <div class="col-xl-9 col-lg-11 mb-8 px-xxl-15 px-xl-0">
+                    <div class="bg-white rounded-4 border border-mercury shadow-9">
+                        <!-- Single Featured Job -->
+
+                        <div class="pt-9 pl-sm-9 pl-5 pr-sm-9 pr-5 pb-8 border-bottom border-width-1 border-default-color light-mode-texts">
+                            <h1 style="color:#0a2a30;text-align: center;font-family: 'Aldhabi';text-shadow: 4px 4px 7px #D6AAD4"
+                                id="chronotime"></h1>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <!-- media start -->
+
+
+                                    <div class="media align-items-center">
+                                        <!-- media logo start -->
+                                        <div class="square-72 d-block mr-8">
+                                            <img src="{{ asset('images/uploads/' ~ c.imageName) }}" alt=""
+                                                 class="rounded" width="70">
+                                        </div>
+                                        <!-- media logo end -->
+                                        <!-- media texts start -->
+                                        <div>
+                                            <h3 class="font-size-6 mb-0">{{ c.nom }}</h3>
+                                            <span class="font-size-3 text-gray line-height-2">{{ c.categorie }}</span>
+                                        </div>
+                                        <!-- media texts end -->
+                                    </div>
+                                    <!-- media end -->
+                                </div>
+
+                            </div>
+                            <div class="row pt-9">
+                                <div class="col-12">
+                                    <!-- card-btn-group start -->
+                                    <div class="card-btn-group">
+                                        {% if (c.dateFin | date('Y-m-d')) > (  "now"|date('Y-m-d') ) %}
+                                            {% if not c.isVideo %}
+                                                {% for q in c.quiz %}
+
+                                                    <a class="btn btn-green text-uppercase btn-medium rounded-3 w-180 mr-4 mb-5"
+                                                       href="{{ path ('participerConcours',{'id':q.id}) }}">Participer</a>
+                                                {% endfor %}
+                                            {% else %}
+                                                <a class="btn btn-green text-uppercase btn-medium rounded-3 w-180 mr-4 mb-5"
+                                                   href="{{ path ('concourV',{'id':c.id}) }}">Participer</a>
+                                            {% endif %}
+                                        {% else %}
+                                            {% for q in c.quiz %}
+
+                                                <a class="btn btn-green text-uppercase btn-medium w-180 h-px-48 rounded-3 mr-4 mt-6"
+                                                   href="{{ path ('ranks',{'id':q.id}) }}">Voir les tops ranked</a>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                    </div>
+                                    <!-- card-btn-group end -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 light-mode-texts">
+                            <div class="row">
+                                <div class="col-xl-11 col-md-12 pr-xxl-9 pr-xl-10 pr-lg-20">
+                                    <div class="">
+                                        <p class="mb-4 font-size-4 text-gray">Sujet</p>
+                                        <p class="font-size-4 text-black-2 mb-7"> {{ c.sujet }} </p>
+                                    </div>
+                                    <div class="">
+                                        <span class="font-size-4 font-weight-semibold text-black-2 mb-7">Description</span>
+                                        <p class="font-size-4 text-black-2 mb-7">{{ c.description }} </p>
+                                        <span class="font-size-4 font-weight-semibold text-black-2 mb-7">Noter Bien</span>
+                                        <ul class="list-unstyled">
+                                            <li class="d-block font-size-4 text-black-2 d-flex flex-row mt-2">
+                                                <span class="d-inline-block mr-7">•</span>Vous pouver participer à ce
+                                                concours une seule fois
+                                            </li>
+
+                                            {% if not c.isVideo %}
+                                                <li class="d-block font-size-4 text-black-2 d-flex flex-row mt-1">
+                                                    <span class="d-inline-block mr-7">•</span>Lisez attentivement les
+                                                    questions avant de répondre
+                                                </li>
+                                            {% endif %}
+                                            {% if  c.isVideo %}
+                                                <li class="d-block font-size-4 font-weight-bold text-black-2 d-flex flex-row mt-1">
+                                                    <span class="d-inline-block mr-7">•</span>Il vous Faut un video
+                                                    d'une bonne qualitée et disponible
+                                                    sur YouTube pour pouvoir participer à ce concours
+                                                </li>
+                                            {% endif %}
+                                            <li class="d-block font-size-4 text-black-2 d-flex flex-row mt-1">
+                                                <span class="d-inline-block mr-7">•</span>Se rappeler qu’un concours est
+                                                un recrutement
+                                            </li>
+                                        </ul>
+                                        {% if (c.dateFin | date('Y-m-d')) > (  "now"|date('Y-m-d') ) %}
+                                            {% for q in c.quiz %}
+
+                                                <a class="btn btn-green text-uppercase btn-medium w-180 h-px-48 rounded-3 mr-4 mt-6"
+                                                   href="{{ path ('participerConcours',{'id':q.id}) }}">Participer</a>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <script>
+                <!--
+                var startTime = 0;
+                var start = 0;
+                var end = 0;
+                var diff = 0;
+                var timerID = 0;
+
+                function chrono() {
+                    end = new Date('{{ c.dateFin |date }}');
+                    start = new Date();
+
+                    diff = end - start;
+                    if (diff < 0) diff = 0;
+
+
+                    var msec = diff % 1000;
+                    var sec = Math.floor((diff / 1000) % 60);
+                    var min = Math.floor((diff / (60 * 1000)) % 60);
+                    var hr = Math.floor(diff / (60 * 60 * 1000));
+                    if (min < 10) {
+                        min = "0" + min
+                    }
+                    if (sec < 10) {
+                        sec = "0" + sec
+                    }
+                    if (msec < 10) {
+                        msec = "00" + msec
+                    } else if (msec < 100) {
+                        msec = "0" + msec
+                    }
+
+
+                    if (diff === 0) document.getElementById("chronotime").innerHTML = "Le concours est terminé !";
+                    else document.getElementById("chronotime").innerHTML = "Le concours va terminé dans : " + hr + ":" + min + ":" + sec;
+                    timerID = setTimeout("chrono()", 10)
+                }
+
+                chrono();
+                let $winner = $('.rank').first();
+                console.log($winner);
+                if (diff === 0) {
+                    $('.posts').hide();
+                    $(".postss").html($winner).show();
+                    $(".win").show();
+                }
+
+                -->
+            </script>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,52 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}list Quiz{% endblock %}
+
+{% block section %}
+    <div style="max-width: 120%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;"
+         class="container">
+
+    <div class="card">
+        <h5 class="card-header">Liste des Quiz
+            <a style="max-width: 20%" href="{{ path ('ajoutQuiz') }}" class="btn btn-space btn-primary float-right">Ajouter
+                Quiz</a>
+
+        </h5>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="bg-light">
+                    <tr class="border-0">
+                        <th class="border-0">#</th>
+                        <th class="border-0">Quiz</th>
+                        <th class="border-0">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for q in quiz %}
+                        <tr>
+                            <td>{{ q.id }}</td>
+
+                            <td>{{ q.nom }}</td>
+                            <td class="col-3 text-right"><a href="{{ path ('modifierQuiz',{'id':q.id }) }}"
+                                                            class="btn btn-primary ">Modifier</a> <a
+                                        class="btn btn-danger"
+                                        href="{{ path ('supprimerQuiz',{'id':q.id }) }}">Suprimer</a>
+                                <a href="{{ path ('listQuestions',{'id':q.id }) }}" class="btn btn-primary ">Voir les
+                                    Questions</a>
+                                <a href="{{ path ('scoreQ',{'id':q.id }) }}" class="btn btn-primary ">Voir les
+                                    Scores</a>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

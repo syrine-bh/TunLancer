@@ -1,0 +1,71 @@
+{% extends "baselist.html.twig" %}
+
+{% block section %}
+    <!-- ======= Portfolio Section ======= -->
+    <style>
+        i {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 5px;
+            align-items: center;
+        }
+    </style>
+    <section id="portfolio" class="section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <header class="section-header">
+                <h3 class="section-title">Les tops ranked de ce moment</h3>
+            </header>
+
+
+
+            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+                {% set id =0 %}
+                {% for rank in res %}
+                    {% set id=id+1 %}
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-~"{{ "raks"  }}>
+
+                        {% if id is same as (1) %}
+
+                            <img src="{{ asset('assets/img/users/gold.png') }}" style="width:30%" class="align-content-md-center">
+                        {% elseif id is same as (2) %}
+                            <img src="{{ asset('assets/img/users/silver.png') }}" style="width:30%" class="align-content-md-center">
+                        {% else %}
+                            <img src="{{ asset('assets/img/users/bronze.png') }}" style="width:30%" class="align-content-md-center">
+                        {% endif %}
+
+                        <div class="portfolio-wrap">
+                            <div>
+                                <img src="{{ asset('assets/img/users/'~ rank[0].owner.photo) }}" style="width:80%" class="align-content-md-center">
+                            </div>
+                            <div class="portfolio-info">
+
+                                <h4 class="text-black"> {{ rank[0].owner.prenom }} {{ rank[0].owner.nom }}</h4>
+                                <p class="text-black"> Nombre de Votes: {{ rank[0].votes.count }}</p>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                    {#                    <button type="button" class="btn btn-dark" href="promote_user" data-toggle="modal" data-target="#createmodel" data-whatever="{{ score.id }}">envoyer mail</button>#}
+
+                {% endfor %}
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </section><!-- End Portfolio Section -->
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

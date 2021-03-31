@@ -1,0 +1,43 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Admin-Add{% endblock %}
+
+{% block section %}
+
+    <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;"
+         class="container">
+        <div class="row">
+
+            <div class="col-xl-12 col-lg-12 col-md-8 col-sm-12 col-12">
+                <div class="card">
+                    <h5 class="card-header">Ajouter Quiz</h5>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+                        <div class="form-group col-md-10 ">
+                            <label for="nom">Nom quiz</label>
+                            {{ form_widget(form.nom, { 'attr' : { 'class' : 'form-control' } }) }}
+                        </div>
+
+
+                        <div class="form-group col-md-10 ">
+                            <label for="nom">Nombre questions</label>
+                            {{ form_widget(form.nbQuestions, { 'attr' : { 'class' : 'form-control' } }) }}
+                        </div>
+
+                        <div class="form-group col-md-10 ">
+                            <label for="nom">Concour</label>
+                            {{ form_widget(form.concour, { 'attr' : { 'class' : 'form-control' } }) }}
+                        </div>
+
+
+                        <button class="btn btn-success">Enregistrer</button>
+                        <a href="{{ path ('listQuiz') }}" class="btn btn-primary mb-3 float-right">Retour</a>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

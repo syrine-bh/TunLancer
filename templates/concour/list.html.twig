@@ -1,0 +1,102 @@
+{% extends "baselist.html.twig" %}
+
+{% block section %}
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <header class="section-header">
+                <h3 class="section-title">Nos concours</h3>
+            </header>
+            <form action="{{ path('rechercheConcour') }}" class="search-form">
+                <div class="filter-search-form-2 search-1-adjustment bg-white rounded-sm shadow-7 pr-6 py-6 pl-6">
+                    <div class="filter-inputs">
+                        <div class="form-group position-relative w-lg-45 w-xl-40 w-xxl-45">
+                            <input class="form-control focus-reset pl-13" onkeyup="myFunction()" type="text"
+                                   id="keyword" placeholder="search">
+                            <span class="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6" id="aller">
+                    <i class="icon icon-zoom-2 text-primary font-weight-bold"></i>
+                  </span>
+                        </div>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('rechercheConcour') }}">
+                            <button class="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase"
+                                    id="search" >Search
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class=" col-lg-12">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        {% for c in concour %}
+                            <li data-filter=".filter-{{ c.categorie }}">{{ c.categorie }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200" id="aller">
+                {% for c in concour %}
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-{{ c.categorie }}">
+                        <div class="portfolio-wrap">
+                            <figure>
+                                <img src="{{ asset('images/uploads/' ~ c.imageName) }}" class="img-fluid" alt="">
+                                {# {% for q in c.quiz %} #}
+                                {# <a href="{{ path ('participerConcours',{'id':q.id}) }}" data-lightbox="portfolio" data-title="App 1" class="link-preview"><i class="bi bi-plus"></i></a> #}
+                                {# {% endfor %} #}
+                                <a href="{{ path ('descriptionConcours',{'id':c.id}) }}" data-lightbox="portfolio"
+                                   data-title="App 1" class="link-preview"><i class="bi bi-plus"></i></a>
+                                {# <a href="{{ path ('concourV',{'id':c.id}) }}" class="link-details" title="More Details"><i class="bi bi-link"></i></a> #}
+
+                            </figure>
+
+                            <div class="portfolio-info">
+                                <h4><a href="descriptionConcours.html.twig">{{ c.nom }} </a></h4>
+                                <p>{{ c.categorie }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+
+    </section><!-- End Portfolio Section -->
+{#<div>   #}
+{#    {{ knp_pagination_render(concour) }}#}
+{#</div>#}
+
+
+    <script>
+        function myFunction() {
+            var p = document.getElementById("keyword").value;
+            console.log(p);
+            $.ajax({
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url: "{{ path('rechercheConcour') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                type: 'GET',
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                data: {
+                    'searchValue': p
+                },
+                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success: function (data) {
+                    $('#aller').html(data);
+                },
+            });
+        }
+    </script>
+
+{% endblock %}
+

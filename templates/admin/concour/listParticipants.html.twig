@@ -1,0 +1,58 @@
+
+{% extends "baseBack.html.twig" %}
+{% block section %}
+<div class="row">
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+
+    <!-- recent orders  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Liste des participants</h5>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-light">
+                        <tr class="border-0">
+                            <th class="border-0">#</th>
+                            <th class="border-0"></th>
+                            <th class="border-0">Nom</th>
+                            <th class="border-0">Prenom</th>
+                            <th class="border-0">Email</th>
+                            <th class="border-0">Status</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr{% for p in participant %}>
+                            <td>{{ p.user.id }}</td>
+                            <td>
+                                <div class="m-r-10"><img src="{{  asset('assets/img/users/' ~ p.user.photo) }}"  class="rounded" width="45"></div>
+                            </td>
+                            <td>{{ p.user.nom }}</td>
+                            <td>{{ p.user.prenom }}
+                            <td>{{ p.user.email }} </td>
+
+
+
+
+                        </tr{% endfor %}>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+

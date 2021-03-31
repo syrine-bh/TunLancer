@@ -93,9 +93,8 @@ class TopicController extends AbstractController
     /**
      * @Route("/topic/add", name="addTopic")
      * @param Request $request
-     * @param FlashyNotifier $flashy
      */
-    public function add(Request $request, FlashyNotifier $flashy){
+    public function add(Request $request){
         $topics = new Topics();
         $user=$em=$this->getDoctrine()->getManager()->getRepository(Utilisateurs::class)->find(1);
 //        $user=$this->getUser();
@@ -110,7 +109,6 @@ class TopicController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($topics);
             $em->flush();
-            $flashy->success('Topic créé');
             return $this->redirectToRoute('topic');
         }
         return $this->render('topic/addTopic.html.twig',

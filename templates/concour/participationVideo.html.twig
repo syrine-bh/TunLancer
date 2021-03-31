@@ -1,0 +1,56 @@
+{% extends "baseFront.html.twig" %}
+
+{% block section %}
+
+    <div style="max-width: 50%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;"
+         class="container">
+        <div class="row">
+
+            <div class="col-xl-12 col-lg-12 col-md-8 col-sm-12 col-12">
+                <div class="card">
+                    <h5 class="card-header">Participation</h5>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+
+
+                        <div class="form-group col-md-10 ">
+                            <label for="nom">Titre</label>
+                            {{ form_widget(form.title,{'attr': {'class': 'form-control text-dark'} }) }}
+                        </div>
+                        <div class="form-group col-md-10">
+                            <label for="sujet">Date</label>
+                            {{ form_widget(form.publishDate,{'attr': {'class': 'form-control text-dark  '} }) }}
+                        </div>
+
+                        <div class="form-group col-md-10">
+                            <label for="description">URL</label>
+                            {{ form_widget(form.url,{'attr': {'class': 'form-control text-dark'} }) }}
+                        </div>
+                        <div>
+                            <button class="btn btn-success col" type="submit">Envoyer votre video</button>
+
+                        </div>
+                        {{ form_end(form) }}
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+        {% block scripts %}
+            <script>
+
+
+            </script>
+        {% endblock %}
+
+
+
+
+

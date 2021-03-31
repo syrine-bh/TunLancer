@@ -1,0 +1,25 @@
+{% extends 'baseFront.html.twig' %}
+{% block title 'Home'%}
+{% block section %}
+    <div class="container">
+        <div class="row  justify-content-center align-items-center">
+            <div class="stater col-md-6">
+                <a href="{{ path ('result',{'id':app.request.get('id')}) }}"><button type="button" class="btn btn-outline-primary btn-lg btn-block">Voir les scores</button></a>
+            </div>
+
+
+            <div class="stater col-md-6 ">
+                <a href="{{ path ('questionQ',{'id':app.request.get('id')})}}"><button type="button" class="btn btn-outline-success btn-lg btn-block">Commencer</button></a>
+
+            </div>
+
+            <div class="stater col-md-6 ">
+                <a href="{{ path ('ranks',{'id':app.request.get('id')})}}"><button type="button" class="btn btn-outline-light btn-lg btn-block">Voir les top ranked de ce concours</button></a>
+
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

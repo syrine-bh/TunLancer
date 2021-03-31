@@ -462,7 +462,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
   top: 0;
   right: 0;
   transform: translate(50%, -50%);
-  background: #00b074;
+  background: #debed1;
   color: #fff;
 }
 
@@ -515,11 +515,11 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  01.Component -> { Menu } 
+  01.Component -> { Menu }
 ------------------------------*/
 .main-menu {
   /* ----------------------
-  Custom toggle arrow 
+  Custom toggle arrow
 ------------------------*/
 }
 
@@ -573,7 +573,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
   }
   .main-menu > li > .nav-link:before {
     content: "";
-    background: #00b074;
+    background: #debed1;
     width: 100%;
     height: 2px;
     top: 0;
@@ -636,7 +636,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
     border: 1px solid var(--border-color-3);
     background-color: #fff;
     display: block;
-    border-top: 3px solid #00b074;
+    border-top: 3px solid #debed1;
   }
 }
 
@@ -668,11 +668,11 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .gr-menu-dropdown > .drop-menu-item:hover > a {
-  color: #00b074;
+  color: #debed1;
 }
 
 .gr-menu-dropdown > .drop-menu-item > .gr-menu-dropdown {
-  border-top-color: #00b074;
+  border-top-color: #debed1;
 }
 
 @media (min-width: 992px) {
@@ -858,7 +858,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
     padding-right: 10px;
   }
   .gr-megamenu-dropdown .mega-drop-menu-item:hover {
-    color: #00b074 !important;
+    color: #debed1 !important;
   }
 }
 
@@ -941,7 +941,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 
 @media (min-width: 992px) {
   .gr-megamenu-dropdown-2 .mega-drop-menu-item:hover {
-    color: #00b074 !important;
+    color: #debed1 !important;
   }
 }
 
@@ -1062,7 +1062,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
     background: #fff;
   }
   .offcanvas-active.navbar-expand-lg .navbar-collapse::-webkit-scrollbar-thumb {
-    background-color: #00b074;
+    background-color: #debed1;
     outline: 1px solid slategrey;
   }
   .offcanvas-active.navbar-expand-lg .btn-close-off-canvas .icon-burger {
@@ -1102,7 +1102,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
     top: 3px;
   }
   .offcanvas-active.navbar-expand-lg .main-menu li:hover > a {
-    color: #00b074;
+    color: #debed1;
   }
   .offcanvas-active.navbar-expand-lg .main-menu a {
     display: flex;
@@ -1260,7 +1260,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  01.Component -> { Button } 
+  01.Component -> { Button }
 ------------------------------*/
 .btn {
   border-radius: 3px;
@@ -1316,11 +1316,11 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 
 .bookmark-button:hover:before, .bookmark-button.clicked:before {
   font-weight: 900;
-  color: #00b074;
+  color: #debed1;
 }
 
 /* ---------------------------
-  01.Component -> { Lists } 
+  01.Component -> { Lists }
 ------------------------------*/
 /* List components */
 .list-overlapped-icon {
@@ -1421,11 +1421,11 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 .filter-check-list a.clicked:before {
   content: "\f14a";
   font-weight: 900;
-  color: #00b074;
+  color: #debed1;
 }
 
 /* ---------------------------
-  01.Component -> { Background } 
+  01.Component -> { Background }
 ------------------------------*/
 .bg-image {
   background-size: cover;
@@ -1454,20 +1454,20 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  01.Component -> { Form } 
+  01.Component -> { Form }
 ------------------------------*/
 .gr-check-input {
   margin-bottom: 20px;
 }
 
 .gr-check-input input:checked ~ .checkbox {
-  background: #00b074 !important;
-  border-color: #00b074;
+  background: #debed1 !important;
+  border-color: #debed1;
 }
 
 .gr-check-input input:checked ~ .checkbox::after {
-  border-color: #00b074;
-  background-color: #00b074;
+  border-color: #debed1;
+  background-color: #debed1;
 }
 
 .gr-check-input .checkbox {
@@ -1821,7 +1821,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
   flex-direction: column;
   text-align: center;
   color: #37474F;
-  background: url(../image/svg/upload-file.svg);
+  background: url(../images/svg/upload-file.svg);
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10px;
@@ -1857,7 +1857,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  01.Component -> { Cards } 
+  01.Component -> { Cards }
 ------------------------------*/
 .feature-cardOne-adjustments .card-tag-list {
   display: flex;
@@ -1933,7 +1933,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  01.Component -> { Modal } 
+  01.Component -> { Modal }
 ------------------------------*/
 .modal.show .modal-dialog {
   pointer-events: visible;
@@ -1951,7 +1951,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  01.Component -> { Tab } 
+  01.Component -> { Tab }
 ------------------------------*/
 .search-nav-tab .active {
   background-color: transparent !important;
@@ -1959,11 +1959,11 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .search-nav-tab .active > div {
-  border-color: #00b074;
+  border-color: #debed1;
 }
 
 /* ---------------------------
-  01.Component -> { Acccordion } 
+  01.Component -> { Acccordion }
 ------------------------------*/
 .accordion-trigger.arrow-icon {
   position: relative;
@@ -1980,7 +1980,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
   line-height: 1;
   transform: rotate(0deg);
   transition: .4s;
-  color: #00b074;
+  color: #debed1;
   top: 2px;
   position: relative;
 }
@@ -1990,7 +1990,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  01.Component -> { Sidebar } 
+  01.Component -> { Sidebar }
 ------------------------------*/
 .dashboard-sidebar-wrapper {
   width: 290px;
@@ -2031,7 +2031,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
   top: 0;
   width: 4px;
   height: 100%;
-  background: #00b074;
+  background: #debed1;
   border-radius: 7px;
   transform: scaleY(0);
   will-change: transform;
@@ -2055,7 +2055,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
     color: rgba(210, 220, 214, 0.5);
   }
   .dashboard-layout-sidebar li a:hover > i {
-    color: #00b074;
+    color: #debed1;
   }
   .dashboard-layout-sidebar li a:hover:before {
     transform: scaleY(1);
@@ -2071,7 +2071,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .dashboard-layout-sidebar li.active a > i {
-  color: #00b074;
+  color: #debed1;
 }
 
 .dashboard-layout-sidebar li.active a:before {
@@ -2087,7 +2087,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
   font-size: 16px;
   font-weight: 600;
   z-index: 801;
-  background: #00b074;
+  background: #debed1;
   color: #fff !important;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -2113,58 +2113,58 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  02.Utility -> { Color } 
+  02.Utility -> { Color }
 ------------------------------*/
 .bg-primary-opacity-visible {
-  background-color: #00b074;
+  background-color: #debed1;
 }
 
 .bg-primary-opacity-1 {
-  background-color: rgba(0, 176, 116, 0.1);
+  background-color: rgb(245, 230, 241);
 }
 
 .bg-primary-opacity-15 {
-  background-color: rgba(0, 176, 116, 0.15);
+  background-color: rgb(238, 201, 237);
 }
 
 .bg-primary-opacity-2 {
-  background-color: rgba(0, 176, 116, 0.2);
+  background-color: rgb(245, 232, 246);
 }
 
 .bg-primary-opacity-3 {
-  background-color: rgba(0, 176, 116, 0.3);
+  background-color: rgb(238, 224, 237);
 }
 
 .bg-primary-opacity-4 {
-  background-color: rgba(0, 176, 116, 0.4);
+  background-color: rgb(217, 211, 216);
 }
 
 .bg-primary-opacity-5 {
-  background-color: rgba(0, 176, 116, 0.5);
+  background-color: rgb(210, 195, 203);
 }
 
 .bg-primary-opacity-6 {
-  background-color: rgba(0, 176, 116, 0.6);
+  background-color: rgb(226, 199, 218);
 }
 
 .bg-primary-opacity-p6 {
-  background-color: rgba(0, 176, 116, 0.06);
+  background-color: rgb(233, 197, 238);
 }
 
 .bg-primary-opacity-7 {
-  background-color: rgba(0, 176, 116, 0.7);
+  background-color: rgb(225, 208, 229);
 }
 
 .bg-primary-opacity-8 {
-  background-color: rgba(0, 176, 116, 0.8);
+  background-color: rgb(237, 204, 239);
 }
 
 .bg-primary-opacity-9 {
-  background-color: rgba(0, 176, 116, 0.9);
+  background-color: rgb(239, 177, 239);
 }
 
 .gr-color-primary-opacity-visible {
-  color: #00b074;
+  color: #e9b3e5;
 }
 
 .gr-color-primary-opacity-1 {
@@ -2200,15 +2200,15 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .gr-color-primary-opacity-7 {
-  color: rgba(0, 176, 116, 0.7);
+  color: rgb(255, 225, 255);
 }
 
 .gr-color-primary-opacity-8 {
-  color: rgba(0, 176, 116, 0.8);
+  color: rgb(219, 187, 217);
 }
 
 .gr-color-primary-opacity-9 {
-  color: rgba(0, 176, 116, 0.9);
+  color: rgb(233, 209, 233);
 }
 
 .bg-secondary-opacity-visible {
@@ -2308,7 +2308,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .bg-success-opacity-visible {
-  background-color: #00b074;
+  background-color: #f6c2f5;
 }
 
 .bg-success-opacity-1 {
@@ -2356,7 +2356,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .gr-color-success-opacity-visible {
-  color: #00b074;
+  color: #C295D4;
 }
 
 .gr-color-success-opacity-1 {
@@ -2980,7 +2980,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .bg-green-opacity-visible {
-  background-color: #00b074;
+  background-color: #C295D4;
 }
 
 .bg-green-opacity-1 {
@@ -3028,7 +3028,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .gr-color-green-opacity-visible {
-  color: #00b074;
+  color: #C295D4;
 }
 
 .gr-color-green-opacity-1 {
@@ -4708,7 +4708,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .bg-shamrock-opacity-visible {
-  background-color: #25ce95;
+  background-color: ##e7b3e0;
 }
 
 .bg-shamrock-opacity-1 {
@@ -4756,7 +4756,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .gr-color-shamrock-opacity-visible {
-  color: #25ce95;
+  color: #e7b3e0;
 }
 
 .gr-color-shamrock-opacity-1 {
@@ -4800,7 +4800,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 .gr-color-shamrock-opacity-9 {
-  color: rgba(37, 206, 149, 0.9);
+  color: rgb(222, 178, 216);
 }
 
 .bg-black-opacity-visible {
@@ -6816,7 +6816,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  02.Utility -> { Flex } 
+  02.Utility -> { Flex }
 ------------------------------*/
 .flex-all-center {
   display: flex;
@@ -6835,7 +6835,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  02.Utility -> { Grid } 
+  02.Utility -> { Grid }
 ------------------------------*/
 @media (min-width: 576px) {
   .row-sm {
@@ -6874,7 +6874,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  02.Utility -> { Shadows } 
+  02.Utility -> { Shadows }
 ------------------------------*/
 /*~~~~~ Normal Shadows ~~~~~*/
 .shadow-1 {
@@ -6926,7 +6926,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  02.Utility -> { Size } 
+  02.Utility -> { Size }
 ------------------------------*/
 /*~~~~~ Circle Sizes ~~~~~*/
 .circle-9 {
@@ -7584,7 +7584,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  02.Utility -> { Borders } 
+  02.Utility -> { Borders }
 ------------------------------*/
 .rounded-xs {
   border-radius: 3px;
@@ -7815,7 +7815,7 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
 }
 
 /* ---------------------------
-  02.Utility -> { Common } 
+  02.Utility -> { Common }
 ------------------------------*/
 span, a {
   display: inline-block;
@@ -7880,14 +7880,14 @@ span, a {
 }
 
 /* ---------------------------
-  02.Utility -> { Tablet } 
+  02.Utility -> { Tablet }
 ------------------------------*/
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #F4F5F8;
 }
 
 /* ---------------------------
-  02.Utility -> { Typography } 
+  02.Utility -> { Typography }
 ------------------------------*/
 p {
   font-size: 1.125rem;
@@ -8013,7 +8013,7 @@ p {
 }
 
 /* ---------------------------
-  03.Theme Utility -> { Hovers } 
+  03.Theme Utility -> { Hovers }
 ------------------------------*/
 /*~~~~~~~~~~~~~~~~
   All Hover Effects
@@ -8071,7 +8071,7 @@ a.hover-color-primary {
 }
 
 a.hover-color-primary:hover {
-  color: #00b074 !important;
+  color: #C295D4 !important;
 }
 
 .hover-bg-green,
@@ -8082,7 +8082,7 @@ a.hover-bg-green {
 .hover-bg-green:hover,
 a.hover-bg-green:hover {
   color: #fff !important;
-  background-color: #00b074 !important;
+  background-color: #C295D4 !important;
 }
 
 .hover-text-hitgray,
@@ -8100,7 +8100,7 @@ a.hover-text-hitgray:hover {
 }
 
 .hover-border-green:hover {
-  border: 2px solid #00b074;
+  border: 2px solid #C295D4;
 }
 
 .list-hover-primary a {
@@ -8108,7 +8108,7 @@ a.hover-text-hitgray:hover {
 }
 
 .list-hover-primary a:hover {
-  color: #00b074 !important;
+  color: #C295D4 !important;
 }
 
 .tab-menu-items a {
@@ -8117,22 +8117,22 @@ a.hover-text-hitgray:hover {
 }
 
 .tab-menu-items a:hover, .tab-menu-items a.active {
-  border-bottom: 2px solid #00b074;
-  color: #00b074;
+  border-bottom: 2px solid #C295D4;
+  color: #C295D4;
 }
 
 .pagination.page-link.active {
   background: transparent;
-  color: #00b074 !important;
+  color: #C295D4 !important;
 }
 
 .pagination-hover-primary .page-link:hover {
   background: transparent;
-  color: #00b074 !important;
+  color: #C295D4 !important;
 }
 
 /* ---------------------------
-  03.Theme Utility -> { Positioning } 
+  03.Theme Utility -> { Positioning }
 ------------------------------*/
 @media (min-width: 992px) {
   .position-lg-static {
@@ -8310,7 +8310,7 @@ a.hover-text-hitgray:hover {
 }
 
 /* ---------------------------
-  03.Theme Utility -> { Sizes } 
+  03.Theme Utility -> { Sizes }
 ------------------------------*/
 /* Theme Size Utilities */
 .min-h-100vh {
@@ -8428,7 +8428,7 @@ a.hover-text-hitgray:hover {
 }
 
 /* --------------------------------
-  03.Theme Utility -> { Typograpy } 
+  03.Theme Utility -> { Typograpy }
 -----------------------------------*/
 .letter-spacing-np09 {
   letter-spacing: -0.09px;
@@ -8443,7 +8443,7 @@ a.hover-text-hitgray:hover {
 }
 
 /* ---------------------------------
-  03.Theme Utility -> { Gradient } 
+  03.Theme Utility -> { Gradient }
 ------------------------------------*/
 .bg-gradient-1 {
   background-image: linear-gradient(to right, rgba(0, 176, 116, 0.1) 0%, rgba(88, 88, 0, 0.05) 100%);
@@ -8453,9 +8453,9 @@ a.hover-text-hitgray:hover {
   background-image: linear-gradient(180deg, #ffffff 0%, #f4f5f8 100%);
 }
 
-/* 
+/*
 ---------------------------------
--------> THEME CUSTOM STYLES 
+-------> THEME CUSTOM STYLES
 ---------------------------------
 */
 .btn-h-60 {
@@ -8541,7 +8541,7 @@ a.hover-text-hitgray:hover {
 }
 
 .testimonial-slider-one .slick-dots li.slick-active {
-  background-color: #00b074;
+  background-color: #e5b0e1;
 }
 
 .testimonial-slider-one .slick-dots li button {
@@ -8725,7 +8725,7 @@ a.hover-text-hitgray:hover {
 }
 
 .pm-range-slider .ui-widget-header {
-  background: #00b074;
+  background: #e5b0e1;
   top: 0;
   height: 100%;
 }
@@ -8827,7 +8827,7 @@ a.hover-text-hitgray:hover {
 }
 
 .active-item-black {
-  color: #00b074;
+  color: #e5b0e1;
 }
 
 .result-view-type a {
@@ -8837,5 +8837,7 @@ a.hover-text-hitgray:hover {
 .result-view-type a.active {
   color: #2b3940;
 }
+
+
 
 /*# sourceMappingURL=maps/main.css.map */

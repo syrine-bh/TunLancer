@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    images_directory: '%kernel.project_dir%/public/images/uploads'
+
 
     upload_directory: '%kernel.project_dir%/public/uploads'
 
@@ -14,7 +16,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
+    # this creates a service per class whose id is the fully-qualified class namez
     App\:
         resource: '../src/'
         exclude:

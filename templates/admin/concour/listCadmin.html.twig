@@ -1,0 +1,59 @@
+{% extends "baseBack.html.twig" %}
+{% block section %}
+    {{ render(controller(
+        'App\\Controller\\AdminController::statsCP',
+
+    )) }}
+            <div class="card">
+                <h5 class="card-header">Liste des concours</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="bg-light">
+                            <tr class="border-0">
+                                <th class="border-0">#</th>
+                                <th class="border-0"></th>
+                                <th class="border-0">Nom</th>
+                                <th class="border-0">Date Debut</th>
+                                <th class="border-0">Date Fin</th>
+                                <th class="border-0">Catégorie</th>
+                                <th class="border-0"></th>
+                                <th class="border-0"></th>
+                                <th class="border-0"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr{% for d in concour %}>
+                                <td>{{ d.id }}</td>
+                                <td>
+                                    <div class="m-r-10"><img src="{{  asset('images/uploads/' ~ d.imageName) }}"  class="rounded" width="45"></div>
+                                </td>
+                                <td>{{ d.nom }}</td>
+                                <td>{{ d.dateDebut|date }}
+                                <td>{{ d.dateFin|date }} </td>
+
+                                <td>{{ d.categorie }}</td>
+                                <td class="table-y-middle py-7 min-width-px-100 pr-0">
+                                    <div class=""><a href="{{ path('modifierConcours',{'id':d.id}) }}" class="font-size-3 font-weight-bold text-green text-uppercase">Modifier</a></div>
+                                </td>
+                                <td class="table-y-middle py-7 min-width-px-110 pr-0">
+                                    <div class=""><a href="{{ path('supprimerConcours',{'id':d.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Supprimer</a></div>
+                                </td>
+                                <td class="table-y-middle py-7 min-width-px-110 pr-0">
+                                    <div class=""><a href="{{ path('listParticipants',{'id':d.id}) }}" class="font-size-3 font-weight-bold text-red text-uppercase">Voir les participants</a></div>
+                                </td>
+
+                            </tr{% endfor %}>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-6 pl-0 ">
+                <a href="{{ path('ajoutCadmin') }}" button type="submit" class="btn btn-space btn-success">Ajouter nouveau Concour</a></button>
+            </div>
+
+{% endblock %}

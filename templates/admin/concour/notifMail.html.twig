@@ -1,0 +1,35 @@
+{% extends 'baseFront.html.twig' %}
+{% block title 'Resulat' %}
+{% block section %}
+    <div class="container">
+        <div class="row  justify-content-center align-items-center">
+            <div class=" row score-div text-center">
+                <div class="col-md-12">
+                    <h1>Vous voulez informer les participations de cette modification?</h1>
+                </div>
+
+
+                    <div class="stater col-md-6">
+{#                        {% for p in participant %}#}
+                        <a href="{{ path('notificationModification',{'idConcour':p.concour.id,'idUser':p.user.id}) }}">
+                            <button type="button" class="btn btn-outline-primary mb-3  btn-block">OUI</button>
+                        </a>
+{#                        {% endfor %}#}
+                    </div>
+&
+                <div class="stater col-md-6 ">
+                    <a href="{{ path ('listCadmin') }}">
+                        <button type="button" class="btn btn-outline-success  btn-block">NON</button>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+{% endblock %}
