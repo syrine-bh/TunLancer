@@ -60,7 +60,7 @@ class Concour
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="concour")
+     * @ORM\ManyToMany(targetEntity=Users::class, mappedBy="concour")
      */
     private $test;
 
@@ -194,14 +194,14 @@ class Concour
     }
 
     /**
-     * @return Collection|User[]
+     * @return Collection|Users[]
      */
     public function getTest(): Collection
     {
         return $this->test;
     }
 
-    public function addTest(User $test): self
+    public function addTest(Users $test): self
     {
         if (!$this->test->contains($test)) {
             $this->test[] = $test;
@@ -211,7 +211,7 @@ class Concour
         return $this;
     }
 
-    public function removeTest(User $test): self
+    public function removeTest(Users $test): self
     {
         if ($this->test->removeElement($test)) {
             $test->removeConcour($this);

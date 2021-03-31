@@ -19,7 +19,33 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a826d9f-d513-49a9-8307-5eeb06997c1d" name="Default Changelist" comment="update" />
+    <list default="true" id="1a826d9f-d513-49a9-8307-5eeb06997c1d" name="Default Changelist" comment="update">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210331100012.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/adminDashboard/assets/libs/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/adminDashboard/assets/libs/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/adminDashboard/assets/vendor/charts/sparkline/jquery.sparkline.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/adminDashboard/assets/vendor/charts/sparkline/jquery.sparkline.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/adminDashboard/assets/vendor/full-calendar/js/fullcalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/adminDashboard/assets/vendor/full-calendar/js/fullcalendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/admin_assets/scss/material-dashboard/bootstrap/scss/_code.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin_assets/scss/material-dashboard/bootstrap/scss/_code.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/admin_assets/scss/material-dashboard/mixins/_vendor-prefixes.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin_assets/scss/material-dashboard/mixins/_vendor-prefixes.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ConcourController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ConcourController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Concour.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Concour.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Participation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Participation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Score.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Score.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Video.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Video.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/review.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/review.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ParticipationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ParticipationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UsersRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UsersRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/concour/stats.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/concour/stats.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base2.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/concour/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/concour/index.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +56,11 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -7335,19 +7366,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\assets\img\users" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\admin\concour" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\vendor\google" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\login1" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\assets2\css" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\concour" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\adminDashboard" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\assets\img\users" />
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\admin\concour" />
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\vendor\google" />
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer" />
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\login1" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Script.index.php">
@@ -7359,6 +7390,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHP Script.rating.php" />
         <item itemvalue="PHP Script.rating.php" />
       </list>
     </recent_temporary>
@@ -7487,6 +7519,10 @@
       <screen x="0" y="0" width="1366" height="736" />
     </state>
     <state x="419" y="169" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.736@0.0.1366.736" timestamp="1617116239518" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1617190940371">
+      <screen x="0" y="0" width="1366" height="736" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.736@0.0.1366.736" timestamp="1617190940371" />
     <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616696226353">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
@@ -7511,10 +7547,10 @@
       <screen x="0" y="0" width="1366" height="736" />
     </state>
     <state width="773" height="446" key="SwitcherDM/0.0.1366.736@0.0.1366.736" timestamp="1617019820150" />
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1617141291781">
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1617191008006">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.736@0.0.1366.736" timestamp="1617141291781" />
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.736@0.0.1366.736" timestamp="1617191008006" />
     <state x="389" y="101" width="587" height="534" key="find.popup" timestamp="1616537431018">
       <screen x="0" y="0" width="1366" height="736" />
     </state>

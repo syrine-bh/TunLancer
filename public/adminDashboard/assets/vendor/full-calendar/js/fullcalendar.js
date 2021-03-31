@@ -6335,7 +6335,7 @@ var DayTableMixin = /** @class */ (function (_super) {
     /* Generic
     ------------------------------------------------------------------------------------------------------------------*/
     DayTableMixin.prototype.renderIntroHtml = function () {
-        // Generates the default HTML intro for any row. User classes should override
+        // Generates the default HTML intro for any row. Users classes should override
     };
     // TODO: a generic method for dealing with <tr>, RTL, intro
     // when increment internalApiVersion

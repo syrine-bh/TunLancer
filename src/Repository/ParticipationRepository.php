@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repository;
+
 use App\Entity\Participation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,11 +19,12 @@ class ParticipationRepository extends ServiceEntityRepository
         parent::__construct($registry, Participation::class);
     }
 
-    public function findUser ($user_id): ?Participation {
+    public function findUser($user_id): ?Participation
+    {
         return $this
             ->createQueryBuilder('q')
             ->andWhere('q.id= :val')
-            ->setParameter('val',$user_id)
+            ->setParameter('val', $user_id)
             ->getQuery()
             ->getOneOrNullResult();
     }
@@ -35,18 +37,18 @@ class ParticipationRepository extends ServiceEntityRepository
             ->orderBy('q.id', 'ASC')
             ->setMaxResults(100)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
+
     public function findOneByConcour($concour): ?Participation
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.concour = :val')
             ->setParameter('val', $concour)
             ->getQuery()
-            ->getOneOrNullResult()
-            ;
+            ->getOneOrNullResult();
     }
+
     public function findByConcour($idConcour)
     {
         return $this->createQueryBuilder('c')
@@ -55,9 +57,9 @@ class ParticipationRepository extends ServiceEntityRepository
             ->orderBy('c.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
+
     public function findRanks($id)
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -66,7 +68,7 @@ class ParticipationRepository extends ServiceEntityRepository
   FROM
   votes v
   WHERE v.video_id IN
-     ( SELECT video_id FROM participation c WHERE c.concour_id = "'.$id.'"
+     ( SELECT video_id FROM participation c WHERE c.concour_id = "' . $id . '"
   ) 
   
  GROUP by v.video_id
@@ -81,11 +83,13 @@ class ParticipationRepository extends ServiceEntityRepository
 
 
     }
+
     /**
      * Returns number of "participations" per day
      * @return void
      */
-    public function countByDate(){
+    public function countByDate()
+    {
 
         $query = $this->getEntityManager()->createQuery("
                 SELECT SUBSTRING(a.dateParticipation, 1, 10) as dateParticipation, COUNT(a) as count FROM App\Entity\Participation 
@@ -93,5 +97,7 @@ class ParticipationRepository extends ServiceEntityRepository
         ");
         return $query->getResult();
     }
+
+
 }
 

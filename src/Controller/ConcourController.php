@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Concour;
 use App\Entity\Participation;
 use App\Entity\Score;
-use App\Entity\User;
+use App\Entity\Users;
 use App\Entity\Video;
 use App\Form\ConcoursType;
 use App\Form\VideoType;
@@ -117,7 +117,7 @@ class ConcourController extends Controller
         $concour = $this->getDoctrine()->getRepository(Concour::class)->find($id);
         $participations = $this->getDoctrine()->getRepository(Participation::class)->findByConcour($id);
         $pagination = $paginator->paginate($participations, $request->query->getInt('page', 1), 3);
-        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $user = $this->getDoctrine()->getRepository(Users::class)->find($id);
         $scoresUser = $this->getDoctrine()->getRepository(Score::class)->FindByQuizId($id);
         usort($scoresUser, array("App\Entity\Score", "compareScores"));
         $ranks = $this->getDoctrine()->getRepository(Participation::class)->findRanks($id);
@@ -143,7 +143,7 @@ class ConcourController extends Controller
     {
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 //        $user = $this->getUser();
-        $user = $this->getDoctrine()->getRepository(User::class)->find('2');
+        $user = $this->getDoctrine()->getRepository(Users::class)->find('2');
         $video = $this->getDoctrine()->getRepository(Video::class)->find($id);
         $video->getVotes()->add($user);
         $em = $this->getDoctrine()->getManager();
@@ -162,7 +162,7 @@ class ConcourController extends Controller
     {
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 //        $user = $this->getUser();
-        $user = $this->getDoctrine()->getRepository(User::class)->find('1');
+        $user = $this->getDoctrine()->getRepository(Users::class)->find('1');
 
         $video = $this->getDoctrine()->getRepository(video::class)->find($id);
         $video->getVotes()->removeElement($user);

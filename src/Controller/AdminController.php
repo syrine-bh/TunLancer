@@ -8,7 +8,7 @@ use App\Entity\Questiontab;
 use App\Entity\Quiz;
 use App\Entity\Reponsetab;
 use App\Entity\Score;
-use App\Entity\User;
+use App\Entity\Users;
 use App\Entity\Video;
 use App\Form\AddQuestionFormType;
 use App\Form\ConcoursType;
@@ -403,24 +403,27 @@ class AdminController extends AbstractController
 
         $participations = $repPart->countByDate();
         $dates = [];
-        $participationsCount=[];
-        foreach ($participations as $participation){
-            $dates[]=$participation['dateParticipation'];
-            $participationsCount[]=$participation['count'];
+        $participationsCount = [];
+        foreach ($participations as $participation) {
+            $dates[] = $participation['dateParticipation'];
+            $participationsCount[] = $participation['count'];
         }
+
 
         return $this->render('admin/concour/stats.html.twig', [
             'concNom' => json_encode($concNom),
             'concColor' => json_encode($concColor),
             'concCount' => json_encode($concCount),
             'dates' => json_encode($dates),
-            'participationsCount' => json_encode($participationsCount)
-        ]);}
+            'participationsCount' => json_encode($participationsCount),
 
-        /**
-         * @Route("/statsCQ", name="statsCQ")
-         */
-        public function statsCQ(QuizRepository $repQuiz)
+        ]);
+    }
+
+    /**
+     * @Route("/statsCQ", name="statsCQ")
+     */
+    public function statsCQ(QuizRepository $repQuiz)
     {
         $quiz = $repQuiz->findAll();
         $quizNom = [];
@@ -448,8 +451,6 @@ class AdminController extends AbstractController
 //            'participationsCount' => json_encode($participationsCount)
         ]);
 
-
-
     }
 
 //
@@ -464,26 +465,26 @@ class AdminController extends AbstractController
 //        return ($this->render('default/post.html.twig',['post'=>$post])
 //        );
 //    }
-    /**
-     * @Route("feed/ranking/", name="ranks_feed")
+        /**
+         * @Route("feed/ranking/", name="ranks_feed")
+         * @return Response
+         */
+        public
+        function updateRanksAction()
+        {
+            $ranks = $this->getDoctrine()->getRepository(Video::class)->findRanks();
 
-     * @return Response
-     */
-    public function updateRanksAction()
-    {
-        $ranks = $this->getDoctrine()->getRepository(Video::class)->findRanks();
+            $res = new ArrayCollection();
+            foreach ($ranks as $r) {
+                $vid = $this->getDoctrine()->getRepository(Video::class)->findById($r['video_id']);
+                dump($vid);
+                $res->add($vid);
 
-        $res = new ArrayCollection();
-        foreach ($ranks as $r) {
-            $vid = $this->getDoctrine()->getRepository(Video::class)->findById($r['video_id']);
-            dump($vid);
-            $res->add($vid);
-
+            }
+            dump($res);
+            return ($this->render('pages/ranksV.html.twig', array('res' => $res))
+            );
         }
-        dump($res);
-        return ($this->render('pages/ranksV.html.twig', array('res' => $res))
-        );
-    }
 
-}
+    }
 

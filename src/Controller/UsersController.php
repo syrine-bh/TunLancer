@@ -24,7 +24,7 @@ use Knp\Component\Pager\PaginatorInterface;
 
 
 
-class UserController extends AbstractController
+class UsersController extends AbstractController
 {
     /**
      * @Route("/user", name="user")
@@ -32,7 +32,7 @@ class UserController extends AbstractController
     public function index(): Response
     {
         return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+            'controller_name' => 'UsersController',
         ]);
     }
 
@@ -150,7 +150,7 @@ class UserController extends AbstractController
             $user = $em->getRepository(users::class)->find($id);
 
             if (!$user) {
-                throw $this->createNotFoundException('Unable to find User entity.');
+                throw $this->createNotFoundException('Unable to find Users entity.');
             }
 
             $em->remove($user);

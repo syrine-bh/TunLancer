@@ -21,7 +21,7 @@ class review
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="review")
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="review")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

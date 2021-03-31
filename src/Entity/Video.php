@@ -26,7 +26,7 @@ class Video
     private $id;
 
     /**
-     * @ManyToMany(targetEntity="User")
+     * @ManyToMany(targetEntity="Users")
      * @JoinTable(name="votes",
      *      joinColumns={@JoinColumn(name="video_id", referencedColumnName="id",onDelete="cascade")},
      *      inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id",onDelete="cascade")}
@@ -35,7 +35,7 @@ class Video
     private $votes;
     /**
      * Many features have one product. This is the owning side.
-     * @ManyToOne(targetEntity="User", inversedBy="videos")
+     * @ManyToOne(targetEntity="Users", inversedBy="videos")
      * @JoinColumn(name="owner", referencedColumnName="id")
      */
     private $owner;

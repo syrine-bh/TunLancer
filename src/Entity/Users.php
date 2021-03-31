@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Entity;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
+
 use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,28 +10,22 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
  */
-class Users implements UserInterface
+class Users
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Nom is required")
-     *    @Assert\Email(
-     *     message = "l' email '{{ value }}' n'est pas valid"
-     * )
      */
     private $Nom;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="prenom is required")
      */
     private $Prenom;
 
@@ -42,21 +35,14 @@ class Users implements UserInterface
     private $Tel;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank(message="Email is required")
+     * @ORM\Column(type="string", length=255)
      */
     private $Email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min="6",minMessage="Votre mot de passe doit etre superieur a 6 caractéres")
      */
-    private $Password;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Pays;
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -65,56 +51,44 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @var string|null
      */
-    private $Photo;
-
+    private $photo;
 
     /**
-     * @ORM\Column(type="string", length=255 ,nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $Bibliography;
-
-
-
-//    /**
-//     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="user")
-//     */
-//    private $formations;
-
-//    /**
-//     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="user")
-//     */
-//    private $experiences;
-
-//    /**
-//     * @ORM\OneToMany(targetEntity=Competence::class, mappedBy="relation")
-//     */
-//    private $competence;
+    private $bibliography;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\ManyToMany(targetEntity=Concour::class, inversedBy="test")
      */
-    private $isEnabled;
+    private $concour;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="user", orphanRemoval=true)
      */
-    private $Super_admin;
+    private $participations;
 
-//    /**
-//     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="userid")
-//     */
-//    private $tasks;
+    /**
+     * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $scores;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pays;
+
+
 
     public function __construct()
     {
-        $this->competence = new ArrayCollection();
-        $this->formations = new ArrayCollection();
-        $this->experiences = new ArrayCollection();
-        $this->isEnabled = 1;
-        $this->tasks = new ArrayCollection();
+        $this->participations = new ArrayCollection();
+        $this->reponseQuestions = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -145,20 +119,20 @@ class Users implements UserInterface
         return $this;
     }
 
+
     public function getTel(): ?int
     {
-        return $this->Tel;
+        return (string) $this->Tel;
     }
 
-    public function setTel(int $Tel): self
+    public function setTel($Tel): self
     {
         $this->Tel = $Tel;
 
         return $this;
     }
 
-    public function
-    getEmail(): ?string
+    public function getEmail(): ?string
     {
         return $this->Email;
     }
@@ -172,24 +146,12 @@ class Users implements UserInterface
 
     public function getPassword(): ?string
     {
-        return $this->Password;
+        return $this->password;
     }
 
-    public function setPassword(string $Password): self
+    public function setPassword(string $password): self
     {
-        $this->Password = $Password;
-
-        return $this;
-    }
-
-    public function getPays(): ?string
-    {
-        return $this->Pays;
-    }
-
-    public function setPays(string $Pays): self
-    {
-        $this->Pays = $Pays;
+        $this->password = $password;
 
         return $this;
     }
@@ -208,53 +170,76 @@ class Users implements UserInterface
 
     public function getPhoto(): ?string
     {
-        return $this->Photo;
+        return $this->photo;
     }
 
-    public function setPhoto(?string $Photo): self
+    public function setPhoto(?string $photo): self
     {
-        $this->Photo = $Photo;
+        $this->photo = $photo;
 
         return $this;
     }
 
     public function getBibliography(): ?string
     {
-        return $this->Bibliography;
+        return $this->bibliography;
     }
 
-    public function setBibliography(string $Bibliography): self
+    public function setBibliography(?string $bibliography): self
     {
-        $this->Bibliography = $Bibliography;
+        $this->bibliography = $bibliography;
 
         return $this;
     }
 
-
     /**
-     * @return Collection|Formation[]
+     * @return Collection|concour[]
      */
-    public function getFormations(): Collection
+    public function getConcours(): Collection
     {
-        return $this->formations;
+        return $this->concours;
     }
 
-    public function addFormation(Formation $formation): self
+    public function addConcour(concour $concour): self
     {
-        if (!$this->formations->contains($formation)) {
-            $this->formations[] = $formation;
-            $formation->setRelation($this);
+        if (!$this->concours->contains($concour)) {
+            $this->concours[] = $concour;
         }
 
         return $this;
     }
 
-    public function removeFormation(Formation $formation): self
+    public function removeConcour(concour $concour): self
     {
-        if ($this->formations->removeElement($formation)) {
+        $this->concours->removeElement($concour);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->removeElement($participation)) {
             // set the owning side to null (unless already changed)
-            if ($formation->getRelation() === $this) {
-                $formation->setRelation(null);
+            if ($participation->getUser() === $this) {
+                $participation->setUser(null);
             }
         }
 
@@ -262,140 +247,48 @@ class Users implements UserInterface
     }
 
     /**
-     * @return Collection|Experience[]
+     * @return Collection|Score[]
      */
-    public function getExperiences(): Collection
+    public function getScores(): Collection
     {
-        return $this->experiences;
+        return $this->scores;
     }
 
-    public function addExperience(Experience $experience): self
+    public function addScore(Score $score): self
     {
-        if (!$this->experiences->contains($experience)) {
-            $this->experiences[] = $experience;
-            $experience->setRelation($this);
+        if (!$this->scores->contains($score)) {
+            $this->scores[] = $score;
+            $score->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeExperience(Experience $experience): self
+    public function removeScore(Score $score): self
     {
-        if ($this->experiences->removeElement($experience)) {
+        if ($this->scores->removeElement($score)) {
             // set the owning side to null (unless already changed)
-            if ($experience->getRelation() === $this) {
-                $experience->setRelation(null);
+            if ($score->getUser() === $this) {
+                $score->setUser(null);
             }
         }
 
         return $this;
     }
 
-    public function getRoles()
+    public function getPays(): ?string
     {
-        return ['ROLE-USER'];
+        return $this->pays;
     }
 
-    public function getSalt()
+    public function setPays(string $pays): self
     {
-        // TODO: Implement getSalt() method.
-    }
-
-
-
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
-
-
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
-    }
-
-    /**
-     * @return Collection|Competence[]
-     */
-    public function getCompetence(): Collection
-    {
-        return $this->competence;
-    }
-
-    public function addCompetence(Competence $competence): self
-    {
-        if (!$this->competence->contains($competence)) {
-            $this->competence[] = $competence;
-            $competence->setRelation($this);
-        }
+        $this->pays = $pays;
 
         return $this;
     }
 
-    public function removeCompetence(Competence $competence): self
-    {
-        if ($this->competence->removeElement($competence)) {
-            // set the owning side to null (unless already changed)
-            if ($competence->getRelation() === $this) {
-                $competence->setRelation(null);
-            }
-        }
 
-        return $this;
-    }
 
-    public function getIsEnabled(): ?bool
-    {
-        return $this->isEnabled;
-    }
 
-    public function setIsEnabled(bool $isEnabled): self
-    {
-        $this->isEnabled = $isEnabled;
-
-        return $this;
-    }
-
-    public function getSuperAdmin(): ?int
-    {
-        return $this->Super_admin;
-    }
-
-    public function setSuperAdmin(?int $Super_admin): self
-    {
-        $this->Super_admin = $Super_admin;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Task[]
-     */
-    public function getTasks(): Collection
-    {
-        return $this->tasks;
-    }
-
-    public function addTask(Task $task): self
-    {
-        if (!$this->tasks->contains($task)) {
-            $this->tasks[] = $task;
-            $task->setUserid($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTask(Task $task): self
-    {
-        if ($this->tasks->removeElement($task)) {
-            // set the owning side to null (unless already changed)
-            if ($task->getUserid() === $this) {
-                $task->setUserid(null);
-            }
-        }
-
-        return $this;
-    }
 }
-
