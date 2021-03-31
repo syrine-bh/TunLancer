@@ -19,47 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a826d9f-d513-49a9-8307-5eeb06997c1d" name="Default Changelist" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210319000828.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210319002521.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210319171429.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210321154741.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210321173431.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210321174429.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210321174737.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210325233001.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210331125641.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210326213311.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210327015932.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210331125702.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210327030127.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210327030424.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210327205232.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210327205748.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210327205838.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210328170438.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330022442.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330023704.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330155908.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330212328.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330212414.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330213050.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330213441.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330213456.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210331100012.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Login1Controller.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Concour.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Concour.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Stars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/review.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login/Registration.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/confirmation_email.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="1a826d9f-d513-49a9-8307-5eeb06997c1d" name="Default Changelist" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -7360,6 +7320,15 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
       <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/ckeditor-bundle" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/cmen/google-charts-bundle" />
+      <path value="$PROJECT_DIR$/vendor/mercuryseries/flashy-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-chartjs" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pae2qAC9YspasNiBL4caNNRMXe" />
@@ -7380,19 +7349,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\assets2\css" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\concour" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\adminDashboard" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\assets\img\users" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\admin\concour" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\vendor\google" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\login1" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\assets2\css" />
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\concour" />
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer" />
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\adminDashboard" />
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Script.index.php">
@@ -7404,6 +7373,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHP Script.rating.php" />
         <item itemvalue="PHP Script.rating.php" />
         <item itemvalue="PHP Script.rating.php" />
       </list>
