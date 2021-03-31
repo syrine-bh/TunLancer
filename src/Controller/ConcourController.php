@@ -31,7 +31,22 @@ class ConcourController extends Controller
 //        ]);
 //    }
 
-    /**
+//    /**
+//     * @return Response
+//     * @Route ("/concour/list",name="list")
+//     */
+//    public function list(Request $request, PaginatorInterface $paginator)
+//    {
+//        $donnees = $this->getDoctrine()->getRepository(Concour::class)->findAll();
+//
+//        $concour = $paginator->paginate(
+//            $donnees,
+//            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+//            3);
+//        return $this->render('concour/list.html.twig', ['concour' => $concour]);
+//    }
+
+        /**
      * @return Response
      * @Route ("/concour/list",name="list")
      */
@@ -45,6 +60,9 @@ class ConcourController extends Controller
             3);
         return $this->render('concour/list.html.twig', ['concour' => $concour]);
     }
+
+
+
 
     /**
      * @Route ("/concour/descriptionConcours/{id}",name="descriptionConcours")

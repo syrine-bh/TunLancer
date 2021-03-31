@@ -20,14 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a826d9f-d513-49a9-8307-5eeb06997c1d" name="Default Changelist" comment="update">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210331134016.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210331134834.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Login1Controller.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login/Registration.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login1/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2021_14_13__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2021_14_13__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ConcourController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ConcourController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baselist.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baselist.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617197521316</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update">
+      <created>1617198913419</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1617198913419</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,10 +390,10 @@
       <screen x="0" y="0" width="1366" height="736" />
     </state>
     <state width="773" height="446" key="SwitcherDM/0.0.1366.736@0.0.1366.736" timestamp="1617019820150" />
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1617197579153">
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1617198918857">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.736@0.0.1366.736" timestamp="1617197579153" />
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.736@0.0.1366.736" timestamp="1617198918857" />
     <state x="500" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617193851222">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
