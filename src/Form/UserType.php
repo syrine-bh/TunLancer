@@ -30,12 +30,13 @@ class UserType extends AbstractType
             ->add('Password', PasswordType::class)
             ->add('Pays')
             ->add('Role', ChoiceType::class, array(
-                'choices' => array(
-                    'Freelancer' => 'Freelancer',
-                    'Entreprise' =>  'Entreprise',
-                    'Chercheur de travail' => 'Chercheur de travail',
-                )
-            ))
+
+                    'choices' => array(
+                        'Freelancer' => 'Freelancer',
+                        'Entreprise' =>  'Entreprise',
+                        'Chercheur de travail' => 'Chercheur de travail',
+                    )
+                ))
             ->add('Photo', FileType::class,[
                 'label' => false,
                 'mapped' => false,
@@ -43,8 +44,17 @@ class UserType extends AbstractType
             ])
             ->add('Bibliography')
 
+            ->add('Age')
+            ->add('Sexe', ChoiceType::class, array(
+                'choices' => array(
+                    'Homme' => 'Homme',
+                    'Femme' =>  'Femme',
+
+                )
+            ))
+
             ->getForm()
-            ->add('submit',SubmitType::class);
+         ->add('submit',SubmitType::class);
         ;
     }
 

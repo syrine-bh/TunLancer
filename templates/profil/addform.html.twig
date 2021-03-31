@@ -1,0 +1,41 @@
+
+{% block section %}
+
+    <div class="modal fade" id="addModalformation" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="addModalLabel">Add Formation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    {{ form_start(form, {'action': path('formation'), 'method': 'POST'}) }}
+
+                    <div class="form-group">
+                        <label for="email1">Titre</label>
+                        {{ form_widget(form.Titre, {'attr': {'class': 'form-control'}}) }}
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <label for="inputPassword4">Specialité</label>
+                    {{ form_widget(form.Specialite, { 'attr' : { 'class' : 'form-control' } }) }}
+                    <label for="inputPassword4">Periode</label>
+                    {{ form_widget(form.Periode, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                    <button type="submit" class="btn btn-primary">Annuler</button>
+                </div>
+                </div>
+
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+
+{% endblock %}

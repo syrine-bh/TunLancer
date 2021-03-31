@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
- */
+*/
 class Users implements UserInterface
 {
     /**
@@ -24,9 +24,6 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Nom is required")
-     *    @Assert\Email(
-     *     message = "l' email '{{ value }}' n'est pas valid"
-     * )
      */
     private $Nom;
 
@@ -65,10 +62,8 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @var string|null
      */
     private $Photo;
-
 
     /**
      * @ORM\Column(type="string", length=255 ,nullable=true)
@@ -77,20 +72,21 @@ class Users implements UserInterface
 
 
 
-//    /**
-//     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="user")
-//     */
-//    private $formations;
 
-//    /**
-//     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="user")
-//     */
-//    private $experiences;
+    /**
+     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="user")
+     */
+    private $formations;
 
-//    /**
-//     * @ORM\OneToMany(targetEntity=Competence::class, mappedBy="relation")
-//     */
-//    private $competence;
+    /**
+     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="user")
+     */
+    private $experiences;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Competence::class, mappedBy="relation")
+     */
+    private $competence;
 
     /**
      * @ORM\Column(type="boolean")
@@ -102,10 +98,26 @@ class Users implements UserInterface
      */
     private $Super_admin;
 
-//    /**
-//     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="userid")
-//     */
-//    private $tasks;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="userid")
+     */
+    private $tasks;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Experiences::class, mappedBy="relation")
+     */
+    private $experience;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $Age;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Sexe;
 
     public function __construct()
     {
@@ -114,6 +126,7 @@ class Users implements UserInterface
         $this->experiences = new ArrayCollection();
         $this->isEnabled = 1;
         $this->tasks = new ArrayCollection();
+        $this->experience = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -397,5 +410,36 @@ class Users implements UserInterface
 
         return $this;
     }
-}
 
+    /**
+     * @return Collection|Experiences[]
+     */
+    public function getExperience(): Collection
+    {
+        return $this->experience;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->Age;
+    }
+
+    public function setAge(int $Age): self
+    {
+        $this->Age = $Age;
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->Sexe;
+    }
+
+    public function setSexe(string $Sexe): self
+    {
+        $this->Sexe = $Sexe;
+
+        return $this;
+    }
+}

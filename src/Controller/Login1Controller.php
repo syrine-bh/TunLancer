@@ -31,7 +31,8 @@ class Login1Controller extends AbstractController
 
      */
 
-    public function connect(Request $request,  UserPasswordEncoderInterface $encoder)
+
+    public function connect(Request $request,  UserPasswordEncoderInterface $encoder, SessionInterface $session)
     {
         $error = "";
 
@@ -42,17 +43,28 @@ class Login1Controller extends AbstractController
             $user = $repo->findOneBy(["Email"=>$request->get("email")]);
 
             if ($user == null){
-                $error = "email or password are invalid";
+
+                $error = "Email or password are invalid";
             }
 
             else {
                 $is_valid = $encoder->isPasswordValid($user, $request->get("password"));
 
                 if ($is_valid==true){
-                    return $this->redirectToRoute('list');
+
+                    $session->set("user",$user);
+                    if ($user->getRole()=="admin") {
+
+                        return $this->redirectToRoute("tasklist");
+                    }
+
+                    else {
+                        return $this->redirectToRoute("profil");
+
+                    }
                 }
                 else {
-                    $error = "email or password are invalid";
+                    $error = "Email or password are invalid";
                 }
             }
 
@@ -65,7 +77,8 @@ class Login1Controller extends AbstractController
         ]);}
 
     /**
-     * @Route("/logout", name="/logout")
+
+     * @Route("/logout", name="logout")
      */
 
     public function logoutAction(SessionInterface $session){
@@ -91,7 +104,8 @@ class Login1Controller extends AbstractController
                     ->to($user->getEmail())
 
                     ->subject('password change')
-                    ->htmlTemplate("login/Email/email.html.twig")->context([
+
+                    ->htmlTemplate("login1/Email/email.html.twig")->context([
                         "Nom"=>$user->getEmail(), "Password"=>$password
                     ]);
 

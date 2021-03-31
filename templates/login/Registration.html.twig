@@ -1,7 +1,8 @@
 <div class="col-lg-7 col-md-6">
     <div class="bg-white-2 h-100 px-11 pt-11 pb-7">
 
-        {{ form_start(form, {'action': path('adduser'), 'method': 'POST'}) }}
+
+        {{ form_start(form, {'action': path('adduser'), 'method': 'POST', 'attr' :{'novalidate':'novalidate'}}) }}
 
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -40,6 +41,17 @@
             <div class="form-group col-md-6">
                 <label for="password23" class="font-size-4 text-black-2 font-weight-semibold line-height-reset">Role</label>
                 {{ form_widget(form.Role, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="password23" class="font-size-4 text-black-2 font-weight-semibold line-height-reset">Age</label>
+                {{ form_widget(form.Age, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="password23" class="font-size-4 text-black-2 font-weight-semibold line-height-reset">Sexe</label>
+                {{ form_widget(form.Sexe, { 'attr' : { 'class' : 'form-control' } }) }}
             </div>
         </div>
 

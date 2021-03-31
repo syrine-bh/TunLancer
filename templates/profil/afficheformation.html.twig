@@ -1,0 +1,32 @@
+<div class="section-block">
+    <h3 class="section-title">Formations</h3>
+</div>
+{% for formation in formation %}
+
+
+
+    <div class="card mb-2">
+
+        <div class="card-header" id="headingEight">
+
+            <h5 class="mb-0">
+
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                     <span class="fas fa-angle-down mr-3"></span>{{formation.Titre}}
+                </button>       </h5>
+        </div>
+
+        <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
+            <div class="card-body">
+                {{formation.description}}
+                <div >
+                    <a href="" class="dropdown-item" data-toggle="modal" data-target="#editModalformation" style="align-content:center "  >Edit</a>
+                    {{ render(controller( 'App\\Controller\\FormationController::editForm',{'id':formation.id})) }}
+                    <a href="{{path('deleteform', {id:formation.id})}}" class="dropdown-item" href="#">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
