@@ -59,10 +59,10 @@ class Concour
      */
     private $updatedAt;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Users::class, mappedBy="concour")
-     */
-    private $test;
+//    /**
+//     * @ORM\ManyToMany(targetEntity=Users::class, mappedBy="concour")
+//     */
+//    private $test;
 
 
     /**

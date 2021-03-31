@@ -24,7 +24,7 @@ use Knp\Component\Pager\PaginatorInterface;
 
 
 
-class UsersController extends AbstractController
+class UserController extends AbstractController
 {
     /**
      * @Route("/user", name="user")
@@ -32,7 +32,7 @@ class UsersController extends AbstractController
     public function index(): Response
     {
         return $this->render('user/index.html.twig', [
-            'controller_name' => 'UsersController',
+            'controller_name' => 'UserController',
         ]);
     }
 
@@ -127,7 +127,7 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $user = $entityManager->getRepository(users::class)->find($id);
+            $user = $entityManager->getRepository(Users::class)->find($id);
             $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('message', 'Utlisateur modifié avec succès');
@@ -147,7 +147,7 @@ class UsersController extends AbstractController
 
         {
             $em = $this->getDoctrine()->getManager();
-            $user = $em->getRepository(users::class)->find($id);
+            $user = $em->getRepository(Users::class)->find($id);
 
             if (!$user) {
                 throw $this->createNotFoundException('Unable to find Users entity.');
