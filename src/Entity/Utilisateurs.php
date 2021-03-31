@@ -70,10 +70,10 @@ class Utilisateurs
      */
     private $topics;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Topics::class, mappedBy="favoris")
-     */
-    private $favoris;
+//    /**
+//     * @ORM\ManyToMany(targetEntity=Topics::class, mappedBy="favoris")
+//     */
+//    private $favoris;
 
     /**
      * @ORM\OneToMany(targetEntity=Replies::class, mappedBy="user")
@@ -84,6 +84,11 @@ class Utilisateurs
      * @ORM\OneToMany(targetEntity=PostLike::class, mappedBy="user")
      */
     private $likes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Topics::class, mappedBy="favoris")
+     */
+    private $favoris;
 
 
 
@@ -238,35 +243,36 @@ class Utilisateurs
         return $this;
     }
 
-    /**
-     * @return Collection|Topics[]
-     */
-    public function getFavoris(): Collection
-    {
-        return $this->favoris;
-    }
-
-    public function addFavori(Topics $favori): self
-    {
-        if (!$this->favoris->contains($favori)) {
-            $this->favoris[] = $favori;
-            $favori->setFavoris($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavori(Topics $favori): self
-    {
-        if ($this->favoris->removeElement($favori)) {
-            // set the owning side to null (unless already changed)
-            if ($favori->getFavoris() === $this) {
-                $favori->setFavoris(null);
-            }
-        }
-
-        return $this;
-    }
+//    /**
+//     * @return Collection|Topics[]
+//     */
+//    public function getFavoris(): Collection
+//    {
+//        return $this->favoris;
+//    }
+//
+//    public function addFavori(Topics $favori): self
+//    {
+//        if (!$this->favoris->contains($favori)) {
+//            $this->favoris[] = $favori;
+//            $favori->addFavori($this);
+//
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeFavori(Topics $favori): self
+//    {
+//        if ($this->favoris->removeElement($favori)) {
+//            // set the owning side to null (unless already changed)
+//            if ($favori->getFavoris() === $this) {
+//                $favori->setFavoris(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
     /**
      * @return Collection|Replies[]
@@ -323,6 +329,33 @@ class Utilisateurs
             if ($like->getUser() === $this) {
                 $like->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Topics[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Topics $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+            $favori->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Topics $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeFavori($this);
         }
 
         return $this;

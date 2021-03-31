@@ -166,13 +166,14 @@ class RepliesController extends AbstractController
             }
         }
         if ($find==true){
-            return new JsonResponse("vous avez déjà aimé");
+            return new Response();
         }else {
             $like = new PostLike();
             $like->setReply($replies);
             $like->setUser($user);
             $em->persist($like);
             $em->flush();
+            return new Response();
 
 //        return new JsonResponse("like added");
             return $this->redirectToRoute('showcomment');

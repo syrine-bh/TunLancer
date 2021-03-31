@@ -16,6 +16,7 @@ use http\Exception\InvalidArgumentException;
 use Knp\Component\Pager\PaginatorInterface;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use phpDocumentor\Reflection\Types\Null_;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -223,8 +224,8 @@ class TopicController extends AbstractController
         if (!$topics){
             throw new NotFoundHttpException('topic non trouvé');
         }
-        $topics->addFavori($this->getUser());
         $em=$this->getDoctrine()->getManager();
+        $topics->addFavori($this->getUser());
         $em->persist($topics);
         $em->flush();
         return $this->redirectToRoute('topic');

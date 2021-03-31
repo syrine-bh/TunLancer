@@ -65,15 +65,20 @@ class Topics
      */
     private $user;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Utilisateurs::class, inversedBy="favoris")
-     */
-    private $favoris;
+//    /**
+//     * @ORM\ManyToMany(targetEntity=Utilisateurs::class, inversedBy="favoris")
+//     */
+//    private $favoris;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Utilisateurs::class, inversedBy="favoris")
+     */
+    private $favoris;
 
     public function __construct()
     {
@@ -209,6 +214,54 @@ class Topics
 
         return $this;
     }
+//
+//    /**
+//     * @return Collection|Utilisateurs[]
+//     */
+//    public function getFavoris(): Collection
+//    {
+//        return $this->favoris;
+//    }
+//
+//    public function addFavori(Utilisateurs $favori): self
+//    {
+//        if (!$this->favoris->contains($favori)){
+//            $this->favoris[]=$favori;
+//            $favori->addFavori($this);
+//        }
+//        return $this;
+//    }
+//
+//
+//
+//    public function removeFavori(Utilisateurs $favori): self
+//    {
+//        if ($this->favoris->contains($favori)) {
+//            $this->favoris->removeElement($favori);
+//        }
+//
+//        return $this;
+//    }
+//
+//
+//    public function setFavoris(?Utilisateurs $favoris): self
+//    {
+//        $this->favoris = $favoris;
+//
+//        return $this;
+//    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
 
     /**
      * @return Collection|Utilisateurs[]
@@ -220,37 +273,16 @@ class Topics
 
     public function addFavori(Utilisateurs $favori): self
     {
-        if (!$this->favoris->contains($favori)){
-            $this->favoris[]=$favori;
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
         }
+
         return $this;
     }
 
     public function removeFavori(Utilisateurs $favori): self
     {
-        if ($this->favoris->contains($favori)) {
-            $this->favoris->removeElement($favori);
-        }
-
-        return $this;
-    }
-
-
-    public function setFavoris(?Utilisateurs $favoris): self
-    {
-        $this->favoris = $favoris;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(?string $type): self
-    {
-        $this->type = $type;
+        $this->favoris->removeElement($favori);
 
         return $this;
     }
