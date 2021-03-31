@@ -3,10 +3,11 @@
        
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
+    {% block css %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Job Board & Directory Template</title>
+   <title> {% block title %} Job Board & Directory Template {% endblock  %}</title>
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/x-icon">
     <!-- Bootstrap , fonts & icons  -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
@@ -23,14 +24,19 @@
     <link rel="stylesheet" href="{{ asset('plugins/ui-range-slider/jquery-ui.css') }}">
     <!-- Vendor stylesheets  -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.css">
+    {% endblock  %}
     <!-- Custom stylesheet -->
 </head>
 
 <body>
+{% block body %}
 <div class="site-wrapper overflow-hidden ">
     <!-- Header start  -->
     <!-- Header Area -->
     <header class="site-header site-header--menu-right dynamic-sticky-bg py-7 py-lg-0 site-header--absolute site-header--sticky">
+        {% block header %}
         <div class="container">
             <nav class="navbar site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
                 <!-- Brand Logo-->
@@ -47,15 +53,17 @@
                         <ul class="navbar-nav main-menu">
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                                <a class="nav-link" >Acceuil</a>
+
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Offres</a>
+                                <a class="nav-link" >Offres</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('publications') }}">Publications</a>
+                                <a class="nav-link">Publications</a>
                             </li>
                             <li class="nav-item">
+
                                 <a class="nav-link" href="{{ path('publications') }}">Recrutement</a>
                             </li>
                             <li class="nav-item">
@@ -64,6 +72,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('topic') }}">Forum</a>
                             </li>
+
                         </ul>
                     </div>
                     <button class="d-block d-lg-none offcanvas-btn-close focus-reset" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="true" aria-label="Toggle navigation">
@@ -74,7 +83,7 @@
                     <a class="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset" href="javacript:" data-toggle="modal" data-target="#login">
                         Log in
                     </a>
-                    <a class="btn btn-primary text-uppercase font-size-3" href="javacript:" data-toggle="modal" data-target="#signup">
+                    <a class="btn btn-primary" href="javacript:" data-toggle="modal" data-target="#signup">
                         Sign up
                     </a>
                 </div>
@@ -90,11 +99,11 @@
                 <!--/.Mobile Menu Hamburger Ends-->
             </nav>
         </div>
+        {% endblock %}
     </header>
 
-    {% block index %}
 
-    {% endblock %}
+
     <section class="pt-7 pt-lg-16 pb-2 pb-lg-32">
         {% block section %}
 
@@ -103,7 +112,7 @@
         {% endblock %}
     </section>
 
-
+    {% block footer %}
     <footer class="footer bg-ebony-clay dark-mode-texts">
         <div class="container">
             <!-- Cta section -->
@@ -218,6 +227,7 @@
                 </div>
             </div>
         </div>
+        {% endblock  %}
     </footer>
 
 </div>
@@ -234,6 +244,7 @@
 <!-- Activation Script -->
 <!-- <script src="js/drag-n-drop.js"></script> -->
 <script src="{{ asset('js/custom.js') }}"></script>
+{% endblock %}
 </body>
 
 </html>

@@ -11,7 +11,11 @@
         - 0.6. Pageheader
         - 0.7. Footer
 
+<<<<<<< HEAD
    ------------------------- 
+=======
+   -------------------------
+>>>>>>> Utilisateurs
 
  *  1. Dashboard
 
@@ -30,14 +34,22 @@
     - 2.6.  Notifications
     - 2.7.  Icon
     - 2.8.  Tabs
+<<<<<<< HEAD
     - 2.9.  Accordions   
+=======
+    - 2.9.  Accordions
+>>>>>>> Utilisateurs
     - 2.10. Typography
     - 2.11. Listgroup
     - 2.12. Multiselect
     - 2.13. Badge
     - 2.14. Pagination
     - 2.15. Switch Toogle
+<<<<<<< HEAD
     - 2.16. Spinner   
+=======
+    - 2.16. Spinner
+>>>>>>> Utilisateurs
 
 
     ----------------------------
@@ -75,13 +87,21 @@
 
 
          ----------------------------
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> Utilisateurs
 
 6. Pages
 
     - 6.1.   Blank Page
     - 6.2.   Blank Page Header
+<<<<<<< HEAD
     - 6.3.   Login  
+=======
+    - 6.3.   Login
+>>>>>>> Utilisateurs
     - 6.4.   Sign up
     - 6.5.   Forgot Password
     - 6.6.   Profile
@@ -99,16 +119,26 @@
 
 
          ----------------------------
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> Utilisateurs
 7. Email
 
     - 7.1.  Inbox
     - 7.2.  Email Detail
     - 7.3.  Email Compose
     - 7.4.  Message Chat
+<<<<<<< HEAD
   
        ----------------------------
      
+=======
+
+       ----------------------------
+
+>>>>>>> Utilisateurs
 
 8. Layouts
 
@@ -130,7 +160,11 @@
 
 
        ----------------------------
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> Utilisateurs
 
 9. Maps
 
@@ -138,7 +172,11 @@
     - 9.2.  Vector Map
 
        ----------------------------
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> Utilisateurs
 
 10. Menu Level
 
@@ -152,7 +190,11 @@
    ========================================================================== */
 
 
+<<<<<<< HEAD
 /* 0.1. Body / Typography 
+=======
+/* 0.1. Body / Typography
+>>>>>>> Utilisateurs
    ========================================================================== */
 
 body {
@@ -239,7 +281,11 @@ ul li {}
 }
 
 
+<<<<<<< HEAD
 /*-------------------- 
+=======
+/*--------------------
+>>>>>>> Utilisateurs
  Form
 ---------------------*/
 
@@ -298,7 +344,11 @@ select.form-control {
     background-position: 99% 52%;
     background-size: auto;
     background-repeat: no-repeat;
+<<<<<<< HEAD
     background-image: url(../../images/down-arrow.png);
+=======
+    background-image: url(/images/down-arrow.png);
+>>>>>>> Utilisateurs
     padding-right: 15px;
     border: 1px solid #d2d2e4;
     border-radius: 2px;
@@ -480,7 +530,11 @@ address {}
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Parsley Varifation
 -------------------------*/
 
@@ -494,7 +548,11 @@ Parsley Varifation
 }
 
 
+<<<<<<< HEAD
 /*-------------------- 
+=======
+/*--------------------
+>>>>>>> Utilisateurs
  Padding / Margin
 ---------------------*/
 
@@ -739,7 +797,11 @@ Parsley Varifation
 }
 
 
+<<<<<<< HEAD
 /*-------------------- 
+=======
+/*--------------------
+>>>>>>> Utilisateurs
  Font Weight
 ---------------------*/
 
@@ -804,7 +866,11 @@ html body .display-7 {
 }
 
 
+<<<<<<< HEAD
 /*-------------------- 
+=======
+/*--------------------
+>>>>>>> Utilisateurs
  Arrow  List
 ---------------------*/
 
@@ -851,7 +917,11 @@ html body .display-7 {
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Background Color / Color
 -------------------------*/
 
@@ -920,7 +990,11 @@ Background Color / Color
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Borders
 -------------------------*/
 
@@ -953,7 +1027,11 @@ Borders
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
  Color
 -------------------------*/
 
@@ -1006,7 +1084,11 @@ Borders
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Borders
 -------------------------*/
 
@@ -1031,7 +1113,11 @@ Borders
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Fontawesome size
 -------------------------*/
 
@@ -1050,7 +1136,11 @@ Fontawesome size
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Social Color
 -------------------------*/
 
@@ -1091,7 +1181,11 @@ Social Color
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Social bg Color
 -------------------------*/
 
@@ -1131,7 +1225,11 @@ Social bg Color
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Progress bar
 -------------------------*/
 
@@ -1192,7 +1290,11 @@ Progress bar
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Legends
 -------------------------*/
 
@@ -1215,7 +1317,11 @@ Legends
    ========================================================================== */
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Top Header
 -------------------------*/
 
@@ -1512,10 +1618,17 @@ Top Header
 
 
 .navigation-horizontal {
+<<<<<<< HEAD
    
     width: 100%;
     height: 100%;
   
+=======
+
+    width: 100%;
+    height: 100%;
+
+>>>>>>> Utilisateurs
     overflow: auto;
    /* background-color: #fff;
     -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
@@ -1633,7 +1746,11 @@ Top Header
 
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 Left Navigation Sidebar
 ------------------------- */
 
@@ -1757,7 +1874,11 @@ Left Navigation Sidebar
     border: 1px solid transparent;
     border-radius: .25rem;
 }
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 Leftsidebar - Primary
 ------------------------- */
 
@@ -1800,7 +1921,11 @@ Leftsidebar - Primary
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 Leftsidebar - dark
 ------------------------- */
 
@@ -1848,15 +1973,25 @@ Leftsidebar - dark
 }
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-item .badge{
+<<<<<<< HEAD
 	position: absolute;
 	right: 40px;
 	display: none;
+=======
+    position: absolute;
+    right: 40px;
+    display: none;
+>>>>>>> Utilisateurs
 }
 
 /*-----navigation dark ---*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Sidebar Page Navigations
 -------------------------*/
 
@@ -1930,7 +2065,11 @@ Sidebar Page Navigations
 /* -------------------- 0.5.Container / Wrapper ----------------------- */
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Container / Wrapper
 -------------------------*/
 
@@ -1952,7 +2091,11 @@ Container / Wrapper
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Splash Container / Wrapper
 -------------------------*/
 
@@ -1991,7 +2134,11 @@ Splash Container / Wrapper
 /* -------------------- 0.6.Pageheader ----------------------- */
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 Pageheader
 -------------------------*/
 
@@ -2054,7 +2201,11 @@ Pageheader
 /* -------------------- 0.7.Footer ----------------------- */
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
  Footer
 -------------------------*/
 
@@ -2327,7 +2478,11 @@ Pageheader
 .ribbons{
     -webkit-clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 100%, 50% 73%, 10% 100%, 10% 50%);
 clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 100%, 50% 73%, 10% 100%, 10% 50%);
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> Utilisateurs
     position: absolute;
     top: 0px;
     background-color: #59b3ff;
@@ -2339,7 +2494,11 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     position: absolute;
     top: 11px;
     left: 10px;
+<<<<<<< HEAD
     color: #fff;} 
+=======
+    color: #fff;}
+>>>>>>> Utilisateurs
 .product-wishlist-btn{height: 40px;
     width: 40px;
     border: 2px solid #dfdfec;
@@ -2358,7 +2517,11 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 .product-content-head{ position: relative; margin-bottom: 25px; }
 .product-title{font-size: 16px; margin-bottom: 5px;}
 .product-rating{font-size: 12px;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> Utilisateurs
     color: #ffa811;}
 .product-price{ position: absolute; top: 0; right: 0; font-size: 16px; color: #3d405c;font-family: 'Circular Std Medium'; line-height: 1;}
 .product-btn{}
@@ -2553,7 +2716,11 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
   color: #333;
   font-size: 13px;
   font-family: 'Circular Std Medium';
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> Utilisateurs
   line-height: 1.6;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
@@ -2595,12 +2762,20 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
   ========================================================================== */
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.1  Alerts
 -------------------------*/
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.2  Buttons
 -------------------------*/
 
@@ -3173,7 +3348,11 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 btn-link
 -------------------------*/
 
@@ -3198,7 +3377,11 @@ btn-link
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.3  Cards
 -------------------------*/
 
@@ -3377,7 +3560,11 @@ btn-link
     display: flex;
     -webkit-box-align: start;
     -ms-flex-align: start;
+<<<<<<< HEAD
     align-items: start;
+=======
+    align-items: flex-start;
+>>>>>>> Utilisateurs
     padding: .5rem;
     opacity: 0;
     z-index: 2;
@@ -3446,7 +3633,11 @@ btn-link
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.4  General
 -------------------------*/
 
@@ -3478,7 +3669,11 @@ btn-link
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.5  Modals
 -------------------------*/
 
@@ -3491,12 +3686,20 @@ btn-link
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.6  Notification
 -------------------------*/
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.7  Icon
 -------------------------*/
 
@@ -3546,7 +3749,11 @@ btn-link
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.8  Tabs
 -------------------------*/
 
@@ -3799,7 +4006,11 @@ btn-link
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 Pills Regular
 -------------------------*/
 
@@ -3830,7 +4041,11 @@ Pills Regular
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 Pills Outline
 -------------------------*/
 
@@ -3861,7 +4076,11 @@ Pills Outline
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 Pills vertical
 -------------------------*/
 
@@ -3888,7 +4107,11 @@ Pills vertical
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.9  Accordions
 -------------------------*/
 
@@ -3958,12 +4181,20 @@ Pills vertical
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.10  Typography
 -------------------------*/
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.11  Listgroup
 -------------------------*/
 
@@ -3976,12 +4207,20 @@ Pills vertical
 }
 
 
+<<<<<<< HEAD
 /* ----------------------- 
+=======
+/* -----------------------
+>>>>>>> Utilisateurs
 2.12  Multiselect
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 2.13 Badge
 -------------------------*/
 
@@ -4134,7 +4373,11 @@ Pills vertical
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 2.14 Pagination
 -------------------------*/
 
@@ -4267,7 +4510,11 @@ Pills vertical
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 2.16 Switch Toggle
 -------------------------*/
 
@@ -4395,7 +4642,11 @@ Pills vertical
   ========================================================================== */
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 3.1 Chartist.js
 -------------------------*/
 
@@ -4420,7 +4671,11 @@ Pills vertical
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 3.2 Sprkling.js
 -------------------------*/
 
@@ -4434,17 +4689,29 @@ Pills vertical
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 3.3 Charts.js
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 3.4 Morris.js
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 3.5 C3 Charts.js
 -------------------------*/
 
@@ -4454,32 +4721,56 @@ Pills vertical
   ========================================================================== */
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 4.1.  Form Elements
 ------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 4.2.  Form Validations
 ------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 4.3.  Multiseelct
 -----------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 4.4.  Wizard
 ------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 4.5.  Summar Note / Text Editor
 ------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 4.6.  Multiupload
 --------------------*/
 
@@ -4489,7 +4780,11 @@ Pills vertical
  ========================================================================== */
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 5.1.  General
 --------------------*/
 
@@ -4534,7 +4829,11 @@ Pills vertical
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 5.2.  Data Tables
 --------------------*/
 
@@ -4550,7 +4849,11 @@ tr.group:hover {
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 5.3. Table Filters
 --------------------*/
 
@@ -4560,47 +4863,83 @@ tr.group:hover {
  ========================================================================== */
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.1 Blank Page
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.2 Blank Page Header
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.3 Login
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.4 Sign up Page
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.5 Forgot Password
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.6 Profile
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.7 Pricing
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.8 Timeline
 -------------------------*/
 
 
+<<<<<<< HEAD
 /* -------------------------------- 
+=======
+/* --------------------------------
+>>>>>>> Utilisateurs
 
 Patterns - reusable parts of our design
 
@@ -4613,7 +4952,11 @@ Patterns - reusable parts of our design
 }
 
 
+<<<<<<< HEAD
 /* -------------------------------- 
+=======
+/* --------------------------------
+>>>>>>> Utilisateurs
 
 Vertical Timeline - by CodyHouse.co
 
@@ -4962,7 +5305,11 @@ Vertical Timeline - by CodyHouse.co
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.9 404 error
 -------------------------*/
 
@@ -4977,7 +5324,11 @@ Vertical Timeline - by CodyHouse.co
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.9 Calendar
 -------------------------*/
 
@@ -5028,7 +5379,11 @@ Vertical Timeline - by CodyHouse.co
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.10 Metrics
 -------------------------*/
 
@@ -5094,7 +5449,11 @@ Vertical Timeline - by CodyHouse.co
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.11 Media Objects
 -------------------------*/
 
@@ -5299,7 +5658,11 @@ Vertical Timeline - by CodyHouse.co
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.12 Shortable / Nesetable
 -------------------------*/
 
@@ -5329,7 +5692,11 @@ Vertical Timeline - by CodyHouse.co
     margin: 0 .5em;
     height: 8px;
     width: 6px;
+<<<<<<< HEAD
     background-image: url(../../images/drag-indicator.png);
+=======
+    background-image: url(/images/drag-indicator.png);
+>>>>>>> Utilisateurs
     -webkit-transform: translate3d(-.5em, 0, 0);
     transform: translate3d(-.5em, 0, 0);
     -webkit-user-select: none;
@@ -5531,7 +5898,11 @@ Vertical Timeline - by CodyHouse.co
     background: #fafafa;
     background: -webkit-linear-gradient(top, #fafafa 0%, #eee 100%);
     background: -moz-linear-gradient(top, #fafafa 0%, #eee 100%);
+<<<<<<< HEAD
     background: linear-gradient(top, #fafafa 0%, #eee 100%);
+=======
+    background: linear-gradient(to top, #fafafa 0%, #eee 100%);
+>>>>>>> Utilisateurs
     -webkit-border-radius: 3px;
     border-radius: 3px;
     box-sizing: border-box;
@@ -5565,7 +5936,11 @@ Vertical Timeline - by CodyHouse.co
     background: #ddd;
     background: -webkit-linear-gradient(top, #ddd 0%, #bbb 100%);
     background: -moz-linear-gradient(top, #ddd 0%, #bbb 100%);
+<<<<<<< HEAD
     background: linear-gradient(top, #ddd 0%, #bbb 100%);
+=======
+    background: linear-gradient(to top, #ddd 0%, #bbb 100%);
+>>>>>>> Utilisateurs
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -5600,12 +5975,20 @@ Vertical Timeline - by CodyHouse.co
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.13 404 Error
 -------------------------*/
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.14 Comments Widget
 -------------------------*/
 
@@ -5662,7 +6045,11 @@ Vertical Timeline - by CodyHouse.co
 }
 
 
+<<<<<<< HEAD
 /*----------------------- 
+=======
+/*-----------------------
+>>>>>>> Utilisateurs
 6.14 mail box widget
 -------------------------*/
 
@@ -5676,7 +6063,10 @@ Vertical Timeline - by CodyHouse.co
 .mailbox .drop-title:after {
     content: "";
     position: absolute;
+<<<<<<< HEAD
     background: url(../../assets/images/background/img5.html) no-repeat;
+=======
+>>>>>>> Utilisateurs
     opacity: 0.2;
     top: 0px;
     left: 0px;
@@ -5776,7 +6166,11 @@ Vertical Timeline - by CodyHouse.co
 ========================================================================== */
 
 
+<<<<<<< HEAD
 /*------------------------ 
+=======
+/*------------------------
+>>>>>>> Utilisateurs
 7.1  Inbox
 ----------------------------*/
 
@@ -5979,7 +6373,11 @@ Vertical Timeline - by CodyHouse.co
     border-top: 1px solid #e6e6f2;
 }
 
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> Utilisateurs
 
 .email-filters .be-select-all.custom-checkbox {
     display: inline-block;
@@ -6447,7 +6845,11 @@ Vertical Timeline - by CodyHouse.co
     padding-top: 1rem;
     border-top: 1px solid #E9EEF2;
     background: #efeff6;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> Utilisateurs
 }
 
 .chat-form {
@@ -6717,10 +7119,17 @@ form.dropzone {
     display: flex;
     align-items: center;
 }
+<<<<<<< HEAD
  
 
 /* ==========================================================================
 9. Map 
+=======
+
+
+/* ==========================================================================
+9. Map
+>>>>>>> Utilisateurs
 ========================================================================== */
 
 
@@ -6781,7 +7190,11 @@ Media Query
         border-bottom: 1px solid #dee2e6;
         border-right: transparent !important;
     }
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> Utilisateurs
 
 }
 
@@ -6973,6 +7386,7 @@ Media Query
 }
 
 
+<<<<<<< HEAD
  
  
 
@@ -6982,3 +7396,9 @@ Media Query
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width:320px) {} 
+=======
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width:320px) {}
+>>>>>>> Utilisateurs

@@ -1579,11 +1579,11 @@
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< HEAD
-                    "Metadata\\": "src/"
-=======
+
+                    "Metadata\\": "src/",
+
                     "FOS\\CKEditorBundle\\": "src/"
->>>>>>> Forum
+
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

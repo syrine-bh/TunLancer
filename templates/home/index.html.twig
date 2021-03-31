@@ -4,13 +4,143 @@
 >>>>>>> Forum
 {% extends "baseFront.html.twig" %}
 
+{% block section %}
+
 
 
 {% block index %}
+
+    <body>
+    <!-- navbar- -->
+    <!-- Login Modal -->
+    <div class="modal fade form-modal" id="login" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog max-width-px-840 position-relative">
+            <button type="button" class="circle-32 btn-reset bg-white pos-abs-tr mt-md-n6 mr-lg-n6 focus-reset z-index-supper" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            <div class="login-modal-main bg-white rounded-8 overflow-hidden">
+                <div class="row no-gutters">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="pt-10 pb-6 pl-11 pr-12 bg-black-2 h-100 d-flex flex-column dark-mode-texts">
+                            <div class="pb-9">
+                                <h3 class="font-size-8 text-white line-height-reset pb-4 line-height-1p4">
+                                    Welcome Back
+                                </h3>
+                                <p class="mb-0 font-size-4 text-white">Log in to continue your account
+                                    and explore new jobs.</p>
+                            </div>
+                            <div class="border-top border-default-color-2 mt-auto">
+                                <div class="d-flex mx-n9 pt-6 flex-xs-row flex-column">
+                                    <div class="pt-5 px-9">
+                                        <h3 class="font-size-7 text-white">
+                                            295
+                                        </h3>
+                                        <p class="font-size-3 text-white gr-opacity-5 line-height-1p4">New jobs
+                                            posted today</p>
+                                    </div>
+                                    <div class="pt-5 px-9">
+                                        <h3 class="font-size-7 text-white">
+                                            14
+                                        </h3>
+                                        <p class="font-size-3 text-white gr-opacity-5 line-height-1p4">New companies
+                                            registered</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-6">
+                        <div class="bg-white-2 h-100 px-11 pt-11 pb-7">
+                            <div class="row">
+
+                            </div>
+                            <div class="or-devider">
+                                <span class="font-size-3 line-height-reset ">Or</span>
+                            </div>
+                            <form method="POST" >
+                                <div class="form-group">
+                                    <label for="email" class="font-size-4 text-black-2 font-weight-semibold line-height-reset">E-mail</label>
+                                    <input type="email" name="email"  class="form-control" placeholder="example@gmail.com" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="font-size-4 text-black-2 font-weight-semibold line-height-reset">Password</label>
+                                    <div class="position-relative">
+                                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+                                        <a href="#" class="show-password pos-abs-cr fas mr-6 text-black-2" data-show-pass="password"></a>
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex flex-wrap justify-content-between">
+                                    <label for="terms-check" class="gr-check-input d-flex  mr-3">
+                                        <input class="d-none" type="checkbox" id="terms-check">
+                                        <span class="checkbox mr-5"></span>
+                                        <span class="font-size-3 mb-0 line-height-reset mb-1 d-block">Remember password</span>
+                                    </label>
+                                    <a href="{{path('pass_recup')}}" class="font-size-3 text-dodger line-height-reset">Forget Password</a>
+                                </div>
+                                <div>
+                                <small class="text-muted">   {{ errors }} </small>
+                                </div>
+                                <div class="form-group mb-8">
+                                    <button class="btn btn-primary btn-medium w-100 rounded-5 text-uppercase">Log in </button>
+                                </div>
+                                <p class="font-size-4 text-center heading-default-color">Don’t have an account? <a href="#" class="text-primary">Create a free account</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sign Up Modal -->
+    <div class="modal fade form-modal" id="signup" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog max-width-px-840 position-relative">
+            <button type="button" class="circle-32 btn-reset bg-white pos-abs-tr mt-n6 mr-lg-n6 focus-reset shadow-10" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            <div class="login-modal-main bg-white rounded-8 overflow-hidden">
+                <div class="row no-gutters">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="pt-10 pb-6 pl-11 pr-12 bg-black-2 h-100 d-flex flex-column dark-mode-texts">
+                            <div class="pb-9">
+                                <h3 class="font-size-8 text-white line-height-reset pb-4 line-height-1p4">
+                                    Create a free account today
+                                </h3>
+                                <p class="mb-0 font-size-4 text-white">Create your account to continue
+                                    and explore new jobs.</p>
+                            </div>
+                            <div class="border-top border-default-color-2 mt-auto">
+                                <div class="d-flex mx-n9 pt-6 flex-xs-row flex-column">
+                                    <div class="pt-5 px-9">
+                                        <h3 class="font-size-7 text-white">
+                                            295
+                                        </h3>
+                                        <p class="font-size-3 text-white gr-opacity-5 line-height-1p4">New jobs
+                                            posted today</p>
+                                    </div>
+                                    <div class="pt-5 px-9">
+                                        <h3 class="font-size-7 text-white">
+                                            14
+                                        </h3>
+                                        <p class="font-size-3 text-white gr-opacity-5 line-height-1p4">New companies
+                                            registered</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{ render(controller(
+                        'App\\Controller\\UserController::add_userAction',
+
+                    )) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header start end -->
+    <!-- Hero Area -->
+
     <div class="bg-gradient-1 pt-26 pt-md-32 pt-lg-33 pt-xl-35 position-relative z-index-1 overflow-hidden">
         <!-- .Hero pattern -->
         <div class="pos-abs-tr w-50 z-index-n2">
-            <img src="{{ asset('image/patterns/hero-pattern.png') }}" alt="" class="gr-opacity-1">
+            <img src="image/patterns/hero-pattern.png" alt="" class="gr-opacity-1">
         </div>
         <!-- ./Hero pattern -->
         <div class="container">
@@ -54,13 +184,16 @@
                 <!-- Hero Right Image -->
                 <div class="col-lg-6 col-md-4 col-sm-6 col-xs-6 col-8 pos-abs-br z-index-n1 position-static position-md-absolute mx-auto ml-md-auto" data-aos="fade-left" data-aos-duration="800" data-aos-once="true">
                     <div class=" ml-xxl-23 ml-xl-12 ml-md-7">
-                        <img src="{{ asset('image/l1/png/hero-image-man.png') }}" alt="" class="w-100">
+                        <img src="image/l1/png/hero-image-man.png" alt="" class="w-100">
                     </div>
                 </div>
                 <!-- ./Hero Right Image -->
             </div>
         </div>
     </div>
+    <!-- Hero Area -->
+    <!-- Brand1Section Area -->
+    <!-- Company Section -->
     <div class="bg-black-2 dark-mode-texts pt-13 pt-lg-24 pb-12 pb-lg-23">
         <div class="container">
             <div class="row">
@@ -74,27 +207,27 @@
             <div class="row align-items-center justify-content-center justify-content-lg-between">
                 <!-- Single Brand -->
                 <div class="single-brand-logo mx-5 my-6" data-aos="fade-in" data-aos-duration="800" data-aos-once="true">
-                    <img src="{{ asset('image/l1/png/brand-logo-1.png') }}" alt="">
+                    <img src="image/l1/png/brand-logo-1.png" alt="">
                 </div>
                 <!-- Single Brand -->
                 <div class="single-brand-logo mx-5 my-6" data-aos="fade-in" data-aos-duration="800" data-aos-delay="300" data-aos-once="true">
-                    <img src="{{ asset('image/l1/png/brand-logo-2.png') }}" alt="">
+                    <img src="image/l1/png/brand-logo-2.png" alt="">
                 </div>
                 <!-- Single Brand -->
                 <div class="single-brand-logo mx-5 my-6" data-aos="fade-in" data-aos-duration="800" data-aos-delay="500" data-aos-once="true">
-                    <img src="{{ asset('image/l1/png/brand-logo-3.png') }}" alt="">
+                    <img src="image/l1/png/brand-logo-3.png" alt="">
                 </div>
                 <!-- Single Brand -->
                 <div class="single-brand-logo mx-5 my-6" data-aos="fade-in" data-aos-duration="800" data-aos-delay="700" data-aos-once="true">
-                    <img src="{{ asset('image/l1/png/brand-logo-4.png') }}" alt="">
+                    <img src="image/l1/png/brand-logo-4.png" alt="">
                 </div>
                 <!-- Single Brand -->
                 <div class="single-brand-logo mx-5 my-6" data-aos="fade-in" data-aos-duration="800" data-aos-delay="900" data-aos-once="true">
-                    <img src="{{ asset('image/l1/png/brand-logo-5.png') }}" alt="">
+                    <img src="image/l1/png/brand-logo-5.png" alt="">
                 </div>
                 <!-- Single Brand -->
                 <div class="single-brand-logo mx-5 my-6" data-aos="fade-in" data-aos-duration="800" data-aos-delay="1200" data-aos-once="true">
-                    <img src="{{ asset('image/l1/png/brand-logo-6.png') }}" alt="">
+                    <img src="image/l1/png/brand-logo-6.png" alt="">
                 </div>
             </div>
             <!-- End Brand Logos -->
@@ -239,6 +372,10 @@
             </div>
         </div>
     </div>
+    <!-- End Category Area -->
+    <!-- category Area -->
+    <!-- ContentOne Area -->
+    <!-- content-1 section -->
     <section class="pt-7 pt-lg-16 pb-2 pb-lg-32">
         <div class="container">
             <div class="row pb-lg-6 justify-content-center">
@@ -246,7 +383,7 @@
                     <!-- content-1 left-content start -->
                     <div class="position-relative pr-xl-20 pr-md-15 pr-15">
                         <!-- content img start -->
-                        <img src="{{ asset('image/l1/jpg/content-1-img1.jpg') }}" alt="" class="w-100 rounded overflow-hidden" />
+                        <img src="image/l1/jpg/content-1-img1.jpg" alt="" class="w-100 rounded overflow-hidden" />
                         <!-- content img end -->
                         <!-- abs-content start -->
                         <div class="pos-abs-br pt-17 pb-9 pl-8 pr-12  bg-white shadow-2 rounded scale-p7 scale-xs-1 mb-n20 mr-n10 mr-xs-5 mr-sm-0 mb-xs-n10">
@@ -262,27 +399,27 @@
                                 <ul class="list-unstyled list-overlapped-icon max-width-130px">
                                     <li class="ml-0">
                                         <a href="#" class="circle-34">
-                                            <img src="{{ asset('image/l1/png/smal-logo1.png') }}" alt="" class="img" />
+                                            <img src="image/l1/png/smal-logo1.png" alt="" class="img" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <img src="{{ asset('image/l1/png/smal-logo2.png') }}" alt="" class="img img2" />
+                                            <img src="image/l1/png/smal-logo2.png" alt="" class="img img2" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <img src="{{ asset('image/l1/png/smal-logo3.png') }}" alt="" class="img img3" />
+                                            <img src="image/l1/png/smal-logo3.png" alt="" class="img img3" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <img src="{{ asset('image/l1/png/smal-logo4.png') }}" alt="" class="img img4" />
+                                            <img src="image/l1/png/smal-logo4.png" alt="" class="img img4" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <img src="{{ asset('image/l1/png/smal-logo5.png') }}" alt="" class="img img5" />
+                                            <img src="image/l1/png/smal-logo5.png" alt="" class="img img5" />
                                         </a>
                                     </li>
                                 </ul>
@@ -353,7 +490,7 @@
                     <!-- Start Feature One -->
                     <div class="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                         <div class="d-block mb-7">
-                            <a href="#"><img src="{{ asset('image/l1/png/feature-brand-1.png') }}" alt=""></a>
+                            <a href="#"><img src="image/l1/png/feature-brand-1.png" alt=""></a>
                         </div>
                         <a href="#" class="font-size-3 d-block mb-0 text-gray">Google INC</a>
                         <h2 class="mt-n4"><a class="font-size-7 text-black-2 font-weight-bold mb-4" href="#">Product Designer</a></h2>
@@ -381,7 +518,7 @@
                     <!-- Start Feature One -->
                     <div class="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                         <div class="d-block mb-7">
-                            <a href="#"><img src="{{ asset('image/l1/png/feature-brand-2.png') }}" alt=""></a>
+                            <a href="#"><img src="image/l1/png/feature-brand-2.png" alt=""></a>
                         </div>
                         <a href="#" class="font-size-3 d-block mb-0 text-gray">AirBnb</a>
                         <h2 class="mt-n4"><a class="font-size-7 text-black-2 font-weight-bold mb-4" href="#">UI/UX Designer</a></h2>
@@ -409,7 +546,7 @@
                     <!-- Start Feature One -->
                     <div class="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                         <div class="d-block mb-7">
-                            <a href="#"><img src="{{ asset('image/l1/png/feature-brand-3.png') }}" alt=""></a>
+                            <a href="#"><img src="image/l1/png/feature-brand-3.png" alt=""></a>
                         </div>
                         <a href="#" class="font-size-3 d-block mb-0 text-gray">Shopify</a>
                         <h2 class="mt-n4"><a class="font-size-7 text-black-2 font-weight-bold mb-4" href="#">iOS Developer</a></h2>
@@ -437,7 +574,7 @@
                     <!-- Start Feature One -->
                     <div class="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                         <div class="d-block mb-7">
-                            <a href="#"><img src="{{ asset('image/l1/png/feature-brand-4.png') }}" alt=""></a>
+                            <a href="#"><img src="image/l1/png/feature-brand-4.png" alt=""></a>
                         </div>
                         <a href="#" class="font-size-3 d-block mb-0 text-gray">Uber</a>
                         <h2 class="mt-n4"><a class="font-size-7 text-black-2 font-weight-bold mb-4" href="#">Creative Director </a></h2>
@@ -465,7 +602,7 @@
                     <!-- Start Feature One -->
                     <div class="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                         <div class="d-block mb-7">
-                            <a href="#"><img src="{{ asset('image/l1/png/feature-brand-5.png') }}" alt=""></a>
+                            <a href="#"><img src="image/l1/png/feature-brand-5.png" alt=""></a>
                         </div>
                         <a href="#" class="font-size-3 d-block mb-0 text-gray">Facebook</a>
                         <h2 class="mt-n4"><a class="font-size-7 text-black-2 font-weight-bold mb-4" href="#">Marketing Manager </a></h2>
@@ -493,7 +630,7 @@
                     <!-- Start Feature One -->
                     <div class="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                         <div class="d-block mb-7">
-                            <a href="#"><img src="{{ asset('image/l1/png/feature-brand-6.png') }}" alt=""></a>
+                            <a href="#"><img src="image/l1/png/feature-brand-6.png" alt=""></a>
                         </div>
                         <a href="#" class="font-size-3 d-block mb-0 text-gray">Oculus</a>
                         <h2 class="mt-n4"><a class="font-size-7 text-black-2 font-weight-bold mb-4" href="#">Software Engineer</a></h2>
@@ -529,7 +666,7 @@
                 <div class="col-xl-6 col-lg-5 col-md-10 col-sm-11" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
                     <div class="position-relative pr-lg-20 pr-md-15 pr-9">
                         <!-- content img start -->
-                        <img src="{{ asset('image/l1/jpg/content-1-img2.jpg') }}" alt="" class="w-100 rounded-4" />
+                        <img src="image/l1/jpg/content-1-img2.jpg" alt="" class="w-100 rounded-4" />
                         <!-- content img end -->
                         <!-- abs-content start -->
                         <div class="pos-abs-br mb-10 ">
@@ -542,7 +679,7 @@
                                     <div class="media mb-5 pr-9">
                                         <!-- media img start -->
                                         <div class="mr-3 mt-2">
-                                            <img src="{{ asset('image/l1/png/media-img-1.png') }}" class="circle-40" alt="" />
+                                            <img src="image/l1/png/media-img-1.png" class="circle-40" alt="" />
                                         </div>
                                         <!-- media img start -->
                                         <!-- media body start -->
@@ -557,7 +694,7 @@
                                     <div class="media mb-5 pr-9">
                                         <!-- media img start -->
                                         <div class="mr-3 mt-2">
-                                            <img src="{{ asset('image/l1/png/media-img-2.png') }}" class="circle-40" alt="" />
+                                            <img src="image/l1/png/media-img-2.png" class="circle-40" alt="" />
                                         </div>
                                         <!-- media img start -->
                                         <!-- media body start -->
@@ -572,7 +709,7 @@
                                     <div class="media mb-5 pr-9">
                                         <!-- media img start -->
                                         <div class="mr-3 mt-2">
-                                            <img src="{{ asset('image/l1/png/media-img-3.png') }}" class="circle-40" alt="" />
+                                            <img src="image/l1/png/media-img-3.png" class="circle-40" alt="" />
                                         </div>
                                         <!-- media img start -->
                                         <!-- media body start -->
@@ -610,9 +747,29 @@
             </div>
         </div>
     </section>
+    <!-- ContentTwo Area -->
+    <!-- footer area function start -->
+    <!-- cta section -->
+
+    <!-- footer area function end -->
+    </div>
+    <!-- Vendor Scripts -->
+    <script src="js/vendor.min.js"></script>
+    <!-- Plugin's Scripts -->
+    <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
+    <script src="plugins/nice-select/jquery.nice-select.min.js"></script>
+    <script src="plugins/aos/aos.min.js"></script>
+    <script src="plugins/slick/slick.min.js"></script>
+    <script src="plugins/counter-up/jquery.counterup.min.js"></script>
+    <script src="plugins/counter-up/jquery.waypoints.min.js"></script>
+    <script src="plugins/ui-range-slider/jquery-ui.js"></script>
+    <!-- Activation Script -->
+    <!-- <script src="js/drag-n-drop.js"></script> -->
+    <script src="js/custom.js"></script>
+    </body>
+
+
+
+    <!-- Mirrored from uxtheme.net/demos/jobcamp/home-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Feb 2021 15:47:16 GMT -->
+    </html>
 {% endblock %}
-
-<<<<<<< HEAD
-
-=======
->>>>>>> Forum

@@ -1,0 +1,42 @@
+<div class="table-responsive" id="aller">
+    <table id="example" class="table table-striped table-bordered second" style="width:100%">
+        <thead>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Tel</th>
+        <th>Email</th>
+        <th>Pays</th>
+        <th>Role</th>
+        <th></th>
+        <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.Nom}}</td>
+                <td>{{ user.Prenom}}</td>
+                <td>{{ user.Tel}}</td>
+                <td>{{ user.Email}}</td>
+                <td>{{ user.Pays}}</td>
+                <td>{{ user.Role}}</td>
+                <td>
+                    <a href="{{path('modifier', {id:user.id})}}" >Edit</a>
+                </td>
+                <td >
+                    <a href="{{path('deleteuser', {id:user.id})}}" >Delete</a>
+                </td>
+
+            </tr>
+
+        {% endfor%}
+
+        </tfoot>
+
+
+    </table>
+
+
+
+
+</div>
