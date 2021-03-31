@@ -7,7 +7,7 @@ use App\Entity\Concour;
 use App\Entity\Quiz;
 use App\Entity\Reponsetab;
 use App\Entity\Score;
-use App\Entity\User;
+use App\Entity\Users;
 use App\Entity\Video;
 use App\Repository\ConcoursRepository;
 use App\Repository\QuestiontabRepository;
@@ -99,7 +99,7 @@ class QuestionController extends Controller
 $em=$this->getDoctrine()->getManager();
         $participation = new Participation();
 //        $user = $this->getUser();
-        $user = $this->getDoctrine()->getRepository(User::class)->find('2');
+        $user = $this->getDoctrine()->getRepository(Users::class)->find('2');
 
         $participation->setConcour($concour);
 //            $participation->setParticipationDate($video->getPublishDate());
@@ -145,7 +145,7 @@ $em=$this->getDoctrine()->getManager();
 
     /**
      * @Route("/notificationModification/{idConcour}/{idUser}", name="notificationModification")
-     * @param User $id
+     * @param Users $id
      * @return Response
      *
      */
@@ -154,7 +154,7 @@ $em=$this->getDoctrine()->getManager();
         $em=$this->getDoctrine()->getManager();
         $concour=$this->repConcour->find($idConcour);
         $participant = $this->getDoctrine()->getRepository(Participation::class)->findByConcour($concour);
-        $user=$em->getRepository(User::class)->find($idUser);
+        $user=$em->getRepository(Users::class)->find($idUser);
 
         $message = (new \Swift_Message('Update Email'))
             ->setFrom('tunlancer.coders@gmail.com')
@@ -185,7 +185,7 @@ $em=$this->getDoctrine()->getManager();
 
     /**
      * @Route("/promote/{id}", name="promote_user")
-     * @param User $id
+     * @param Users $id
      * @return Response
      *
      */

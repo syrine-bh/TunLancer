@@ -10,20 +10,22 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
-*/
+ */
 class Users implements UserInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Nom is required")
+     *    @Assert\Email(
+     *     message = "l' email '{{ value }}' n'est pas valid"
+     * )
      */
     private $Nom;
 
@@ -62,8 +64,10 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
      */
     private $Photo;
+
 
     /**
      * @ORM\Column(type="string", length=255 ,nullable=true)
@@ -72,21 +76,20 @@ class Users implements UserInterface
 
 
 
+//    /**
+//     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="user")
+//     */
+//    private $formations;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="user")
-     */
-    private $formations;
+//    /**
+//     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="user")
+//     */
+//    private $experiences;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="user")
-     */
-    private $experiences;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Competence::class, mappedBy="relation")
-     */
-    private $competence;
+//    /**
+//     * @ORM\OneToMany(targetEntity=Competence::class, mappedBy="relation")
+//     */
+//    private $competence;
 
     /**
      * @ORM\Column(type="boolean")
@@ -99,25 +102,10 @@ class Users implements UserInterface
     private $Super_admin;
 
 
-    /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="userid")
-     */
-    private $tasks;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Experiences::class, mappedBy="relation")
-     */
-    private $experience;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $Age;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Sexe;
+//    /**
+//     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="userid")
+//     */
+//    private $tasks;
 
     public function __construct()
     {
@@ -126,7 +114,9 @@ class Users implements UserInterface
         $this->experiences = new ArrayCollection();
         $this->isEnabled = 1;
         $this->tasks = new ArrayCollection();
-        $this->experience = new ArrayCollection();
+        $this->participations = new ArrayCollection();
+        $this->reponseQuestions = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -302,6 +292,7 @@ class Users implements UserInterface
         }
 
         return $this;
+        return $this;
     }
 
     public function getRoles()
@@ -410,35 +401,103 @@ class Users implements UserInterface
 
         return $this;
     }
+    /**
+     * @ORM\ManyToMany(targetEntity=Concour::class, inversedBy="test")
+     */
+    private $concour;
 
     /**
-     * @return Collection|Experiences[]
+     * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="user", orphanRemoval=true)
      */
-    public function getExperience(): Collection
+    private $participations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $scores;
+
+
+
+    /**
+     * @return Collection|concour[]
+     */
+    public function getConcours(): Collection
     {
-        return $this->experience;
+        return $this->concours;
     }
 
-    public function getAge(): ?int
+    public function addConcour(concour $concour): self
     {
-        return $this->Age;
-    }
-
-    public function setAge(int $Age): self
-    {
-        $this->Age = $Age;
+        if (!$this->concours->contains($concour)) {
+            $this->concours[] = $concour;
+        }
 
         return $this;
     }
 
-    public function getSexe(): ?string
+    public function removeConcour(concour $concour): self
     {
-        return $this->Sexe;
+        $this->concours->removeElement($concour);
+
+        return $this;
     }
 
-    public function setSexe(string $Sexe): self
+    /**
+     * @return Collection|Participation[]
+     */
+    public function getParticipations(): Collection
     {
-        $this->Sexe = $Sexe;
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->removeElement($participation)) {
+            // set the owning side to null (unless already changed)
+            if ($participation->getUser() === $this) {
+                $participation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Score[]
+     */
+    public function getScores(): Collection
+    {
+        return $this->scores;
+    }
+
+    public function addScore(Score $score): self
+    {
+        if (!$this->scores->contains($score)) {
+            $this->scores[] = $score;
+            $score->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Score $score): self
+    {
+        if ($this->scores->removeElement($score)) {
+            // set the owning side to null (unless already changed)
+            if ($score->getUser() === $this) {
+                $score->setUser(null);
+            }
+        }
 
         return $this;
     }

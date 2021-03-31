@@ -96,7 +96,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $user = $entityManager->getRepository(users::class)->find($id);
+            $user = $entityManager->getRepository(Users::class)->find($id);
             $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('message', 'Utlisateur modifié avec succès');
@@ -116,10 +116,10 @@ class UserController extends AbstractController
 
         {
             $em = $this->getDoctrine()->getManager();
-            $user = $em->getRepository(users::class)->find($id);
+            $user = $em->getRepository(Users::class)->find($id);
 
             if (!$user) {
-                throw $this->createNotFoundException('Unable to find User entity.');
+                throw $this->createNotFoundException('Unable to find Users entity.');
             }
 
             $em->remove($user);

@@ -24,7 +24,7 @@ class Participation
     private $concour;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="participations")
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="participations")
      * @ORM\JoinColumn(nullable=true)
      */
     private $user;
@@ -49,12 +49,12 @@ class Participation
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?Users
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?Users $user): self
     {
         $this->user = $user;
 
