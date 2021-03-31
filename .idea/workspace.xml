@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1a826d9f-d513-49a9-8307-5eeb06997c1d" name="Default Changelist" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ConcourController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ConcourController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baselist.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baselist.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +32,6 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Concours" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -167,6 +160,10 @@
       <path value="$PROJECT_DIR$/vendor/symfony/ux-chartjs" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
+      <path value="$PROJECT_DIR$/vendor/snipe/banbuilder" />
+      <path value="$PROJECT_DIR$/vendor/kylekatarnls/update-helper" />
+      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/rypsx/ipapi" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pae2qAC9YspasNiBL4caNNRMXe" />
@@ -181,7 +178,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets2/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config/packages" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -195,11 +192,11 @@
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\login1" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\config\packages" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\assets2\css" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\templates\concour" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer" />
       <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public\adminDashboard" />
-      <recent name="C:\Users\Hiba\Desktop\ESPRIT\testgit-final\TunLancer\public" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Script.index.php">
@@ -211,7 +208,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHP Script.rating.php" />
         <item itemvalue="PHP Script.rating.php" />
         <item itemvalue="PHP Script.rating.php" />
       </list>
@@ -252,6 +248,10 @@
       <workItem from="1616786799917" duration="45217000" />
       <workItem from="1616958352816" duration="62386000" />
       <workItem from="1617141260868" duration="47000" />
+      <workItem from="1617141705899" duration="1928000" />
+      <workItem from="1617145353629" duration="9997000" />
+      <workItem from="1617210693737" duration="3329000" />
+      <workItem from="1617216387550" duration="1018000" />
     </task>
     <task id="LOCAL-00001" summary="ranking">
       <created>1615569112762</created>
@@ -302,28 +302,7 @@
       <option name="project" value="LOCAL" />
       <updated>1617141285304</updated>
     </task>
-    <task id="LOCAL-00008" summary="update">
-      <created>1617191205790</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1617191205790</updated>
-    </task>
-    <task id="LOCAL-00009" summary="update">
-      <created>1617197521316</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1617197521316</updated>
-    </task>
-    <task id="LOCAL-00010" summary="update">
-      <created>1617198913419</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1617198913419</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,10 +341,6 @@
       <screen x="0" y="0" width="1366" height="736" />
     </state>
     <state x="419" y="169" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.736@0.0.1366.736" timestamp="1617116239518" />
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1617195751716">
-      <screen x="0" y="0" width="1366" height="736" />
-    </state>
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.736@0.0.1366.736" timestamp="1617195751716" />
     <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616696226353">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
@@ -374,14 +349,14 @@
       <screen x="0" y="0" width="1366" height="736" />
     </state>
     <state x="413" y="122" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.736@0.0.1366.736" timestamp="1617119283235" />
-    <state x="463" y="122" key="FileChooserDialogImpl" timestamp="1617109871204">
+    <state x="463" y="122" key="FileChooserDialogImpl" timestamp="1617212146155">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
-    <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.736@0.0.1366.736" timestamp="1617109871204" />
-    <state x="517" y="291" key="NewPhpFileDialog" timestamp="1616957837423">
+    <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.736@0.0.1366.736" timestamp="1617212146155" />
+    <state x="517" y="291" key="NewPhpFileDialog" timestamp="1617152926207">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
-    <state x="517" y="291" key="NewPhpFileDialog/0.0.1366.736@0.0.1366.736" timestamp="1616957837423" />
+    <state x="517" y="291" key="NewPhpFileDialog/0.0.1366.736@0.0.1366.736" timestamp="1617152926207" />
     <state x="184" y="12" key="SettingsEditor" timestamp="1616196613596">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
@@ -390,22 +365,18 @@
       <screen x="0" y="0" width="1366" height="736" />
     </state>
     <state width="773" height="446" key="SwitcherDM/0.0.1366.736@0.0.1366.736" timestamp="1617019820150" />
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1617198918857">
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1617141291781">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.736@0.0.1366.736" timestamp="1617198918857" />
-    <state x="500" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617193851222">
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.736@0.0.1366.736" timestamp="1617141291781" />
+    <state x="500" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617210966926">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
-    <state x="500" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.736@0.0.1366.736" timestamp="1617193851222" />
+    <state x="500" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.736@0.0.1366.736" timestamp="1617210966926" />
     <state x="389" y="101" width="587" height="534" key="find.popup" timestamp="1616537431018">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
     <state x="389" y="101" width="587" height="534" key="find.popup/0.0.1366.736@0.0.1366.736" timestamp="1616537431018" />
-    <state x="463" y="80" key="git4idea.branch.GitSmartOperationDialog" timestamp="1617191110576">
-      <screen x="0" y="0" width="1366" height="736" />
-    </state>
-    <state x="463" y="80" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.736@0.0.1366.736" timestamp="1617191110576" />
     <state x="339" y="164" key="run.anything.popup" timestamp="1617140068714">
       <screen x="0" y="0" width="1366" height="736" />
     </state>
