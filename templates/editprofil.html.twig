@@ -1,0 +1,121 @@
+{% extends "baseFront.html.twig" %}
+
+{% block section %}
+
+    <div style="max-width: 60%;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);border-radius: 10px;position: relative;top: 25px;" class="container">
+
+
+        {{ form_start(form) }}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Nom</label>
+                {{ form_widget(form.Nom, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Prenom</label>
+                {{ form_widget(form.Prenom, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Tel</label>
+                {{ form_widget(form.Tel, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAddress2">Email</label>
+                {{ form_widget(form.Email, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress2">Password</label>
+                {{ form_widget(form.Password, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="inputAddress2">Pays</label>
+                {{ form_widget(form.Pays, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div> </div>
+        <div class="form-row ">
+            <div class="form-group col-md-6">
+                <label for="inputAddress2">Role</label>
+                {{ form_widget(form.Role, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="inputAddress2">Photo</label>
+                {{ form_widget(form.Photo, { 'attr' : { 'class' : 'form-control' } }) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputAddress2">Bibliography</label>
+            {{ form_widget(form.Bibliography, { 'attr' : { 'class' : 'form-control' } }) }}
+        </div>
+
+        <div class="form-row">
+            <div style="text-align: center" class="form-group">
+                {{ form_widget(form.Submit, { 'attr' : { 'class' : 'btn btn-primary','style' : 'margin-bottom:50px;display:none;' } }) }}
+                <button onclick="save()" class="btn btn-primary">Submit </button>
+                <button onclick="save()" class="btn btn-primary">Annuler </button>
+            </div>
+
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+
+
+
+
+
+
+
+
+
+
+
+        function save() {
+            let Nomu=document.getElementById("Nom").value;
+            let Prenomu=document.getElementById("Prenom").value;
+            let Telu=document.getElementById("Tel").value;
+            let Emailu=document.getElementById("Email").value;
+            let Passwordu=document.getElementById("Password").value;
+            let Paysu=document.getElementById("Pays").value;
+            let Roleu=document.getElementById("Role").value;
+            let Photou=document.getElementById("Photo").value;
+            let Bibliographyu=document.getElementById("Bibliography").value;
+
+
+
+            if (Nomu===""){
+                alert("veuillez remplir le champ Nom");
+            }else if (Prenomu===""){
+                alert("veuillez remplir le champ Prenom");
+            }else if (Telu===""){
+                alert("veuillez remplir le champ tel");
+            }else if (Emailu===""){
+                alert("veuillez remplir le champ Email")
+            }else if (Passwordu===""){
+                alert("veuillez remplir le champ Passwordu")
+            }else if (Paysu===""){
+                alert("veuillez remplir le champ Paysu")
+            }else if (Roleu===""){
+                alert("veuillez remplir le champ Roleu")
+            }else if (Photou===""){
+                alert("veuillez remplir le champ Photou")
+            }else if (Bibliographyu===""){
+                alert("veuillez remplir le champ Bibliographyu")
+
+
+            }else{
+                console.log("succes  :",Nomu,Prenomu_,Telu,Emailu,Passwordu,Paysu,Roleu,Photou,Bibliographyu)
+            }
+        }
+    </script>
+{% endblock %}

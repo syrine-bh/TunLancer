@@ -27,12 +27,12 @@ class ParticipationController extends AbstractController
     }
     /**
      * @return Response
-     * @Route ("concour/listPadmin",name="listPadmin")
+     * @Route ("concour/listParticipants",name="listParticipants")
      */
     public function listPadmin (){
         $repo=$this->getDoctrine()->getRepository(Participation::class);
         $participation=$repo->findAll();
-        return $this->render('concour/listPadmin.html.twig',['participation'=>$participation]);
+        return $this->render('concour/listParticipants.html.twig',['participation'=>$participation]);
     }
 
 

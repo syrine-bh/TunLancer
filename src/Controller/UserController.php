@@ -2,79 +2,47 @@
 
 namespace App\Controller;
 
-use App\Entity\Participation;
-use App\Repository\ParticipationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use App\Entity\Concour;
 
 use App\Entity\Formation;
 use App\Entity\Users;
 
 
 use App\Repository\UsersRepository;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 
 
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/user", name="user")
-     */
-    public function index(): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
 
     /**
-     * @Route ("/concour/listParticipants/{id}",name="listParticipants")
+     * @Route("/list", name="list")
+     * @param UsersRepository $users
+     * @param $paginator
+     * @param $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getPart(Concour $concour, ParticipationRepository  $rep )
+    public function listAction(UsersRepository $users, PaginatorInterface $paginator, request $request)
     {
-        $test=$rep->FindByConcId($concour->getId());
-        return $this->render('admin/concour/listParticipants.html.twig',['participant'=>$test]);
-
+        $donnees = $this->getDoctrine()->getManager()->getRepository(Users::class)->findAll();
+        $users = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            7);
+        return $this->render('data-tables.html.twig', array(
+            'users' => $users,
+        ));
     }
-
-    /**
-     * @Route ("/concour/listTTParticipants",name="listTTParticipants")
-     */
-    public function getTTPart( ParticipationRepository  $rep )
-    {
-        $test=$rep->findAll();
-        return $this->render('participation/listTTParticipants.html.twig',['participation'=>$test]);
-
-    }
-
-
-//    /**
-//     * @Route("/list", name="list")
-//     * @param UsersRepository $users
-//     * @param $paginator
-//     * @param $request
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function listAction(UsersRepository $users, PaginatorInterface $paginator,request  $request)
-//    {
-//        $donnees = $this->getDoctrine()->getManager()->getRepository(Users::class)->findAll();
-//        $users = $paginator->paginate(
-//            $donnees, // Requête contenant les données à paginer (ici nos articles)
-//            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-//            7 );
-//        return $this->render('data-tables.html.twig', array(
-//            'users' => $users,
-//        ));
-//    }
 
 
     public function afficheuserAction()
@@ -102,7 +70,8 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $hash=$encoder->encodePassword($user,$user->getPassword());
+
+            $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -159,24 +128,69 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute("list");
     }
-    /**
-     * @Route("/permute/enabled", name="back_user_permute_enabled", methods="GET")
-     */
-    public function permuteEnabled(Request $request): Response
-    {
-        $users = $this->userManager->getUsers();
-        $this->denyAccessUnlessGranted('back_user_permute_enabled', $users);
-        foreach ($users as $user) {
-            $permute = $user->getEnabled() ? false : true;
-            $user->setEnabled($permute);
-        }
-        $this->getDoctrine()->getManager()->flush();
 
-        return $this->redirectToRoute('');
+
+
+/*
+    /**
+     * @Route("/searchuser", name="searchuser)
+     */
+
+/*
+    public function searchusers(Request $request, NormalizerInterface $Normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(users::class);
+        $requestString = $request->get('searchValue');
+        $users = $repository->findUserByName($requestString);
+//        $jsonContent = $Normalizer->normalize($users, 'json', ['groups' => 'users']);
+//        $retour = json_encode($jsonContent);
+//        return new Response($retour);
+        return $this->render('data-tables.html.twig',['users'=>$users]);
+
+    }
+*/
+
+    /**
+     * @param Request $request
+     * @param NormalizerInterface $normalizer
+     * @return Response
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @Route("searchuser", name="search")
+     */
+
+    public function searchuser(Request $request, NormalizerInterface $normalizer){
+        $repository = $this->getDoctrine()->getRepository(users::class);
+        $requestString=$request->get('searchValue');
+
+        $users = $repository->findUserByName($requestString);
+
+        return $this->render("userr.html.twig",
+            ['users'=>$users]);
     }
 
 
 
 
+    /*
+        /**
+         * @Route("/permute/enabled", name="back_user_permute_enabled", methods="GET")
+         */
+    /*/  public function permuteEnabled(Request $request): Response
+      {
+          $users = $this->userManager->getUsers();
+          $this->denyAccessUnlessGranted('back_user_permute_enabled', $users);
+          foreach ($users as $user) {
+              $permute = $user->getEnabled() ? false : true;
+              $user->setEnabled($permute);
+          }
+          $this->getDoctrine()->getManager()->flush();
 
+          return $this->redirectToRoute('');
+      } */
 }
+
+
+
+
+
+

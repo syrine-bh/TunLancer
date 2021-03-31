@@ -1,0 +1,11 @@
+parameters:
+  database_host: 127.0.0.1
+  database_port: null
+  database_name: tunlancer_bd
+  database_user: root
+  database_password: null
+  mailer_transport: gmail
+  mailer_host: 127.0.0.1
+  mailer_user: projetpfe3s@gmail.com
+  mailer_password: 'Godofwar3'
+  secret: ThisTokenIsNotSoSecretChangeIt
